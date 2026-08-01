@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="برنامج علي">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230f172a'/><text x='50' y='68' font-size='52' text-anchor='middle'>🏐</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230f172a'/><text x='50' y='68' font-size='52' text-anchor='middle'>🏐</text></svg>">
+<title>برنامج علي اليومي 🏆</title>
+<style>
+  :root{
+    --bg:#0f172a; --card:#1e293b; --card2:#273449; --line:#334155;
+    --txt:#f1f5f9; --sub:#94a3b8; --accent:#f59e0b; --accent2:#fb923c;
+    --ok:#22c55e; --bad:#ef4444; --info:#38bdf8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg); color:var(--txt);
+    font-family:"Segoe UI",Tahoma,"Noto Kufi Arabic",system-ui,sans-serif;
+    font-size:17px; line-height:1.6; padding-bottom:90px;
+  }
+  header{
+    position:sticky; top:0; z-index:50; background:linear-gradient(180deg,#0b1224,#0f172a);
+    border-bottom:1px solid var(--line); padding:14px 16px 10px;
+  }
+  .topline{display:flex; align-items:center; justify-content:space-between; gap:8px;}
+  .logo{font-size:20px; font-weight:800;}
+  .logo span{color:var(--accent);}
+  .datechip{
+    background:var(--card); border:1px solid var(--line); border-radius:999px;
+    padding:6px 14px; font-size:14px; color:var(--sub); white-space:nowrap;
+  }
+  .weekline{margin-top:8px; font-size:14px; color:var(--sub); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;}
+  .weekpill{background:var(--accent); color:#0f172a; font-weight:800; border-radius:999px; padding:3px 12px; font-size:13px;}
+  nav{
+    display:flex; gap:6px; margin-top:12px; overflow-x:auto; padding-bottom:4px;
+  }
+  nav button{
+    flex:1; min-width:76px; border:1px solid var(--line); background:var(--card);
+    color:var(--sub); border-radius:12px; padding:10px 4px; font-size:13.5px; font-weight:700;
+    cursor:pointer; font-family:inherit;
+  }
+  nav button.active{background:var(--accent); color:#0f172a; border-color:var(--accent);}
+  main{max-width:640px; margin:0 auto; padding:16px;}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:18px;
+    padding:16px; margin-bottom:14px;
+  }
+  .card h2{margin:0 0 10px; font-size:19px; display:flex; align-items:center; gap:8px;}
+  .card h3{margin:14px 0 8px; font-size:16px; color:var(--accent2);}
+  .muted{color:var(--sub); font-size:14.5px;}
+  .big{font-size:20px; font-weight:800;}
+  .session-emoji{font-size:30px;}
+  .session-title{font-size:20px; font-weight:800; margin:2px 0 4px;}
+  .tag{display:inline-block; background:var(--card2); border:1px solid var(--line); border-radius:999px; padding:2px 10px; font-size:12.5px; color:var(--sub); margin:2px;}
+  .ex{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    background:var(--card2); border:1px solid var(--line); border-radius:12px;
+    padding:11px 12px; margin-bottom:8px;
+  }
+  .ex input[type=checkbox]{width:24px; height:24px; accent-color:var(--ok); flex-shrink:0;}
+  .ex .exname{flex:1; font-weight:700;}
+  .ex .exx{color:var(--accent); font-weight:800; white-space:nowrap;}
+  .ex.done{opacity:.55;} .ex.done .exname{text-decoration:line-through;}
+  .ex .exlink{cursor:pointer;}
+  .ex .hint{opacity:.75; font-size:13px;}
+  .exbody{display:none; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px 12px; margin:-4px 0 10px; font-size:14.5px; color:var(--sub);}
+  .exbody p{margin:5px 0;}
+  .exbody b{color:var(--accent2);}
+  .ytlink{display:inline-block; margin-top:8px; background:#e11d48; color:#fff; border:none; border-radius:8px; padding:7px 14px; font-size:13.5px; font-weight:700; cursor:pointer; font-family:inherit;}
+  .vidgroup{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;}
+  .vbtn{border:none; color:#fff; border-radius:8px; padding:7px 13px; font-size:13px; font-weight:700; cursor:pointer; font-family:inherit;}
+  .langbtn{background:var(--card); border:1px solid var(--line); color:var(--sub); border-radius:999px; padding:6px 12px; font-size:13px; font-weight:700; cursor:pointer; font-family:inherit; white-space:nowrap;}
+  .timerwrap{text-align:center;}
+  .timerbig{font-size:52px; font-weight:900; color:var(--accent); font-family:monospace; direction:ltr; margin:10px 0;}
+  .timerbtns{display:flex; gap:8px; flex-wrap:wrap; justify-content:center;}
+  .timerbtns button{background:var(--card2); border:1px solid var(--line); color:var(--txt); border-radius:10px; padding:12px 14px; font-size:15px; font-weight:800; cursor:pointer; font-family:inherit; flex:1; min-width:70px;}
+  .timerbtns button.act{background:var(--accent); color:#0f172a; border-color:var(--accent);}
+  .badges{display:flex; flex-wrap:wrap; gap:8px;}
+  .badge{background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:10px 12px; font-size:13px; display:flex; align-items:center; gap:8px;}
+  .badge.earned{background:rgba(34,197,94,.12); border-color:rgba(34,197,94,.4);}
+  .badge .ico{font-size:20px;}
+  .goalbar{margin-bottom:14px;}
+  .goalbar .lbl{display:flex; justify-content:space-between; font-size:14px; margin-bottom:4px;}
+  .mealrow{display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid var(--line);}
+  .mealrow .mtime{font-weight:800; min-width:130px; font-size:13.5px;}
+  .mealrow .mfood{flex:1; color:var(--sub); font-size:14px;}
+  .mealrow.done .mfood{text-decoration:line-through; opacity:.55;}
+  .chips{display:flex; flex-wrap:wrap; gap:6px;}
+  .chip{background:var(--card2); border:1px solid var(--line); border-radius:999px; padding:5px 11px; font-size:13px;}
+  .progressbar{height:8px; background:var(--card2); border-radius:99px; overflow:hidden; margin:8px 0 2px;}
+  .progressbar div{height:100%; background:var(--ok); border-radius:99px; transition:width .3s;}
+  .btn{
+    display:block; width:100%; border:none; border-radius:14px; padding:15px;
+    font-size:17px; font-weight:800; cursor:pointer; font-family:inherit; text-align:center;
+  }
+  .btn-accent{background:var(--accent); color:#0f172a;}
+  .btn-ok{background:var(--ok); color:#06210f;}
+  .btn-info{background:var(--info); color:#062a38;}
+  .btn-line{background:transparent; color:var(--txt); border:1px solid var(--line);}
+  .btn.big{font-size:19px; padding:17px;}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block; font-size:15px; font-weight:700; margin-bottom:6px; color:var(--sub);}
+  .field input[type=text], .field input[type=number], .field select, .field textarea{
+    width:100%; background:var(--card2); border:1px solid var(--line); color:var(--txt);
+    border-radius:12px; padding:13px; font-size:17px; font-family:inherit;
+  }
+  .field textarea{min-height:80px; resize:vertical;}
+  .scale{display:flex; gap:5px; flex-wrap:wrap;}
+  .scale button{
+    flex:1; min-width:44px; background:var(--card2); border:1px solid var(--line); color:var(--txt);
+    border-radius:10px; padding:10px 6px; font-size:16px; font-weight:800; cursor:pointer; font-family:inherit;
+  }
+  .scale button.sel{background:var(--accent); color:#0f172a; border-color:var(--accent);}
+  .notebox{
+    background:var(--card2); border:1px dashed var(--line); border-radius:12px; padding:10px 12px;
+    font-size:14px; color:var(--sub); margin-bottom:10px;
+  }
+  .toast{
+    position:fixed; bottom:100px; left:50%; transform:translateX(-50%);
+    background:var(--ok); color:#06210f; font-weight:800; padding:12px 22px; border-radius:99px;
+    font-size:15px; box-shadow:0 8px 24px rgba(0,0,0,.4); opacity:0; pointer-events:none;
+    transition:opacity .25s; z-index:100; white-space:nowrap;
+  }
+  .toast.show{opacity:1;}
+  .logrow{display:flex; justify-content:space-between; align-items:center; gap:8px; padding:10px 0; border-bottom:1px solid var(--line);}
+  .logrow .date{font-weight:800; font-size:15px;}
+  .logrow .vals{color:var(--sub); font-size:13.5px; text-align:left;}
+  .mini{font-size:12.5px; color:var(--sub);}
+  .ltr{direction:ltr; unicode-bidi:embed;}
+  .cent{text-align:center;}
+  table{width:100%; border-collapse:collapse; font-size:14.5px;}
+  th,td{border:1px solid var(--line); padding:8px 6px; text-align:center;}
+  th{background:var(--card2); color:var(--accent);}
+  .banner{border-radius:14px; padding:12px; margin-bottom:14px; font-size:15px; font-weight:700;}
+  .banner.warn{background:rgba(239,68,68,.15); border:1px solid rgba(239,68,68,.4); color:#fca5a5;}
+  .banner.info{background:rgba(56,189,248,.12); border:1px solid rgba(56,189,248,.35); color:#7dd3fc;}
+  .banner.gold{background:rgba(245,158,11,.14); border:1px solid rgba(245,158,11,.4); color:#fcd34d;}
+  .textarea-copy{width:100%; min-height:140px; background:var(--card2); border:1px solid var(--line); color:var(--txt); border-radius:12px; padding:12px; font-size:14px; font-family:inherit; direction:rtl;}
+  details{background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:10px 12px; margin-bottom:8px;}
+  summary{cursor:pointer; font-weight:700; color:var(--txt);}
+  details p{margin:8px 0 0; color:var(--sub); font-size:14.5px;}
+  .phase{border-right:4px solid var(--accent); padding:4px 10px 4px 0; margin:6px 0;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topline">
+    <div class="logo">🏆 <span>برنامج علي</span> — Pivot</div>
+    <div class="datechip" id="dateChip"></div>
+    <button id="langBtn" class="langbtn" onclick="setSearchLang(searchLang==='ar'?'en':'ar')">🌐 English</button>
+  </div>
+  <div class="weekline">
+    <span id="weekInfo"></span>
+    <span class="weekpill" id="weekPill"></span>
+  </div>
+  <nav>
+    <button data-v="home" class="active">🏋️ اليوم</button>
+    <button data-v="day">⏰ يومي الكامل</button>
+    <button data-v="receive">🎯 الاستلام</button>
+    <button data-v="food">🍽️ التغذية</button>
+    <button data-v="strength">📈 القوة</button>
+    <button data-v="lib">📖 الشروحات</button>
+    <button data-v="checkin">📝 تسجيل اليوم</button>
+    <button data-v="log">📖 السجل</button>
+    <button data-v="progress">📊 التقدم</button>
+    <button data-v="send">📤 إرسال للمدرب</button>
+  </nav>
+</header>
+
+<main id="main"></main>
+
+<div class="toast" id="toast">تم الحفظ ✅</div>
+
+<script>
+"use strict";
+/* ================= بيانات البرنامج ================= */
+var AR_DAYS = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+var START = new Date(2026,7,2);   // الأحد 2 أغسطس 2026
+var END   = new Date(2026,8,26);  // السبت 26 سبتمبر 2026
+var TOTAL_WEEKS = 8;
+
+var WARMUP = [
+  "مشي سريع أو دراجة: 5 دقائق",
+  "تمارين الباند (حسب اليوم): 3–5 دقائق (Lateral Walks، Monster Walk، Pull-Aparts)",
+  "Dynamic Stretching: 3 دقائق",
+  "تسخين خاص لأول تمرين: 2–4 دقائق"
+];
+var COOLDOWN = ["تبريد (مشي خفيف): 3 دقائق", "تمطيط ثابت: 7–10 دقائق"];
+var HOME_DRILL = [
+  "50–100 لمسة حائط (بيدين ثم بيد واحدة) — أصابع مفرودة وامتصاص",
+  "عصر كرة تنس/إسفنجية: دقيقة لكل يد",
+  "تبادل الكرة بين اليدين بسرعة (رقصة الكرة)"
+];
+var RULES = [
+  "لا تصل للفشل العضلي (RIR 2–3)",
+  "الجودة أهم من الوزن الثقيل",
+  "إذا عاد ألم الركبة أو الكتف → أخبر المدرب فوراً وخفف القفزات",
+  "كرياتين 5 جم يومياً (بما فيها الراحة) + ماء 3–4 لتر",
+  "نوم 8 ساعات — خلود قبل 12:00"
+];
+
+var SESSIONS = [
+  { emoji:"🔴", key:"d1", title:"Day 1 — Lower Power & Explosive",
+    type:"training", cardio:"بعد التمرين: Zone 2 كارديو 20–30 دقيقة",
+    exercises:[
+      ["Jump on Fit-Box","3×3"], ["Depth Jump to Hurdle Hop","3×3"],
+      ["Full Squat","4×5"], ["Dumbbell Walking Lunges","3×8 (كل رجل)"],
+      ["Lever Lying Leg Curl","3×12"], ["Cable Half Kneeling Pallof Press","3×12"],
+      ["Lever Seated Hip Adduction","3×15"], ["Lever Seated Calf Raise","4×15"],
+      ["Power Sled Push","3×20م"]
+    ] },
+  { emoji:"🟢", key:"d2", title:"Day 2 — Agility & Speed",
+    type:"training", cardio:"بعد التمرين: تمطيط فقط (بدون كارديو)",
+    exercises:[
+      ["Sprint 20م","6×20م"], ["5-10-5 Pro Agility","4 محاولات"],
+      ["Lateral Shuffle Squat Tap","3×10 (كل جهة)"], ["ZigZag Hops","3×6"],
+      ["Broad Jump to Vertical","3×4"], ["Hollow Rock","3×10–15"]
+    ] },
+  { emoji:"🟠", key:"z2", title:"Zone 2 + Mobility (تعافي نشط)",
+    type:"light", cardio:"",
+    exercises:[
+      ["دراجة ثابتة أو Incline Walk","20–35 دقيقة"],
+      ["تمطيط خفيف","10 دقائق"]
+    ] },
+  { emoji:"🟣", key:"d3", title:"Day 3 — Upper Athletic Power",
+    type:"training", cardio:"بعد التمرين: Zone 2 كارديو 20–30 دقيقة",
+    exercises:[
+      ["Medicine Ball Chest Throw","4×5"], ["Plyo Push Up","3×5"],
+      ["Dumbbell Incline Bench Press","4×8"], ["Bar Lateral Pulldown","4×8"],
+      ["Lever One Arm Seated Row","4×8"], ["Lever Seated Shoulder Press","2×8"],
+      ["Cable Standing Face Pull","3×15"], ["Weighted Captains Chair Leg Raise","3×12"]
+    ] },
+  { emoji:"🟡", key:"d4", title:"Day 4 — Legs, Agility & Conditioning",
+    type:"training", cardio:"بعد التمرين: تمطيط فقط (بدون كارديو)",
+    exercises:[
+      ["Jump Box Over","3×4"], ["Lateral Cone Hop","4 مجموعات"],
+      ["Skater Hops","3×6 (كل جهة)"], ["Full Squat","3×6 (@70–75%)"],
+      ["Glute Bridge (بديل RDL)","3×12"], ["Dumbbell Walking Lunges","3×8 (كل رجل)"],
+      ["Lever Lying Leg Curl","3×12"], ["Lever Standing Calf Raise","4×15"],
+      ["Side Plank","3×30–45 ث (كل جهة)"]
+    ] },
+  { emoji:"🟤", key:"rest", title:"راحة كاملة 🛌",
+    type:"rest", cardio:"",
+    exercises:[
+      ["نوم 8 ساعات","✅"], ["كرياتين 5 جم + ماء 3–4 لتر","✅"],
+      ["قياس صباحاً: الوزن + محيط الخصر","⚖️ الجمعة"]
+    ] },
+  { emoji:"⚪", key:"skill", title:"مهارات Pivot + Zone 2 خفيف (استلام)",
+    type:"training", cardio:"Zone 2 اختياري: 20–30 دقيقة",
+    exercises:[
+      ["استلام حائط بيدين (من قريب 30–50 سم)","5 دقائق"],
+      ["استلام حائط بيد واحدة (كل يد)","5 دقائق"],
+      ["استلام عالي / منخفض / يمين / يسار مع حركة","5 دقائق"],
+      ["استلام ثم حماية فورية","5 دقائق"],
+      ["دوران يمين ويسار (Spin)","10 دقائق"],
+      ["إنهاء من مسافة قصيرة","10 دقائق"]
+    ] }
+];
+
+var PHASES = [
+  "المرحلة 1 — الأساس: أيدي ناعمة + استلام بيدين (أسابيع 1–2)",
+  "المرحلة 2 — يد واحدة: استلام بيد واحدة وأثناء الحركة (أسابيع 3–4)",
+  "المرحلة 3 — السرعة: كرات أسرع + وضعية Pivot (أسابيع 5–6)",
+  "المرحلة 4 — الضغط: مدافع خفيف + استلام + دوران + تصويب (أسابيع 7–8)"
+];
+
+/* ================= يومي الكامل + الوقاية + الاستطالة ================= */
+var DAY_TYPE_MAP = {0:"training",1:"training",2:"recovery",3:"training",4:"training",5:"rest",6:"skills"};
+var DAY_TYPE_NAMES = {training:"🏋️ يوم تدريب", recovery:"🟠 تعافي نشط", rest:"🛌 راحة كاملة", skills:"🎯 يوم مهارات"};
+
+var TIMELINES = {
+  training: [
+    ["06:30","الاستيقاظ","كوب ماء 400مل + 5 د تنفس عميق"],
+    ["06:45","حركة صباحية","10 د: Cat-Cow + فتح وركين + دوران كتف وكاحل"],
+    ["07:00","الفطور","4 بيض + 2 توست أسمر + موزة"],
+    ["07:30","المدرسة / الدراسة",""],
+    ["10:00","سناك","200g زبادي يوناني"],
+    ["13:00","الغداء","200g دجاج + 200g رز + خضار"],
+    ["14:30","قيلولة قصيرة","20–30 د كحد أقصى"],
+    ["15:30","سناك قبل التمرين","موزة + زبدة فول سوداني + ماء"],
+    ["16:00","تسخين عام 15 د","5 د مشي/دراجة + باند 3–5 د + Dynamic 3 د + خاص 2–4 د"],
+    ["16:15","🛡️ وقاية من الإصابات","8 د Prehab اليوم (قبل التمرين مباشرة)"],
+    ["16:25","التمرين الرئيسي","90 د — التفاصيل في تبويب (اليوم)"],
+    ["17:55","تبريد + تمطيط","3 د مشي خفيف + 7–10 د تمطيط ثابت"],
+    ["18:05","بعد التمرين","واي بروتين + موزة + ماء"],
+    ["19:30","مشي خفيف","15–20 د (يساعد على حرق الدهون)"],
+    ["20:30","العشاء","200g لحم + خضار + 2 بيض"],
+    ["21:30","🧘 جلسة الاستطالة","15 د: برنامج المرونة الكامل"],
+    ["22:00","سناك أخير","150g جبن قريش"],
+    ["22:30","إغلاق الشاشات","تهدئة + تجهيز الغد"],
+    ["23:00","النوم 😴","8 ساعات كاملة"]
+  ],
+  recovery: [
+    ["06:30","الاستيقاظ","ماء + حركة صباحية خفيفة 10 د"],
+    ["07:00","الفطور","4 بيض + 2 توست أسمر + موزة"],
+    ["10:00","سناك","200g زبادي يوناني"],
+    ["13:00","الغداء","200g دجاج + 200g رز + خضار"],
+    ["16:00","Zone 2","دراجة ثابتة أو Incline Walk 20–35 د"],
+    ["16:40","مرونة","10 د تمطيط خفيف + فووم رولنج"],
+    ["20:30","العشاء","200g لحم + خضار + 2 بيض"],
+    ["21:30","🧘 الاستطالة","15 د: برنامج المرونة الكامل"],
+    ["22:30","إغلاق الشاشات",""],
+    ["23:00","النوم 😴","8 ساعات"]
+  ],
+  rest: [
+    ["08:00","الاستيقاظ","⚖️ قياس صباحي: الوزن + محيط الخصر"],
+    ["09:00","الفطور","راحة كاملة — بروتين 180–200g، كارب أقل"],
+    ["11:00","مشي خفيف","15–20 د اختياري"],
+    ["16:00","تمطيط خفيف","10–15 د"],
+    ["20:30","العشاء","لحم/دجاج + خضار"],
+    ["22:00","سناك","150g جبن قريش"],
+    ["22:30","إغلاق الشاشات",""],
+    ["23:00","النوم 😴","8 ساعات"]
+  ],
+  skills: [
+    ["06:30","الاستيقاظ","ماء + حركة صباحية 10 د"],
+    ["07:00","الفطور","4 بيض + 2 توست أسمر + موزة"],
+    ["10:00","سناك","200g زبادي يوناني"],
+    ["13:00","الغداء","200g دجاج + 200g رز + خضار"],
+    ["16:00","🎯 مهارات الاستلام","30 د: حائط بيدين/بيد واحدة/حركة/حماية"],
+    ["16:30","دوران + إنهاء","Spin يمين/يسار 10 د + إنهاء قصير 10 د"],
+    ["16:50","Zone 2 اختياري","20–30 د"],
+    ["17:20","تمطيط","10 د"],
+    ["20:30","العشاء","200g لحم + خضار + 2 بيض"],
+    ["21:30","🧘 الاستطالة","15 د"],
+    ["23:00","النوم 😴","8 ساعات"]
+  ]
+};
+
+var MORNING = [
+  ["Cat-Cow","10 عدات"],
+  ["فتح وركين (Hip Circles)","2×10/جهة"],
+  ["دوران كتف","2×10/جهة"],
+  ["دوران كاحل","2×10/رجل"],
+  ["World's Greatest Stretch","2×5/جهة"],
+  ["حركة رقبة","2×5/جهة"]
+];
+
+var PREHAB = [
+  [ // الأحد - أرجل
+    "Band Lateral Walks 2×10 (كل جهة)",
+    "Monster Walk 2×10",
+    "توازن رجل واحدة على منشفة 2×20 ث/رجل",
+    "Tibialis Raises 2×12",
+    "Band Ankle Dorsiflexion 2×10/رجل",
+    "Dead Hang 2×15 ث"
+  ],
+  [ // الاثنين - سرعة
+    "توازن رجل واحدة 2×20 ث/رجل",
+    "Band Ankle Eversion 2×10/رجل",
+    "Plank 2×30 ث",
+    "Band Pull-Aparts 2×15",
+    "Side Plank 2×20 ث/جهة"
+  ],
+  [ // الثلاثاء - تعافي
+    "فووم رولنج كامل 10 د",
+    "حركة وركين 2×10/جهة",
+    "دوران كتف 2×10/جهة",
+    "دوائر كاحل 2×10/رجل"
+  ],
+  [ // الأربعاء - علوي
+    "Band Pull-Aparts 2×15",
+    "Band External Rotation 2×12/ذراع",
+    "Wall Slides 2×10",
+    "Scapular Push-Up 2×10",
+    "Dead Hang 2×15 ث",
+    "Wrist Flexor Stretch 2×20 ث/يد"
+  ],
+  [ // الخميس - أرجل
+    "Band Lateral Walks 2×10",
+    "Monster Walk 2×10",
+    "توازن رجل واحدة 2×20 ث/رجل",
+    "Tibialis Raises 2×12",
+    "Band Ankle Dorsiflexion 2×10/رجل",
+    "Dead Hang 2×15 ث"
+  ],
+  [ // الجمعة - راحة
+    "تمطيط خفيف فقط 10 د"
+  ],
+  [ // السبت - مهارات
+    "Band Pull-Aparts 2×12",
+    "توازن رجل واحدة 2×15 ث/رجل",
+    "دوران كتف 2×10/جهة",
+    "Wrist Flexor Stretch 2×20 ث/يد"
+  ]
+];
+
+var FLEX = [
+  ["Hip Flexor Lunge","2×30 ث/جهة"],
+  ["Hamstring (أوتار الركبة)","2×30 ث/جهة"],
+  ["Quad (أمام الفخذ)","2×30 ث/جهة"],
+  ["Figure-4 Glute","2×30 ث/جهة"],
+  ["Adductor Butterfly (المقربة)","2×30 ث"],
+  ["Calf (السمانة) مفرودة ومثنية","2×30 ث/جهة"],
+  ["Chest Doorway (الصدر)","2×30 ث"],
+  ["Lat Overhead Reach (الظهر)","2×30 ث/جهة"],
+  ["Thoracic Rotation","2×10/جهة"],
+  ["Child's Pose","60 ث"],
+  ["Sleeper Stretch (الكتف)","2×30 ث/جهة"],
+  ["Wrist Flexor/Extensor (اليد)","2×20 ث/يد"]
+];
+
+/* ================= شروحات التمارين ================= */
+var EXPLAIN = {
+  "Jump on Fit-Box":{how:"قف أمام الصندوق، انزل قليلاً بسرعة (كالنابض) ثم اقفز واهبط بهدوء على منتصف القدمين، واقف واقفاً تماماً في الأعلى. انزل خطوة واحدة للخلف ولا تقفز للأسفل.",cues:"هبوط ناعم صامت، الركبة فوق إصبع القدم، صدر مرفوع."},
+  "Depth Jump to Hurdle Hop":{how:"قف على الصندوق، انزل بخطوة إلى الأرض، وبمجرد لمس الأرض اقفز فوراً فوق الحاجز أمامك (انعكاس سريع).",cues:"وقت ملامسة الأرض قصير جداً (لا تتوقف)، ادفع من منتصف القدم، اهبط بهدوء."},
+  "Full Squat":{how:"قف بعرض الكتفين وأصابع القدم مائلة قليلاً للخارج، انزل وكأنك تجلس على كرسي خلفك حتى ينخفض الفخذان تحت الأفق (سكوات كامل)، ثم ادفع الأرض بقوة للصعود.",cues:"وزن على كامل القدم، ركبة في اتجاه أصابع القدم، صدر مرفوع، شهيق بالنزول وزفير بالصعود."},
+  "Dumbbell Walking Lunges":{how:"دمبل في كل يد بجانب الجسم، خطوة أمامية كبيرة، انزل حتى تقترب الركبة الخلفية من الأرض، ثم ادفع للخطوة التالية مباشرة.",cues:"جذع مستقيم، خطوة طويلة، ركبة أمامية فوق الكاحل، لا تميل للأمام."},
+  "Lever Lying Leg Curl":{how:"استلقِ على بطنك على الجهاز، ثبّت الفخذين، واثنِ الركبتين ببطء نحو الأرداف ثم عُد بتحكم كامل.",cues:"حركة بطيئة ومنضبطة، لا ترفع الورك عن المقعد، زفير مع الانثناء."},
+  "Cable Half Kneeling Pallof Press":{how:"اجثُ على ركبة واحدة (جذع مستقيم ووركان ثابتان)، امسك المقبض عند الصدر وادفعه أمامك بذراعين ممدودتين ثم عُد ببطء.",cues:"الحوض لا يتحرك إطلاقاً، قاوم الدوران — يقوي مركز جسمك للاستلام تحت الضغط."},
+  "Lever Seated Hip Adduction":{how:"اجلس على الجهاز والفخذان مفتوحان، اضغط الركبتين للداخل معاً بتحكم ثم عُد ببطء.",cues:"بطيء في العودة، لا ارتداد، تنفس منتظم."},
+  "Lever Seated Calf Raise":{how:"اجلس والكرة في مقدمة القدم على المنصة، ارفع الكعبين لأعلى قدر ممكن، توقف لحظة، ثم انزل تحت السيطرة.",cues:"مدى حركة كامل، توقف قصير في الأعلى، هبوط بطيء."},
+  "Power Sled Push":{how:"قف خلف السلة بجذع مائل للأمام (45° تقريباً) وأذرع ممدودة، ادفع بخطوات قصيرة سريعة.",cues:"الدفع من الأرجل وليس الظهر، خطوات قصيرة، أسفل الظهر مستقيم لا يتقوس."},
+  "Sprint 20م":{how:"ركض قصير بأقصى سرعة لمسافة 20 متراً. كل عدو يليه راحة كاملة (1–2 دقيقة) قبل التالي.",cues:"اندفاع قوي من أول خطوة (أول 5 أمتار)، ذراعان يتحركان بقوة، رأس ثابت ونظر أمامك."},
+  "5-10-5 Pro Agility":{how:"قف في المنتصف بين خطين. اندفع يميناً 5 ياردات والمس الخط، ثم يساراً 10 ياردات، ثم يميناً 5.",cues:"المس الخط بيدك، دوران سريع بجسم منخفض، خطوات قصيرة سريعة."},
+  "Lateral Shuffle Squat Tap":{how:"حركة جانبية بجسم منخفض، وعند كل محطة اجلس سكوات ولمس الأرض بيدك ثم تابع.",cues:"ابقَ منخفضاً أثناء الانتقال، رجلان تتجهان مع الحركة، لا تقف بين المحطات."},
+  "ZigZag Hops":{how:"قفزات قصيرة سريعة بنمط متعرج بين المخاريط على قدمين.",cues:"هبوط ناعم وهادئ، قفزات قصيرة، ثبات لحظة في كل هبوط."},
+  "Broad Jump to Vertical":{how:"قفزة طويلة للأمام بأقصى قوة، وفور الهبوط اقفز عمودياً لأعلى بأقصى ارتفاع.",cues:"امتصاص الهبوط ثم انفجار فوري بلا توقف، الأذرع تساعدك في القفزتين."},
+  "Hollow Rock":{how:"استلقِ على ظهرك وارفع الكتفين والرجلين عن الأرض (شكل قارب)، وحرّك ذهاباً وإياباً بثبات.",cues:"أسفل الظهر ملاصق للأرض دائماً، حركة صغيرة ومنضبطة، لا تحبس النفس."},
+  "Medicine Ball Chest Throw":{how:"قف بمواجهة الحائط، الكرة عند صدرك، ادفعها بقوة بأذرع ممدودة، وامسكها عند ارتدادها.",cues:"القوة تخرج من الصدر والذراعين معاً، مدى كامل، استعد لكل رمية."},
+  "Plyo Push Up":{how:"انزل بضغطة عادية، ثم ادفع بقوة حتى ترفع يديك عن الأرض لحظة (مع أو بدون تصفيق).",cues:"جسم مستقيم كاللوح، ادفع من الصدر، امتص الهبوط بمرفقين مثنيين."},
+  "Dumbbell Incline Bench Press":{how:"على مقعد مائل، دمبل في كل يد عند مستوى الصدر، انزل ببطء حتى 90° ثم ادفع للأعلى.",cues:"كتفان ملتصقان بالمقعد، لا تقوس أسفل الظهر، زفير مع الدفع."},
+  "Bar Lateral Pulldown":{how:"اجلس على الجهاز وامسك البار بعرض أوسع من كتفيك، اسحبه إلى أعلى الصدر ثم عُد ببطء.",cues:"اسحب من المرفقين، صدر مرفوع، لا تتأرجح بالجسم."},
+  "Lever One Arm Seated Row":{how:"اجلس على الجهاز وامسك المقبض بيد واحدة، اسحب خلفك مع ثبات الجذع ثم عُد ببطء.",cues:"الكتف ثابت، السحب من عضلات الظهر، عودة بطيئة."},
+  "Lever Seated Shoulder Press":{how:"اجلس وظهرك مسنود، المقابض عند مستوى الكتف، ادفع للأعلى حتى تمد الذراعين ثم انزل بتحكم.",cues:"لا تقوس الظهر، زفير مع الدفع، حركة كاملة."},
+  "Cable Standing Face Pull":{how:"قف بمواجهة البكرة عند مستوى الوجه، اسحب الحبل باتجاه وجهك وافتح المرفقين للخارج.",cues:"السحب من الكتفين الخلفيين، مرفقان عاليان، بطيء في العودة — صديق الكتف الأول."},
+  "Weighted Captains Chair Leg Raise":{how:"ثبّت ساعديك على المساند، ارفع الركبتين نحو الصدر ببطء ثم انزل بتحكم.",cues:"لا تتأرجح، شد البطن، حركة بطيئة ومنضبطة."},
+  "Jump Box Over":{how:"قف بجانب الصندوق، اقفز فوقه من جهة إلى أخرى دون لمسه، واهبط بهدوء.",cues:"هبوط ناعم، ركبة مرنة عند الارتطام، لا تقفز أعلى من اللازم."},
+  "Lateral Cone Hop":{how:"قفزات جانبية سريعة بين المخاريط (قدم واحدة أو قدمين حسب التعليم).",cues:"ثبات في الهبوط، قفزات قصيرة سريعة، ذراعان يساعدان."},
+  "Skater Hops":{how:"قفزة جانبية من رجل إلى رجل كالمتزلج، تلامس القدم الخارجة الأرض خلفك قليلاً.",cues:"توازن في كل هبوط، حركة سلسة، لا تلمس بيدك الأرض."},
+  "Glute Bridge":{how:"استلقِ على ظهرك وركبتان مثنيتان وقدماك على الأرض، ارفع الورك حتى يصبح جسمك خطاً مستقيماً.",cues:"ادفع من الكعبين، شد الأرداف في الأعلى، لا تقوس أسفل الظهر."},
+  "Glute Bridge (بديل RDL)":{how:"استلقِ على ظهرك وركبتان مثنيتان وقدماك على الأرض، ارفع الورك حتى يصبح جسمك خطاً مستقيماً، ثم انزل ببطء.",cues:"ادفع من الكعبين، شد الأرداف في الأعلى، لا تقوس أسفل الظهر — بديل آمن لمفصل الركبة."},
+  "Lever Standing Calf Raise":{how:"قف على الجهاز ووسائد على كتفيك، ارفع الكعبين لأعلى قدر ممكن ثم انزل بتحكم.",cues:"مدى كامل، توقف قصير في الأعلى، لا ترتد."},
+  "Side Plank":{how:"استند على ساعدك وجانب قدمك، وارفع وركك حتى يصبح جسمك خطاً مستقيماً، وثبت.",cues:"الورك مرفوع لا يرتخي، تنفس مستمر، أكتاف فوق المرفق."},
+  "استلام حائط بيدين (من قريب 30–50 سم)":{how:"قف قريباً من الحائط، ارمِ الكرة بقوة وامسكها بيدين مفرودتين مع امتصاص بسيط للخلف مع الكرة.",cues:"أصابع مفرودة ومتباعدة، امتصاص (اليد ترجع قليلاً مع الكرة)، عين على الكرة حتى دخول اليد."},
+  "استلام حائط بيد واحدة (كل يد)":{how:"نفس الفكرة بيد واحدة فقط — كل يد تتناوب. قريب من الحائط لضبط الإيقاع.",cues:"معصم ثابت، أصابع مفرودة، امسك بأطراف الأصابع لا براحة اليد فقط."},
+  "استلام عالي / منخفض / يمين / يسار مع حركة":{how:"ارمِ الكرة في أماكن مختلفة (أعلى، أسفل، يمين، يسار) وحرّك قدميك للوصول إليها في كل مرة.",cues:"حرك قدميك للكرة (لا تمدد فقط)، استلم في وضعية متوازنة."},
+  "استلام ثم حماية فورية":{how:"بعد الاستلام مباشرة، اجلب الكرة بسرعة إلى صدرك ودُر بجسمك للحماية مع مرفق مرفوع.",cues:"استلام + جلب للصدر + حماية — كلها في حركة واحدة سريعة."},
+  "دوران يمين ويسار (Spin)":{how:"استلم الكرة، ضع قدمك المحورية، ودُر حولها بسرعة (يميناً ويساراً) ثم افتح على المرمى.",cues:"خطوة محورية سريعة، حافظ على مركز ثقل منخفض، الكرة محمية عند الصدر."},
+  "إنهاء من مسافة قصيرة":{how:"من الدائرة، تمرن على التسديد القريب السريع (وخزة أو سقوط) بعد الاستلام مباشرة.",cues:"ارتفاع سريع للكتف والساعد، معصم مرن، الدقة قبل القوة."}
+};
+var PREHAB_BASICS = [
+  {n:"Band Lateral Walks", how:"شريط مطاطي حول الركبتين (أو الكاحلين)، خطوات جانبية مع بقاء الشد في الشريط.", cues:"جسم منخفض قليلاً، خطوات واسعة، الركبتان لا تنهاران للداخل."},
+  {n:"Band Monster Walk", how:"شريط حول الكاحلين، خطوات أمامية واسعة بشكل قطري (زاوية 45°) كالوحش.", cues:"شد ثابت في الشريط، خطوات واسعة، جذع مستقيم."},
+  {n:"Band Pull-Aparts", how:"امسك الشريط أمامك بذراعين مفرودتين، ومدّه للخارج حتى عرض الكتفين ثم عُد ببطء.", cues:"اضغط الكتفين للخلف وللأسفل، بطيء ومنضبط — يحمي كتفيك."}
+];
+
+/* ================= البحث المرئي (يوتيوب) ================= */
+var YT_CUSTOM = {
+  "استلام حائط بيدين (من قريب 30–50 سم)":"كرة يد استلام الكرة",
+  "استلام حائط بيد واحدة (كل يد)":"كرة يد استلام بيد واحدة",
+  "استلام عالي / منخفض / يمين / يسار مع حركة":"كرة يد استلام تمرين",
+  "استلام ثم حماية فورية":"كرة يد pivot استلام وحماية",
+  "دوران يمين ويسار (Spin)":"كرة يد pivot دوران",
+  "إنهاء من مسافة قصيرة":"كرة يد pivot تصويب من الدائرة",
+  "Band Lateral Walks":"band lateral walks",
+  "Band Monster Walk":"band monster walk",
+  "Band Pull-Aparts":"band pull aparts exercise",
+  "Jump on Fit-Box":"box jump exercise",
+  "Depth Jump to Hurdle Hop":"depth jump hurdle hop",
+  "Full Squat":"full depth squat form",
+  "Dumbbell Walking Lunges":"dumbbell walking lunges",
+  "Lever Lying Leg Curl":"lying leg curl machine",
+  "Cable Half Kneeling Pallof Press":"half kneeling pallof press",
+  "Lever Seated Hip Adduction":"seated hip adduction machine",
+  "Lever Seated Calf Raise":"seated calf raise machine",
+  "Power Sled Push":"sled push technique",
+  "Sprint 20م":"sprint acceleration technique",
+  "5-10-5 Pro Agility":"5-10-5 pro agility test",
+  "Lateral Shuffle Squat Tap":"lateral shuffle squat tap",
+  "ZigZag Hops":"zigzag hops drill",
+  "Broad Jump to Vertical":"broad jump to vertical jump",
+  "Hollow Rock":"hollow rock exercise",
+  "Medicine Ball Chest Throw":"medicine ball chest throw wall",
+  "Plyo Push Up":"plyometric push up",
+  "Dumbbell Incline Bench Press":"dumbbell incline bench press",
+  "Bar Lateral Pulldown":"lat pulldown form",
+  "Lever One Arm Seated Row":"one arm seated row machine",
+  "Lever Seated Shoulder Press":"seated shoulder press machine",
+  "Cable Standing Face Pull":"face pull cable exercise",
+  "Weighted Captains Chair Leg Raise":"captains chair leg raise",
+  "Jump Box Over":"box jump over",
+  "Lateral Cone Hop":"lateral cone hops",
+  "Skater Hops":"skater hops exercise",
+  "Glute Bridge (بديل RDL)":"glute bridge exercise",
+  "Lever Standing Calf Raise":"standing calf raise machine",
+  "Side Plank":"side plank hold"
+};
+function openYT(name){
+  var q = (YT_CUSTOM[name] || name);
+  var url = "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
+  window.open(url, "_blank");
+}
+function ytButton(name){
+  var b = el("button","ytlink","▶️ شاهد شرحاً على يوتيوب");
+  b.onclick = function(){ openYT(name); };
+  return b;
+}
+function cleanTerm(s){
+  return String(s).replace(/\([^)]*\)/g," ").replace(/[×x]\s*\d+[\d\s]*/g," ").replace(/\d+/g," ").replace(/\s+/g," ").trim();
+}
+/* ================= نظام اللغة (عربي / English) ================= */
+var searchLang = "en";
+try { searchLang = localStorage.getItem("ali_lang") || "en"; } catch(e){}
+function setSearchLang(l){
+  searchLang = l;
+  try{ localStorage.setItem("ali_lang", l); }catch(e){}
+  var b = document.getElementById("langBtn");
+  if (b) b.textContent = (l==="ar") ? "🌐 English" : "🌐 عربي";
+  toast((l==="en") ? "✓ Video search: English" : "✓ البحث عن الفيديوهات: عربي");
+  // إعادة رسم الصفحة الحالية فوراً حتى تتحدث كل أزرار الفيديو
+  if (typeof currentView === "string") switchView(currentView);
+}
+/* كلمات بحث إنجليزية (الأفضل لتمارين الجيم) */
+var YT_EN = {
+  "Jump on Fit-Box":"box jump exercise", "Depth Jump to Hurdle Hop":"depth jump hurdle hop",
+  "Full Squat":"full squat depth form", "Dumbbell Walking Lunges":"dumbbell walking lunges",
+  "Lever Lying Leg Curl":"lying leg curl machine", "Cable Half Kneeling Pallof Press":"half kneeling pallof press",
+  "Lever Seated Hip Adduction":"seated hip adduction machine", "Lever Seated Calf Raise":"seated calf raise machine",
+  "Power Sled Push":"sled push technique", "Sprint 20م":"sprint acceleration technique",
+  "5-10-5 Pro Agility":"5-10-5 pro agility test", "Lateral Shuffle Squat Tap":"lateral shuffle squat tap",
+  "ZigZag Hops":"zigzag hops drill", "Broad Jump to Vertical":"broad jump to vertical jump",
+  "Hollow Rock":"hollow rock exercise", "Medicine Ball Chest Throw":"medicine ball chest throw wall",
+  "Plyo Push Up":"plyometric push up", "Dumbbell Incline Bench Press":"dumbbell incline bench press",
+  "Bar Lateral Pulldown":"lat pulldown form", "Lever One Arm Seated Row":"one arm seated row machine",
+  "Lever Seated Shoulder Press":"seated shoulder press machine", "Cable Standing Face Pull":"face pull cable exercise",
+  "Weighted Captains Chair Leg Raise":"captains chair leg raise", "Jump Box Over":"box jump over",
+  "Lateral Cone Hop":"lateral cone hops", "Skater Hops":"skater hops exercise",
+  "Glute Bridge":"glute bridge exercise", "Glute Bridge (بديل RDL)":"glute bridge exercise",
+  "Lever Standing Calf Raise":"standing calf raise machine", "Side Plank":"side plank hold",
+  "استلام حائط بيدين (من قريب 30–50 سم)":"handball wall catch drill",
+  "استلام حائط بيد واحدة (كل يد)":"handball one hand catch drill",
+  "استلام عالي / منخفض / يمين / يسار مع حركة":"handball catching moving drill",
+  "استلام ثم حماية فورية":"handball pivot catch and protect",
+  "دوران يمين ويسار (Spin)":"handball pivot spin move",
+  "إنهاء من مسافة قصيرة":"handball pivot finish from circle",
+  "50–100 لمسة حائط (بيدين ثم بيد واحدة) — أصابع مفرودة وامتصاص":"handball wall catching drill",
+  "عصر كرة تنس/إسفنجية: دقيقة لكل يد":"handball grip finger strength tennis ball",
+  "تبادل الكرة بين اليدين بسرعة (رقصة الكرة)":"handball fast ball juggling hands",
+  "Band Lateral Walks":"band lateral walks", "Monster Walk":"band monster walk",
+  "Band Pull-Aparts":"band pull aparts exercise", "توازن رجل واحدة على منشفة 2×20 ث/رجل":"single leg balance towel",
+  "توازن رجل واحدة 2×20 ث/رجل":"single leg balance exercise", "توازن رجل واحدة 2×15 ث/رجل":"single leg balance exercise",
+  "Tibialis Raises 2×12":"tibialis raises", "Band Ankle Dorsiflexion 2×10/رجل":"band ankle dorsiflexion",
+  "Band Ankle Eversion 2×10/رجل":"band ankle eversion", "Dead Hang 2×15 ث":"dead hang exercise",
+  "Plank 2×30 ث":"plank hold", "Side Plank 2×20 ث/جهة":"side plank", "فووم رولنج كامل 10 د":"foam rolling full body",
+  "حركة وركين 2×10/جهة":"hip mobility circles", "دوران كتف 2×10/جهة":"shoulder circles",
+  "دوائر كاحل 2×10/رجل":"ankle circles", "Band External Rotation 2×12/ذراع":"band external rotation",
+  "Wall Slides 2×10":"wall slides shoulder", "Scapular Push-Up 2×10":"scapular push up",
+  "Wrist Flexor Stretch 2×20 ث/يد":"wrist flexor stretch", "تمطيط خفيف فقط 10 د":"light stretching routine",
+  "Cat-Cow":"cat cow stretch", "فتح وركين (Hip Circles)":"hip circles mobility",
+  "World's Greatest Stretch":"worlds greatest stretch", "حركة رقبة":"neck mobility stretch",
+  "Hip Flexor Lunge":"hip flexor stretch lunge", "Hamstring (أوتار الركبة)":"hamstring stretch",
+  "Quad (أمام الفخذ)":"quad stretch standing", "Figure-4 Glute":"figure 4 stretch",
+  "Adductor Butterfly (المقربة)":"butterfly stretch adductor", "Calf (السمانة) مفرودة ومثنية":"calf stretch",
+  "Chest Doorway (الصدر)":"doorway chest stretch", "Lat Overhead Reach (الظهر)":"lat stretch overhead",
+  "Thoracic Rotation":"thoracic rotation stretch", "Child's Pose":"child's pose",
+  "Sleeper Stretch (الكتف)":"sleeper stretch", "Wrist Flexor/Extensor (اليد)":"wrist flexor extensor stretch",
+  "وقاية الركبة والكتف للرياضيين — تمرينات Prehab":"prehab exercises knee shoulder athletes",
+  "وجبات لاعب كرة يد بروتين":"handball player high protein meals", "meal prep":"athlete meal prep high protein",
+  "استلام الكرة تحت الضغط (Pivot)":"handball pivot receiving the ball",
+  "الدوران (Spin) يمين ويسار":"handball pivot spin", "الإنهاء من مسافة قصيرة":"handball pivot finish",
+  "حركة الأقدام للـ Pivot":"handball pivot footwork", "حماية الكرة من المدافع":"handball pivot protecting ball"
+};
+/* كلمات بحث عربية */
+var YT_AR = {
+  "Full Squat":"سكوات كامل", "Dumbbell Walking Lunges":"تمارين الاندفاع بالدمبل",
+  "Lever Lying Leg Curl":"جهاز ثني الساق راقد", "Lever Seated Calf Raise":"جهاز السمانة جالس",
+  "Power Sled Push":"دفع السلة الحديدية", "Sprint 20م":"تسريع الجري السريع",
+  "Medicine Ball Chest Throw":"رمي الكرة الطبية من الصدر", "Plyo Push Up":"ضغط بليومتري",
+  "Bar Lateral Pulldown":"سحب البار خلف الرأس", "Cable Standing Face Pull":"سحب الوجه بالكابل",
+  "Side Plank":"البلانك الجانبي", "Hollow Rock":"تمرين هولو",
+  "استلام حائط بيدين (من قريب 30–50 سم)":"كرة يد استلام الكرة",
+  "استلام حائط بيد واحدة (كل يد)":"كرة يد استلام بيد واحدة",
+  "استلام عالي / منخفض / يمين / يسار مع حركة":"كرة يد استلام تمرين",
+  "استلام ثم حماية فورية":"كرة يد pivot استلام وحماية",
+  "دوران يمين ويسار (Spin)":"كرة يد pivot دوران",
+  "إنهاء من مسافة قصيرة":"كرة يد pivot تصويب من الدائرة",
+  "50–100 لمسة حائط (بيدين ثم بيد واحدة) — أصابع مفرودة وامتصاص":"كرة يد تمرين الاستلام على الحائط",
+  "عصر كرة تنس/إسفنجية: دقيقة لكل يد":"كرة يد تقوية الاصابع والقبضة",
+  "تبادل الكرة بين اليدين بسرعة (رقصة الكرة)":"كرة يد تمرين الاستلام السريع باليدين",
+  "Band Lateral Walks":"المشي الجانبي بالباند", "Monster Walk":"مشي الوحش بالباند",
+  "Band Pull-Aparts":"تمرين شد الباند", "توازن رجل واحدة على منشفة 2×20 ث/رجل":"توازن رجل واحدة",
+  "توازن رجل واحدة 2×20 ث/رجل":"توازن رجل واحدة", "توازن رجل واحدة 2×15 ث/رجل":"توازن رجل واحدة",
+  "Tibialis Raises 2×12":"تمرين تيباليس", "Band Ankle Dorsiflexion 2×10/رجل":"تقوية الكاحل بالباند",
+  "Band Ankle Eversion 2×10/رجل":"تقوية الكاحل الجانبي بالباند", "Dead Hang 2×15 ث":"التعليق على البار",
+  "Plank 2×30 ث":"تمرين البلانك", "Side Plank 2×20 ث/جهة":"البلانك الجانبي",
+  "فووم رولنج كامل 10 د":"فووم رولنج", "حركة وركين 2×10/جهة":"حركة الوركين",
+  "دوران كتف 2×10/جهة":"دوران الكتف", "دوائر كاحل 2×10/رجل":"دوائر الكاحل",
+  "Band External Rotation 2×12/ذراع":"الدوران الخارجي بالباند", "Wall Slides 2×10":"انزلاق الحائط للكتف",
+  "Scapular Push-Up 2×10":"ضغطة الكتف", "Wrist Flexor Stretch 2×20 ث/يد":"استطالة معصم اليد",
+  "تمطيط خفيف فقط 10 د":"تمطيط خفيف", "Cat-Cow":"تمرين القطة والبقرة",
+  "فتح وركين (Hip Circles)":"فتح الوركين", "World's Greatest Stretch":"أعظم استطالة",
+  "حركة رقبة":"استطالة الرقبة", "Hip Flexor Lunge":"استطالة الورك",
+  "Hamstring (أوتار الركبة)":"استطالة أوتار الركبة", "Quad (أمام الفخذ)":"استطالة الفخذ",
+  "Figure-4 Glute":"استطالة الرقم 4", "Adductor Butterfly (المقربة)":"استطالة الفراشة",
+  "Calf (السمانة) مفرودة ومثنية":"استطالة السمانة", "Chest Doorway (الصدر)":"استطالة الصدر",
+  "Lat Overhead Reach (الظهر)":"استطالة الظهر", "Thoracic Rotation":"دوران الفقرات",
+  "Child's Pose":"وضعية الطفل", "Sleeper Stretch (الكتف)":"استطالة الكتف النائمة",
+  "Wrist Flexor/Extensor (اليد)":"استطالة المعصم", "وقاية الركبة والكتف للرياضيين — تمرينات Prehab":"تمارين وقاية الركبة والكتف قبل التمرين",
+  "وجبات لاعب كرة يد بروتين":"وجبات لاعب كرة يد عالية البروتين", "meal prep":"تحضير وجبات رياضية",
+  "استلام الكرة تحت الضغط (Pivot)":"كرة يد pivot استلام الكرة",
+  "الدوران (Spin) يمين ويسار":"كرة يد pivot دوران", "الإنهاء من مسافة قصيرة":"كرة يد pivot تصويب",
+  "حركة الأقدام للـ Pivot":"كرة يد pivot حركة القدمين", "حماية الكرة من المدافع":"كرة يد pivot حماية الكرة"
+};
+/* أزرار فيديو متعددة المنصات — تستخدم في كل شيء */
+function vidGroup(name, qOverride){
+  var q = qOverride ||
+    (searchLang==="en" ? (YT_EN[name] || name) : (YT_AR[name] || YT_EN[name] || name));
+  var g = el("div","vidgroup");
+  var mk = function(label, url, color){
+    var b = el("button","vbtn", label);
+    b.style.background = color;
+    b.onclick = function(){ window.open(url, "_blank"); };
+    return b;
+  };
+  g.appendChild(mk("▶️ يوتيوب","https://www.youtube.com/results?search_query="+encodeURIComponent(q),"#e11d48"));
+  g.appendChild(mk("🎵 تيك توك","https://www.tiktok.com/search?q="+encodeURIComponent(q),"#111827"));
+  g.appendChild(mk("📸 انستا","https://www.instagram.com/explore/search/keyword/?q="+encodeURIComponent(q),"#8a3ab9"));
+  return g;
+}
+/* زر واحد مضغوط (للوجبات) */
+var MEAL_EN = {
+  "الفطور":"high protein breakfast meal prep", "سناك":"greek yogurt protein snack",
+  "الغداء":"chicken rice vegetables meal prep", "قبل التمرين":"banana peanut butter pre workout snack",
+  "بعد التمرين":"whey protein banana shake", "العشاء":"beef steak healthy dinner",
+  "سناك أخير":"cottage cheese night snack"
+};
+function vidOne(mname, mfood){
+  var q = (searchLang==="en")
+    ? ((MEAL_EN[mname] || "healthy recipe") + " recipe")
+    : ("وصفة " + mfood);
+  var b = el("button","ytlink","🎬 وصفة بالفيديو ("+(searchLang==="ar"?"عربي":"EN")+")");
+  b.onclick = function(){
+    window.open("https://www.youtube.com/results?search_query="+encodeURIComponent(q), "_blank");
+  };
+  return b;
+}
+
+/* ================= التخزين ================= */
+var KEY = "ali_hb_db_v1";
+function loadDB(){
+  try{ return JSON.parse(localStorage.getItem(KEY)) || {entries:{}, done:{}}; }
+  catch(e){ return {entries:{}, done:{}}; }
+}
+var DB = loadDB();
+function saveDB(){
+  try{ localStorage.setItem(KEY, JSON.stringify(DB)); }catch(e){}
+}
+function todayKey(){ return toKey(new Date()); }
+function toKey(d){
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+}
+
+/* ================= منطق الخطة ================= */
+function dayDiff(d){
+  var a = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  var b = new Date(START.getFullYear(), START.getMonth(), START.getDate());
+  return Math.round((a - b) / 86400000);
+}
+function getPlan(d){
+  var diff = dayDiff(d);
+  if (diff < 0){
+    // السبت قبل الانطلاق (2026-08-01) = يوم مهارات استعداد
+    if (diff === -1) return {status:"prep", week:0, dayIdx:6};
+    return {status:"before", week:0, dayIdx:-1};
+  }
+  if (diff > TOTAL_WEEKS*7 - 1) return {status:"after", week:0, dayIdx:-1};
+  var week = Math.floor(diff/7) + 1;
+  var dayIdx = diff % 7;
+  return {status:"active", week:week, dayIdx:dayIdx};
+}
+function sessionFor(dayIdx){ return SESSIONS[dayIdx]; }
+function phaseFor(week){
+  if (!week) return "";
+  if (week<=2) return PHASES[0];
+  if (week<=4) return PHASES[1];
+  if (week<=6) return PHASES[2];
+  return PHASES[3];
+}
+
+/* ================= أدوات واجهة ================= */
+function $(id){ return document.getElementById(id); }
+function el(tag, cls, html){
+  var e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (html !== undefined) e.innerHTML = html;
+  return e;
+}
+var main = $("main");
+var toastTimer = null;
+function toast(msg){
+  var t = $("toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove("show"); }, 2200);
+}
+function esc(s){
+  return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+var AR_MONTHS = ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+function fmtDate(d){
+  return d.getDate()+" "+AR_MONTHS[d.getMonth()]+" "+d.getFullYear();
+}
+
+function copyText(txt, okMsg){
+  function fallback(){
+    var ta = document.createElement("textarea");
+    ta.value = txt; ta.style.position="fixed"; ta.style.opacity="0";
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); toast(okMsg||"تم النسخ ✅"); }
+    catch(e){ toast("انسخ النص يدوياً"); }
+    document.body.removeChild(ta);
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){ toast(okMsg||"تم النسخ ✅"); },
+      function(){ fallback(); });
+  } else fallback();
+}
+
+/* ================= بناء الصفحات ================= */
+function setHeader(){
+  var now = new Date();
+  $("dateChip").textContent = fmtDate(now) + " — " + AR_DAYS[now.getDay()];
+  var p = getPlan(now);
+  var wi = $("weekInfo"), wp = $("weekPill");
+  if (p.status === "prep"){
+    wi.textContent = "غداً انطلاق البرنامج 🚀 (الأحد 2 أغسطس)";
+    wp.textContent = "استعداد 🎬";
+  } else if (p.status === "before"){
+    var d = dayDiff(now);
+    wi.textContent = "البرنامج يبدأ بعد " + (-d) + " يوم (الأحد 2 أغسطس)";
+    wp.textContent = "استعداد 🎬";
+  } else if (p.status === "after"){
+    wi.textContent = "انتهى البرنامج 🎉 أحسنت!";
+    wp.textContent = "موسم جديد";
+  } else {
+    wi.textContent = "الأسبوع " + p.week + " من 8 — " + phaseFor(p.week).split(":")[0];
+    wp.textContent = "أسبوع " + p.week + "/8";
+  }
+}
+
+function renderHome(){
+  main.innerHTML = "";
+  var now = new Date();
+  var p = getPlan(now);
+
+  var banner = null;
+  if (p.status === "prep"){
+    banner = el("div","banner info");
+    banner.innerHTML = "🎬 <b>اليوم: جلسة مهارات استعداد (استلام)</b> — غداً الأحد ينطلق البرنامج الرسمي.<br>"+
+      "<span class='mini'>اليوم نركز على إصلاح الإمساك: أصابع مفرودة + امتصاص الكرة + عينك على الكرة. سجّل عدد الكرات التي تفلت منك من 10 وأخبر المدرب.</span>";
+    main.appendChild(banner);
+  } else if (p.status === "before"){
+    var dd = -dayDiff(now);
+    banner = el("div","banner info");
+    banner.innerHTML = "🎬 <b>اليوم مرحلة استعداد</b> — البرنامج ينطلق " +
+      (dd===0?"غداً الأحد 2 أغسطس":("بعد "+dd+" يوم")) +
+      "<br><span class='mini'>اليوم راحة كاملة: كرياتين 5 جم + ماء 3–4 لتر + نوم 8 ساعات. <br>جهّز هدفك: الاستلام 🎯</span>";
+    main.appendChild(banner);
+  } else if (p.status === "after"){
+    banner = el("div","banner gold");
+    banner.innerHTML = "🎉 <b>انتهت الـ 8 أسابيع!</b> راجع تقدمك في تبويب التقدم وأرسل تقريرك النهائي للمدرب.";
+    main.appendChild(banner);
+  } else {
+    if (p.week === 1){
+      banner = el("div","banner gold");
+      banner.innerHTML = "🚀 <b>أسبوع إعادة التأقلم</b> — أحمال 70–75% + RIR 3–4. بعد 4 أسابيع توقف نبدأ بحذر ونزيد تدريجياً.";
+      main.appendChild(banner);
+    }
+    if (now.getDay() === 5){ // الجمعة
+      var b2 = el("div","banner info");
+      b2.innerHTML = "⚖️ <b>يوم القياس</b> — قس وزنك ومحيط خصرك صباحاً وسجّله في تبويب (تسجيل اليوم).";
+      main.appendChild(b2);
+    }
+  }
+
+  // كلمة المدرب اليومية
+  var COACH_MSGS = {
+    0:"🔥 القوة والانفجار اليوم — تذكّر: الجودة أهم من الوزن الثقيل، و RIR 2–3. بعد التمرين سجّل يومك.",
+    1:"⚡ يوم السرعة والرشاقة — أول 5 أمتار هي سلاح الـ Pivot. ركّز على الاندفاع من أول خطوة.",
+    2:"🟠 يوم التعافي النشط — المشي والدراجة والاستطالة اليوم هي التي تبنيك سراً. لا تستهن بها.",
+    3:"💪 يوم القوة العلوية — كتفاك وذراعاك يحملانك في الاستلام والتصويب. نفّذ بتقنية سليمة.",
+    4:"🦵 يوم الأرجل والتحمل — القوة تنمو في الأيام الصعبة. أكمل وقوّم جودة تمرينك.",
+    5:"🛌 راحة كاملة + قياس صباحي — الوزن والخصر في تبويب تسجيل اليوم. النوم 8 ساعات الليلة.",
+    6:"🎯 يوم الاستلام — سجّل كم كرة أفلتت من 10 في تبويب (الاستلام). هذا رقمنا المرجعي."
+  };
+  var cmsg = el("div","card");
+  cmsg.innerHTML = '<h2>💬 كلمة المدرب</h2><div class="big" style="font-size:16px;">'+COACH_MSGS[now.getDay()]+'</div>'+
+    '<div class="mini" style="margin-top:6px;">أنا معك كل يوم — أرسل تقريرك بعد التمرين وأنا أعدّل وأشجع.</div>';
+  main.appendChild(cmsg);
+
+  var card = el("div","card");
+  var s = (p.status==="active") ? sessionFor(p.dayIdx) : ((p.status==="prep") ? SESSIONS[6] : SESSIONS[5]);
+  var isTraining = (p.status==="active" || p.status==="prep") ? (s.type==="training" || s.type==="light") : false;
+  card.innerHTML =
+    '<div class="session-emoji">'+s.emoji+'</div>'+
+    '<div class="session-title">'+s.title+'</div>'+
+    '<span class="tag">'+(isTraining?"تدريب":"راحة")+'</span>'+
+    (s.exercises.length ? '<div class="mini" style="margin-top:6px;">💡 اضغط اسم أي تمرين لفتح شرحه</div>' : '');
+  main.appendChild(card);
+
+  var doneArr = (DB.done[todayKey()] || []);
+  var exList = el("div");
+  s.exercises.forEach(function(ex, i){
+    var wrap = el("div","");
+    var row = el("div","ex");
+    var cb = el("input","");
+    cb.type = "checkbox";
+    cb.checked = !!doneArr[i];
+    (function(idx){
+      cb.addEventListener("change", function(){
+        var arr = DB.done[todayKey()] || [];
+        arr[idx] = cb.checked ? true : false;
+        DB.done[todayKey()] = arr;
+        saveDB();
+        row.classList.toggle("done", cb.checked);
+        updateProgress(card, s, arr);
+      });
+    })(i);
+    if (cb.checked) row.classList.add("done");
+    var nameSpan = el("span","exname", esc(ex[0]));
+    var body = null;
+    var explained = EXPLAIN[ex[0]];
+    if (explained){
+      nameSpan.classList.add("exlink");
+      nameSpan.appendChild(el("span","hint"," 💡"));
+      body = el("div","exbody");
+      body.innerHTML = '<p><b>📌 كيف:</b> '+esc(explained.how)+'</p>'+
+                       '<p><b>🎯 ركّز على:</b> '+esc(explained.cues)+'</p>';
+      body.style.display = "none";
+      body.appendChild(vidGroup(ex[0]));
+      nameSpan.onclick = function(){
+        body.style.display = (body.style.display === "none") ? "block" : "none";
+      };
+    }
+    row.appendChild(cb);
+    row.appendChild(nameSpan);
+    row.appendChild(el("span","exx", esc(ex[1])));
+    wrap.appendChild(row);
+    if (body) wrap.appendChild(body);
+    exList.appendChild(wrap);
+  });
+  card.appendChild(exList);
+
+  var pb = el("div","progressbar");
+  var pfill = el("div");
+  pb.appendChild(pfill);
+  card.appendChild(pb);
+  var pc = el("div","mini cent");
+  card.appendChild(pc);
+  function updateProgress(cardEl, ss, arr){
+    var total = ss.exercises.length;
+    var doneN = arr.filter(Boolean).length;
+    pfill.style.width = (doneN/total*100)+"%";
+    pc.textContent = "أنجزت "+doneN+" من "+total+" ("+Math.round(doneN/total*100)+"%)";
+  }
+  updateProgress(card, s, doneArr);
+
+  if (s.type==="training" && s.cardio){
+    var c1 = el("div","notebox");
+    c1.innerHTML = "🏃 " + esc(s.cardio);
+    card.appendChild(c1);
+  }
+  if (isTraining){
+    var c2 = el("div","notebox");
+    c2.innerHTML = "🔥 <b>التسخين (15 د):</b> " + esc(WARMUP.join(" • "));
+    card.appendChild(c2);
+    var c3 = el("div","notebox");
+    c3.innerHTML = "🧘 <b>التبريد:</b> " + esc(COOLDOWN.join(" • "));
+    card.appendChild(c3);
+    var di = (p.status==="prep")?6:((p.status==="active")?p.dayIdx:5);
+    var c4 = el("div","notebox");
+    c4.innerHTML = "🛡️ <b>وقاية اليوم ("+PREHAB[di].length+" تمارين):</b> "+esc(PREHAB[di].join(" • "))+
+      "<br><span class='mini'>التفاصيل في تبويب (⏰ يومي الكامل)</span>";
+    card.appendChild(c4);
+    var c4v = el("div","vidgroup");
+    c4v.appendChild(vidGroup("وقاية الركبة والكتف للرياضيين — تمرينات Prehab"));
+    card.appendChild(c4v);
+  }
+
+  // تمرين الاستلام اليومي
+  var hc = el("div","card");
+  hc.innerHTML = '<h2>🎯 تمرين الاستلام اليومي (5–10 دقائق)</h2>'+
+    '<div class="muted">علاج مشكلة الإمساك — الكرة تفلت من يدك حتى بدون مدافع.<br>'+
+    'القواعد: أصابع مفرودة + امتصاص الكرة + عينك على الكرة.</div>';
+  HOME_DRILL.forEach(function(dd2){
+    var w = el("div","");
+    w.appendChild(el("div","ex", '<span class="exname">'+esc(dd2)+'</span><span class="exx">🏠</span>'));
+    w.appendChild(vidGroup(dd2));
+    hc.appendChild(w);
+  });
+  main.appendChild(hc);
+
+  // قواعد
+  var rc = el("div","card");
+  rc.innerHTML = '<h2>📜 قواعد ثابتة</h2>';
+  RULES.forEach(function(r){ rc.appendChild(el("div","ex", '<span class="exname">'+esc(r)+'</span>')); });
+  main.appendChild(rc);
+
+  // زر الألم السريع (شبكة أمان)
+  var pain = el("div","banner warn");
+  pain.innerHTML = '<b>⚠️ عندي ألم (ركبة/كتف/أي مكان)</b> — اضغط للتواصل الفوري مع المدرب';
+  var painBtn = el("button","btn","🚨 أبلغ المدرب فوراً");
+  painBtn.style.background = "#ef4444"; painBtn.style.color = "#fff"; painBtn.style.marginTop = "8px";
+  painBtn.onclick = function(){
+    var msg = "🚨 تنبيه ألم — "+fmtDate(new Date())+"\n"+
+      "أشعر بألم في: (حدد المكان)\n"+
+      "الشدة: خفيف / متوسط / شديد\n"+
+      "متى بدأ: \n"+
+      "ماذا كنت أفعل: ";
+    copyText(msg, "تم نسخ التنبيه — أرسله للمدرب فوراً ✅");
+  };
+  pain.appendChild(painBtn);
+  main.appendChild(pain);
+
+  var btns = el("div","grid2");
+  var b1 = el("button","btn btn-accent","📝 سجّل يومك");
+  b1.onclick = function(){ switchView("checkin"); };
+  var b2 = el("button","btn btn-line","📅 جدول الأسبوع");
+  b2.onclick = function(){ showWeek(); };
+  btns.appendChild(b1); btns.appendChild(b2);
+  main.appendChild(btns);
+}
+
+function showWeek(){
+  main.innerHTML = "";
+  var card = el("div","card");
+  card.innerHTML = '<h2>📅 جدول الأسبوع الحالي</h2>';
+  var p = getPlan(new Date());
+  var startIdx = p.status==="active" ? (p.week-1)*7 : 0;
+  for (var i=0;i<7;i++){
+    var d = new Date(START.getFullYear(), START.getMonth(), START.getDate()+startIdx+i);
+    var s = SESSIONS[i];
+    var row = el("div","logrow");
+    row.innerHTML = '<div><span class="date">'+AR_DAYS[i]+'</span> <span class="mini">'+toKey(d)+'</span></div>'+
+      '<div class="vals">'+s.emoji+' '+esc(s.title)+'</div>';
+    card.appendChild(row);
+  }
+  main.appendChild(card);
+  var back = el("button","btn btn-line","↩️ رجوع");
+  back.onclick = renderHome;
+  main.appendChild(back);
+}
+
+function scaleBtns(container, current, cb){
+  for (var i=1;i<=10;i++){
+    (function(v){
+      var b = el("button", (current===v?"sel":""), String(v));
+      b.onclick = function(){
+        container.querySelectorAll("button").forEach(function(x){x.classList.remove("sel");});
+        b.classList.add("sel");
+        cb(v);
+      };
+      container.appendChild(b);
+    })(i);
+  }
+}
+
+function renderCheckin(){
+  main.innerHTML = "";
+  var now = new Date();
+  var p = getPlan(now);
+  var k = todayKey();
+  var e = DB.entries[k] || {};
+
+  var card = el("div","card");
+  card.innerHTML = '<h2>📝 تسجيل اليوم — '+fmtDate(now)+'</h2>';
+
+  var trained = (e.trained !== undefined) ? e.trained : (p.status==="active" && SESSIONS[p.dayIdx].type!=="rest");
+  var fTrained = el("div","field");
+  fTrained.innerHTML = '<label>هل تدربت اليوم؟</label>';
+  var tg = el("div","grid2");
+  var bY = el("button","btn "+(trained?"btn-ok":"btn-line"),"✅ نعم");
+  var bN = el("button","btn "+(trained?"btn-line":"btn-bad-line"),"❌ لا");
+  if (!trained) bN.style.background="#ef4444"; if (!trained) bN.style.color="#fff";
+  function updTrained(v){
+    trained = v;
+    bY.className = "btn "+(v?"btn-ok":"btn-line");
+    bN.className = "btn "+(v?"btn-line":"");
+    if (v){ bN.style.background=""; bN.style.color=""; }
+    else { bN.style.background="#ef4444"; bN.style.color="#fff"; }
+    qWrap.style.display = v ? "block" : "none";
+  }
+  bY.onclick = function(){ updTrained(true); };
+  bN.onclick = function(){ updTrained(false); };
+  tg.appendChild(bY); tg.appendChild(bN);
+  fTrained.appendChild(tg);
+  card.appendChild(fTrained);
+
+  var fSleep = el("div","field");
+  fSleep.innerHTML = '<label>😴 النوم (ساعات)</label>';
+  var inSleep = el("input",""); inSleep.type="number"; inSleep.min="0"; inSleep.max="14";
+  inSleep.value = e.sleep||""; inSleep.placeholder="مثال: 8";
+  fSleep.appendChild(inSleep); card.appendChild(fSleep);
+
+  var fEnergy = el("div","field");
+  fEnergy.innerHTML = '<label>⚡ الطاقة اليوم (1–10)</label>';
+  var eScale = el("div","scale");
+  var energy = e.energy || 0;
+  scaleBtns(eScale, energy, function(v){ energy = v; });
+  fEnergy.appendChild(eScale); card.appendChild(fEnergy);
+
+  var qWrap = el("div","field");
+  qWrap.innerHTML = '<label>📈 جودة التمرين (1–10)</label>';
+  var qScale = el("div","scale");
+  var quality = e.quality || 0;
+  scaleBtns(qScale, quality, function(v){ quality = v; });
+  qWrap.appendChild(qScale);
+  qWrap.style.display = trained ? "block" : "none";
+  card.appendChild(qWrap);
+
+  var fWeight = el("div","field");
+  fWeight.innerHTML = '<label>⚖️ الوزن صباحاً (كجم) — الجمعة إجباري</label>';
+  var inWeight = el("input",""); inWeight.type="number"; inWeight.min="80"; inWeight.max="140"; inWeight.step="0.1";
+  inWeight.value = e.weight||""; inWeight.placeholder="مثال: 114.0";
+  fWeight.appendChild(inWeight); card.appendChild(fWeight);
+
+  var fWaist = el("div","field");
+  fWaist.innerHTML = '<label>📏 محيط الخصر (سم) — الجمعة إجباري</label>';
+  var inWaist = el("input",""); inWaist.type="number"; inWaist.min="60"; inWaist.max="150"; inWaist.step="0.5";
+  inWaist.value = e.waist||""; inWaist.placeholder="مثال: 95";
+  fWaist.appendChild(inWaist); card.appendChild(fWaist);
+
+  var fNotes = el("div","field");
+  fNotes.innerHTML = '<label>📝 ملاحظاتك (وجبات، ألم، مزاج، تمارين...)</label>';
+  var inNotes = el("textarea","");
+  inNotes.value = e.notes||""; inNotes.placeholder="اكتب أي شيء تريد إخبار المدرب به...";
+  fNotes.appendChild(inNotes); card.appendChild(fNotes);
+
+  // الكرياتين
+  var creatine = (e.creatine !== undefined) ? e.creatine : false;
+  var fC = el("div","field");
+  fC.innerHTML = '<label>💊 الكرياتين (5 جم اليوم؟)</label>';
+  var cg = el("div","grid2");
+  var bC1 = el("button","btn "+(creatine?"btn-ok":"btn-line"),"✅ أخذته");
+  var bC2 = el("button","btn "+(creatine?"btn-line":""),"❌ نسيت");
+  if (!creatine){ bC2.style.background="#ef4444"; bC2.style.color="#fff"; }
+  function updC(v){
+    creatine = v;
+    bC1.className = "btn "+(v?"btn-ok":"btn-line");
+    bC2.className = "btn "+(v?"btn-line":"");
+    if (v){ bC2.style.background=""; bC2.style.color=""; } else { bC2.style.background="#ef4444"; bC2.style.color="#fff"; }
+  }
+  bC1.onclick = function(){ updC(true); };
+  bC2.onclick = function(){ updC(false); };
+  cg.appendChild(bC1); cg.appendChild(bC2);
+  fC.appendChild(cg);
+  card.appendChild(fC);
+
+  // الماء
+  var fW = el("div","field");
+  fW.innerHTML = '<label>💧 الماء اليوم (لتر)</label>';
+  var inWater = el("input",""); inWater.type="number"; inWater.min="0"; inWater.max="8"; inWater.step="0.5";
+  inWater.value = e.water||""; inWater.placeholder="الهدف: 3–4 لتر";
+  fW.appendChild(inWater); card.appendChild(fW);
+
+  var bSave = el("button","btn btn-ok big","💾 حفظ اليوم");
+  bSave.onclick = function(){
+    DB.entries[k] = {
+      trained: trained,
+      sleep: inSleep.value,
+      energy: energy,
+      quality: trained ? quality : 0,
+      weight: inWeight.value,
+      waist: inWaist.value,
+      notes: inNotes.value,
+      creatine: creatine,
+      water: inWater.value,
+      ts: Date.now()
+    };
+    saveDB();
+    toast("تم حفظ يومك ✅");
+    var copyWrap = $("afterSaveWrap");
+    if (copyWrap) copyWrap.style.display = "block";
+  };
+  card.appendChild(bSave);
+
+  var afterWrap = el("div");
+  afterWrap.id = "afterSaveWrap";
+  afterWrap.style.display = (DB.entries[k] && DB.entries[k].ts) ? "block" : "none";
+  var bCopy = el("button","btn btn-accent big","📤 انسخ تقرير اليوم وأرسله للمدرب");
+  bCopy.onclick = function(){ copyText(buildDaySummary(k), "تم النسخ — أرسله هنا ✅"); };
+  afterWrap.appendChild(bCopy);
+  var bCopyAll = el("button","btn btn-line","📋 نسخ كل ملاحظاتي (للمدرب)");
+  bCopyAll.onclick = function(){ copyText(buildAllSummary(), "تم نسخ كل الملاحظات ✅"); };
+  afterWrap.appendChild(bCopyAll);
+  card.appendChild(afterWrap);
+
+  main.appendChild(card);
+}
+
+function buildDaySummary(k){
+  var e = DB.entries[k] || {};
+  var p = getPlan(new Date());
+  var d = new Date();
+  var sName = (p.status==="active") ? sessionFor(p.dayIdx).title : "خارج البرنامج";
+  var lines = [];
+  lines.push("📅 يومي — "+toKey(d)+" ("+AR_DAYS[d.getDay()]+")");
+  lines.push("🏋️ الجلسة: "+sName);
+  lines.push("🏃 تدربت: "+(e.trained?"نعم":"لا"));
+  lines.push("😴 النوم: "+(e.sleep?e.sleep+" ساعات":"—"));
+  lines.push("⚡ الطاقة: "+(e.energy?e.energy+"/10":"—"));
+  if (e.trained) lines.push("📈 جودة التمرين: "+(e.quality?e.quality+"/10":"—"));
+  if (e.weight) lines.push("⚖️ الوزن: "+e.weight+" كجم"+(e.waist?" | الخصر: "+e.waist+" سم":""));
+  lines.push("💊 الكرياتين: "+(e.creatine?"✅ أخذته":"❌ لم آخذه")+" | 💧 الماء: "+(e.water?e.water+" لتر":"—"));
+  if (DB.receiving[todayKey()]) lines.push("🎯 الاستلام: "+DB.receiving[todayKey()].dropped+" من 10 أفلتت");
+  if (e.notes) lines.push("📝 ملاحظات: "+e.notes);
+  return lines.join("\n");
+}
+
+function buildAllSummary(){
+  var keys = Object.keys(DB.entries).sort();
+  var out = ["📋 كل ملاحظات علي ("+keys.length+" يوم)","============================="];
+  keys.forEach(function(k){
+    var e = DB.entries[k];
+    out.push("• "+k+" — نوم: "+(e.sleep||"—")+" | طاقة: "+(e.energy||"—")+
+      (e.trained?(" | جودة: "+(e.quality||"—")):" | (راحة)")+
+      (e.weight?(" | وزن: "+e.weight):"")+
+      (e.waist?(" | خصر: "+e.waist):"")+
+      ((e.creatine!==undefined)?(" | كرياتين: "+(e.creatine?"✅":"❌")):"")+
+      ((e.water)?(" | ماء: "+e.water+"ل"):"")+
+      ((DB.receiving[k])?(" | استلام: "+DB.receiving[k].dropped+"/10 مفلته"):"")+
+      (e.notes?(" | ملاحظات: "+e.notes):""));
+  });
+  return out.join("\n");
+}
+
+function renderLog(){
+  main.innerHTML = "";
+  var card = el("div","card");
+  card.innerHTML = '<h2>📖 سجل أيامي</h2>';
+  var keys = Object.keys(DB.entries).sort().reverse();
+  if (!keys.length){
+    card.appendChild(el("div","muted","لا يوجد تسجيلات بعد — سجّل أول يوم لك من تبويب (تسجيل اليوم)."));
+  } else {
+    keys.forEach(function(k){
+      var e = DB.entries[k];
+      var row = el("div","logrow");
+      row.innerHTML =
+        '<div><span class="date">'+k+'</span><br><span class="mini">'+
+        (e.trained?"🏋️":"🛌")+' نوم: '+(e.sleep||"—")+' | طاقة: '+(e.energy||"—")+
+        (e.trained?(' | جودة: '+(e.quality||"—")):"")+
+        (e.weight?(' | وزن: '+e.weight):"")+'</span></div>';
+      var btns = el("div");
+      var bE = el("button","btn btn-line mini","✏️");
+      bE.style.padding="6px 12px";
+      bE.onclick = function(){ switchView("checkin"); };
+      var bD = el("button","btn btn-line mini","🗑️");
+      bD.style.padding="6px 12px";
+      (function(kk){
+        bD.onclick = function(){
+          if (confirm("حذف تسجيل يوم "+kk+"؟")){ delete DB.entries[kk]; saveDB(); renderLog(); toast("تم الحذف"); }
+        };
+      })(k);
+      btns.appendChild(bE); btns.appendChild(bD);
+      row.appendChild(btns);
+      card.appendChild(row);
+    });
+  }
+  main.appendChild(card);
+}
+
+function renderProgress(){
+  main.innerHTML = "";
+  var card = el("div","card");
+  card.innerHTML = '<h2>📊 التقدم — الوزن والخصر</h2>';
+  var rows = [];
+  var keys = Object.keys(DB.entries).sort();
+  keys.forEach(function(k){
+    var e = DB.entries[k];
+    if (e.weight || e.waist) rows.push({k:k, w:e.weight, c:e.waist});
+  });
+  if (!rows.length){
+    card.appendChild(el("div","muted","سجّل وزنك كل جمعة لترى التقدم هنا. (تذكير: أول أسبوعين من الكرياتين قد يرتفع الوزن 1–2 كجم بسبب الماء — طبيعي)"));
+  } else {
+    var tbl = el("table","");
+    var h = el("tr",""); h.innerHTML = "<th>التاريخ</th><th>الوزن (كجم)</th><th>الخصر (سم)</th>";
+    tbl.appendChild(h);
+    var firstW = null;
+    rows.forEach(function(r){
+      var tr = el("tr","");
+      var w = r.w ? parseFloat(r.w) : null;
+      if (w!==null && w!==null){ if(firstW===null) firstW=w; }
+      tr.innerHTML = "<td>"+r.k+"</td><td>"+(r.w?r.w:"—")+"</td><td>"+(r.c?r.c:"—")+"</td>";
+      tbl.appendChild(tr);
+    });
+    card.appendChild(tbl);
+    if (rows.length>=2){
+      var n = el("div","notebox");
+      n.style.marginTop="10px";
+      var lastW = null;
+      rows.forEach(function(r){ if(r.w){ lastW = parseFloat(r.w); } });
+      if (lastW!==null){
+        var diff = lastW - (firstW||lastW);
+        n.innerHTML = "📉 من أول قياس إلى آخر قياس: <b>"+(diff>0?"+":"")+diff.toFixed(1)+" كجم</b> "+
+          (diff<=0 ? "👇 نزول ممتاز!" : "— تذكر: الكرياتين يسبب احتباس ماء أول أسبوعين");
+      }
+      card.appendChild(n);
+    }
+    // رسم بسيط
+    var cv = el("canvas",""); cv.width=560; cv.height=220; cv.style.width="100%";
+    card.appendChild(cv);
+    drawChart(cv, rows);
+  }
+  main.appendChild(card);
+
+  // التزام
+  var cc = el("div","card");
+  cc.innerHTML = '<h2>🔥 التزامك (يقاس بالأرقام)</h2>';
+  var ekeys = Object.keys(DB.entries).sort();
+  if (ekeys.length){
+    var p = getPlan(new Date());
+    var weekStart = null;
+    if (p.status === "active"){
+      weekStart = START.getTime() + (p.week-1)*7*86400000;
+    } else {
+      weekStart = START.getTime();
+    }
+    var weekDays = 0;
+    var recorded = 0;
+    for (var i=0;i<7;i++){
+      var d = new Date(weekStart + i*86400000);
+      var dk = toKey(d);
+      weekDays++;
+      if (DB.entries[dk]) recorded++;
+    }
+    var pct = Math.round(recorded/weekDays*100);
+    var pb = el("div","progressbar");
+    var pf = el("div"); pf.style.width = pct+"%";
+    pb.appendChild(pf);
+    cc.appendChild(pb);
+    var txt = el("div","mini cent");
+    txt.innerHTML = "هذا الأسبوع: سجّلت <b>"+recorded+" من "+weekDays+" أيام</b> ("+pct+"%) — "+
+      (pct>=85?"🔥 التزام بطل!":(pct>=50?"👊 جيد، اكمل الأيام الباقية":"💪 كل يوم تسجله خطوة — لا تتوقف"));
+    cc.appendChild(txt);
+    var streak = 0, kk2 = ekeys.slice().reverse();
+    for (var j=0;j<kk2.length;j++){
+      if (DB.entries[kk2[j]]) streak++;
+      else break;
+    }
+    cc.appendChild(el("div","notebox","📅 آخر سلسلة التزام: <b>"+streak+" يوم</b> متتالٍ"));
+    // نصيحة أسبوعية
+    cc.appendChild(el("div","notebox","💡 كل جمعة: أرسل التقرير كاملاً (زر إرسال للمدرب) — وسأعطيك قرارات الأسبوع الجديد."));
+  } else {
+    cc.appendChild(el("div","muted","لا توجد تسجيلات بعد — أول تسجيل يبدأ شريط التزامك."));
+  }
+  main.appendChild(cc);
+
+  // رسم الاستلام في التقدم
+  var rkeys = Object.keys(DB.receiving).sort();
+  if (rkeys.length){
+    var rc = el("div","card");
+    rc.innerHTML = '<h2>🎯 تقدم الاستلام</h2><div class="muted">كرات مفلته من 10 — كلما قلّ الرقم، تحسّن استلامك.</div>';
+    var cv2 = el("canvas",""); cv2.width=560; cv2.height=200; cv2.style.width="100%";
+    rc.appendChild(cv2);
+    main.appendChild(rc);
+    drawDropChart(cv2, rkeys);
+  }
+
+  // أهداف مع أشرطة تقدم
+  var oc = el("div","card");
+  oc.innerHTML = '<h2>🎯 أهدافك — كم وصلت؟</h2>';
+
+  // 1) الوزن
+  var wRows = [];
+  var eKeysAll = Object.keys(DB.entries).sort();
+  eKeysAll.forEach(function(k){ if (DB.entries[k].weight) wRows.push(parseFloat(DB.entries[k].weight)); });
+  var curW = wRows.length ? wRows[wRows.length-1] : 114;
+  var startW = wRows.length ? wRows[0] : 114;
+  var wPct = Math.max(0, Math.min(100, Math.round((startW-curW)/(startW-108)*100)));
+  var wb1 = el("div","goalbar");
+  wb1.innerHTML = '<div class="lbl"><span>⚖️ الوزن: '+curW+' كجم (الهدف 108–110)</span><span>'+wPct+'%</span></div>'+
+    '<div class="progressbar"><div style="width:'+wPct+'%;background:#f59e0b;"></div></div>';
+  oc.appendChild(wb1);
+
+  // 2) الاستلام
+  var rKeys = Object.keys(DB.receiving).sort();
+  var lastDrop = rKeys.length ? DB.receiving[rKeys[rKeys.length-1]].dropped : null;
+  var rPct = (lastDrop===null) ? 0 : Math.max(0, Math.min(100, Math.round((10-lastDrop)/9*100)));
+  var rb1 = el("div","goalbar");
+  rb1.innerHTML = '<div class="lbl"><span>🎯 الاستلام: '+(lastDrop===null?"لم تسجّل بعد":"أفلت "+lastDrop+" من 10")+'</span><span>'+rPct+'%</span></div>'+
+    '<div class="progressbar"><div style="width:'+rPct+'%;background:#e11d48;"></div></div>';
+  oc.appendChild(rb1);
+
+  // 3) النوم
+  var sleeps = [];
+  eKeysAll.forEach(function(k){ var s = parseFloat(DB.entries[k].sleep); if (s) sleeps.push(s); });
+  var avgS = sleeps.length ? (sleeps.reduce(function(a,b){return a+b;},0)/sleeps.length) : 0;
+  var sPct = Math.round(avgS/8*100);
+  var sb1 = el("div","goalbar");
+  sb1.innerHTML = '<div class="lbl"><span>😴 النوم: '+(avgS?avgS.toFixed(1):"—")+' س/ليلة (الهدف 8)</span><span>'+sPct+'%</span></div>'+
+    '<div class="progressbar"><div style="width:'+Math.min(100,sPct)+'%;background:#38bdf8;"></div></div>';
+  oc.appendChild(sb1);
+
+  // 4) التزام
+  var pctC = Math.min(100, Math.round(ekeyCount()/eKeysAll.length*100)); // نسبة أيام مسجلة من إجمالي الأيام
+  var cb1 = el("div","goalbar");
+  cb1.innerHTML = '<div class="lbl"><span>🔥 الالتزام: '+ekeyCount()+' يوم مسجل</span><span>'+Math.min(100,Math.round(ekeyCount()/Math.max(1,(dayDiff(new Date())+1))*100))+'%</span></div>'+
+    '<div class="progressbar"><div style="width:'+Math.min(100,Math.round(ekeyCount()/Math.max(1,(dayDiff(new Date())+1))*100))+'%;background:#22c55e;"></div></div>';
+  oc.appendChild(cb1);
+  main.appendChild(oc);
+
+  // شارات الإنجازات
+  var ac = el("div","card");
+  ac.innerHTML = '<h2>🏅 إنجازاتك</h2><div class="badges" id="badgesBox"></div>';
+  main.appendChild(ac);
+  renderBadges();
+
+  // ملخص تلقائي للأسبوع (ينسخ للمدرب)
+  var wr = el("div","card");
+  wr.innerHTML = '<h2>📊 مراجعة الأسبوع (نسخ للمدرب)</h2><div class="muted">ملخص تلقائي من تسجيلاتك — انسخه وأرسله يوم الجمعة.</div>';
+  var bW = el("button","btn btn-accent","📋 انسخ ملخص الأسبوع");
+  bW.onclick = function(){ copyText(weeklySummary(), "تم نسخ ملخص الأسبوع — أرسله للمدرب ✅"); };
+  wr.appendChild(bW);
+  main.appendChild(wr);
+}
+
+function ekeyCount(){ return Object.keys(DB.entries).length; }
+
+function weeklySummary(){
+  var p = getPlan(new Date());
+  var week = (p.status==="active") ? p.week : 1;
+  var out = ["📊 ملخص الأسبوع "+week+" — علي", "==========================="];
+  var ekeys = Object.keys(DB.entries).sort();
+  var sleeps=[],energies=[],qualities=[],weights=[],waists=[],trainDays=0;
+  ekeys.forEach(function(k){
+    var e = DB.entries[k];
+    if (e.sleep) sleeps.push(parseFloat(e.sleep));
+    if (e.energy) energies.push(parseFloat(e.energy));
+    if (e.quality) qualities.push(parseFloat(e.quality));
+    if (e.weight) weights.push(e.weight);
+    if (e.waist) waists.push(e.waist);
+    if (e.trained) trainDays++;
+  });
+  var avg = function(a){ return a.length ? (a.reduce(function(x,y){return x+y;},0)/a.length).toFixed(1) : "—"; };
+  out.push("🏃 أيام تدريب: "+trainDays);
+  out.push("😴 متوسط النوم: "+avg(sleeps)+" س");
+  out.push("⚡ متوسط الطاقة: "+avg(energies)+"/10");
+  out.push("📈 متوسط جودة التمرين: "+avg(qualities)+"/10");
+  if (weights.length) out.push("⚖️ آخر وزن: "+weights[weights.length-1]+" كجم"+(waists.length?(" | الخصر: "+waists[waists.length-1]+" سم"):""));
+  var rk = Object.keys(DB.receiving).sort();
+  if (rk.length) out.push("🎯 الاستلام آخر مرة: "+DB.receiving[rk[rk.length-1]].dropped+" من 10 مفلته");
+  out.push("📝 ملاحظاتي: ");
+  return out.join("\n");
+}
+
+function renderBadges(){
+  var box = document.getElementById("badgesBox");
+  if (!box) return;
+  var b = [];
+  var ekeys = Object.keys(DB.entries).sort();
+  if (ekeys.length) b.push(["🥇","أول يوم سجلت","أول خطوة في رحلتك",true]);
+  var streak = 0, rk = ekeys.slice().reverse();
+  for (var i=0;i<rk.length;i++){ if (DB.entries[rk[i]]) streak++; else break; }
+  b.push(["🔥","سلسلة 3 أيام","سجلت 3 أيام متتالية", streak>=3]);
+  b.push(["⚡","سلسلة 7 أيام","أسبوع كامل متواصل", streak>=7]);
+  var rkeys = Object.keys(DB.receiving);
+  b.push(["🎯","أول نتيجة استلام","سجلت رقمك المرجعي", rkeys.length>0]);
+  var wA = ekeys.filter(function(k){return DB.entries[k].weight;});
+  if (wA.length>=2){
+    var diff = parseFloat(DB.entries[wA[wA.length-1]].weight) - parseFloat(DB.entries[wA[0]].weight);
+    b.push(["⬇️","نزول وزن 1 كجم","خسرت أول كيلو", diff<=-1]);
+  }
+  var doneDays = Object.keys(DB.done).filter(function(k){ return DB.done[k].filter(Boolean).length>=6; });
+  b.push(["🏋️","يوم تدريب كامل","أنجزت كل تمارين يوم", doneDays.length>0]);
+  var s8 = ekeys.filter(function(k){ return parseFloat(DB.entries[k].sleep)>=8; });
+  b.push(["😴","نوم 8 ساعات ×3","3 ليالٍ كاملة", s8.length>=3]);
+  b.forEach(function(x){
+    var bd = el("div","badge"+(x[3]?" earned":""), '<span class="ico">'+x[0]+'</span><div><b>'+esc(x[1])+'</b><br><span class="mini">'+esc(x[2])+'</span></div>');
+    box.appendChild(bd);
+  });
+}
+
+function drawChart(cv, rows){
+  var ctx = cv.getContext("2d");
+  var wpts = rows.filter(function(r){ return r.w; }).map(function(r){ return {k:r.k, v:parseFloat(r.w)}; });
+  if (wpts.length < 2) return;
+  ctx.clearRect(0,0,cv.width,cv.height);
+  var pad = 30;
+  var W = cv.width, H = cv.height;
+  var vals = wpts.map(function(p){return p.v;});
+  var mn = Math.min.apply(null, vals) - 1;
+  var mx = Math.max.apply(null, vals) + 1;
+  function X(i){ return pad + (W-2*pad) * i / (wpts.length-1); }
+  function Y(v){ return H - pad - (H-2*pad) * (v-mn) / (mx-mn); }
+  ctx.strokeStyle = "#334155"; ctx.lineWidth = 1;
+  for (var g=0; g<=4; g++){
+    var yy = pad + (H-2*pad)*g/4;
+    ctx.beginPath(); ctx.moveTo(pad,yy); ctx.lineTo(W-pad,yy); ctx.stroke();
+  }
+  ctx.strokeStyle = "#f59e0b"; ctx.lineWidth = 3;
+  ctx.beginPath();
+  wpts.forEach(function(p,i){
+    var x = X(i), y = Y(p.v);
+    if (i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  });
+  ctx.stroke();
+  ctx.fillStyle = "#22c55e";
+  wpts.forEach(function(p,i){
+    ctx.beginPath(); ctx.arc(X(i), Y(p.v), 5, 0, Math.PI*2); ctx.fill();
+  });
+  ctx.fillStyle = "#f1f5f9"; ctx.font = "12px Tahoma";
+  ctx.textAlign = "center";
+  wpts.forEach(function(p,i){
+    ctx.fillText(p.k.slice(5), X(i), H-8);
+  });
+}
+
+function renderSend(){
+  main.innerHTML = "";
+  var card = el("div","card");
+  card.innerHTML = '<h2>📤 إرسال ملاحظاتي للمدرب</h2>'+
+    '<div class="muted">المدرب (الذكاء الاصطناعي) لا يرى جهازك — أرسل له ملاحظاتك بأحد الطرق التالية، وهو يسجلها ويحللها ويعطيك التعديلات.</div>';
+  card.appendChild(el("div","", '<br>'));
+
+  var b1 = el("button","btn btn-accent big","📅 انسخ تقرير اليوم");
+  b1.onclick = function(){ copyText(buildDaySummary(todayKey()), "تم النسخ — الصقه هنا في المحادثة ✅"); };
+  card.appendChild(b1);
+  card.appendChild(el("div","","<br>"));
+
+  var b2 = el("button","btn btn-info big","📋 انسخ كل ملاحظاتي");
+  b2.onclick = function(){ copyText(buildAllSummary(), "تم نسخ الكل ✅"); };
+  card.appendChild(b2);
+  card.appendChild(el("div","","<br>"));
+
+  var b3 = el("button","btn btn-ok big","💾 نزّل ملف بياناتي (للمدرب)");
+  b3.onclick = function(){ downloadData(); };
+  card.appendChild(b3);
+  card.appendChild(el("div","","<br>"));
+
+  var box = el("textarea","textarea-copy");
+  box.id = "copyBox";
+  box.placeholder = "هنا تظهر الرسالة الجاهزة للإرسال...";
+  card.appendChild(box);
+
+  var b4 = el("button","btn btn-line","✂️ انسخ النص أعلاه");
+  b4.onclick = function(){ copyText(box.value, "تم النسخ ✅"); };
+  card.appendChild(el("div","","<br>"));
+  card.appendChild(b4);
+  main.appendChild(card);
+
+  var how = el("div","card");
+  how.innerHTML = '<h2>💡 طريقة الإرسال</h2>'+
+    '<div class="notebox">1️⃣ اضغط (انسخ تقرير اليوم)<br>2️⃣ ارجع للمحادثة مع المدرب والصق الرسالة وأرسلها<br>3️⃣ المدرب يسجلها في ملف التتبع ويحللها</div>'+
+    '<div class="notebox">📱 أو: نزّل ملف البيانات ثم أرفقه في المحادثة (زر 📎)</div>'+
+    '<div class="notebox">🔒 ملاحظاتك محفوظة في جهازك فقط (تخزين المتصفح) — لا تضيع عند إغلاق الصفحة، لكن إذا مسحت بيانات المتصفح تحذف. لذلك أرسل ملاحظاتك للمدرب بانتظام.</div>';
+  main.appendChild(how);
+}
+
+function downloadData(){
+  var payload = { player:"علي", generated:new Date().toISOString(), entries:DB.entries };
+  var blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "ملاحظات_علي.json";
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ document.body.removeChild(a); }, 200);
+  toast("تم تنزيل الملف ✅");
+}
+
+/* ================= يومي الكامل ================= */
+function morningCard(){
+  var card = el("div","card");
+  card.innerHTML = '<h2>🌅 روتين الصباح (06:45 — 10 د)</h2>'+
+    '<div class="muted">كل حركة لها فيديو 👇</div>';
+  MORNING.forEach(function(x){
+    var w = el("div","");
+    w.appendChild(el("div","ex", '<span class="exname">'+esc(x[0])+'</span><span class="exx">'+esc(x[1])+'</span>'));
+    w.appendChild(vidGroup(cleanTerm(x[0])));
+    card.appendChild(w);
+  });
+  return card;
+}
+function prehabCard(dayIdx){
+  var card = el("div","card");
+  card.innerHTML = '<h2>🛡️ وقاية من الإصابات — اليوم</h2>'+
+    '<div class="muted">8 دقائق قبل التمرين. تحمي ركبتك (الأهم) وكتفك، وترفع جاهزيتك قبل كل جلسة. كل تمرين له فيديو 👇</div>';
+  PREHAB[dayIdx].forEach(function(x){
+    var w = el("div","");
+    w.appendChild(el("div","ex", '<span class="exname">'+esc(x)+'</span><span class="exx">🛡️</span>'));
+    w.appendChild(vidGroup(cleanTerm(x)));
+    card.appendChild(w);
+  });
+  return card;
+}
+function flexCard(){
+  var card = el("div","card");
+  card.innerHTML = '<h2>🧘 برنامج الاستطالة (مساءً 21:30 — 15 د)</h2>'+
+    '<div class="muted">كل مساء: 12 تمرين استطالة ثابتة. تزيد مرونتك، تقلل خطر الإصابة، وتحسّن الاستلام (يد وكتف مرنان). كل تمرين له فيديو 👇</div>';
+  FLEX.forEach(function(x){
+    var w = el("div","");
+    w.appendChild(el("div","ex", '<span class="exname">'+esc(x[0])+'</span><span class="exx">'+esc(x[1])+'</span>'));
+    w.appendChild(vidGroup(cleanTerm(x[0])));
+    card.appendChild(w);
+  });
+  return card;
+}
+function renderTimeline(t){
+  var wrap = $("tlWrap");
+  if (!wrap) return;
+  wrap.innerHTML = "";
+  TIMELINES[t].forEach(function(row){
+    var r = el("div","logrow");
+    r.innerHTML = '<div><span class="date">'+esc(row[0])+'</span><br><span class="mini">'+esc(row[1])+'</span></div>'+
+      '<div class="vals">'+esc(row[2]||"")+'</div>';
+    wrap.appendChild(r);
+  });
+}
+function renderFullDay(){
+  main.innerHTML = "";
+  var now = new Date();
+  var p = getPlan(now);
+  var dayIdx = (p.status==="prep")?6:((p.status==="active")?p.dayIdx:5);
+  var cur = DAY_TYPE_MAP[dayIdx];
+
+  var card = el("div","card");
+  card.innerHTML = '<h2>⏰ يومي الكامل</h2>'+
+    '<div class="muted">جدول من الاستيقاظ إلى النوم — يحكم يومك كاملاً. اختر نوع اليوم، أو اتركه على يومك الحالي.</div>';
+  var tsel = el("div","scale");
+  ["training","recovery","rest","skills"].forEach(function(t){
+    (function(tt){
+      var b = el("button", tt===cur?"sel":"", DAY_TYPE_NAMES[tt]);
+      b.onclick = function(){
+        tsel.querySelectorAll("button").forEach(function(x){x.classList.remove("sel");});
+        b.classList.add("sel");
+        renderTimeline(tt);
+      };
+      tsel.appendChild(b);
+    })(t);
+  });
+  card.appendChild(tsel);
+  card.appendChild(el("div","","<br>"));
+  var tlWrap = el("div"); tlWrap.id = "tlWrap";
+  card.appendChild(tlWrap);
+  main.appendChild(card);
+
+  main.appendChild(morningCard());
+  main.appendChild(prehabCard(dayIdx));
+  main.appendChild(flexCard());
+}
+
+/* ================= مكتبة الشروحات ================= */
+function renderLibrary(){
+  main.innerHTML = "";
+  var intro = el("div","card");
+  intro.innerHTML = '<h2>📖 شروحات التمارين</h2>'+
+    '<div class="muted">كل تمرين في البرنامج مع شرحه: 📌 كيف تنفذه + 🎯 على ماذا تركز.<br>في تبويب (اليوم) اضغط اسم التمرين 💡 لفتح شرحه مباشرة.<br>🎬 أزرار الفيديو تبحث بالعربي أو الإنجليزي — بدّل من الزر 🌐 بالأعلى.</div>';
+  main.appendChild(intro);
+
+  var groups = [
+    {title:"🔴 Day 1 — أرجل وقوة", idx:0},
+    {title:"🟢 Day 2 — سرعة ورشاقة", idx:1},
+    {title:"🟣 Day 3 — علوي وانفجار", idx:3},
+    {title:"🟡 Day 4 — أرجل وتحمل", idx:4},
+    {title:"⚪ مهارات الاستلام (السبت)", idx:6}
+  ];
+  groups.forEach(function(g){
+    var card = el("div","card");
+    card.innerHTML = '<h2>'+g.title+'</h2>';
+    SESSIONS[g.idx].exercises.forEach(function(ex){
+      var row = el("div","ex");
+      row.innerHTML = '<span class="exname">'+esc(ex[0])+'</span><span class="exx">'+esc(ex[1])+'</span>';
+      card.appendChild(row);
+      var e = EXPLAIN[ex[0]];
+      var b = el("div","exbody");
+      b.style.display = "block";
+      if (e){
+        b.innerHTML = '<p><b>📌 كيف:</b> '+esc(e.how)+'</p>'+
+                      '<p><b>🎯 ركّز على:</b> '+esc(e.cues)+'</p>';
+      } else {
+        b.innerHTML = '<p class="mini">(بدون شرح إضافي)</p>';
+      }
+      if (EXPLAIN[ex[0]]) b.appendChild(vidGroup(ex[0]));
+      card.appendChild(b);
+    });
+    main.appendChild(card);
+  });
+
+  var pc = el("div","card");
+  pc.innerHTML = '<h2>🛡️ أساسيات الوقاية (باند)</h2><div class="muted">تمارين الباند التي تستخدمها في التسخين — تعمل وقاية يومية للركبة والكتف.</div>';
+  PREHAB_BASICS.forEach(function(x){
+    pc.appendChild(el("div","ex", '<span class="exname">'+esc(x.n)+'</span>'));
+    var b = el("div","exbody");
+    b.style.display = "block";
+    b.innerHTML = '<p><b>📌 كيف:</b> '+esc(x.how)+'</p><p><b>🎯 ركّز على:</b> '+esc(x.cues)+'</p>';
+    b.appendChild(vidGroup(x.n));
+    pc.appendChild(b);
+  });
+  main.appendChild(pc);
+
+  var fc = el("div","card");
+  fc.innerHTML = '<h2>🧘 الاستطالة المسائية</h2><div class="muted">12 تمرين استطالة ثابتة — التفاصيل في تبويب (⏰ يومي الكامل). القاعدة: كل تمرين 20–30 ثانية بدون ارتداد، تنفس عميق. كل تمرين له أزرار فيديو هناك 👈</div>';
+  main.appendChild(fc);
+
+  // فيديوهات كرة اليد المخصصة
+  var hv = el("div","card");
+  hv.innerHTML = '<h2>🎬 فيديوهات كرة اليد (Pivot) — الأهم لك</h2>'+
+    '<div class="muted">شاهد نجوم الـ Pivot ينفذون هذه المهارات — ثم طبّقها في جلسات الاستلام.</div>';
+  var HB_VIDS = [
+    "استلام الكرة تحت الضغط (Pivot)","الدوران (Spin) يمين ويسار",
+    "الإنهاء من مسافة قصيرة","حركة الأقدام للـ Pivot","حماية الكرة من المدافع"
+  ];
+  HB_VIDS.forEach(function(v){
+    var w = el("div","");
+    w.appendChild(el("div","ex", '<span class="exname">'+esc(v)+'</span><span class="exx">🤾</span>'));
+    w.appendChild(vidGroup(v));
+    hv.appendChild(w);
+  });
+  main.appendChild(hv);
+}
+
+/* ================= تتبع الاستلام ================= */
+var RECEIVING_STAGES = [
+  {weeks:"1–2", name:"الأساس — أيدي ناعمة", focus:"استلام بيدين من قريب (30–50 سم) — أصابع مفرودة + امتصاص", target:"المفلت < 4 من 10"},
+  {weeks:"3–4", name:"يد واحدة", focus:"استلام بيد واحدة + أثناء الحركة", target:"المفلت < 3 من 10"},
+  {weeks:"5–6", name:"السرعة", focus:"كرات أسرع + وضعية Pivot", target:"المفلت < 2 من 10"},
+  {weeks:"7–8", name:"الضغط", focus:"مدافع خفيف + استلام + دوران + تصويب", target:"المفلت < 1 من 10"}
+];
+
+/* ================= التغذية ================= */
+var MEALS = [
+  ["07:00","الفطور","4 بيض + 2 توست أسمر + موزة"],
+  ["10:00","سناك","200g زبادي يوناني"],
+  ["13:00","الغداء","200g دجاج + 200g رز + خضار"],
+  ["16:00","قبل التمرين","موزة + زبدة فول سوداني"],
+  ["19:00","بعد التمرين","واي بروتين + موزة"],
+  ["20:30","العشاء","200g لحم + خضار + 2 بيض"],
+  ["22:00","سناك أخير","150g جبن قريش"]
+];
+var MEALS_REST = [
+  ["09:00","الفطور","4 بيض + 2 توست أسمر"],
+  ["13:00","الغداء","200g دجاج + 200g رز (أقل) + خضار"],
+  ["17:00","سناك","200g زبادي يوناني"],
+  ["20:30","العشاء","200g لحم + خضار + 2 بيض"],
+  ["22:00","سناك","150g جبن قريش"]
+];
+var NO_FISH = ["دجاج","لحم بقري","بيض","زبادي يوناني","جبن قريش","واي بروتين","لبن","عدس وحمص","مكسرات"];
+var MACROS = {
+  training:{kcal:"2900–3100", p:"190–210 جم", c:"250–300 جم", f:"70–80 جم"},
+  rest:{kcal:"2300–2600", p:"180–200 جم", c:"أقل (رز/خبز/موز أقل)", f:"معتدلة"}
+};
+
+function renderNutrition(){
+  main.innerHTML = "";
+  var now = new Date();
+  var p = getPlan(now);
+  var dayIdx = (p.status==="prep")?6:((p.status==="active")?p.dayIdx:5);
+  var isTrain = DAY_TYPE_MAP[dayIdx]!=="rest" && dayIdx!==5;
+  var mac = MACROS[isTrain?"training":"rest"];
+
+  var mc = el("div","card");
+  mc.innerHTML = '<h2>🍽️ التغذية — اليوم ('+(isTrain?"تدريب":"راحة")+')</h2>'+
+    '<div class="grid2"><div class="notebox"><b>🔥 السعرات:</b> '+esc(mac.kcal)+'</div>'+
+    '<div class="notebox"><b>💪 البروتين:</b> '+esc(mac.p)+'</div></div>'+
+    '<div class="grid2"><div class="notebox"><b>🍚 الكارب:</b> '+esc(mac.c)+'</div>'+
+    '<div class="notebox"><b>🥑 الدهون:</b> '+esc(mac.f)+'</div></div>'+
+    '<div class="muted" style="margin-top:8px;">🎬 فيديوهات أفكار وجبات اللاعبين:</div>';
+  mc.appendChild(vidGroup("وجبات لاعب كرة يد بروتين"));
+  mc.appendChild(vidGroup("meal prep"));
+  main.appendChild(mc);
+
+  var mealList = isTrain ? MEALS : MEALS_REST;
+  var mc2 = el("div","card");
+  mc2.innerHTML = '<h2>✅ قائمة وجبات اليوم</h2><div class="muted">حدّد ما أكلته فعلاً (اختياري لكنه يقوّي متابعتنا)</div>';
+  var mk = "meals_"+todayKey();
+  var doneMeals = DB.meals && DB.meals[mk] ? DB.meals[mk] : {};
+  mealList.forEach(function(m){
+    var row = el("div","mealrow");
+    var cb = el("input",""); cb.type="checkbox";
+    cb.checked = !!doneMeals[m[1]];
+    (function(mname){
+      cb.onchange = function(){
+        if (!DB.meals) DB.meals = {};
+        if (!DB.meals[mk]) DB.meals[mk] = {};
+        DB.meals[mk][mname] = cb.checked;
+        saveDB();
+        row.classList.toggle("done", cb.checked);
+        var n = Object.keys(DB.meals[mk]).filter(function(k){return DB.meals[mk][k];}).length;
+        mp.textContent = "أكلت "+n+" من "+mealList.length+" وجبات";
+      };
+    })(m[1]);
+    if (cb.checked) row.classList.add("done");
+    row.appendChild(cb);
+    row.appendChild(el("span","mtime", esc(m[0])+" "+esc(m[1])));
+    row.appendChild(el("span","mfood", esc(m[2])));
+    mc2.appendChild(row);
+    mc2.appendChild(vidOne(m[1], m[2]));
+  });
+  var mp = el("div","progressbar");
+  var pf = el("div");
+  var dn = Object.keys(doneMeals).filter(function(k){return doneMeals[k];}).length;
+  pf.style.width = (dn/mealList.length*100)+"%";
+  mp.appendChild(pf);
+  mc2.appendChild(mp);
+  mc2.appendChild(el("div","mini cent","أكلت "+dn+" من "+mealList.length+" وجبات"));
+  main.appendChild(mc2);
+
+  var alt = el("div","card");
+  alt.innerHTML = '<h2>🥩 مصادر البروتين (بدون سمك)</h2><div class="chips">';
+  NO_FISH.forEach(function(x){ alt.innerHTML += '<span class="chip">'+esc(x)+'</span>'; });
+  alt.innerHTML += '</div>';
+  main.appendChild(alt);
+
+  var tip = el("div","card");
+  tip.innerHTML = '<h2>💡 قاعدة التغذية اليوم</h2>'+
+    '<div class="notebox">💧 ماء 3–4 لتر (شرط الكرياتين)<br>🍌 موزة قبل التمرين لطاقة سريعة<br>🥛 واي بروتين خلال 60 دقيقة بعد التمرين<br>😴 آخر وجبة قبل النوم بساعتين</div>';
+  main.appendChild(tip);
+}
+
+/* ================= القوة والأداء ================= */
+var LIFTS = [
+  ["Full Squat","كجم"],["Dumbbell Walking Lunges","كجم/دمبل"],["Lever Lying Leg Curl","كجم"],
+  ["Dumbbell Incline Bench Press","كجم/دمبل"],["Bar Lateral Pulldown","كجم"],
+  ["Lever Seated Shoulder Press","كجم"],["Power Sled Push","كجم"],["Medicine Ball Chest Throw","كجم"]
+];
+var PERF = [
+  ["سرعة 20م","ثانية"],["5-10-5","ثانية"],["قفزة عمودية","سم"],["شعور أول 5 أمتار (1-10)","1-10"]
+];
+
+function renderStrength(){
+  main.innerHTML = "";
+  var now = new Date();
+  var p = getPlan(now);
+  var week = (p.status==="active") ? p.week : 1;
+  if (p.status==="before" && p.status!=="prep") week = 1;
+  if (p.status==="after") week = 8;
+  if (!DB.lifts) DB.lifts = {};
+  if (!DB.perf) DB.perf = {};
+
+  var card = el("div","card");
+  card.innerHTML = '<h2>📈 أوزانك هذا الأسبوع (الأسبوع '+week+')</h2>'+
+    '<div class="muted">سجّل أثقل وزن تنفذه بتقنية سليمة (RIR 2–3) — نراقب تقدم القوة أسبوعاً بأسبوع.</div>';
+  LIFTS.forEach(function(L){
+    var f = el("div","field");
+    f.innerHTML = '<label>'+esc(L[0])+' ('+esc(L[1])+')</label>';
+    var inp = el("input",""); inp.type="number"; inp.min="0"; inp.step="0.5";
+    var wk = DB.lifts[week];
+    inp.value = (wk && wk[L[0]]) ? wk[L[0]] : "";
+    inp.placeholder="مثال: 80";
+    (function(name){
+      inp.onchange = function(){
+        if (!DB.lifts[week]) DB.lifts[week] = {};
+        DB.lifts[week][name] = inp.value;
+        saveDB(); toast("تم حفظ وزن "+name+" ✅");
+      };
+    })(L[0]);
+    f.appendChild(inp);
+    card.appendChild(f);
+  });
+  main.appendChild(card);
+
+  // جدول تقدم الأوزان
+  var wkKeys = Object.keys(DB.lifts).sort(function(a,b){return a-b;});
+  if (wkKeys.length){
+    var tc = el("div","card");
+    tc.innerHTML = '<h3>📊 تقدم أوزانك</h3>';
+    var tbl = el("table","");
+    var h = el("tr",""); h.innerHTML = "<th>التمرين</th>"+wkKeys.map(function(w){return "<th>أسبوع "+w+"</th>";}).join("");
+    tbl.appendChild(h);
+    LIFTS.forEach(function(L){
+      var tr = el("tr","");
+      tr.innerHTML = "<td>"+esc(L[0])+"</td>"+wkKeys.map(function(w){
+        var v = DB.lifts[w][L[0]];
+        return "<td>"+(v?v:"—")+"</td>";
+      }).join("");
+      tbl.appendChild(tr);
+    });
+    tc.appendChild(tbl);
+    main.appendChild(tc);
+  }
+
+  // الأداء البدني
+  var pc2 = el("div","card");
+  pc2.innerHTML = '<h2>⚡ أداؤك البدني (الأسبوع '+week+')</h2>'+
+    '<div class="muted">قس نفسك في نفس الظروف (بعد تسخين جيد) — الأسبوع 1 هو المرجع.</div>';
+  PERF.forEach(function(P){
+    var f = el("div","field");
+    f.innerHTML = '<label>'+esc(P[0])+' ('+esc(P[1])+')</label>';
+    var inp = el("input",""); inp.type="number"; inp.min="0"; inp.step="0.01";
+    var wk = DB.perf[week];
+    inp.value = (wk && wk[P[0]]) ? wk[P[0]] : "";
+    inp.placeholder="مثال: 3.2";
+    (function(name){
+      inp.onchange = function(){
+        if (!DB.perf[week]) DB.perf[week] = {};
+        DB.perf[week][name] = inp.value;
+        saveDB(); toast("تم الحفظ ✅");
+      };
+    })(P[0]);
+    f.appendChild(inp);
+    pc2.appendChild(f);
+  });
+  main.appendChild(pc2);
+
+  // مقارنة الأسبوع 1 مع الأحدث
+  var pk = Object.keys(DB.perf).sort(function(a,b){return a-b;});
+  if (pk.length >= 2){
+    var cp = el("div","card");
+    cp.innerHTML = '<h3>📉 مقارنة (الأسبوع '+pk[0]+' ← الأسبوع '+pk[pk.length-1]+')</h3>';
+    PERF.forEach(function(P){
+      var a = DB.perf[pk[0]][P[0]];
+      var b = DB.perf[pk[pk.length-1]][P[0]];
+      if (a && b){
+        var delta = parseFloat(b) - parseFloat(a);
+        var good = (P[0].indexOf("شعور")>=0) ? delta>0 : delta<0;
+        cp.appendChild(el("div","notebox", esc(P[0])+": "+a+" → "+b+
+          " <b style='color:"+(good?"#22c55e":"#ef4444")+"'>("+(delta>0?"+":"")+delta.toFixed(2)+")</b> "+
+          (good?"👇 تحسّن!":"⬆️ يحتاج شغل")));
+      }
+    });
+    main.appendChild(cp);
+  }
+
+  // مؤقت الراحة
+  var tm = el("div","card");
+  tm.innerHTML = '<h2>⏱️ مؤقت الراحة بين المجموعات</h2><div class="timerwrap">'+
+    '<div class="timerbig" id="tmr">00:00</div>'+
+    '<div class="timerbtns" id="tmrBtns"></div>'+
+    '<div class="mini" style="margin-top:8px;">راحة القوة: 2–3 د • الانفجار: 1–2 د • عند الانتهاء يرن الجرس 🔔</div></div>';
+  main.appendChild(tm);
+  initTimer();
+}
+
+/* ================= المؤقت ================= */
+var tmrInt = null, tmrLeft = 0;
+function initTimer(){
+  var disp = document.getElementById("tmr");
+  var wrap = document.getElementById("tmrBtns");
+  if (!disp || !wrap) return;
+  wrap.innerHTML = "";
+  [[30,"30 ث"],[60,"1 د"],[90,"1:30"],[120,"2 د"],[180,"3 د"]].forEach(function(b){
+    var bt = el("button", "", b[1]);
+    bt.onclick = function(){
+      if (tmrInt) clearInterval(tmrInt);
+      tmrLeft = b[0];
+      disp.textContent = fmtT(tmrLeft);
+      disp.style.color = "#f59e0b";
+      tmrInt = setInterval(function(){
+        tmrLeft--;
+        if (tmrLeft <= 0){
+          clearInterval(tmrInt); tmrInt = null;
+          disp.textContent = "00:00";
+          disp.style.color = "#22c55e";
+          beep();
+          toast("🔔 انتهت الراحة — هيا!");
+        } else {
+          disp.textContent = fmtT(tmrLeft);
+          if (tmrLeft <= 10) disp.style.color = "#ef4444";
+        }
+      }, 1000);
+    };
+    wrap.appendChild(bt);
+  });
+  var st = el("button","","⏹️ إيقاف");
+  st.onclick = function(){
+    if (tmrInt) clearInterval(tmrInt);
+    tmrInt = null; tmrLeft = 0;
+    disp.textContent = "00:00";
+  };
+  wrap.appendChild(st);
+}
+function fmtT(s){
+  var m = Math.floor(s/60), ss = s%60;
+  return String(m).padStart(2,"0")+":"+String(ss).padStart(2,"0");
+}
+function beep(){
+  try{
+    var ctx = new (window.AudioContext||window.webkitAudioContext)();
+    var o = ctx.createOscillator(), g = ctx.createGain();
+    o.connect(g); g.connect(ctx.destination);
+    o.frequency.value = 880; o.type="sine";
+    g.gain.setValueAtTime(0.4, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+0.8);
+    o.start(); o.stop(ctx.currentTime+0.8);
+  }catch(e){}
+}
+
+function renderReceive(){
+  main.innerHTML = "";
+  var card = el("div","card");
+  card.innerHTML = '<h2>🎯 تتبع الاستلام</h2>'+
+    '<div class="muted">هدفك الأول بعد 3 مواسم: الكرة لا تفلت منك.<br>كل جلسة سجّل: <b>كم كرة أفلتت من أصل 10؟</b> نتابع الرقم أسبوعاً بأسبوع.</div>';
+  main.appendChild(card);
+
+  var form = el("div","card");
+  form.innerHTML = '<h3>📝 سجل اليوم</h3>';
+  var fD = el("div","field");
+  fD.innerHTML = '<label>كم كرة أفلتت منك من 10؟</label>';
+  var inD = el("input",""); inD.type="number"; inD.min="0"; inD.max="10";
+  var prev = DB.receiving[todayKey()];
+  inD.value = prev ? prev.dropped : "";
+  inD.placeholder="مثال: 5";
+  fD.appendChild(inD); form.appendChild(fD);
+  var bS = el("button","btn btn-ok","💾 حفظ نتيجة اليوم");
+  bS.onclick = function(){
+    var v = parseInt(inD.value,10);
+    if (isNaN(v)){ toast("اكتب رقم الكرات المفلتة أولاً"); return; }
+    DB.receiving[todayKey()] = {dropped:v, total:10, ts:Date.now()};
+    saveDB(); toast("تم تسجيل نتيجة الاستلام ✅");
+    renderReceive();
+  };
+  form.appendChild(bS);
+  main.appendChild(form);
+
+  var keys = Object.keys(DB.receiving).sort();
+  if (keys.length){
+    var tc = el("div","card");
+    tc.innerHTML = '<h3>📈 نتائجك</h3>';
+    var tbl = el("table","");
+    var trh = el("tr",""); trh.innerHTML = "<th>التاريخ</th><th>المفلتة من 10</th>";
+    tbl.appendChild(trh);
+    keys.forEach(function(k){
+      var r = el("tr","");
+      var d = DB.receiving[k].dropped;
+      r.innerHTML = "<td>"+k+"</td><td>"+d+"</td>";
+      tbl.appendChild(r);
+    });
+    tc.appendChild(tbl);
+    var cv = el("canvas",""); cv.width=560; cv.height=200; cv.style.width="100%";
+    tc.appendChild(cv);
+    main.appendChild(tc);
+    drawDropChart(cv, keys);
+    var first = DB.receiving[keys[0]].dropped;
+    var last = DB.receiving[keys[keys.length-1]].dropped;
+    var nb = el("div","notebox");
+    nb.style.marginTop="10px";
+    if (last < first){
+      nb.innerHTML = "🔥 <b>تحسّن!</b> من "+first+" إلى "+last+" كرة مفلته — استمر، هذا هو التقدم الحقيقي.";
+    } else if (last === first){
+      nb.innerHTML = "⚖️ ثبات عند "+last+" — لا بأس، نزيد التركيز على: أصابع مفرودة + امتصاص + عين على الكرة.";
+    } else {
+      nb.innerHTML = "📈 ارتفع الرقم مؤقتاً ("+last+") — لا تقلق، يوم سيئ لا يلغي التقدم. راجع شرح التقنية وركّز.";
+    }
+    tc.appendChild(nb);
+  } else {
+    var em = el("div","card");
+    em.innerHTML = '<div class="muted">لا توجد نتائج بعد — بعد جلسة اليوم سجّل أول رقم هنا. هذا هو <b>رقمك المرجعي</b> الذي نقيس منه كل شيء.</div>';
+    main.appendChild(em);
+  }
+
+  var st = el("div","card");
+  st.innerHTML = '<h3>🗺️ مراحل إصلاح الاستلام (8 أسابيع)</h3>';
+  RECEIVING_STAGES.forEach(function(s){
+    var ph = el("div","phase");
+    ph.innerHTML = '<b>'+esc(s.weeks)+' — '+esc(s.name)+'</b><br><span class="mini">'+esc(s.focus)+'</span><br><span class="tag">الهدف: '+esc(s.target)+'</span>';
+    st.appendChild(ph);
+  });
+  main.appendChild(st);
+
+  var tip = el("div","card");
+  tip.innerHTML = '<h3>💡 قاعدة اليوم</h3>'+
+    '<div class="notebox">🖐️ أصابع مفرودة ومتباعدة — لا تقبض يدك<br>'+
+    '🎯 عينك على الكرة حتى تدخل يدك<br>'+
+    '🫧 امتصاص: يدك ترجع قليلاً مع الكرة (لا تتصدى لها)</div>';
+  main.appendChild(tip);
+}
+
+function drawDropChart(cv, keys){
+  var ctx = cv.getContext("2d");
+  var vals = keys.map(function(k){ return DB.receiving[k].dropped; });
+  if (vals.length < 1) return;
+  ctx.clearRect(0,0,cv.width,cv.height);
+  var pad=30, W=cv.width, H=cv.height;
+  function X(i){ return pad + (W-2*pad)*(keys.length===1?0.5:(i/(keys.length-1))); }
+  function Y(v){ return H-pad-(H-2*pad)*(v-0)/(10-0); }
+  ctx.strokeStyle="#334155"; ctx.lineWidth=1;
+  for (var g=0; g<=4; g++){ var yy=pad+(H-2*pad)*g/4; ctx.beginPath(); ctx.moveTo(pad,yy); ctx.lineTo(W-pad,yy); ctx.stroke(); }
+  ctx.fillStyle="#94a3b8"; ctx.font="11px Tahoma"; ctx.textAlign="right";
+  ctx.fillText("10", W-pad, pad+10); ctx.fillText("5", W-pad, H/2+4); ctx.fillText("0", W-pad, H-pad+4);
+  ctx.strokeStyle="#e11d48"; ctx.lineWidth=3;
+  ctx.beginPath();
+  vals.forEach(function(v,i){ var x=X(i), y=Y(v); if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); });
+  ctx.stroke();
+  ctx.fillStyle="#f59e0b";
+  vals.forEach(function(v,i){ ctx.beginPath(); ctx.arc(X(i),Y(v),5,0,Math.PI*2); ctx.fill(); });
+  ctx.fillStyle="#f1f5f9"; ctx.textAlign="center"; ctx.font="11px Tahoma";
+  keys.forEach(function(k,i){ ctx.fillText(k.slice(5), X(i), H-10); });
+}
+
+/* ================= التنقل ================= */
+var currentView = "home";
+function switchView(v){
+  currentView = v;
+  document.querySelectorAll("nav button").forEach(function(b){
+    b.classList.toggle("active", b.getAttribute("data-v")===v);
+  });
+  if (v==="home") renderHome();
+  else if (v==="day") renderFullDay();
+  else if (v==="receive") renderReceive();
+  else if (v==="food") renderNutrition();
+  else if (v==="strength") renderStrength();
+  else if (v==="lib") renderLibrary();
+  else if (v==="checkin") renderCheckin();
+  else if (v==="log") renderLog();
+  else if (v==="progress") renderProgress();
+  else if (v==="send") renderSend();
+  window.scrollTo(0,0);
+}
+document.querySelectorAll("nav button").forEach(function(b){
+  b.onclick = function(){ switchView(b.getAttribute("data-v")); };
+});
+
+setHeader();
+var lb0 = document.getElementById("langBtn");
+if (lb0) lb0.textContent = (searchLang==="ar") ? "🌐 English" : "🌐 عربي";
+renderHome();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a243bc837b7f16ea',t:'MTc4NTU3NTcwNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
