@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>علي — التمرين والتغذية 🏐</title>
+<style>
+  :root{--bg:#0f172a;--card:#1e293b;--card2:#273449;--line:#334155;--txt:#f1f5f9;--sub:#94a3b8;--ok:#22c55e;--accent:#f59e0b;--red:#ef4444;}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:"Segoe UI",Tahoma,system-ui,sans-serif;font-size:16px;line-height:1.6;}
+  .app{max-width:560px;margin:0 auto;padding:14px 12px 50px;}
+  .top{text-align:center;margin-bottom:12px;}
+  .top .day{font-size:21px;font-weight:900;}
+  .top .date{color:var(--sub);font-size:13.5px;}
+  .tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+  .tab{border:none;border-radius:14px;padding:13px;font-size:16px;font-weight:900;cursor:pointer;font-family:inherit;background:var(--card);border:1px solid var(--line);color:var(--sub);}
+  .tab.active{background:var(--accent);color:#0f172a;border-color:var(--accent);}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px;}
+  .card h2{margin:0 0 8px;font-size:17px;}
+  .muted{color:var(--sub);font-size:13px;}
+  .ex{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px;}
+  .ex input{width:22px;height:22px;accent-color:var(--ok);flex-shrink:0;}
+  .ex .nm{flex:1;font-weight:700;font-size:14.5px;}
+  .ex .st{color:var(--accent);font-weight:800;white-space:nowrap;font-size:13px;}
+  .ex.done{opacity:.55;} .ex.done .nm{text-decoration:line-through;}
+  .vidrow{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 10px;}
+  .vbtn{border:none;color:#fff;border-radius:9px;padding:7px 12px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .pbar{height:9px;background:var(--card2);border-radius:99px;overflow:hidden;margin-top:4px;}
+  .pbar div{height:100%;background:var(--ok);border-radius:99px;transition:width .3s;}
+  .plabel{font-size:13px;color:var(--sub);text-align:center;margin-top:4px;}
+  .habit{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:7px;}
+  .habit input{width:20px;height:20px;accent-color:var(--ok);}
+  .habit .nm{flex:1;font-weight:700;font-size:14px;}
+  .dly-item{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:7px;}
+  .dly-item.done{opacity:.55;} .dly-item.done .nm{text-decoration:line-through;}
+  .dly-item input{width:20px;height:20px;accent-color:var(--ok);flex-shrink:0;}
+  .dly-item .nm{flex:1;font-weight:700;font-size:14px;}
+  .dly-item .dur{color:var(--accent);font-weight:800;font-size:12.5px;white-space:nowrap;}
+  .foodrow{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px;}
+  .foodrow input{width:20px;height:20px;accent-color:var(--ok);flex-shrink:0;}
+  .foodrow .ft{flex:1;}
+  .foodrow .ft b{display:block;font-size:14px;}
+  .foodrow .ft span{color:var(--sub);font-size:12.5px;}
+  .foodrow .fc{color:var(--sub);font-size:12px;white-space:nowrap;text-align:left;}
+  .bigbtn{display:block;width:100%;border:none;border-radius:14px;padding:14px;font-size:15.5px;font-weight:900;cursor:pointer;font-family:inherit;background:var(--accent);color:#0f172a;}
+  .bigbtn.green{background:var(--ok);color:#06210f;}
+  .bigbtn.gray{background:var(--card2);color:var(--txt);border:1px solid var(--line);}
+  .mini{font-size:12px;color:var(--sub);text-align:center;margin-top:8px;}
+  .note{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.4);border-radius:12px;padding:10px 12px;font-size:13.5px;color:#fcd34d;margin-bottom:10px;}
+  .note.red{background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.4);color:#fca5a5;}
+  .section-title{margin:14px 0 8px;font-size:15px;font-weight:900;color:var(--accent);}
+  .quicklog{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+  .ql input{width:100%;background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:9px;font-size:14px;font-family:inherit;text-align:center;}
+  .ql label{display:block;font-size:12px;color:var(--sub);text-align:center;margin-bottom:3px;}
+  /* القائمة العلوية — خانات مضغوطة */
+  .toplog{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px;}
+  .toplog .tf{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 4px;text-align:center;}
+  .toplog label{display:block;font-size:10px;color:var(--sub);margin-bottom:2px;font-weight:700;}
+  .toplog input{width:100%;background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:6px 2px;font-size:15px;font-family:inherit;text-align:center;}
+  /* سطر البديل — خط صغير */
+  .alt{font-size:12px;color:var(--sub);margin:-2px 0 8px 12px;line-height:1.5;}
+  .alt b{color:var(--accent);}
+  .grocery{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+  .grocery .gi{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:12.5px;color:var(--sub);}
+  .grocery .gi b{color:var(--txt);display:block;font-size:13px;}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div class="day" id="dayTitle">📅</div>
+    <div class="date" id="dateSub"></div>
+  </div>
+
+  <div class="tabs" style="grid-template-columns:repeat(5,1fr);">
+    <button class="tab active" id="tabTrain" onclick="showTab('train')">🏋️ تمرين</button>
+    <button class="tab" id="tabAM" onclick="showTab('am')">🧘 صباح</button>
+    <button class="tab" id="tabRX" onclick="showTab('rx')">🏐 استلام</button>
+    <button class="tab" id="tabPM" onclick="showTab('pm')">🌙 مساء</button>
+    <button class="tab" id="tabFood" onclick="showTab('food')">🍽️ أكل</button>
+  </div>
+
+  <div id="trainBox"></div>
+  <div id="amBox" style="display:none;"></div>
+  <div id="rxBox" style="display:none;"></div>
+  <div id="pmBox" style="display:none;"></div>
+  <div id="foodBox" style="display:none;"></div>
+</div>
+
+<script>
+"use strict";
+var AR_DAYS=["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+var AR_MONTHS=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+function todayKey(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function fmtDate(d){return d.getDate()+" "+AR_MONTHS[d.getMonth()]+" "+d.getFullYear();}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+/* ===== البرنامج (90 يوم — خطة واحدة ثابتة) ===== */
+var SESSIONS=[
+ {emoji:"💥",title:"يوم الانفجار القتالي",ex:[
+   ["Box Squat (صندوق ناعم)","4×5 RIR3"],["Broad Jump (رمل/نجيل)","4×3"],
+   ["Landmine Press","3×8/يد"],["Bent-Over Row دمبل","3×10/يد"],
+   ["Pivot Battle (حزام)","3×20ث"],["Pallof Press","3×12/جانب"]]},
+ {emoji:"⚙️",title:"المحرك السفلي وحركة القدم",ex:[
+   ["Bulgarian Split Squat","3×8/رجل"],["Romanian Deadlift","3×10"],
+   ["Lateral Lunge","3×8/جانب"],["Sled Push","4×15م"],
+   ["حركة قدم Pivot 3 نقاط","5د"],["Copenhagen Plank","3×15ث/جانب"]]},
+ {emoji:"🟠",title:"تعافي نشط",ex:[
+   ["مشي سريع مائل 10%","50 دقيقة"],["مرونة + فووم رولر","15د"],
+   ["بروتوكول الاستلام اليومي","22د"]]},
+ {emoji:"⚡",title:"سرعة 0-5م + الرشاقة",ex:[
+   ["Wall Sprint Drill","4×6ث"],["5-Meter Sprints (Pivot)","6×5م"],
+   ["Band Resisted First Step","3×5"],["Med Ball Slam جانبي","3×6"],
+   ["Agility Ladder + استلام","4 جولات"],["Farmer Walk Heavy","3×30م"]]},
+ {emoji:"🛡️",title:"التحمل القتالي",ex:[
+   ["Goblet Squat","12×3"],["Push-up أطراف أصابع","10-12×3"],
+   ["Inverted Row","10×3"],["Wall Sit","40ث×3"],
+   ["Bear Crawl","15م أمام+خلف"],["Sandbag Bear Hug Squat","8×3"],
+   ["Battle Ropes","20ث×3"],["Dead Bug","10/جانب×3"]]},
+ {emoji:"🛌",title:"راحة كاملة",ex:[
+   ["مرونة صباح + مساء","20د"],["استلام خفيف (أصابع فقط)","7د"],
+   ["كرياتين 5جم + ماء 3.5لتر","✅"]]},
+ {emoji:"🏐",title:"مهارات Pivot + استلام مكثف",ex:[
+   ["استلام متقدم (زميل)","20 كرة"],["استلام بيد واحدة + دوران 180","10+10"],
+   ["استلام من السقوط (بساط)","10 مرات"],["تثبيت بلوك","10د"],
+   ["لفة Roll بعد البلوك","10د"],["Spin Move بطيء","10د"],
+   ["تسديد 6م تحت حزام","10د"],["Tibialis Raises","2×25"],
+   ["Nordic Ham Curl سلبي","3×4"],["Face Pulls","3×15"],
+   ["تجديف خفيف","2000م"]]}
+];
+
+var VID={
+  "Box Squat (صندوق ناعم)":"box squat soft box","Broad Jump (رمل/نجيل)":"broad jump",
+  "Landmine Press":"landmine press","Bent-Over Row دمبل":"bent over dumbbell row",
+  "Pivot Battle (حزام)":"resisted band fight forward","Pallof Press":"pallof press",
+  "Bulgarian Split Squat":"bulgarian split squat","Romanian Deadlift":"romanian deadlift dumbbell",
+  "Lateral Lunge":"lateral lunge","Sled Push":"sled push","حركة قدم Pivot 3 نقاط":"handball pivot footwork",
+  "Copenhagen Plank":"copenhagen plank","مشي سريع مائل 10%":"incline treadmill walk",
+  "مرونة + فووم رولر":"foam rolling mobility","بروتوكول الاستلام اليومي":"handball catching drill",
+  "Wall Sprint Drill":"wall sprint drill","5-Meter Sprints (Pivot)":"5 meter sprint",
+  "Band Resisted First Step":"band resisted first step","Med Ball Slam جانبي":"medicine ball side slam",
+  "Agility Ladder + استلام":"agility ladder catch","Farmer Walk Heavy":"farmer carry",
+  "Goblet Squat":"goblet squat","Push-up أطراف أصابع":"fingertip push up",
+  "Inverted Row":"inverted row","Wall Sit":"wall sit","Bear Crawl":"bear crawl",
+  "Sandbag Bear Hug Squat":"sandbag bear hug squat","Battle Ropes":"battle ropes",
+  "Dead Bug":"dead bug","مرونة صباح + مساء":"morning evening stretching",
+  "استلام خفيف (أصابع فقط)":"handball grip finger strength","كرياتين 5جم + ماء 3.5لتر":"creatine monohydrate",
+  "استلام متقدم (زميل)":"handball receiving drill","استلام بيد واحدة + دوران 180":"handball one hand catch turn",
+  "استلام من السقوط (بساط)":"handball falling catch","تثبيت بلوك":"handball pivot block",
+  "لفة Roll بعد البلوك":"handball pivot roll","Spin Move بطيء":"handball spin move",
+  "تسديد 6م تحت حزام":"handball shooting resistance band","Tibialis Raises":"tibialis raises",
+  "Nordic Ham Curl سلبي":"nordic hamstring curl negative","Face Pulls":"face pull",
+  "تجديف خفيف":"rowing machine technique"
+};
+
+/* ===== البدائل — إذا ما أجِدت التمرين، افعل البديل الأسهل ===== */
+var ALT={
+  "Box Squat (صندوق ناعم)":"بديل: سكوات هوائي بطيء (نزول 3 ثوانٍ) على كرسي ثم قوم",
+  "Broad Jump (رمل/نجيل)":"بديل: قفزة وقوف صغيرة للأمام فقط (30 سم) — اهبط بهدوء",
+  "Landmine Press":"بديل: دفع كرة طبية أمام الصدر أو ضغط دمبل",
+  "Bent-Over Row دمبل":"بديل: سحب باند للخصر واقف (أسهل على الظهر)",
+  "Pivot Battle (حزام)":"بديل: دفع الحائط بذراعيك 20 ثانية (تقاوم بنفسك)",
+  "Pallof Press":"بديل: بلانك عادي أو شد باند أمام الصدر مع ثبات الجسم",
+  "Bulgarian Split Squat":"بديل: Lunge عادي (خطوة أمامية وخلفية) بدون أثقال",
+  "Romanian Deadlift":"بديل: Glute Bridge (رفع الحوض) أو Hip Thrust",
+  "Lateral Lunge (طعن جانبي)":"بديل: سكوات واسع (قدمان أوسع من الكتف) بدون وزن",
+  "Sled Push":"بديل: دفع الحائط بجسمك 20 ثانية أو مشي ثقيل بالدمبل",
+  "حركة قدم Pivot 3 نقاط":"بديل: مشي جانبي سريع في مكانك 30 ثانية",
+  "Copenhagen Plank":"بديل: بلانك جانبي عادي (ساعد على الأرض)",
+  "Wall Sprint Drill":"بديل: High Knees (رفع ركبتين) في مكانك 20 ثانية",
+  "5-Meter Sprints (Pivot)":"بديل: تسارع مشي سريع 5 أمتار ذهاباً وإياباً",
+  "Band Resisted First Step":"بديل: اندفاع أمامي قوي بدون باند (3 خطوات)",
+  "Medicine Ball Slam جانبي":"بديل: لفّ الجذع يميناً ويساراً بسرعة 20 مرة (بدون كرة)",
+  "Agility Ladder + استلام":"بديل: خطوات جانبية سريعة في مكانك + التقاط كرة من الأرض",
+  "Farmer Walk Heavy":"بديل: حمل دمبلين ثقيلين واقف ثابت 30 ثانية (بدون مشي)",
+  "Goblet Squat":"بديل: سكوات هوائي بدون وزن — ركّز على الوضعية",
+  "Push-up أطراف أصابع":"بديل: ضغط عادي على راحة اليد (أو على الركبتين)",
+  "Inverted Row":"بديل: سحب باند نحو الصدر 10 مرات",
+  "Wall Sit":"بديل: سكوات ثابت على كرسي (اجلس وقف بدون كرسي)",
+  "Bear Crawl":"بديل: مشي على اليدين والركبتين (ركب تلمس الأرض)",
+  "Sandbag Bear Hug Squat":"بديل: سكوات مع دمبل محتضن أو حقيبة ظهر ثقيلة على الصدر",
+  "Battle Ropes":"بديل: تحريك ذراعين سريع بدمبل خفيف (2 كجم) 20 ثانية",
+  "Dead Bug":"بديل: Plank عادي 30 ثانية أو رفع رجلين واقف على ظهرك",
+  "Tibialis Raises":"بديل: رفع مشط القدم واقف 20 مرة (تمسك بالحائط)",
+  "Nordic Ham Curl سلبي":"بديل: Glute Bridge رجل واحدة 10 مرات",
+  "Face Pulls":"بديل: شد باند للوجه واقف أو دوران خارجي للكتف بدون وزن",
+  "استلام متقدم (زميل)":"بديل: حائط لوحدك — ارمِ واستلم من زوايا مختلفة",
+  "استلام بيد واحدة + دوران 180":"بديل: تدرب الدوران بدون كرة أولاً، ثم أضف الكرة ببطء",
+  "استلام من السقوط (بساط)":"بديل: اجلس وانهض مع استلام الكرة من الأرض",
+  "تثبيت بلوك":"بديل: قف بوضعية Pivot أمام المرآة وحافظ على الثبات 30 ثانية",
+  "لفة Roll بعد البلوك":"بديل: تدرب اللفة حول نفسك بدون كرة (خطوة محورية)",
+  "Spin Move بطيء":"بديل: دوران ببطء حول قدم محورية مع الكرة فقط (بدون تسديد)",
+  "تسديد 6م تحت حزام":"بديل: تسديد عادي من 6 أمتار — ركّز على التقنية",
+  "تجديف خفيف":"بديل: مشي سريع 10 دقائق في مكانك",
+  "مرونة + فووم رولر":"بديل: 10 د استطالة خفيفة فقط بدون فووم رولر"
+};
+
+/* ===== التخزين ===== */
+var KEY="ali_90d_v2";
+function loadDB(){
+  var def={done:{},daily:{},food:{}};
+  try{var raw=localStorage.getItem(KEY);if(!raw)return def;var p=JSON.parse(raw);if(!p||typeof p!=="object")return def;for(var k in def){if(!p[k])p[k]=def[k];}return p;}catch(e){return def;}
+}
+var DB=loadDB();
+function saveDB(){try{localStorage.setItem(KEY,JSON.stringify(DB));}catch(e){}}
+
+/* ===== فيديوهات ===== */
+function vidRow(name){
+  var q=VID[name]||name;
+  var r=document.createElement("div");r.className="vidrow";
+  [["▶️ يوتيوب","#e11d48","https://www.youtube.com/results?search_query="],
+   ["🎵 تيك توك","#111827","https://www.tiktok.com/search?q="],
+   ["📸 انستا","#8a3ab9","https://www.instagram.com/explore/search/keyword/?q="]].forEach(function(x){
+    var b=document.createElement("button");b.className="vbtn";b.style.background=x[1];
+    b.textContent=x[0];b.onclick=function(){window.open(x[2]+encodeURIComponent(q),"_blank");};
+    r.appendChild(b);
+  });
+  return r;
+}
+
+/* ===== التبويبات ===== */
+function showTab(t){
+  var map={train:"tabTrain",am:"tabAM",rx:"tabRX",pm:"tabPM",food:"tabFood"};
+  var boxMap={train:"trainBox",am:"amBox",rx:"rxBox",pm:"pmBox",food:"foodBox"};
+  for(var k in map){
+    var b=document.getElementById(map[k]);if(b)b.classList.toggle("active",k===t);
+    var bx=document.getElementById(boxMap[k]);if(bx)bx.style.display=k===t?"block":"none";
+  }
+}
+
+/* ===== عرض التمارين ===== */
+function renderTrain(){
+  var now=new Date();
+  var di=now.getDay();
+  var s=SESSIONS[di];
+  var k=todayKey();
+  var box=document.getElementById("trainBox");
+  document.getElementById("dayTitle").textContent=AR_DAYS[di]+" — "+s.emoji+" "+s.title;
+  document.getElementById("dateSub").textContent=fmtDate(now);
+
+  /* خانات التسجيل السريع — في القائمة العلوية (تحت التبويبات) */
+  var toplog=document.createElement("div");toplog.className="toplog";
+  toplog.innerHTML=
+    "<div class='tf'><label>⚖️ الوزن</label><input id='qw' type='number' step='0.1'></div>"+
+    "<div class='tf'><label>😴 النوم</label><input id='qs' type='number' step='0.5'></div>"+
+    "<div class='tf'><label>💧 الماء</label><input id='qwt' type='number' step='0.5'></div>"+
+    "<div class='tf'><label>💪 البروتين</label><input id='qp' type='number'></div>";
+  box.appendChild(toplog);
+
+  box.insertAdjacentHTML("beforeend",'<div class="note">🚫 ممنوع جري طويل • قفز على أرض ناعمة فقط • لا قفز عالي أول 45 يوم • بروتين 210-220جم • ماء 4لتر • 10,000 خطوة</div>');
+
+  /* 🔥 التسخين — قبل كل تمرين (12 د) */
+  if(!DB.warmup)DB.warmup={};
+  var warr=DB.warmup[k]||[false,false,false,false];
+  var warmCard=document.createElement("div");warmCard.className="card";
+  warmCard.innerHTML="<h2>🔥 التسخين (12 د — قبل التمرين)</h2>";
+  var warmItems=[
+    ["حبل قفز أو مشي خفيف","3 د"],
+    ["مرونة حركية (Dynamic Stretching)","5 د"],
+    ["Glute Bridge (تفعيل المؤخرة)","15×2"],
+    ["Band Pull-Apart (تفعيل الكتف)","15×2"]
+  ];
+  warmItems.forEach(function(wm,i){
+    var row=document.createElement("div");row.className="ex";
+    var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!warr[i];
+    cb.onchange=function(){warr[i]=cb.checked;DB.warmup[k]=warr;saveDB();row.classList.toggle("done",cb.checked);};
+    if(cb.checked)row.classList.add("done");
+    var nm=document.createElement("span");nm.className="nm";nm.textContent=wm[0];
+    var st=document.createElement("span");st.className="st";st.textContent=wm[1];
+    row.appendChild(cb);row.appendChild(nm);row.appendChild(st);
+    warmCard.appendChild(row);
+  });
+  warmCard.appendChild(vidRow("dynamic warm up before workout"));
+  box.appendChild(warmCard);
+
+  /* ثابت كل يوم (كرياتين + خطوات) */
+  var harr=DB.daily[k]||[];
+  if(harr.length<2)harr=[false,false];
+  var hab=document.createElement("div");hab.className="card";
+  hab.innerHTML="<h2>📌 ثابت كل يوم</h2>";
+  var habits=["💊 كرياتين 5جم","👣 10,000 خطوة"];
+  habits.forEach(function(h,i){
+    var row=document.createElement("div");row.className="habit";
+    var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!harr[i];
+    cb.onchange=function(){harr[i]=cb.checked;DB.daily[k]=harr;saveDB();row.classList.toggle("done",cb.checked);};
+    if(cb.checked)row.classList.add("done");
+    var sp=document.createElement("span");sp.className="nm";sp.textContent=h;
+    row.appendChild(cb);row.appendChild(sp);
+    hab.appendChild(row);
+  });
+  box.appendChild(hab);
+
+  /* تمارين اليوم */
+  var card=document.createElement("div");card.className="card";
+  card.innerHTML="<h2>🏋️ تمارين اليوم</h2>";
+  var arr=DB.done[k]||[];
+  s.ex.forEach(function(ex,i){
+    var wrap=document.createElement("div");
+    var row=document.createElement("div");row.className="ex";
+    var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!arr[i];
+    cb.onchange=function(){arr[i]=cb.checked;DB.done[k]=arr;saveDB();row.classList.toggle("done",cb.checked);updateP();};
+    if(cb.checked)row.classList.add("done");
+    var nm=document.createElement("span");nm.className="nm";nm.textContent=ex[0];
+    var st=document.createElement("span");st.className="st";st.textContent=ex[1];
+    row.appendChild(cb);row.appendChild(nm);row.appendChild(st);
+    wrap.appendChild(row);
+    // سطر البديل — إذا لم تجد التمرين
+    if(ALT[ex[0]]){
+      var alt=document.createElement("div");alt.className="alt";
+      alt.innerHTML="🔄 <b>بديل:</b> "+esc(ALT[ex[0]]);
+      wrap.appendChild(alt);
+    }
+    wrap.appendChild(vidRow(ex[0]));
+    card.appendChild(wrap);
+  });
+  var bar=document.createElement("div");bar.className="pbar";
+  var fill=document.createElement("div");fill.style.width="0%";bar.appendChild(fill);
+  card.appendChild(bar);
+  var lbl=document.createElement("div");lbl.className="plabel";lbl.id="plbl";
+  card.appendChild(lbl);
+  box.appendChild(card);
+
+  window._fill=fill;window._arr=arr;window._n=s.ex.length;
+  function updateP(){var dn=(window._arr||[]).filter(Boolean).length;window._fill.style.width=(dn/window._n*100)+"%";window._lbl=document.getElementById("plbl");if(window._lbl)window._lbl.textContent="أنجزت "+dn+" من "+window._n;}
+  updateP();
+
+  /* زر إرسال التقرير */
+  var qc=document.createElement("div");qc.className="card";
+  var bCopy=document.createElement("button");bCopy.className="bigbtn";bCopy.textContent="📤 انسخ تقرير اليوم وأرسله للمدرب";
+  bCopy.onclick=copyReport;
+  qc.appendChild(bCopy);
+  box.appendChild(qc);
+}
+
+/* ===== الروتينات اليومية — كل روتين تبويب مستقل مع الشرح ===== */
+var ROUTINE_EXPLAIN={
+  "Ankle Rocks (ركبة تلمس الحائط) 15/رجل":{how:"وجهك للحائط ورجلك قريبة منه، ادفع ركبتك للأمام لتلمس الحائط دون أن يرتفع كعبك.",cues:"15/رجل — يفتح مرونة الكاحل ويمنع التواءه."},
+  "90/90 Hip Switches 10+10":{how:"جالس والركبتان بزاوية 90 درجة، بدّل اتجاه الرجلين يميناً ويساراً.",cues:"10 يمين + 10 يسار — صدر مرفوع، لا تميل."},
+  "Cat-Camel 12 تكرار":{how:"على أربع، قوّس ظهرك للأعلى (قطة) ثم أنزله للأسفل (جمل) ببطء.",cues:"12 تكرار — تنفس عميق، حركة بطيئة."},
+  "World's Greatest Stretch 3/جانب":{how:"خطوة لنج، يدك على الأرض، وأدر صدرك نحو الرجل الأمامية.",cues:"3 تكرارات/جانب، ثبات 5 ثوانٍ — يفتح الورك والعمود."},
+  "دلو الأرز Rice Bucket 60ث×2":{how:"اغمس يدك في دلو أرز وافتح وأغلق أصابعك بسرعة ضد مقاومة الأرز.",cues:"60ث×2 — أقوى تمرين لقبضة الـ Pivot. البديل: اعصر فوطة مبلولة."},
+  "Fingertip Push-ups حائط 15×3":{how:"واقف على الحائط، ادفع بأطراف أصابعك فقط بعيداً عنه.",cues:"15×3 — أصابعك هي التي تدفع وليس راحة اليد."},
+  "Plate Pinch Hold 20ث×3":{how:"أمسك قرصين (2.5 كجم) بين أصابعك وإبهامك وثبّت.",cues:"20ث×3 — اضغط بالإبهام بقوة، أساس قوة الإمساك."},
+  "Wall Rapid Catch 30ث×4":{how:"قف على بعد 1.5م من الحائط، ارمِ الكرة بقوة واستلمها بيد واحدة وبدّل.",cues:"30ث×4 — عينك على الكرة حتى تدخل أصابعك، لا تغمض."},
+  "Tennis Ball Chaos 20 رمية":{how:"ارمِ كرة التنس على الحائط لترجع بشكل عشوائي واستلمها.",cues:"20 رمية — يدرب ردة فعل الأصابع وليس راحة اليد."},
+  "Low Ball Pickups 12 مرة":{how:"ارمِ الكرة على الأرض لتقفز قريبة، انزل واستلمها بأصابعك كأنك Pivot يستلم ساقطة.",cues:"12 مرة — أصابعك تسبق الكرة نحو الأرض."},
+  "Ball Squeeze Hold 10ث×6":{how:"امسك كرة اليد بأقصى قوة 10 ثوانٍ ثم ارتخِ.",cues:"10ث×6 — تخيل أنك تمسك ضد مدافع لا يريدك أن تتركها."},
+  "تدليك الساعد بزجاجة مثلجة 2د":{how:"مرّر زجاجة ماء مثلجة على ساعدك ويدك ببطء.",cues:"2د — يمنع التهاب الأوتار بعد تقوية الأصابع."},
+  "Pancake Adductors 3 د":{how:"جلوس بفتح الرجلين واسعاً، ظهر مستقيم، حاول تقريب البطن من الأرض.",cues:"3د إجمالي — تنفس عميق، لا ارتداد."},
+  "Half-Kneeling Hip Flexor 60ث×2/جانب":{how:"اجثُ وركبتك الخلفية على مخدة، اعصر جلوتس الرجل الخلفية وادفع الورك للأمام.",cues:"60ث×2/جانب — أهم استطالة لفتح الورك."},
+  "Hamstring Doorway 90ث×2/رجل":{how:"استلقِ ورجلك مفرودة على إطار الحائط، ركبة مفرودة تماماً.",cues:"90ث×2/رجل — شد لطيف خلف الفخذ."},
+  "Pigeon Stretch 60ث×2/جانب":{how:"رجل مثنية أمامك وممدودة خلفك، انزل بجذعك ببطء.",cues:"60ث×2/جانب — تنفس عميق في الوضعية."},
+  "Wrist & Finger Extensors 30ث×3":{how:"مدّ ذراعك وكفك للأسفل، اسحب الأصابع برفق باليد الأخرى.",cues:"30ث×3 — مهم جداً ليديك وإحساسك بالكرة."}
+};
+var ROUTINE_VID={
+  "Ankle Rocks (ركبة تلمس الحائط) 15/رجل":"ankle rock wall stretch",
+  "90/90 Hip Switches 10+10":"90 90 hip switch",
+  "Cat-Camel 12 تكرار":"cat camel stretch",
+  "World's Greatest Stretch 3/جانب":"worlds greatest stretch",
+  "دلو الأرز Rice Bucket 60ث×2":"rice bucket hand grip workout",
+  "Fingertip Push-ups حائط 15×3":"fingertip push up wall",
+  "Plate Pinch Hold 20ث×3":"plate pinch grip strength",
+  "Wall Rapid Catch 30ث×4":"handball rapid catch wall",
+  "Tennis Ball Chaos 20 رمية":"tennis ball reaction catch",
+  "Low Ball Pickups 12 مرة":"low ball pickup catch drill",
+  "Ball Squeeze Hold 10ث×6":"handball squeeze grip",
+  "تدليك الساعد بزجاجة مثلجة 2د":"forearm massage ice bottle",
+  "Pancake Adductors 3 د":"pancake stretch adductors",
+  "Half-Kneeling Hip Flexor 60ث×2/جانب":"half kneeling hip flexor stretch",
+  "Hamstring Doorway 90ث×2/رجل":"hamstring wall stretch",
+  "Pigeon Stretch 60ث×2/جانب":"pigeon pose stretch",
+  "Wrist & Finger Extensors 30ث×3":"wrist extensor stretch"
+};
+var ROUTINE_OFFSET={am:0,rx:4,pm:12};
+function renderRoutine(key,boxId,title,desc,items){
+  var k=todayKey();
+  var harr=DB.daily[k]||[];
+  var off=ROUTINE_OFFSET[key];
+  var box=document.getElementById(boxId);
+  box.innerHTML="";
+  var head=document.createElement("div");head.className="card";
+  head.innerHTML="<h2>"+esc(title)+"</h2><div class='muted'>"+esc(desc)+"</div>";
+  box.appendChild(head);
+  items.forEach(function(it,i){
+    var idx=off+i;
+    var wrap=document.createElement("div");
+    var row=document.createElement("div");row.className="ex";
+    var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!harr[idx];
+    cb.onchange=function(){harr[idx]=cb.checked;DB.daily[k]=harr;saveDB();row.classList.toggle("done",cb.checked);};
+    if(cb.checked)row.classList.add("done");
+    var nm=document.createElement("span");nm.className="nm";nm.textContent=it;
+    row.appendChild(cb);row.appendChild(nm);
+    wrap.appendChild(row);
+    // الشرح
+    var ex=ROUTINE_EXPLAIN[it];
+    if(ex){
+      var exp=document.createElement("div");exp.className="alt";
+      exp.innerHTML="📌 <b>كيف:</b> "+esc(ex.how)+"<br>🎯 <b>ركّز:</b> "+esc(ex.cues);
+      wrap.appendChild(exp);
+    }
+    // الفيديو
+    var q=ROUTINE_VID[it]||it;
+    var vr=document.createElement("div");vr.className="vidrow";
+    [["▶️ يوتيوب","#e11d48","https://www.youtube.com/results?search_query="],
+     ["🎵 تيك توك","#111827","https://www.tiktok.com/search?q="],
+     ["📸 انستا","#8a3ab9","https://www.instagram.com/explore/search/keyword/?q="]].forEach(function(x){
+      var b=document.createElement("button");b.className="vbtn";b.style.background=x[1];
+      b.textContent=x[0];b.onclick=function(){window.open(x[2]+encodeURIComponent(q),"_blank");};
+      vr.appendChild(b);
+    });
+    wrap.appendChild(vr);
+    box.appendChild(wrap);
+  });
+}
+function renderAM(){
+  renderRoutine("am","amBox","🧘 مرونة الصباح (10 د) — بعد الاستيقاظ قبل الأكل","تنشيط عصبي، ليس استطالة مؤلمة. أولويتك القصوى (كانت 1/10).",
+    ["Ankle Rocks (ركبة تلمس الحائط) 15/رجل","90/90 Hip Switches 10+10","Cat-Camel 12 تكرار","World's Greatest Stretch 3/جانب"]);
+}
+function renderRX(){
+  renderRoutine("rx","rxBox","🏐 بروتوكول الاستلام (22 د) — يحل مشكلة 3 مواسم","القاعدة: الكرة تُستلم بالأصابع وليس راحة اليد — آخر 3 أصابع هي القفل.",
+    ["دلو الأرز Rice Bucket 60ث×2","Fingertip Push-ups حائط 15×3","Plate Pinch Hold 20ث×3","Wall Rapid Catch 30ث×4","Tennis Ball Chaos 20 رمية","Low Ball Pickups 12 مرة","Ball Squeeze Hold 10ث×6","تدليك الساعد بزجاجة مثلجة 2د"]);
+}
+function renderPM(){
+  renderRoutine("pm","pmBox","🌙 مرونة المساء (20 د) — قبل النوم","استطالة عميقة — كل وضعية 45-60 ثانية + تنفس. لا ارتداد.",
+    ["Pancake Adductors 3 د","Half-Kneeling Hip Flexor 60ث×2/جانب","Hamstring Doorway 90ث×2/رجل","Pigeon Stretch 60ث×2/جانب","Wrist & Finger Extensors 30ث×3"]);
+}
+
+/* ===== عرض التغذية ===== */
+function renderFood(){
+  var box=document.getElementById("foodBox");
+  var now=new Date();
+  var di=now.getDay();
+  var isRest=(di===2||di===5); // الثلاثاء والجمعة راحة
+  var k=todayKey();
+  var farr=DB.food[k]||[false,false,false,false];
+
+  box.innerHTML="";
+  box.appendChild(mealCard(isRest,farr,k));
+
+  var v=document.createElement("div");v.className="card";
+  v.innerHTML="<h2>📅 أسبوعك (نفس الأكل — لا تفكر)</h2>"+
+    "<div class='muted'>"+
+    "<b>تدريب (2700):</b> غداء كبير دجاج+رز • عشاء كبير لحم+بطاطس<br>"+
+    "<b>راحة (2150):</b> غداء صغير دجاج+رز • عشاء صغير لحم+بطاطس<br>"+
+    "<b>تدريب:</b> الأحد، الاثنين، الأربعاء، الخميس، السبت<br>"+
+    "<b>راحة:</b> الثلاثاء، الجمعة</div>";
+  box.appendChild(v);
+
+  var g=document.createElement("div");g.className="card";
+  g.innerHTML="<h2>🛒 قائمة مقاضي الأسبوع (تشترى مرة)</h2><div class='grocery'>"+
+    "<div class='gi'><b>🍗 دجاج صدر</b>1.2 كجم</div><div class='gi'><b>🥩 لحم مفروم 5%</b>1.5 كجم</div>"+
+    "<div class='gi'><b>🍚 رز أبيض</b>600 جم خام</div><div class='gi'><b>🥔 بطاطس</b>2.5 كجم</div>"+
+    "<div class='gi'><b>🥚 بيض</b>30 بيضة</div><div class='gi'><b>🌾 شوفان</b>700 جم</div>"+
+    "<div class='gi'><b>🍌 موز</b>15 حبة</div><div class='gi'><b>🥛 زبادي يوناني 0%</b>7 علب</div>"+
+    "<div class='gi'><b>🥜 فول سوداني/لوز</b>250 جم</div><div class='gi'><b>🥒 خضار</b>خيار+طماطم+خس</div>"+
+    "<div class='gi'><b>💊 واي + كرياتين</b>المكملات</div><div class='gi'><b>📦 علب بلاستيك</b>14 علبة</div>"+
+    "</div>";
+  box.appendChild(g);
+
+  var c=document.createElement("div");c.className="card";
+  c.innerHTML="<h2>🍳 طبخة وحدة تكفي الأسبوع (الجمعة)</h2>"+
+    "<div class='section-title'>الغداء — دجاج ورز (7 علب)</div>"+
+    "<div class='muted'>1) قطّع 1.2 كجم دجاج مكعبات + تتبيلة (ملح، فلفل، بابريكا، ثوم بودرة، ليمون، ملعقة زيت)<br>2) فرن 200° لمدة 25 دقيقة (أو طاوة بدون زيت 15 د)<br>3) اطبخ 600 جم رز (يطلع 1800 جم مطبوخ)<br>4) وزّع: 220 جم دجاج + 250 جم رز في كل علبة كبيرة (تدريب) • 100 جم رز للعلب الصغيرة (راحة)</div>"+
+    "<div class='section-title'>العشاء — لحم وبطاطس (7 علب)</div>"+
+    "<div class='muted'>1) بطاطس مكعبات + تتبيلة ← فرن 200° لمدة 30 دقيقة<br>2) بصل + 1.5 كجم لحم مفروم + ملح وفلفل ← قلب 15 د<br>3) وزّع: 250 جم لحم + 400 جم بطاطس (تدريب) • 200 جم بطاطس (راحة)</div>"+
+    "<div class='note'>❄️ 3 علب غداء + 3 علب عشاء في الثلاجة، والباقي (8) في الفريزر. طلّع علبة بكرة كل مساء.</div>";
+  box.appendChild(c);
+
+  var f=document.createElement("div");f.className="card";
+  f.innerHTML="<h2>🍽️ كل يوم ثابت (بدون طبخ)</h2>"+
+    "<div class='muted'><b>فطور 07:00:</b> 4 بيض + 80 جم شوفان + موزة + 7 لوز<br>"+
+    "<b>بعد التمرين 14:00:</b> 2 سكوب واي + 2 موز (راحة: 1) + 5 جم كرياتين + 500مل ماء<br>"+
+    "<b>قبل النوم 22:00:</b> زبادي يوناني 200 جم + 20 جم فول سوداني<br>"+
+    "<b>ماء 4 لتر • 10,000 خطوة • نوم 8 ساعات</b></div>";
+  box.appendChild(f);
+
+  var w=document.createElement("div");w.className="card";
+  w.innerHTML="<h2>⚠️ 3 أخطاء تقتلك</h2>"+
+    '<div class="note red">1) تترك الأكل >3 أيام بالثلاجة بدون فريزر → يخرب<br>2) ما توزن الأكل أول أسبوع (ميزان مطبخ 50 ريال)<br>3) حلويات أو بيبسي → كأنك ما سويت شيء</div>';
+  box.appendChild(w);
+}
+
+function mealCard(isRest,farr,k){
+  var c=document.createElement("div");c.className="card";
+  var todayS=isRest?"راحة (2150)":"تدريب (2700)";
+  c.innerHTML="<h2>🍽️ اليوم: "+todayS+"</h2>";
+  var meals=[
+    ["غداء "+(isRest?"صغير":"كبير"),(isRest?"220 جم دجاج + 100 جم رز":"220 جم دجاج + 250 جم رز"),"~450"],
+    ["عشاء "+(isRest?"صغير":"كبير"),(isRest?"250 جم لحم + 200 جم بطاطس":"250 جم لحم + 400 جم بطاطس"),"~550"],
+    ["فطور (07:00)","4 بيض + 80 جم شوفان + موزة + 7 لوز","~620"],
+    ["بعد التمرين","2 سكوب واي + "+(isRest?"1":"2")+" موز + كرياتين","~520"]
+  ];
+  meals.forEach(function(m,i){
+    var row=document.createElement("div");row.className="foodrow";
+    var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!farr[i];
+    cb.onchange=function(){farr[i]=cb.checked;DB.food[k]=farr;saveDB();row.classList.toggle("done",cb.checked);};
+    if(cb.checked)row.classList.add("done");
+    var ft=document.createElement("div");ft.className="ft";
+    var b=document.createElement("b");b.textContent=m[0];
+    var sp=document.createElement("span");sp.textContent=m[1];
+    ft.appendChild(b);ft.appendChild(sp);
+    var fc=document.createElement("div");fc.className="fc";fc.textContent=m[2]+" سعرة";
+    row.appendChild(cb);row.appendChild(ft);row.appendChild(fc);
+    c.appendChild(row);
+  });
+  c.appendChild(document.createElement("div")).className="plabel";
+  c.lastChild.textContent="علّم ✓ على ما أكلته";
+  return c;
+}
+
+function copyReport(){
+  var k=todayKey();
+  var now=new Date();
+  var s=SESSIONS[now.getDay()];
+  var arr=DB.done[k]||[];
+  var doneN=arr.filter(Boolean).length;
+  var g=function(id){var e=document.getElementById(id);return e&&e.value?e.value:"—";};
+  var lines=[];
+  lines.push("📅 يومي — "+AR_DAYS[now.getDay()]+" "+fmtDate(now));
+  lines.push("🏋️ "+s.emoji+" "+s.title+" — أنجزت "+doneN+" من "+s.ex.length);
+  lines.push("🔥 التسخين: "+((DB.warmup[k]||[]).filter(Boolean).length)+"/4 | 📌 الثابت: "+(DB.daily[k]||[]).filter(Boolean).length+"/2");
+  lines.push("⚖️ الوزن: "+g("qw")+" | 😴 النوم: "+g("qs")+" | 💧 ماء: "+g("qwt")+"ل | 💪 بروتين: "+g("qp")+"جم");
+  lines.push("🍽️ أكل: "+(DB.food[k]||[]).filter(Boolean).length+"/4");
+  var txt=lines.join("\n");
+  try{
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){alert("تم النسخ ✅ — الصقه في المحادثة مع مدربك");});}
+    else{fallbackCopy(txt);}
+  }catch(e){fallbackCopy(txt);}
+}
+function fallbackCopy(txt){
+  var ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand("copy");alert("تم النسخ ✅ — الصقه في المحادثة مع مدربك");}catch(e){alert("انسخ يدوياً:\n"+txt);}
+  document.body.removeChild(ta);
+}
+
+renderTrain();
+renderAM();
+renderRX();
+renderPM();
+renderFood();
+</script>
+</body>
+</html>
