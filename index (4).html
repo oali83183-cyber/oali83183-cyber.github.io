@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>علي — Pivot Pro v2 🏐</title>
+<style>
+:root{--bg:#0a0a0c;--card:#16161a;--card2:#22222a;--line:#2c2c35;--txt:#f5f5f7;--sub:#9aa0a6;--ok:#1fd07c;--accent:#e11d2d;--gold:#ffdf6b;--blue:#3b82f6}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:system-ui,Tahoma,sans-serif;font-size:15px;line-height:1.6}
+.app{max-width:580px;margin:0 auto;padding:12px 10px 80px}
+.top{text-align:center;margin-bottom:12px;position:sticky;top:0;z-index:10;background:rgba(10,10,12,0.92);backdrop-filter:blur(12px);padding:10px 0 8px;border-bottom:1px solid var(--line)}
+.top .day{font-size:20px;font-weight:900} .top .date{color:var(--sub);font-size:12px}
+.nav{display:flex;gap:8px;justify-content:center;margin-top:8px}
+.nav button{background:var(--card2);border:1px solid var(--line);color:var(--sub);border-radius:20px;padding:4px 12px;font-size:11px;cursor:pointer}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0 10px}
+.tab{border:none;border-radius:12px;padding:12px;font-size:14px;font-weight:900;cursor:pointer;font-family:inherit;background:var(--card);border:1px solid var(--line);color:var(--sub)}
+.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px}
+.card h2{margin:0 0 8px;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+.muted{color:var(--sub);font-size:11.5px}
+.ex{display:flex;align-items:center;gap:9px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:9px 10px;margin-bottom:7px;transition:all .2s}
+.ex input{width:20px;height:20px;accent-color:var(--ok);flex-shrink:0}
+.ex .nm{flex:1;font-weight:700;font-size:13px;cursor:pointer} .ex .st{color:var(--gold);font-weight:800;white-space:nowrap;font-size:11px}
+.ex.done{opacity:.45;border-color:#1a3a25} .ex.done .nm{text-decoration:line-through}
+.vidrow{display:flex;gap:5px;flex-wrap:wrap;margin:4px 0 8px 29px}
+.vbtn{border:none;color:#fff;border-radius:7px;padding:5px 10px;font-size:10.5px;font-weight:700;cursor:pointer}
+.pbar{height:8px;background:var(--card2);border-radius:99px;overflow:hidden;margin-top:6px}
+.pbar div{height:100%;background:linear-gradient(90deg,var(--ok),#6effb0);border-radius:99px;transition:width .35s}
+.plabel{font-size:11px;color:var(--sub);text-align:center;margin-top:4px}
+.habit{display:flex;align-items:center;gap:9px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:9px 10px;margin-bottom:6px}
+.habit input{width:18px;height:18px;accent-color:var(--ok)} .habit .nm{flex:1;font-weight:700;font-size:12.5px} .habit.done{opacity:.5}
+.toplog{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
+.toplog .tf{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:5px 4px;text-align:center}
+.toplog label{display:block;font-size:9px;color:var(--sub);margin-bottom:2px;font-weight:700}
+.toplog input{width:100%;background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:7px;padding:6px 2px;font-size:13px;text-align:center}
+.exbox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:0;margin-bottom:8px;overflow:hidden}
+.exbox .ex{border:0;border-radius:0;margin:0;background:transparent}
+.exinfo{font-size:12px;color:#cbd5d0;background:#111a14;border-top:1px dashed #234a30;padding:8px 10px;line-height:1.7;display:none}
+.exinfo b{color:var(--ok)} .alt{font-size:11px;color:var(--sub);padding:4px 10px 6px 10px}
+.alt b{color:var(--gold)}
+.bigbtn{display:block;width:100%;border:none;border-radius:12px;padding:12px;font-size:13.5px;font-weight:900;cursor:pointer;font-family:inherit;background:var(--accent);color:#fff;margin-top:8px}
+.bigbtn.green{background:var(--ok);color:#06210f}
+.note{background:#1e1a0a;border:1px solid #6b5900;color:var(--gold);border-radius:10px;padding:8px 10px;font-size:11px;margin-bottom:10px}
+.sess-head{display:flex;align-items:center;gap:8px;margin:14px 0 8px}
+.sess-head b{font-size:14px} .sess-head .tag{background:var(--card2);border:1px solid var(--line);color:var(--sub);border-radius:20px;padding:2px 9px;font-size:10px}
+.foodrow{display:flex;align-items:center;gap:9px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:9px 10px;margin-bottom:7px}
+.foodrow input{width:18px;height:18px;accent-color:var(--ok)} .foodrow .ft{flex:1} .foodrow .ft b{display:block;font-size:13px} .foodrow .ft span{color:var(--sub);font-size:11px} .foodrow .fc{color:var(--sub);font-size:10px;white-space:nowrap}
+.grocery{display:grid;grid-template-columns:1fr 1fr;gap:6px} .grocery .gi{background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:7px 9px;font-size:11px;color:var(--sub)} .grocery .gi b{color:var(--txt);display:block;font-size:12px}
+.progress-overall{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:10px;text-align:center}
+.progress-overall b{font-size:13px} .mini{font-size:10px;color:var(--sub);text-align:center;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div class="day" id="dayTitle">📅</div>
+    <div class="date" id="dateSub"></div>
+    <div class="nav">
+      <button onclick="changeDay(-1)">◀ أمس</button>
+      <button onclick="goToday()">اليوم</button>
+      <button onclick="changeDay(1)">بكرة ▶</button>
+    </div>
+  </div>
+
+  <div class="progress-overall">
+    <b id="overallText">أنجزت 0 من 0 اليوم</b>
+    <div class="pbar"><div id="overallFill" style="width:0%"></div></div>
+    <div class="mini">يحفظ تلقائياً في جوالك - حتى لو سكرت الصفحة</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" id="tabTrain" onclick="showTab('train')">🏋️ التمرين</button>
+    <button class="tab" id="tabFood" onclick="showTab('food')">🍽️ الأكل</button>
+  </div>
+
+  <div id="trainBox"></div>
+  <div id="foodBox" style="display:none"></div>
+</div>
+
+<script>
+"use strict";
+var AR_DAYS=["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+var AR_MONTHS=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+var currentDate = new Date();
+function todayKey(d){d=d||currentDate; return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function fmtDate(d){return AR_DAYS[d.getDay()]+" "+d.getDate()+" "+AR_MONTHS[d.getMonth()]+" "+d.getFullYear();}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function changeDay(delta){currentDate.setDate(currentDate.getDate()+delta); renderAll();}
+function goToday(){currentDate=new Date(); renderAll();}
+
+var SCHED=[
+ {day:"الأحد",title:"قوة وانفجار",cal:"تدريب 2500",
+  am:[
+   {cat:"🔥 مرونة",ex:[["مرونة حركية (Ankle Rocks)","10 د"],["فتح حوض","60 ث"]]},
+   {cat:"💪 قبضة",ex:[["دلو رز","2 د"],["ضغط أطراف أصابع على حائط","3×12"]]},
+   {cat:"🏐 استلام",ex:[["حائط استلام بيد واحدة","30ث×6"]]},
+   {cat:"👣 حركة قدم",ex:[["حركة قدم Pivot 3 نقاط","10 د"]]},
+   {cat:"⚡ سرعة",ex:[["سبرنت 5م على نجيل","6×5م"]]},
+   {cat:"🔱 بطن",ex:[["Plank","3×40ث"]]}],
+  pm:[
+   {cat:"🦵 أرجل",ex:[["Back Squat صندوق ناعم","4×5 RIR3"],["Broad Jump أمامي","4×3"]]},
+   {cat:"💪 صدر",ex:[["Bench Press","3×8 RIR2"]]},
+   {cat:"🔩 ظهر",ex:[["Bent-Over Row بار","3×10"]]},
+   {cat:"❤️ لياقة",ex:[["مشي مائل Zone2","15 د"]]}]},
+ {day:"الاثنين",title:"رجلين وحركة قدم",cal:"تدريب 2500",
+  am:[
+   {cat:"🔥 مرونة",ex:[["مرونة","10 د"],["فووم رولر","5 د"]]},
+   {cat:"🏐 استلام",ex:[["استلام كرة تنس عشوائي","10 د"],["Low Ball Pickup","10 د"]]},
+   {cat:"👣 رشاقة",ex:[["سلم رشاقة","4 جولات"]]},
+   {cat:"🔱 بطن",ex:[["Sit-up","3×15"],["Leg Raise","3×12"]]}],
+  pm:[
+   {cat:"🦵 أرجل",ex:[["Bulgarian Split Squat","3×8/رجل RIR2"],["Romanian Deadlift دمبل","3×10 RIR2"],["Lateral Lunge","3×8/جانب"],["Leg Press","3×12"],["Calf Raise","3×15"]]},
+   {cat:"💪 قبضة",ex:[["Farmer Walk ثقيل","3×30م"]]}]},
+ {day:"الثلاثاء",title:"تعافي ولياقة خفيفة",cal:"راحة 2000",
+  am:[
+   {cat:"🚶 لياقة",ex:[["مشي سريع","30 د"]]},
+   {cat:"🔥 مرونة",ex:[["مرونة","15 د"]]},
+   {cat:"💪 قبضة",ex:[["دلو رز","2 د"],["تدليك ساعد","3 د"]]},
+   {cat:"🏐 استلام",ex:[["حائط استلام خفيف (بيدين)","10 د"]]}],
+  pm:[
+   {cat:"🚴 لياقة",ex:[["دراجة Zone2","30 د"]]},
+   {cat:"💪 علوي خفيف",ex:[["Push-up","3×12"],["Lat Pulldown","3×12"],["Dumbbell Shoulder Press","3×10"]]},
+   {cat:"🔱 بطن",ex:[["Plank","3×45ث"],["تمدد كامل","10 د"]]}]},
+ {day:"الأربعاء",title:"سرعة 0-5م (أهم يوم)",cal:"تدريب 2500",
+  am:[
+   {cat:"🔥 مرونة",ex:[["مرونة","10 د"],["تفعيل جلوتس Bridge","2×15"]]},
+   {cat:"⚡ سرعة",ex:[["Wall Sprint","4×6ث/رجل"],["5م سبرنت مع لفة Pivot","6×5م"]]},
+   {cat:"🏐 استلام",ex:[["كرة تنس Chaos","10 د"]]},
+   {cat:"🔱 بطن",ex:[["بطن (Core)","10 د"]]}],
+  pm:[
+   {cat:"🦵 أرجل",ex:[["Back Squat خفيف سريع","3×5 (60%)"],["Sled Push","4×15م"]]},
+   {cat:"💪 انفجار",ex:[["Med Ball Slam","3×6/جانب"]]},
+   {cat:"🔩 ظهر",ex:[["Dumbbell Row","3×10/يد"],["Push-up","3×12"]]},
+   {cat:"❤️ تبريد",ex:[["مشي مائل (تبريد)","15 د"]]}]},
+ {day:"الخميس",title:"تحمل قتالي",cal:"تدريب 2500",
+  am:[
+   {cat:"🔥 مرونة",ex:[["مرونة","10 د"],["استلام متقدم (زميل زوايا)","15 د"]]},
+   {cat:"🏐 مهارات",ex:[["حركة قدم Pivot","15 د"],["بلوك وهمي","15 د"]]},
+   {cat:"💪 قبضة",ex:[["Ball Squeeze","10ث×6"],["تدليك ساعد","5 د"]]},
+   {cat:"🔱 بطن",ex:[["Plank","10 د"],["Sit-up","10 د"]]}],
+  pm:[
+   {cat:"🔥 دائرة 1",ex:[["Goblet Squat","12×3"],["Push-up","12×3"],["Inverted Row","10×3"],["Wall Sit","40ث×3"]]},
+   {cat:"💪 دائرة 2",ex:[["DB Deadlift","10×3"],["Shoulder Press","10×3"],["Lat Pulldown","12×3"]]},
+   {cat:"🚴 لياقة",ex:[["دراجة أو تجديف Zone2","15 د"]]}]},
+ {day:"الجمعة",title:"راحة كاملة",cal:"راحة 2000",
+  am:[
+   {cat:"🔥 مرونة",ex:[["مرونة","15 د"]]},
+   {cat:"🚶 مشي خفيف",ex:[["مشي خفيف","15 د"]]}],
+  pm:[
+   {cat:"💪 قبضة",ex:[["دلو رز","2 د"],["تمدد","10 د"]]}]},
+ {day:"السبت",title:"مهارات Pivot",cal:"تدريب 2500",
+  am:[
+   {cat:"🏐 مهارات",ex:[["تثبيت بلوك","10 د"],["Roll بعد البلوك","10 د"],["Spin بطيء","10 د"],["تسديد 6م بعد استلام","15 د"],["استلام من السقوط (بساط)","10 د"]]},
+   {cat:"🔥 مرونة",ex:[["مرونة (تبريد)","5 د"]]}],
+  pm:[
+   {cat:"🦵 أرجل",ex:[["Squat خفيف","3×8 RIR3"],["RDL خفيف","3×10 RIR3"]]},
+   {cat:"💪 صدر",ex:[["Bench Press","3×10"]]},
+   {cat:"🔩 ظهر",ex:[["Row","3×10"]]},
+   {cat:"💪 قبضة",ex:[["Farmer Walk","2×30م"],["تجديف خفيف","2000م"]]},
+   {cat:"🔥 تمدد",ex:[["Stretch","10 د"]]}]}
+];
+
+var VID={
+"مرونة حركية (Ankle Rocks)":"ankle rocks mobility","فتح حوض":"hip circles mobility","دلو رز":"rice bucket grip handball","ضغط أطراف أصابع على حائط":"fingertip push up wall","حائط استلام بيد واحدة":"handball wall catch one hand pivot","حركة قدم Pivot 3 نقاط":"handball pivot footwork 3 points","سبرنت 5م على نجيل":"5 meter sprint handball","Plank":"plank 40 seconds","Back Squat صندوق ناعم":"box squat technique","Broad Jump أمامي":"broad jump soft landing","Bench Press":"bench press form","Bent-Over Row بار":"bent over barbell row","مشي مائل Zone2":"incline treadmill zone2","مرونة":"full body mobility","فووم رولر":"foam roller legs","استلام كرة تنس عشوائي":"tennis ball reaction catch","Low Ball Pickup":"low ball pickup handball","سلم رشاقة":"agility ladder drills","Sit-up":"sit up correct form","Leg Raise":"hanging leg raise","Bulgarian Split Squat":"bulgarian split squat","Romanian Deadlift دمبل":"romanian deadlift dumbbell","Lateral Lunge":"lateral lunge","Leg Press":"leg press machine","Calf Raise":"standing calf raise","Farmer Walk ثقيل":"heavy farmer carry","مشي سريع":"brisk walk fat loss","تدليك ساعد":"forearm ice massage","حائط استلام خفيف (بيدين)":"handball wall catch","دراجة Zone2":"stationary bike zone2 fat burn","Push-up":"push up","Lat Pulldown":"lat pulldown","Dumbbell Shoulder Press":"dumbbell shoulder press","تمدد كامل":"full body stretch cooldown","تفعيل جلوتس Bridge":"glute bridge activation","Wall Sprint":"wall sprint drill speed","5م سبرنت مع لفة Pivot":"handball pivot turn sprint","كرة تنس Chaos":"tennis ball chaos reaction","بطن (Core)":"core workout abs","Back Squat خفيف سريع":"speed squat light","Sled Push":"sled push","Med Ball Slam":"medicine ball slam side","Dumbbell Row":"dumbbell row single arm","مشي مائل (تبريد)":"incline walk cooldown","استلام متقدم (زميل زوايا)":"handball receiving angles","حركة قدم Pivot":"pivot footwork","بلوك وهمي":"handball pivot block","Ball Squeeze":"handball grip squeeze","Goblet Squat":"goblet squat","Inverted Row":"inverted row","Wall Sit":"wall sit","DB Deadlift":"dumbbell deadlift","Shoulder Press":"overhead press","دراجة أو تجديف Zone2":"rowing machine zone2","مشي خفيف":"light walk recovery","تثبيت بلوك":"handball pivot block hold","Roll بعد البلوك":"pivot roll move handball","Spin بطيء":"handball spin move slow","تسديد 6م بعد استلام":"handball 6m shoot","استلام من السقوط (بساط)":"handball falling catch mat","مرونة (تبريد)":"cooldown stretch","Squat خفيف":"light squat RIR3","RDL خفيف":"light RDL","Row":"barbell row","Farmer Walk":"farmer walk","تجديف خفيف":"rowing 2000m light","Stretch":"stretching","دلو رز":"rice bucket","تمدد":"stretching","Ball Squeeze":"ball squeeze"
+};
+
+var EXPLAIN={
+"Back Squat صندوق ناعم":"اجلس على صندوق بارتفاع ركبتك، انزل 3ث ثم قم بانفجار. صدر مرفوع، ركب لبرا. شهيق نزول - زفير طلوع.",
+"Broad Jump أمامي":"قفزة أمامية طويلة على رمل/بساط، انزل سوفت ركب مثنية. ادفع بيديك لقدام كأنك تسكر على مدافع.",
+"Bench Press":"نايم بنش، كتاف لاصقة، بار لصدرك ثم دفع. لا ترفع ظهرك كثير.",
+"Bent-Over Row بار":"مايل 45° ظهر مستقيم، اسحب البار لخصرك بمرفقك. كتف بعيد عن الأذن.",
+"مشي مائل Zone2":"مشي مائل 10% نبض 135-145، تقدر تتكلم جملة. يحرق VFL بدون ضغط ركبة.",
+"Bulgarian Split Squat":"رجل ورا على بنش، انزل متحكم، ركبة أمامية فوق الكعب. صدر مرفوع.",
+"Romanian Deadlift دمبل":"ظهر مستقيم، حوض لورا، دمبل على طول الساقين. شد في خلفية الفخذ مو أسفل ظهر.",
+"Lateral Lunge":"خطوة جانبية واسعة، مؤخرة لورا وتحت. مهم للـ Pivot - دخولك كله جانبي.",
+"Farmer Walk ثقيل":"دمبل ثقيل بكل يد، امشي 30م ظهر مستقيم كتاف لورا. قبضة حديد = ما تفلت كرة.",
+"مرونة حركية (Ankle Rocks)":"ركبة تلمس حائط بدون رفع كعب - 15/رجل. يحل ثقل حركتك.",
+"دلو رز":"اغمس يدك في رز وافتح/سكر ضد المقاومة 60ث. يقوي آخر 3 أصابع (قفل الكرة).",
+"حائط استلام بيد واحدة":"1.5م من الحائط، ارم واستلم بيد واحدة. عينك على الكرة حتى تدخل أصابعك.",
+"حركة قدم Pivot 3 نقاط":"مثلث 2م، تحرك أمام-جانب-خلف وانت واطي على أمشاط. مركز ثقل نازل.",
+"سبرنت 5م على نجيل":"ظهرك للمرمى، لفة وانطلاقة 5م. أول خطوتين قصار انفجاريين، ميل 45°.",
+"Plank":"جسم خط مستقيم ساعدين وأصابع رجلين، بطن مشدود 40ث.",
+"Wall Sprint":"مايل على حائط 45° بدل ركب بسرعة 6ث. ادفع الأرض.",
+"Sled Push":"ادفع زحافة ثقيلة 15م خطوات قصيرة سريعة ظهر مستقيم. كأنك تدفع مدافع.",
+"Med Ball Slam":"كرة 5كجم فوق راسك جانب وارمها بقوة على الأرض، لف بخصرك.",
+"Goblet Squat":"احضن دمبل على صدرك واسكوات عميق مرفقين داخل. ظهر مستقيم.",
+"Wall Sit":"ظهر على حائط فخذين موازيين للأرض ثبت 40ث. بطن مشدود.",
+"تثبيت بلوك":"قف Pivot جذع منخفض ذراعان تحمي الكرة، ثبت مكانك ضد مدافع وهمي."
+};
+
+var ALT={
+"Back Squat صندوق ناعم":"بديل بيت: سكوات بشنطة ظهر 3×12",
+"Broad Jump أمامي":"بديل: قفزة صغيرة أمامية وقوف",
+"Bench Press":"بديل: ضغط أرضي 3×15",
+"Bent-Over Row بار":"بديل: سحب جلد مقاومة للخصر 3×15",
+"Bulgarian Split Squat":"بديل: Lunge عادي بدون وزن 3×10/رجل",
+"Romanian Deadlift دمبل":"بديل: Glute Bridge 3×15",
+"Lateral Lunge":"بديل: سكوات واسع بدون وزن",
+"Sled Push":"بديل: دفع حائط 20ث ×3",
+"Farmer Walk ثقيل":"بديل: حمل قارورتين ماء 5لتر 40م",
+"Leg Press":"بديل: سكوات بشنطة",
+"Lat Pulldown":"بديل: سحب جلد من فوق",
+"Squat خفيف":"بديل: سكوات هوائي 3×15",
+"RDL خفيف":"بديل: Good Morning بجلد",
+"Row":"بديل: سحب شنطة ثقيلة",
+"تجديف خفيف":"بديل: مشي سريع 10د"
+};
+
+var KEY="ali_pivot_v2_final";
+function loadDB(){var def={am:{},pm:{},fixed:{},food:{},logs:{}}; try{var r=localStorage.getItem(KEY); if(!r) return def; var p=JSON.parse(r); for(var k in def) if(!p[k]) p[k]=def[k]; return p;}catch(e){return def;}}
+var DB=loadDB();
+function saveDB(){localStorage.setItem(KEY,JSON.stringify(DB));}
+
+function flatten(groups){var arr=[]; groups.forEach(function(g){g.ex.forEach(function(e){arr.push({cat:g.cat,name:e[0],sets:e[1]});});}); return arr;}
+
+function getExplain(name){
+ if(EXPLAIN[name]) return EXPLAIN[name];
+ var n=name.split("(")[0].trim();
+ if(EXPLAIN[n]) return EXPLAIN[n];
+ for(var k in EXPLAIN){if(name.includes(k) || k.includes(name)) return EXPLAIN[k];}
+ return "تمرين أساسي للـ Pivot - ركز على التكنيك البطيء والتحكم. RIR 2-3.";
+}
+function getAlt(name){return ALT[name]||"";}
+
+function vidRow(name){
+ var q=VID[name]||name+" handball";
+ var row=document.createElement("div"); row.className="vidrow";
+ [["▶️ يوتيوب","#e11d2d","https://www.youtube.com/results?search_query="],["🎵 تيك توك","#111","https://www.tiktok.com/search?q="],["📸 انستا","#8a3ab9","https://www.instagram.com/explore/search/keyword/?q="]].forEach(function(x){
+  var b=document.createElement("button"); b.className="vbtn"; b.style.background=x[1]; b.textContent=x[0];
+  b.onclick=function(){window.open(x[2]+encodeURIComponent(q),"_blank");}; row.appendChild(b);
+ });
+ return row;
+}
+
+function showTab(t){
+ document.getElementById("tabTrain").classList.toggle("active",t==="train");
+ document.getElementById("tabFood").classList.toggle("active",t==="food");
+ document.getElementById("trainBox").style.display=t==="train"?"block":"none";
+ document.getElementById("foodBox").style.display=t==="food"?"block":"none";
+}
+
+function renderAll(){
+ var di=currentDate.getDay();
+ var s=SCHED[di];
+ var k=todayKey();
+ document.getElementById("dayTitle").textContent=s.day+" — "+s.title;
+ document.getElementById("dateSub").textContent=fmtDate(currentDate)+" | "+s.cal;
+
+ var trainBox=document.getElementById("trainBox");
+ trainBox.innerHTML="";
+
+ // logs
+ var logs=DB.logs[k]||{w:"",sl:"",wa:"",pr:""};
+ var tl=document.createElement("div"); tl.className="toplog";
+ tl.innerHTML="<div class='tf'><label>⚖️ الوزن</label><input id='qw' type='number' step='0.1' value='"+esc(logs.w)+"'></div>"+
+ "<div class='tf'><label>😴 النوم</label><input id='qs' type='number' step='0.5' value='"+esc(logs.sl)+"'></div>"+
+ "<div class='tf'><label>💧 ماء</label><input id='qwt' type='number' step='0.5' value='"+esc(logs.wa)+"'></div>"+
+ "<div class='tf'><label>💪 بروتين</label><input id='qp' type='number' value='"+esc(logs.pr)+"'></div>";
+ trainBox.appendChild(tl);
+ ["qw","qs","qwt","qp"].forEach(function(id){
+  setTimeout(function(){
+   var el=document.getElementById(id); if(!el) return;
+   el.addEventListener("input",function(){
+    var cur=DB.logs[k]||{}; cur[id==="qw"?"w":id==="qs"?"sl":id==="qwt"?"wa":"pr"]=el.value; DB.logs[k]=cur; saveDB();
+   });
+  },0);
+ });
+
+ trainBox.insertAdjacentHTML("beforeend",'<div class="note">🚫 ممنوع جري طويل • قفز على نجيل/بساط فقط • RIR 2-3 (لا فشل) • بروتين 215جم • ماء 4لتر • 10k خطوة • كرياتين 5جم • نوم 8 ساعات</div>');
+
+ // fixed habits
+ var farr=DB.fixed[k]||[false,false];
+ var habCard=document.createElement("div"); habCard.className="card"; habCard.innerHTML="<h2>📌 ثابت كل يوم</h2>";
+ ["💊 كرياتين 5جم","👣 10,000 خطوة"].forEach(function(h,i){
+  var row=document.createElement("div"); row.className="habit"+(farr[i]?" done":"");
+  var cb=document.createElement("input"); cb.type="checkbox"; cb.checked=!!farr[i];
+  cb.onchange=function(){farr[i]=cb.checked; DB.fixed[k]=farr; saveDB(); row.classList.toggle("done",cb.checked); updateOverall();};
+  var sp=document.createElement("span"); sp.className="nm"; sp.textContent=h;
+  row.appendChild(cb); row.appendChild(sp); habCard.appendChild(row);
+ });
+ trainBox.appendChild(habCard);
+
+ function renderSession(slotId,title,icon,tag,groups){
+  var flat=flatten(groups);
+  var total=flat.length;
+  var arr=DB[slotId][k]||[]; if(arr.length<total) arr=arr.concat(Array(total-arr.length).fill(false));
+  DB[slotId][k]=arr;
+
+  var head=document.createElement("div"); head.className="sess-head";
+  head.innerHTML="<span class='ic'>"+icon+"</span><b>"+esc(title)+"</b><span class='tag'>"+esc(tag)+"</span><span class='tag' id='lbl_"+slotId+"'>0/"+total+"</span>";
+  trainBox.appendChild(head);
+
+  var card=document.createElement("div"); card.className="card";
+  var list=document.createElement("div");
+  flat.forEach(function(item,idx){
+   var exbox=document.createElement("div"); exbox.className="exbox";
+   var row=document.createElement("div"); row.className="ex"+(arr[idx]?" done":"");
+   var cb=document.createElement("input"); cb.type="checkbox"; cb.checked=!!arr[idx];
+   cb.onchange=function(){arr[idx]=cb.checked; DB[slotId][k]=arr; saveDB(); row.classList.toggle("done",cb.checked); updateBars(); updateOverall();};
+   var nm=document.createElement("span"); nm.className="nm"; nm.textContent=item.name;
+   nm.onclick=function(){info.style.display=info.style.display==="none"?"block":"none";};
+   var st=document.createElement("span"); st.className="st"; st.textContent=item.sets;
+   row.appendChild(cb); row.appendChild(nm); row.appendChild(st);
+   exbox.appendChild(row);
+   var info=document.createElement("div"); info.className="exinfo"; info.style.display="none";
+   info.innerHTML="<b>📌 "+esc(item.name)+":</b> "+esc(getExplain(item.name));
+   exbox.appendChild(info);
+   var alt=getAlt(item.name); if(alt){var ad=document.createElement("div"); ad.className="alt"; ad.innerHTML="🔄 <b>بديل بيت:</b> "+esc(alt); exbox.appendChild(ad);}
+   exbox.appendChild(vidRow(item.name));
+   list.appendChild(exbox);
+  });
+  card.appendChild(list);
+  var bar=document.createElement("div"); bar.className="pbar"; var fill=document.createElement("div"); fill.id="fill_"+slotId; fill.style.width="0%"; bar.appendChild(fill);
+  card.appendChild(bar);
+  var lbl=document.createElement("div"); lbl.className="plabel"; lbl.id="plbl_"+slotId; card.appendChild(lbl);
+  trainBox.appendChild(card);
+ }
+
+ renderSession("am","صباح 60د — بيت/ملعب","☀️","كرة + جلد",s.am);
+ renderSession("pm","مساء 60د — نادي","🌙","نادي كامل",s.pm);
+
+ var cp=document.createElement("div"); cp.className="card";
+ var bCopy=document.createElement("button"); bCopy.className="bigbtn"; bCopy.textContent="📤 انسخ تقرير اليوم وأرسله للمدرب";
+ bCopy.onclick=copyReport; cp.appendChild(bCopy);
+ trainBox.appendChild(cp);
+
+ // food render
+ renderFood();
+
+ function updateBars(){
+  ["am","pm"].forEach(function(slot){
+   var k2=todayKey(); var flat=flatten(SCHED[currentDate.getDay()][slot]);
+   var arr=DB[slot][k2]||[]; var done=arr.filter(Boolean).length; var total=flat.length;
+   var fill=document.getElementById("fill_"+slot); if(fill) fill.style.width=(total?done/total*100:0)+"%";
+   var l1=document.getElementById("plbl_"+slot); if(l1) l1.textContent="أنجزت "+done+" من "+total;
+   var l2=document.getElementById("lbl_"+slot); if(l2) l2.textContent=done+"/"+total;
+  });
+ }
+ updateBars();
+ updateOverall();
+}
+
+function updateOverall(){
+ var k=todayKey(); var s=SCHED[currentDate.getDay()];
+ var total=flatten(s.am).length+flatten(s.pm).length+2+4; // am+pm+fixed+food
+ var done=0;
+ done+=(DB.am[k]||[]).filter(Boolean).length;
+ done+=(DB.pm[k]||[]).filter(Boolean).length;
+ done+=(DB.fixed[k]||[]).filter(Boolean).length;
+ done+=(DB.food[k]||[]).filter(Boolean).length;
+ document.getElementById("overallFill").style.width=(total?done/total*100:0)+"%";
+ document.getElementById("overallText").textContent="أنجزت "+done+" من "+total+" اليوم - "+Math.round(total?done/total*100:0)+"%";
+}
+
+function renderFood(){
+ var box=document.getElementById("foodBox");
+ var di=currentDate.getDay(); var s=SCHED[di]; var isRest=s.cal.indexOf("راحة")===0;
+ var k=todayKey(); var farr=DB.food[k]||[false,false,false,false];
+ box.innerHTML="";
+ var c=document.createElement("div"); c.className="card";
+ c.innerHTML="<h2>🍽️ اليوم: "+(isRest?"راحة (2000 سعرة)":"تدريب (2500 سعرة)")+" <span class='muted'>طبخة وحدة تكفي أسبوع</span></h2>";
+ var meals=[
+  ["غداء "+(isRest?"صغير":"كبير"),isRest?"220جم دجاج + 100جم رز":"220جم دجاج + 250جم رز","~450"],
+  ["عشاء "+(isRest?"صغير":"كبير"),isRest?"250جم لحم + 200جم بطاطس":"250جم لحم + 400جم بطاطس","~550"],
+  ["فطور 07:00","4 بيض + 80جم شوفان + موزة + لوز","~620"],
+  ["بعد التمرين","2 سكوب واي + "+(isRest?"1":"2")+" موز + كرياتين","~520"]
+ ];
+ meals.forEach(function(m,i){
+  var row=document.createElement("div"); row.className="foodrow"+(farr[i]?" done":"");
+  var cb=document.createElement("input"); cb.type="checkbox"; cb.checked=!!farr[i];
+  cb.onchange=function(){farr[i]=cb.checked; DB.food[k]=farr; saveDB(); row.classList.toggle("done",cb.checked); updateOverall();};
+  var ft=document.createElement("div"); ft.className="ft"; var b=document.createElement("b"); b.textContent=m[0]; var sp=document.createElement("span"); sp.textContent=m[1]; ft.appendChild(b); ft.appendChild(sp);
+  var fc=document.createElement("div"); fc.className="fc"; fc.textContent=m[2];
+  row.appendChild(cb); row.appendChild(ft); row.appendChild(fc); c.appendChild(row);
+ });
+ box.appendChild(c);
+ var g=document.createElement("div"); g.className="card";
+ g.innerHTML="<h2>🛒 مقاضي الأسبوع</h2><div class='grocery'><div class='gi'><b>🍗 دجاج</b>1.2كجم</div><div class='gi'><b>🥩 لحم 5%</b>1.5كجم</div><div class='gi'><b>🍚 رز</b>600جم</div><div class='gi'><b>🥔 بطاطس</b>2.5كجم</div><div class='gi'><b>🥚 بيض</b>30</div><div class='gi'><b>🌾 شوفان</b>700جم</div><div class='gi'><b>🍌 موز</b>15</div><div class='gi'><b>🥛 زبادي 0%</b>7</div></div>";
+ box.appendChild(g);
+}
+
+function copyReport(){
+ var k=todayKey(); var s=SCHED[currentDate.getDay()];
+ var amDone=(DB.am[k]||[]).filter(Boolean).length, amTotal=flatten(s.am).length;
+ var pmDone=(DB.pm[k]||[]).filter(Boolean).length, pmTotal=flatten(s.pm).length;
+ var logs=DB.logs[k]||{};
+ var lines=[];
+ lines.push("📅 "+fmtDate(currentDate)+" | "+s.day+" - "+s.title);
+ lines.push("☀️ صباح: "+amDone+"/"+amTotal+" | 🌙 مساء: "+pmDone+"/"+pmTotal);
+ lines.push("⚖️ وزن: "+(logs.w||"-")+" | 😴 نوم: "+(logs.sl||"-")+"h | 💧 ماء: "+(logs.wa||"-")+"L | 🥩 بروتين: "+(logs.pr||"-")+"g");
+ lines.push("📌 ثابت: "+(DB.fixed[k]||[]).filter(Boolean).length+"/2 | 🍽️ أكل: "+(DB.food[k]||[]).filter(Boolean).length+"/4");
+ lines.push("🎯 الإجمالي: "+document.getElementById("overallText").textContent);
+ var txt=lines.join("\n");
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){alert("تم النسخ ✅");});} else {var ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta);alert("تم النسخ ✅");}
+}
+
+renderAll();
+</script>
+</body>
+</html>
