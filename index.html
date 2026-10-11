@@ -177,56 +177,49 @@ function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"
 
 /* ===== الجدول الجديد: صباح + مساء (أفضل جدول — كل التمارين أساسية) ===== */
 var SCHED=[
- {day:"الأحد",title:"قوة + انفجار + استقبال تقني",cal:"يوم عالي الجودة",
+ {day:"الأحد",title:"قوة أساسية + استقبال منخفض",cal:"جرعة فردية — اضبطها مع تدريب الأهلي",
   am:[
-   {cat:"🔥 إحماء",ex:[["مرونة حركية (Ankle Rocks)","2×10"],["فتح حوض","2×8/جهة"]]},
-   {cat:"💥 Plyometrics",ex:[["Pogo Jump","3×15ث"],["Broad Jump أمامي","3×3"]]},
-   {cat:"⚡ سرعة",ex:[["سبرنت 5م على نجيل","5×5م — راحة كاملة"]]},
-   {cat:"🏐 استقبال",ex:[["Low Wall Catch","3×10"],["Finger Catch + Absorb","3×10"]]}],
+   {cat:"🔥 تهيئة قصيرة",ex:[["Ankle Rocks + فتح الحوض","2×8"],["Pogo Jump خفيف","2×10ث"],["انطلاق 5م — راحة كاملة","3×5م"]]},
+   {cat:"🏐 استقبال تقني",ex:[["Low Wall Catch — كرة اليد Size 2","2×8"],["Finger Catch + Absorb","2×8"]]}],
   pm:[
-   {cat:"🏋️ قوة",ex:[["Back Squat صندوق ناعم","4×5 RIR2-3"],["Bench Press","3×6-8 RIR2-3"],["Bent-Over Row بار","3×8-10"]]},
-   {cat:"🧱 Stability",ex:[["Pallof Press","3×10/جهة"],["Farmer Walk","3×30م"]]},
-   {cat:"🛡️ وقاية",ex:[["Face Pull","3×15"],["Soleus/Calf Raise","3×12-15"]]}]},
- {day:"الاثنين",title:"قوة أحادية + Pivot Receiving",cal:"يوم متوسط/عال",
+   {cat:"🏋️ قوة أساسية (إذا كنت منتعشاً)",ex:[["Box Squat أو Goblet Squat","3×5 — اترك 2–3 تكرارات"],["Bench Press","3×6–8"],["Row","3×8"]]},
+   {cat:"🧱 ثبات ووقاية",ex:[["Pallof Press","2×8/جهة"],["Calf/Soleus Raise","2×12"],["Face Pull","2×12"]]}]},
+ {day:"الاثنين",title:"استلام Pivot + حماية الكرة",cal:"مهارات قصيرة — لا تكرر تمرين الرجل الثقيل",
   am:[
-   {cat:"🏐 Pivot Receiving",ex:[["Seal → Find → Low Catch","4×6/جهة"],["استلام جانبي + حماية","3×6/جهة"],["حركة قدم Pivot 3 نقاط","10 د"]]}],
+   {cat:"🏐 Pivot Receiving",ex:[["Seal → Find → Low Catch","3×5/جهة"],["استلام جانبي + حماية","2×5/جهة"],["Catch → Protect → Turn","3×4/جهة"]]}],
   pm:[
-   {cat:"🦵 قوة",ex:[["Bulgarian Split Squat","3×6-8/رجل"],["RDL","3×6-8 RIR2-3"],["Lateral Lunge","3×8/جهة"]]},
-   {cat:"🛡️ وقاية + ثبات",ex:[["Copenhagen Plank","3×20-30ث/جهة"],["Nordic Hamstring","2×4-6"],["Single-Leg Balance Reach","2×6/جهة"]]},
-   {cat:"✋ قبضة",ex:[["حمل الكرة بأطراف الأصابع","4×10-15ث"],["Farmer Walk","2×30م"]]}]},
- {day:"الثلاثاء",title:"Recovery + Shoulder Health",cal:"تعافي",
+   {cat:"🛡️ وقاية + ثبات (خفيف)",ex:[["Copenhagen Plank","2×15–20ث/جهة"],["Single-Leg Balance Reach","2×5/جهة"],["Rotator Cuff External Rotation","2×12/جهة"]]}]},
+ {day:"الثلاثاء",title:"تعافٍ + صحة الكتف + فهم اللعب",cal:"تعافٍ — لا تضف حصة شديدة",
   am:[
-   {cat:"🚶 Recovery",ex:[["مشي خفيف","20-30 د"],["مرونة","10-15 د"]]},
-   {cat:"🧠 IQ",ex:[["تحليل Pivot","20 د"]]}],
+   {cat:"♻️ Recovery",ex:[["مشي أو دراجة سهلة","15–25 د"],["Mobility مريح","8–10 د"]]},
+   {cat:"🧠 Game IQ",ex:[["تحليل Pivot: استلام قبل الدوران","10–15 د"]]}],
   pm:[
-   {cat:"🛡️ Injury Prevention",ex:[["Rotator Cuff External Rotation","3×12/جهة"],["Band Pull Apart","3×15"],["Tibialis Raise","3×15"],["Glute Bridge","2×12"],["Side Plank","2×30ث/جهة"]]}]},
- {day:"الأربعاء",title:"Speed + Reactive Power + رؤية متأخرة",cal:"يوم سرعة",
+   {cat:"🛡️ Injury Prevention",ex:[["Band Pull Apart","2×12"],["Tibialis Raise","2×12"],["Glute Bridge","2×10"],["Side Plank","2×20ث/جهة"]]}]},
+ {day:"الأربعاء",title:"سرعة قصيرة + رؤية متأخرة",cal:"جودة عالية وحجم قليل",
   am:[
-   {cat:"🔥 إحماء",ex:[["مرونة حركية (Ankle Rocks)","2×10"],["Pogo Jump","2×15ث"]]},
-   {cat:"⚡ Speed Specific",ex:[["Wall Sprint","3×5/رجل"],["سبرنت 5م على نجيل","6×5م"],["Deceleration 5m → Stop","4×"],["5m Sprint + Pivot Turn","4×/جهة"]]},
-   {cat:"👀 Receiving Reaction",ex:[["Tennis Late Vision Catch","3×10/جهة"]]}],
+   {cat:"🔥 إحماء",ex:[["Ankle Rocks + A-March","2 جولات"],["Wall Sprint","2×5/رجل"]]},
+   {cat:"⚡ Speed Specific",ex:[["انطلاق 5م","4 تكرارات — راحة كاملة"],["Deceleration ثم توقف متزن","3 تكرارات"],["انطلاق + Pivot Turn","3×/جهة"]]},
+   {cat:"👀 Receiving Reaction",ex:[["Tennis Late Vision Catch","2×6/جهة — كرة تنس فقط للرؤية"]]}],
   pm:[
-   {cat:"💥 Power",ex:[["Sled Push","5×10م"],["Med Ball Rotational Throw","3×5/جهة"],["Lateral Bound + Stick","3×4/جهة"]]},
-   {cat:"🧱 Core",ex:[["Pallof Press","2×10/جهة"]]}]},
- {day:"الخميس",title:"Upper Strength + Stability + Pivot",cal:"يوم متوسط",
+   {cat:"💥 قوة انفجارية (اختياري إذا لا يوجد إرهاق)",ex:[["Med Ball Rotational Throw","2×4/جهة"],["Lateral Bound + Stick","2×3/جهة"]]},
+   {cat:"🧱 Core",ex:[["Pallof Press","2×8/جهة"]]}]},
+ {day:"الخميس",title:"قوة الجزء العلوي + مهارة Pivot",cal:"حجم متوسط — خفف قبل المباراة",
   am:[
-   {cat:"🏐 Pivot",ex:[["Block → Roll","4×5/جهة"],["Catch → Protect → Turn","4×5/جهة"],["تسديد 6م بعد استلام","4×5"]]}],
+   {cat:"🏐 Pivot Skill",ex:[["Block → Roll","3×4/جهة"],["Catch → Protect → Turn","3×4/جهة"],["تسديد بعد استلام جيد","3×4 بجودة عالية"]]}],
   pm:[
-   {cat:"🏋️ Upper Strength",ex:[["Lat Pulldown","3×8-10"],["Shoulder Press","3×8 RIR3"],["Row","3×10"]]},
-   {cat:"🧱 Stability",ex:[["Single-Leg RDL","3×6/رجل"],["Copenhagen Plank","2×20ث/جهة"]]},
-   {cat:"🛡️ Shoulder",ex:[["Face Pull","2×15"],["Rotator Cuff External Rotation","2×12/جهة"]]},
-   {cat:"❤️ Conditioning",ex:[["دراجة أو تجديف Zone2","15-20 د"]]}]},
+   {cat:"🏋️ Upper Strength",ex:[["Lat Pulldown","3×8"],["Row","2×10"],["Shoulder Press خفيف","2×8 — بدون ألم"]]},
+   {cat:"🛡️ Stability + Shoulder",ex:[["Single-Leg RDL خفيف","2×5/رجل"],["Face Pull","2×12"],["Rotator Cuff External Rotation","2×12/جهة"]]}]},
  {day:"الجمعة",title:"راحة كاملة",cal:"راحة",
-  am:[{cat:"😴 Recovery",ex:[["مشي خفيف","اختياري 15-20 د"],["مرونة","اختياري 10 د"]]}],
+  am:[{cat:"😴 Recovery",ex:[["مشي خفيف","اختياري 10–20 د"],["Mobility مريح","اختياري 5–10 د"]]}],
   pm:[]},
- {day:"السبت",title:"Pivot Performance + اختبار الاستلام",cal:"مهارات",
+ {day:"السبت",title:"استلام تحت ضغط + مراجعة أسبوعية",cal:"اختبر الجودة ولا تطارد التعب",
   am:[
-   {cat:"🏐 استقبال تحت الضغط",ex:[["Band Pressure Catch","3×6/جهة"],["Seal → Find → Low Catch","3×6/جهة"],["Catch → Protect → Turn","3×5/جهة"]]},
-   {cat:"🥅 Finishing",ex:[["Receive → Turn → Shoot","5×4"],["Roll بعد البلوك","4×5/جهة"]]},
-   {cat:"📊 اختبار",ex:[["اختبار الاستلام 30 كرة","10 صدر + 10 منخفض + 10 جانبي"]]}],
+   {cat:"🏐 استقبال تحت الضغط",ex:[["Band Pressure Catch — مقاومة خفيفة","2×5/جهة"],["Seal → Find → Low Catch","2×5/جهة"],["Catch → Protect → Turn","2×4/جهة"]]},
+   {cat:"🥅 Finishing",ex:[["Receive → Turn → Shoot","3×4 بجودة"],["Roll بعد البلوك","2×4/جهة"]]},
+   {cat:"📊 اختبار أسبوعي (إذا لا توجد مباراة/إرهاق)",ex:[["اختبار الاستلام 30 كرة","10 صدر + 10 منخفض + 10 جانبي"]]}],
   pm:[
-   {cat:"⚡ جودة خفيفة",ex:[["Reaction Sprint 3-5m","4×"],["Lateral Shuffle + Stop","3×15ث/جهة"]]},
-   {cat:"🔥 تبريد",ex:[["Stretch","10 د"]]}]}
+   {cat:"⚡ تنشيط اختياري فقط",ex:[["Reaction Sprint 3–5م","3 تكرارات — راحة كاملة"],["Lateral Shuffle + Stop","2×10ث/جهة"]]},
+   {cat:"🔥 تهدئة",ex:[["تنفس + Mobility","5–8 د"]]}]}
 ];
 
 
@@ -589,7 +582,7 @@ function smartPlanHTML(mode){
   if(mode.type==="between")return "<div class='status-title'>🔄 بين مباراتين — Recovery + Activation فقط</div><div class='status-sub'>بعد مباراة وقبل أخرى: لا تعوض أي تمرين فائت. تعافي + تفعيل خفيف فقط.</div>";
   if(mode.type==="prematch")return "<div class='status-title'>⚡ قبل المباراة بـ24 ساعة</div><div class='status-sub'>Mobility + استلام خفيف + 2–3 انطلاقات قصيرة. لا Squat/RDL ثقيل، لا Nordics، لا Sled ثقيل.</div>";
   if(mode.type==="recovery")return "<div class='status-title'>♻️ اليوم التالي للمباراة</div><div class='status-sub'>تعافي فقط: مشي/Bike خفيف + Mobility + نوم وسوائل. لا تعويض للتمارين الثقيلة.</div>";
-  return "<div class='status-title'>✅ يوم تدريب طبيعي</div><div class='status-sub'>نفّذ خطة اليوم كما هي، مع الحفاظ على جودة السرعة والقفز والاستلام.</div>";
+  return "<div class='status-title'>✅ يوم تدريب طبيعي — تدريب الأهلي هو الحمل الأساسي</div><div class='status-sub'>اختر جرعة فردية واحدة قصيرة من الخطة؛ لا تنفذ الصباح والمساء كاملين فوق تدريب الفريق. إذا كان تدريب الصالة يبدأ 4:00 م، فالجيم بعده اختياري وبحجم مختصر فقط إذا كنت منتعشاً. إذا كان تدريب الملعب يبدأ 5:30 م، لا تعمل رجل ثقيلة قبله؛ اكتفِ بتفعيل/جزء علوي خفيف. يوم ما بعد مباراة U18 اتبع قاعدة الأهلي: لا تدريب فريق، وتعافٍ فقط. خفّض أو أوقف التمرين عند الألم أو الإرهاق الواضح.</div>";
 }
 function renderSmartStatus(box,now){
   var k=todayKey(),mode=dayMode(k),uni=UNI[now.getDay()]||[];
@@ -666,7 +659,7 @@ function renderTrain(){
     "<div class='tf'><label>💪 بروتين</label><input id='qp' type='number'></div>";
   box.appendChild(tl);
 
-  box.insertAdjacentHTML("beforeend",'<div class="note">🚫 ممنوع جري طويل • قفز على نجيل/بساط فقط • RIR 2-3 (لا فشل) • بروتين 215جم • ماء 4لتر • 10k خطوة • كرياتين 5جم • نوم 8 ساعات</div>');
+  box.insertAdjacentHTML("beforeend",'<div class="note">🎯 الأولوية: تدريب الأهلي + جودة الاستلام + التعافي. لا تصل للفشل العضلي؛ اترك 2–3 تكرارات. اجعل القفز على سطح مناسب، ولا تضف جرياً طويلاً أو حصصاً شديدة فوق حمل الفريق. تناول وجبات كافية ومتنوعة، واشرب بانتظام حسب العطش والحرارة والتعرّق، واستهدف 8–10 ساعات نوم للمراهقين. لا توجد حاجة تلقائية لمكملات أو أرقام ثابتة للبروتين/الماء؛ راجع ولي الأمر واختصاصي تغذية/طبيب قبل أي مكمل.</div>');
   var wk=Math.min(8,Math.max(1,Math.ceil(((new Date())-new Date((DB.settings.startDate||"2026-09-13")+"T00:00:00"))/(7*24*60*60*1000))));
   var phase=[
     "تأسيس: تقنية + RIR3 + حجم Plyo منخفض",
@@ -689,7 +682,7 @@ function renderTrain(){
   var farr=DB.fixed[k]||[false,false];
   var hab=document.createElement("div");hab.className="card";
   hab.innerHTML="<h2>📌 ثابت كل يوم</h2>";
-  ["💊 كرياتين 5جم","👣 10,000 خطوة"].forEach(function(h,i){
+  ["💧 شرب منتظم حسب العطش والحرارة","🚶 حركة يومية مريحة حسب الاستشفاء"].forEach(function(h,i){
     var row=document.createElement("div");row.className="habit";
     var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!farr[i];
     cb.onchange=function(){farr[i]=cb.checked;DB.fixed[k]=farr;saveDB();row.classList.toggle("done",cb.checked);};
@@ -705,8 +698,8 @@ function renderTrain(){
   var recvCard=document.createElement("div");recvCard.className="card";
   recvCard.innerHTML="<h2>🎯 علاج الاستلام — 8 أسابيع</h2><div class='muted'>التشخيص: الاستلام جيد دون مدافع، والمشكلة تظهر مع الرؤية المتأخرة + الضغط + الكرة المنخفضة.<br>🔑 مفتاحان قبل أي تمرين: (1) افتح جسمك 45° بدل الظهر الكامل للمرمى — المدافع جانبي فهذه الزاوية تعيد لك نصف الرؤية. (2) ارفع يدك للممرر طلباً — الإشارة تصنع الممر وتقلل مفاجأة الكرة. اقرأ يد الممرر لا وجهه.<br>القاعدة: 👀 شوف → 🤲 جهّز → ⬇️ انزل → 🧲 امتص → 🛡️ احمِ.</div>";
   var recvPlan=[
-    ["Low Wall Catch","5×10","🏐 كرة اليد Size 2","ارم الكرة للحائط بحيث ترجع عند الفخذ أو الركبة أو أسفلها. انزل بالركبتين والورك بدل مد اليد فقط، افتح الأصابع، امتص الكرة ثم اسحبها للصدر.","لأن مشكلتك تظهر أكثر مع الكرة المنخفضة في المباراة؛ نريد نفس حجم ووزن كرة اللعب."],
-    ["Finger Catch + Absorb","4×15","🏐 كرة اليد Size 2","من مسافة قريبة، استقبل بأصابع مفتوحة ويدين لينتين. عند لمس الكرة اسحب اليدين قليلاً للخلف حتى تمتص السرعة بدل أن ترتد من راحة اليد.","يعالج صلابة اليد وتوقيت إغلاق الأصابع."],
+    ["Low Wall Catch","3×8","🏐 كرة اليد Size 2","ارم الكرة للحائط بحيث ترجع عند الفخذ أو الركبة أو أسفلها. انزل بالركبتين والورك بدل مد اليد فقط، افتح الأصابع، امتص الكرة ثم اسحبها للصدر.","لأن مشكلتك تظهر أكثر مع الكرة المنخفضة في المباراة؛ نريد نفس حجم ووزن كرة اللعب."],
+    ["Finger Catch + Absorb","3×10","🏐 كرة اليد Size 2","من مسافة قريبة، استقبل بأصابع مفتوحة ويدين لينتين. عند لمس الكرة اسحب اليدين قليلاً للخلف حتى تمتص السرعة بدل أن ترتد من راحة اليد.","يعالج صلابة اليد وتوقيت إغلاق الأصابع."],
     ["Right/Left Low Catch","3×8/جهة","🏐 كرة اليد Size 2","اجعل الارتداد منخفضاً يميناً ويساراً. خطوة قصيرة باتجاه الكرة + نزول بالجسم + يدان خلف الكرة ثم حماية على الصدر.","ينقل الاستلام من وضع ثابت إلى زاوية جانبية تشبه اللعب."],
     ["Seal → Find → Low Catch","3×6/جهة","🏐 كرة اليد Size 2","ضع كرسي/علامة كأنها المدافع. خذ Seal، افتح جسمك قرابة 45°، حرّك الرأس حتى تجد الممرر، ارفع يد الطلب، ثم استلم منخفضاً واحمِ الكرة.","يربط الحجز بالرؤية؛ لا نريد أن يكون تركيزك كله على المدافع."],
     ["Band Pressure Catch","3×6/جهة","🏐 كرة اليد Size 2 + حبل مقاومة","ثبّت الحبل بأمان حول الجذع بمقاومة خفيفة. حافظ على Seal، Find، Catch ثم Protect. لا تجعل الحبل يسحبك بعنف ولا تربطه بالرقبة/الذراع.","يضيف إحساس الضغط الجسدي بدون الحاجة لزميل."],
@@ -938,12 +931,12 @@ function renderFood(){
   box.innerHTML="";
 
   var c=document.createElement("div");c.className="card";
-  c.innerHTML="<h2>🍽️ اليوم: "+(isRest?"راحة (2000 سعرة)":"تدريب (2500 سعرة)")+"</h2>";
+  c.innerHTML="<h2>🍽️ تغذية اليوم: راحة أو تدريب</h2><div class='muted'>الكميات تقديرية وليست حدّاً إلزامياً للسعرات؛ احتياجك يتغير حسب النمو، تدريب الأهلي، المباراة والجوع. لا تستخدم حمية قاسية أثناء النمو.</div>";
   var meals=[
     ["غداء "+(isRest?"صغير":"كبير"),isRest?"220 جم دجاج + 100 جم رز":"220 جم دجاج + 250 جم رز","~450"],
     ["عشاء "+(isRest?"صغير":"كبير"),isRest?"250 جم لحم + 200 جم بطاطس":"250 جم لحم + 400 جم بطاطس","~550"],
     ["فطور (07:00)","4 بيض + 80 جم شوفان + موزة + لوز","~620"],
-    ["بعد التمرين","2 سكوب واي + "+(isRest?"1":"2")+" موز + كرياتين","~520"]
+    ["بعد التمرين","وجبة أو سناك: حليب/زبادي أو طعام غني بالبروتين + فاكهة","تقريبي"]
   ];
   meals.forEach(function(m,i){
     var row=document.createElement("div");row.className="foodrow";
@@ -967,7 +960,7 @@ function renderFood(){
     "<div class='gi'><b>🥚 بيض</b>30 بيضة</div><div class='gi'><b>🌾 شوفان</b>700 جم</div>"+
     "<div class='gi'><b>🍌 موز</b>15 حبة</div><div class='gi'><b>🥛 زبادي يوناني 0%</b>7 علب</div>"+
     "<div class='gi'><b>🥜 فول سوداني</b>250 جم</div><div class='gi'><b>🥒 خضار</b>طازة</div>"+
-    "<div class='gi'><b>💊 واي + كرياتين</b>مكملات</div><div class='gi'><b>📦 علب بلاستيك</b>14 علبة</div></div>";
+    "<div class='gi'><b>🥛 بدائل غذائية</b>حليب/لبن/زبادي أو بدائل مناسبة</div><div class='gi'><b>📦 علب بلاستيك</b>14 علبة</div></div><div class='note'>المكملات ليست ضرورية تلقائياً. الأولوية للطعام والنوم والسوائل؛ لا تبدأ الواي أو الكرياتين من نفسك وأنت مراهق، وناقش ذلك مع ولي أمرك واختصاصي تغذية رياضية/طبيب.</div>";
   box.appendChild(g);
 
   var cp=document.createElement("div");cp.className="card";
@@ -982,9 +975,9 @@ function renderFood(){
   var f=document.createElement("div");f.className="card";
   f.innerHTML="<h2>🍽️ ثابت يوميًا (بدون طبخ)</h2><div class='muted'>"+
     "<b>فطور 07:00:</b> 4 بيض + 80 جم شوفان + موزة + 7 لوز<br>"+
-    "<b>بعد التمرين:</b> 2 سكوب واي + 2 موز + 5 جم كرياتين<br>"+
-    "<b>قبل النوم:</b> زبادي يوناني + 20 جم فول سوداني<br>"+
-    "<b>ماء 4 لتر • 10k خطوة • نوم 8 ساعات</b></div>";
+    "<b>بعد التمرين:</b> وجبة أو سناك يناسب الشهية: مصدر بروتين + كربوهيدرات + فاكهة<br>"+
+    "<b>قبل النوم:</b> زبادي أو حليب/بديل مناسب مع وجبة خفيفة إذا كنت جائعاً<br>"+
+    "<b>السوائل:</b> اشرب بانتظام وزدها مع الحر والتعرّق • <b>النوم:</b> استهدف 8–10 ساعات</div>";
   box.appendChild(f);
 }
 
