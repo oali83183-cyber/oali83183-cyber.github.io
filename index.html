@@ -871,6 +871,24 @@ function renderDevelop(){
   intro.innerHTML="<h2>🧠📱 مركز تطوير اللاعب الكامل</h2><div class='muted'>الآيباد هنا أداة تدريب: صوّر، حلّل، صحح خطأ واحد، ثم جرّب من جديد. لا نريد مشاهدة عشوائية لساعات.</div><div class='cue'>رجولي أول • أشوفها إلى يدي • احمِ • اختار والتزم • التالي</div>";
   box.appendChild(intro);
 
+  var gym=document.createElement("div");gym.className="card";
+  gym.innerHTML="<h2>🏋️ أجهزة ناديك — خيارات التمرين المؤكدة من الصور</h2>"+
+    "<div class='muted'>هذا التقييم مبني على الصور المرسلة فقط. بعض الأجهزة ظاهرة جزئياً، لذلك لا نفترض وجود معدات لم تظهر بوضوح.</div>"+
+    "<div class='dev-grid'>"+
+    "<div class='dev-card'><h3>🏋️ Smith Machine</h3>ظاهر بوضوح. بديل للسكوات عند الحاجة، بشرط ضبط الأمان والتعلم من المدرب.</div>"+
+    "<div class='dev-card'><h3>🏋️ دمبلز وأوزان حرة</h3>ظاهرة. استخدمها للـ Goblet Squat، وOne-Arm Dumbbell Row، وCalf Raise.</div>"+
+    "<div class='dev-card'><h3>🪑 مقاعد تدريب</h3>ظاهرة. يمكن استخدام المقعد لتمارين الضغط بالبار فقط إذا كان الإعداد ثابتاً وآمناً.</div>"+
+    "<div class='dev-card'><h3>🧵 محطة كابلات/أوزان</h3>تظهر محطة مقاومة متعددة الاستخدامات. إذا كان فيها بكرة سفلية استخدم Cable Row؛ وإذا كانت بكرة علوية استخدم Lat Pulldown.</div>"+
+    "<div class='dev-card'><h3>🦵 جهاز مائل للأرجل</h3>يبدو كجهاز Leg Press أو جهاز قريب منه، لكن زاوية الصورة لا تكفي لتأكيد الطراز. استخدمه بديلاً لا إضافة فوق السكوات.</div>"+
+    "<div class='dev-card'><h3>🟤 جهاز بوسادات بنية</h3>وظيفته غير مؤكدة من الصورة. لا أبني عليه تمريناً حتى نرى صورة جانبية واضحة.</div></div>"+
+    "<div class='section-title'>🔁 بدائل التمارين داخل برنامجك</div>"+
+    "<div class='dev-card'><b>القوة الرئيسية للأرجل:</b> Box/Goblet Squat 3×5. إذا لم يناسبك: Smith Squat 3×5 بعد ضبط الأمان، أو Leg Press 3×6–8 كبديل فقط.</div>"+
+    "<div class='dev-card'><b>السحب للظهر:</b> Cable Row 3×8 إذا كانت البكرة السفلية متاحة؛ وإلا One-Arm Dumbbell Row 3×8 لكل جهة. Lat Pulldown فقط إذا كانت البكرة العلوية موجودة.</div>"+
+    "<div class='dev-card'><b>الدفع للصدر:</b> Bench Press 3×6–8 إذا كان المقعد والبار والإعداد آمنين؛ وإلا Push-up مناسب أو بديل يختاره المدرب.</div>"+
+    "<div class='dev-card'><b>الثبات والوقاية:</b> Pallof Press بالكابل أو حبل المقاومة؛ Calf/Soleus Raise بوزن الجسم أو دمبل؛ Band Pull Apart بالحبل المطاطي. لا تستخدم Face Pull لأنه غير متوفر عندك.</div>"+
+    "<div class='note'><b>قاعدة الحمل:</b> لا تجمع السكوات وجهاز Leg Press كتمرينين ثقيلين في الحصة نفسها حالياً. يوم المباراة بلا حصة قوة إضافية، واليوم التالي للمباراة تعافٍ فقط. إذا كان تدريب الأهلي في الملعب الساعة 5:30 مساءً، تجنب الأرجل الثقيلة قبله.</div>";
+  box.appendChild(gym);
+
   var mental=document.createElement("div");mental.className="card";
   mental.innerHTML="<h2>🧠 روتين عقلي — 10 دقائق</h2><div class='muted'>اعمله يومياً، وقبل المباراة اجعله أقصر وأهدأ.</div>";
   var items=[
@@ -990,8 +1008,8 @@ renderFood();
 </script>
 
 <footer id="site-version" aria-label="نسخة الموقع" style="max-width:680px;margin:14px auto 24px;padding:12px 10px 18px;text-align:center;color:#9ca3af;font:12px/1.8 system-ui,sans-serif;border-top:1px solid #303038;">
-  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v1.1.2</div>
-  <div>BUILD 2026.10.11.2 · آخر تعديل: 11 أكتوبر 2026</div>
+  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v1.1.3</div>
+  <div>BUILD 2026.10.11.3 · آخر تعديل: 11 أكتوبر 2026</div>
 </footer>
 
 </body>
