@@ -1024,7 +1024,7 @@ function renderComprehensivePlan(){
   food.innerHTML="<h2>🍽️ سابعاً: تغذية واقعية حسب المتوفر</h2>"+
     "<div class='dev-card'>لا تحتاج خطة مكلفة أو أوزان طعام. في الوجبة اجمع ما تستطيع من مصدر طاقة (رز/خبز/بطاطس/معكرونة) ومصدر بروتين (بيض/لبن/عدس/فاصوليا/دجاج/سمك/لحم)؛ وفاكهة أو خضار إذا توفرت.</div>"+
     "<div class='dev-card'>إذا كانت الكميات في البيت قليلة، لا تحذف الوجبات ولا تتعمد تخفيض الوزن. أخبر الأسرة أنك تحتاج طعاماً كافياً لأنك تتدرب وتلعب مباريات. لا تشترِ مكملات لتعويض قلة الطعام.</div>"+
-    "<button class='bigbtn' onclick=\\"showTab('food')\\">افتح دليل الأكل المرن</button>";
+    "<button class='bigbtn' onclick=\"showTab('food')\">افتح دليل الأكل المرن</button>";
   box.appendChild(food);
 
   var tracking=document.createElement("div");tracking.className="card";
@@ -1032,7 +1032,7 @@ function renderComprehensivePlan(){
     "<div class='dev-card'><b>بعد المباراة سجّل:</b> الأهداف، الرميات الجزائية التي حصلت عليها، الاستلامات النظيفة/المرتدة/الساقطة، الإيقافات لدقيقتين وسبب كل واحد، أخطاء ما بعد الصافرة، وتقييمك للتركيز من 10.</div>"+
     "<div class='dev-card'><b>مرة أسبوعياً:</b> اختبار 30 كرة (10 صدر +10 منخفضة +10 جانبية)، النوم، التعب من 10، والألم من 10. لا تختبر السرعة أو القفز إذا كنت مرهقاً.</div>"+
     "<div class='dev-card'><b>InBody:</b> قارن كل 8–12 أسبوعاً وفي ظروف متشابهة قدر الإمكان، لا كل بضعة أيام. لا تجعل نسبة الدهون وحدها هدفك.</div>"+
-    "<button class='bigbtn green' onclick=\\"showTab('report')\\">افتح التقرير الأسبوعي</button>";
+    "<button class='bigbtn green' onclick=\"showTab('report')\">افتح التقرير الأسبوعي</button>";
   box.appendChild(tracking);
 
   var rules=document.createElement("div");rules.className="card";
