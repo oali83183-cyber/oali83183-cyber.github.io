@@ -177,7 +177,7 @@ function todayKey(){var d=new Date();return d.getFullYear()+"-"+String(d.getMont
 function fmtDate(d){return d.getDate()+" "+AR_MONTHS[d.getMonth()]+" "+d.getFullYear();}
 function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
-/* ===== الجدول الجديد: صباح + مساء (أفضل جدول — كل التمارين أساسية) ===== */
+/* ===== مكتبة تمارين صباح/مساء — اختر جرعة قصيرة واحدة حسب حمل الفريق ===== */
 var SCHED=[
  {day:"الأحد",title:"قوة أساسية + استقبال منخفض",cal:"جرعة فردية — اضبطها مع تدريب الأهلي",
   am:[
@@ -484,7 +484,7 @@ function countSession(groups){
 }
 function renderWeekOverview(){
   var box=document.getElementById("weekBox"); if(!box)return;
-  box.innerHTML="<div class='card'><h2>🗓️ خريطة الأسبوع</h2><div class='muted'>الخطة الأساسية هنا. صفحة «اليوم» تخفف الحمل تلقائياً في يوم المباراة وقبلها وبعدها.</div></div>";
+  box.innerHTML="<div class='card'><h2>🗓️ خريطة الأسبوع</h2><div class='muted'>هذه مكتبة خيارات وليست حصتين إلزاميتين. مركز الإعداد الشامل هو المرجع لتحديد الحمل؛ اختر جرعة إضافية قصيرة واحدة فقط حسب تدريب الأهلي والمباريات.</div></div>";
   SCHED.forEach(function(d,i){
     var c=document.createElement("div");c.className="card";
     var am=countSession(d.am),pm=countSession(d.pm);
@@ -726,7 +726,7 @@ function renderTrain(){
   });
   recvCard.id="secReceive"; recvCard.appendChild(recvList);
   recvCard.insertAdjacentHTML("beforeend","<div class='note'><b>🏐 أي كرة أستخدم؟</b><br>كرة اليد Size 2 = كل تمارين الاستلام الخاصة بالمباراة: Low Catch، Absorb، يمين/يسار، Seal، Band Pressure، Protect + Turn.<br>🎾 كرة التنس = فقط تمارين العين ورد الفعل مثل Late Vision. لا تستبدل كرة اليد بالتنس في التمرين الرئيسي لأن الهدف نقل المهارة للمباراة.</div>");
-  recvCard.insertAdjacentHTML("beforeend","<div class='note'><b>مراحل 8 أسابيع:</b> الأسبوعان 1-2: تقنية + امتصاص + Low Catch • الأسبوع 3: Seal + Find • الأسبوع 4: Deload مع جودة تقنية • الأسبوعان 5-6: Band Pressure + Late Vision + Protect • الأسبوع 7: سرعة مباراة • الأسبوع 8: تخفيف + اختبار 30 كرة.<br><b>التوزيع اليومي:</b> الأحد تقنية • الاثنين Seal + جانبي • الأربعاء Late Vision • السبت Pressure + Protect. 15–20 دقيقة فقط، والجودة أهم من الكمية.</div>");
+  recvCard.insertAdjacentHTML("beforeend","<div class='note'><b>التدرج:</b> الأسبوعان 1–2 تقنية وامتصاص • 3 زيادة ضغط بسيطة • 4 تخفيف • 5–6 ضغط/رؤية متأخرة • 7 سرعة مباراة • 8 تخفيف واختبار 30 كرة. اختر 2–3 جلسات فقط بالأسبوع، مدة كل منها 12–20 دقيقة؛ لا تضفها في يوم التدريب الشاق أو قبل المباراة بيوم.</div>");
   recvCard.insertAdjacentHTML("beforeend","<div class='section-title'>📊 اختبار أسبوعي — 30 كرة</div><div class='muted'>10 على الصدر + 10 منخفضة + 10 جانبية. سجّل Clean / Bobble / Drop. الهدف هو اتجاه تحسن أسبوعي، ثم إضافة الضغط تدريجياً.</div>");
   var stats=document.createElement("div");stats.className="toplog";
   [["Clean","rclean"],["Bobble","rbobble"],["Drop","rdrop"],["تاريخ","rdate"]].forEach(function(x){var d=document.createElement("div");d.className="tf";d.innerHTML="<label>"+x[0]+"</label><input id='"+x[1]+"' "+(x[1]==='rdate'?"type='date'":"type='number' min='0' max='30'")+">";stats.appendChild(d);});
@@ -739,7 +739,7 @@ function renderTrain(){
   if(!DB.grip)DB.grip={};
   var garr=(DB.grip[k]||[]).slice(0,4);
   var gripCard=document.createElement("div");gripCard.className="card";
-  gripCard.innerHTML="<h2>✋ قبضة الدائرة — 5 د يومياً (حبل + كرة)</h2><div class='muted'>لا تستطيع مسك كرة اليد بيد واحدة — كدائرة هذا عيب أساسي. القبضة القوية = استلام ناجح تحت الاحتكاك. كل التمارين منفردة بأدواتك. اضغط الاسم للشرح.</div>";
+  gripCard.innerHTML="<h2>✋ قبضة اليد — 3–5 دقائق، 3 مرات أسبوعياً (حبل + كرة)</h2><div class='muted'>تمرين مساعد وليس اختبار قوة يومياً. نفّذه بخفة 3 مرات أسبوعياً فقط، وتوقف قبل إجهاد الساعد. لا تعتبر عدم مسك الكرة بيد واحدة عيباً؛ الهدف هو استقبال قانوني ثابت بكلتا اليدين تحت ضغط.</div>";
   var gripDrills=[
     {n:"فتح أصابع ضد الحبل",st:"3×15",how:"التف الحبل المطاطي حول أصابعك وأنت قبضتك مغلقة، ثم افتح أصابعك ببطء ضد المقاومة. أهم تمرين قبضة لك — يقوي فتح الأصابع الذي تستقبل به الكرة."},
     {n:"لف المعصم بالحبل",st:"3×12/جهة",how:"ثبّت الحبل بقدمك أو باب آمن، التفه حول معصمك، ولف يدك للداخل والخارج ضد المقاومة. المعصم القوي يثبت المغرفة."},
@@ -860,8 +860,8 @@ function renderTrain(){
     updateP();
   }
 
-  buildSession("am","صباح 60 د — في البيت/الملعب","☀️","كرة + جلد",s.am);
-  buildSession("pm","مساء 60 د — في النادي","🌙","نادي كامل",s.pm);
+  buildSession("am","جرعة مهارية قصيرة — في البيت/الملعب","☀️","10–20 د",s.am);
+  buildSession("pm","جرعة قوة/وقاية اختيارية — النادي","🌙","اختيارية",s.pm);
 }
 
 
