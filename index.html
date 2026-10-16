@@ -157,6 +157,7 @@
     <button class="tab" id="tabDevelop" onclick="showTab('develop')">🧠📱 التطور</button>
     <button class="tab" id="tabReport" onclick="showTab('report')">📊 التقرير</button>
     <button class="tab" id="tabFood" onclick="showTab('food')">🍽️ الأكل</button>
+    <button class="tab" id="tabPlan" onclick="showTab('plan')">🧭 الإعداد الشامل</button>
   </div>
 
   <div id="trainBox"></div>
@@ -165,6 +166,7 @@
   <div id="developBox" style="display:none;"></div>
   <div id="reportBox" style="display:none;"></div>
   <div id="foodBox" style="display:none;"></div>
+  <div id="planBox" style="display:none;"></div>
 </div>
 
 <script>
@@ -454,7 +456,7 @@ function vidRow(name){
 }
 
 function showTab(t){
-  var ids=["train","week","schedule","develop","report","food"];
+  var ids=["train","week","schedule","develop","report","food","plan"];
   ids.forEach(function(x){
     var btn=document.getElementById("tab"+x.charAt(0).toUpperCase()+x.slice(1));
     var box=document.getElementById(x+"Box");
@@ -938,68 +940,152 @@ function renderDevelop(){
 }
 
 /* ===== عرض الأكل ===== */
-function renderFood(){
-  var box=document.getElementById("foodBox");
-  var now=new Date();
-  var di=now.getDay();
-  var s=SCHED[di];
-  var isRest=(s.cal.indexOf("راحة")===0);
-  var k=todayKey();
-  var farr=DB.food[k]||[false,false,false,false];
+
+/* ===== 🧭 مركز الإعداد الشامل — خطة شخصية محدثة 16 أكتوبر 2026 ===== */
+function renderComprehensivePlan(){
+  var box=document.getElementById("planBox");if(!box)return;
   box.innerHTML="";
+  var hero=document.createElement("div");hero.className="card";
+  hero.innerHTML="<h2>🧭 مركز إعداد لاعب المحور — الخطة الشاملة</h2>"+
+    "<div class='muted'>محدثة: 16 أكتوبر 2026 • مباراة تحت 18 ضد توبلي: الأربعاء 21 أكتوبر، 5:00 مساءً، ملعب الأهلي بحسب الجدول الذي أرسلته.</div>"+
+    "<div class='cue'>قوي بذكاء • أشوفها إلى يدي • رجولي أول • التالي</div>"+
+    "<div class='soft-note'><b>قاعدة أساسية:</b> هذا التبويب هو المرجع للحمل الإضافي. لا تنفّذ حصتي الصباح والمساء الموجودتين في الجدول القديم كاملتين فوق تدريب الأهلي. اختر جرعة إضافية واحدة قصيرة فقط، واحذفها إذا كان تدريب الفريق شاقاً أو كنت مرهقاً.</div>";
+  box.appendChild(hero);
 
-  var c=document.createElement("div");c.className="card";
-  c.innerHTML="<h2>🍽️ تغذية اليوم: راحة أو تدريب</h2><div class='muted'>الكميات تقديرية وليست حدّاً إلزامياً للسعرات؛ احتياجك يتغير حسب النمو، تدريب الأهلي، المباراة والجوع. لا تستخدم حمية قاسية أثناء النمو.</div>";
-  var meals=[
-    ["غداء "+(isRest?"صغير":"كبير"),isRest?"220 جم دجاج + 100 جم رز":"220 جم دجاج + 250 جم رز","~450"],
-    ["عشاء "+(isRest?"صغير":"كبير"),isRest?"250 جم لحم + 200 جم بطاطس":"250 جم لحم + 400 جم بطاطس","~550"],
-    ["فطور (07:00)","4 بيض + 80 جم شوفان + موزة + لوز","~620"],
-    ["بعد التمرين","وجبة أو سناك: حليب/زبادي أو طعام غني بالبروتين + فاكهة","تقريبي"]
-  ];
-  meals.forEach(function(m,i){
-    var row=document.createElement("div");row.className="foodrow";
-    var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!farr[i];
-    cb.onchange=function(){farr[i]=cb.checked;DB.food[k]=farr;saveDB();row.classList.toggle("done",cb.checked);};
-    if(cb.checked)row.classList.add("done");
-    var ft=document.createElement("div");ft.className="ft";
-    var b=document.createElement("b");b.textContent=m[0];
-    var sp=document.createElement("span");sp.textContent=m[1];
-    ft.appendChild(b);ft.appendChild(sp);
-    var fc=document.createElement("div");fc.className="fc";fc.textContent=m[2]+" سعرة";
-    row.appendChild(cb);row.appendChild(ft);row.appendChild(fc);
-    c.appendChild(row);
-  });
-  box.appendChild(c);
+  var match=document.createElement("div");match.className="card";
+  match.innerHTML="<h2>🏐 أولاً: الاستعداد لمباراة توبلي</h2>"+
+    "<div class='sched-day'><b>الجمعة 16 أكتوبر — استشفاء</b>10–15 دقيقة حركة مريحة للكاحل والورك والكتف، ثم 5 دقائق تمرير واستقبال سهل إن رغبت. لا جيم ولا لياقة شديدة.</div>"+
+    "<div class='sched-day'><b>السبت 17 أكتوبر — جرعة قوة معتدلة اختيارية</b>إذا كنت منتعشاً وتدريب الأهلي غير شاق: 2 مجموعات لكل من Goblet/Box Squat خفيف، سحب دمبل أو كيبل، ضغط مناسب، رفع سمانة، وPallof Press. اترك 3 تكرارات تقريباً في الاحتياط؛ لا أوزان قصوى ولا تمرين حتى الفشل. إذا كان التدريب شاقاً، احذف هذه الجرعة.</div>"+
+    "<div class='sched-day'><b>الأحد 18 أكتوبر — مهارة المحور</b>12–18 دقيقة: 2×6 استقبال على الصدر، 2×6 كرات منخفضة، 2×5 جانبية، ثم 2×4 Catch → Protect. راحة قصيرة بين المجموعات وجودة أعلى من السرعة.</div>"+
+    "<div class='sched-day'><b>الاثنين 19 أكتوبر — حركة دفاعية</b>10–15 دقيقة دون احتكاك قوي: خطوات جانبية، اقتراب قصير ثم توقف متوازن، وتغيير اتجاه بإشارة. إذا كان تدريب الأهلي مرهقاً، اكتفِ بالتدريب الجماعي.</div>"+
+    "<div class='sched-day'><b>الثلاثاء 20 أكتوبر — تنشيط فقط</b>10 دقائق حركة وتمرير واستقبال سهل، ويمكن 2–3 انطلاقات قصيرة متدرجة إذا كنت منتعشاً. لا جيم ثقيل ولا قفزات كثيرة ولا جري مرهق.</div>"+
+    "<div class='sched-day'><b>الأربعاء 21 أكتوبر — المباراة</b>لا تدريب إضافي. تناول ما يتوفر من وجبة مألوفة، اشرب الماء تدريجياً، واحضر قرابة 4:15 مساءً لتكون جاهزاً لإحماء الفريق.</div>"+
+    "<div class='note'>إذا تغير موعد المباراة أو كان تدريب الأهلي شديداً، عدّل الحمل مع المدرب. اليوم التالي لمباراة تحت 18: اتبع قاعدة فريقك بالتعافي وعدم حضور تدريب النادي.</div>";
+  box.appendChild(match);
 
-  var g=document.createElement("div");g.className="card";
-  g.innerHTML="<h2>🛒 قائمة مقاضي الأسبوع (تشترى مرة)</h2><div class='grocery'>"+
-    "<div class='gi'><b>🍗 دجاج صدر</b>1.2 كجم</div><div class='gi'><b>🥩 لحم مفروم 5%</b>1.5 كجم</div>"+
-    "<div class='gi'><b>🍚 رز أبيض</b>600 جم</div><div class='gi'><b>🥔 بطاطس</b>2.5 كجم</div>"+
-    "<div class='gi'><b>🥚 بيض</b>30 بيضة</div><div class='gi'><b>🌾 شوفان</b>700 جم</div>"+
-    "<div class='gi'><b>🍌 موز</b>15 حبة</div><div class='gi'><b>🥛 زبادي يوناني 0%</b>7 علب</div>"+
-    "<div class='gi'><b>🥜 فول سوداني</b>250 جم</div><div class='gi'><b>🥒 خضار</b>طازة</div>"+
-    "<div class='gi'><b>🥛 بدائل غذائية</b>حليب/لبن/زبادي أو بدائل مناسبة</div><div class='gi'><b>📦 علب بلاستيك</b>14 علبة</div></div><div class='note'>المكملات ليست ضرورية تلقائياً. الأولوية للطعام والنوم والسوائل؛ لا تبدأ الواي أو الكرياتين من نفسك وأنت مراهق، وناقش ذلك مع ولي أمرك واختصاصي تغذية رياضية/طبيب.</div>";
-  box.appendChild(g);
+  var report=document.createElement("div");report.className="card";
+  report.innerHTML="<h2>📊 بياناتك الحالية — لا نطارد نزول الوزن</h2>"+
+    "<div class='metric-grid'>"+
+    "<div class='sum'><b>111.8 كغ</b><span>الوزن — 16 أكتوبر</span></div>"+
+    "<div class='sum'><b>46.5 كغ</b><span>الكتلة العضلية الهيكلية</span></div>"+
+    "<div class='sum'><b>30.0 كغ</b><span>كتلة الدهون المقدرة</span></div>"+
+    "<div class='sum'><b>26.8%</b><span>نسبة الدهون المقدرة</span></div></div>"+
+    "<div class='muted'>مقارنة بأبريل: الوزن 117.1 كغ، الكتلة العضلية 47.2 كغ، كتلة الدهون 34.1 كغ ونسبة الدهون 29.2%. تختلف قراءات InBody حسب الترطيب والتوقيت؛ لا تستنتج فقد العضلات من قراءة واحدة ولا تتبع حمية قاسية. مقياس نجاحك: الأداء والقوة والسرعة والتعافي.</div>"+
+    "<div class='section-title'>📌 ملاحظات المباريات التي ذكرتها</div>"+
+    "<div class='dev-card'><b>ضد الدير:</b> 5 أهداف و4 رميات جزاء حصلت عليها، مع أخطاء/إيقافات تحتاج انتباهاً للصافرة وتوقيت الدخول.</div>"+
+    "<div class='dev-card'><b>ضد الاتحاد:</b> هدف واحد وإيقافات بسبب الدفع بقوة والاندفاع المتأخر. ندرّب الوصول للموقع مبكراً، والتباطؤ قبل الالتحام، والتحكم باليدين.</div>";
+  box.appendChild(report);
 
-  var cp=document.createElement("div");cp.className="card";
-  cp.innerHTML="<h2>🍳 طبخة وحدة تكفي الأسبوع (الجمعة)</h2>"+
-    "<div class='section-title'>الغداء — دجاج ورز (7 علب)</div>"+
-    "<div class='muted'>دجاج مكعبات + تتبيلة ← فرن 200° 25د • رز 600جم خام ← 1800جم مطبوخ • علبة كبيرة: 220جم دجاج + 250جم رز (تدريب) • صغيرة: 100جم رز (راحة)</div>"+
-    "<div class='section-title'>العشاء — لحم وبطاطس (7 علب)</div>"+
-    "<div class='muted'>بطاطس مكعبات فرن 30د • لحم مفروم مع بصل 15د • علبة كبيرة: 250جم لحم + 400جم بطاطس • صغيرة: 200جم</div>"+
-    "<div class='note'>❄️ 3 غداء + 3 عشاء بالثلاجة، 8 بالفريزر. طلّع علبة بكرة كل مساء.</div>";
-  box.appendChild(cp);
+  var skill=document.createElement("div");skill.className="card";
+  skill.innerHTML="<h2>🏐 ثانياً: الاستقبال والهجوم كمحور</h2>"+
+    "<div class='section-title'>جلسة فردية 12–20 دقيقة، مرتين إلى 3 أسبوعياً فقط إذا لم يكن حمل النادي عالياً</div>"+
+    "<div class='dev-card'><h3>1. الاستقبال النظيف</h3>كرة اليد مقاس 2: 2×8 تمريرات على الصدر. أصابع مفتوحة، اليدان جاهزتان، امتص الكرة بسحب اليدين قليلاً ولا تضربها براحة اليد.</div>"+
+    "<div class='dev-card'><h3>2. الكرات المنخفضة</h3>2×6: انزل بالورك والركبتين وخطُ نحو الكرة؛ لا تنحنِ من الخصر فقط. أعد الكرة إلى الصدر بعد السيطرة.</div>"+
+    "<div class='dev-card'><h3>3. Seal → Find → Catch</h3>2×5 لكل جهة: خذ موقع الحجز، افتح جسمك بزاوية تسمح برؤية الممرر والمدافع، ارفع يدك لطلب الكرة، ثم استقبلها. لا تركز على المدافع وتنسى الكرة.</div>"+
+    "<div class='dev-card'><h3>4. Catch → Protect → Turn</h3>2×4 لكل جهة: لا تبدأ الدوران قبل امتلاك الكرة. احمها داخل المساحة القانونية، ثم مرر أو سدد حسب قرارك.</div>"+
+    "<div class='dev-card'><h3>5. إنهاء الهجمة</h3>إذا توفر زميل ومدرب: 2–3 مجموعات من 4 تسديدات بعد استلام جيد من موقع المحور. لا تكرر التسديد إذا تدهورت التقنية.</div>"+
+    "<div class='note'>كرة التنس للانتباه ورد الفعل فقط؛ كرة اليد مقاس 2 هي الأساس لنقل الاستقبال إلى المباراة. لا تتدرب على ضغط جسدي قوي منفرداً بحبل مقاومة.</div>";
+  box.appendChild(skill);
 
-  var f=document.createElement("div");f.className="card";
-  f.innerHTML="<h2>🍽️ ثابت يوميًا (بدون طبخ)</h2><div class='muted'>"+
-    "<b>فطور 07:00:</b> 4 بيض + 80 جم شوفان + موزة + 7 لوز<br>"+
-    "<b>بعد التمرين:</b> وجبة أو سناك يناسب الشهية: مصدر بروتين + كربوهيدرات + فاكهة<br>"+
-    "<b>قبل النوم:</b> زبادي أو حليب/بديل مناسب مع وجبة خفيفة إذا كنت جائعاً<br>"+
-    "<b>السوائل:</b> اشرب بانتظام وزدها مع الحر والتعرّق • <b>النوم:</b> استهدف 8–10 ساعات</div>";
-  box.appendChild(f);
+  var defense=document.createElement("div");defense.className="card";
+  defense.innerHTML="<h2>🛡️ ثالثاً: الدفاع والتحكم بالالتحام</h2>"+
+    "<div class='dev-card'><h3>قاعدة الاقتراب</h3>تحرك مبكراً، قصّر خطواتك قبل الوصول للمهاجم، اثبت بتوازن، وحافظ على وضعية دفاعية قانونية. لا تحاول تعويض التأخر بدفعة قوية.</div>"+
+    "<div class='dev-card'><h3>توقف وتغيير اتجاه</h3>2×4 تكرارات: تحرك 3–5 أمتار ثم توقف بثبات؛ بعدها تحرك جانبياً واستجب لإشارة. نفّذ بسرعة تحت السيطرة، مع راحة كافية. لا تستخدم خصماً حقيقياً للالتحام إلا بإشراف المدرب.</div>"+
+    "<div class='dev-card'><h3>الصفارة</h3>عند سماعها: أوقف الحركة فوراً، اترك الكرة، وانظر للحكم. لا تسدد الكرة بعد الصافرة؛ حتى لو لم تكن متأكداً، توقف أولاً.</div>"+
+    "<div class='dev-card'><h3>مؤشر نجاح المباراة</h3>قوة قانونية + موقع مبكر + أخطاء أقل. لا تجعل الفوز بكل التحام أهم من البقاء في الملعب ومساعدة الفريق.</div>";
+  box.appendChild(defense);
+
+  var strength=document.createElement("div");strength.className="card";
+  strength.innerHTML="<h2>🏋️ رابعاً: القوة والانفجار والسرعة</h2>"+
+    "<div class='soft-note'>في الأسابيع العادية: بحد أقصى حصتا قوة منظمتان أسبوعياً بإشراف مدرب، وبفاصل مناسب، مع تعديلهما حسب تدريب الفريق والمباريات. لا تستخدم أوزاناً قصوى أو تمارين غير مألوفة وحدك.</div>"+
+    "<details class='dev-card'><summary><b>حصة قوة A — 30–40 دقيقة (إذا لا توجد مباراة قريبة أو تعب)</b></summary><p>إحماء 8 دقائق؛ Goblet/Box Squat 3×5؛ سحب دمبل/كيبل 3×8؛ ضغط أرضي أو Bench Press بإشراف 2–3×6–8؛ Calf Raise 2×10–12؛ Pallof Press 2×8 لكل جهة. اترك 2–3 تكرارات في الاحتياط.</p></details>"+
+    "<details class='dev-card'><summary><b>حصة قوة B — 25–35 دقيقة (بديل/تبادل لا إضافة فوق يوم ثقيل)</b></summary><p>إحماء 8 دقائق؛ Romanian Deadlift خفيف أو Hip Hinge 2–3×6؛ Split Squat 2×6 لكل رجل؛ Row 2×8؛ Push-up 2×6–10؛ Rotator Cuff External Rotation وBand Pull Apart 2×12. توقف إذا اختل الأسلوب أو ظهر ألم.</p></details>"+
+    "<div class='section-title'>⚡ السرعة والانفجار — جرعة قصيرة</div>"+
+    "<div class='dev-card'>بعد إحماء جيد وعلى أرض آمنة وتحت إشراف: انطلاق 5م ×3–4 مع راحة كاملة، ثم توقف متزن ×3. القفزات الجانبية الخفيفة 2×3 لكل جهة فقط إذا تعلمت الهبوط بأمان. لا تنفذها يوم المباراة أو قبله بيوم، ولا عندما تكون مرهقاً.</div>"+
+    "<div class='note'>إذا كان تدريب الأهلي في الصالة يبدأ 4:00 م والجيم بعده، فالجيم اختياري ومختصر فقط إذا بقيت منتعشاً. إذا كان التدريب خارجياً يبدأ 5:30 م، لا تضع الأرجل الثقيلة قبله. اتبع تعليمات مدربك ولا تحاول تعويض كل الجوانب في حصة واحدة.</div>";
+  box.appendChild(strength);
+
+  var conditioning=document.createElement("div");conditioning.className="card";
+  conditioning.innerHTML="<h2>❤️ خامساً: التحمل والتعافي والوقاية</h2>"+
+    "<div class='dev-card'><h3>التحمل الخاص بكرة اليد</h3>تدريب الأهلي والمباريات هما الحمل الأساسي. لا تضف جرياً طويلاً أو فترات شديدة تلقائياً. لا تُضف جلسة لياقة إلا إذا أوصى المدرب، وراقب جودة الحركة في نهاية التدريب.</div>"+
+    "<div class='dev-card'><h3>روتين وقاية 8–10 دقائق، 2–3 مرات أسبوعياً</h3>رفع السمانة 2×12، Tibialis Raise 2×12، Glute Bridge 2×10، توازن رجل واحدة 2×20 ثانية، Side Plank 2×20 ثانية، Band Pull Apart أو دوران خارجي للكتف 2×12. اختر 3–4 تمارين في كل مرة؛ لا تحتاج جميعها يومياً.</div>"+
+    "<div class='dev-card'><h3>قاعدة الاستشفاء</h3>اليوم التالي لمباراة U18: تعافٍ فقط حسب تعليمات النادي. إذا كان الألم يغيّر مشيتك أو حركة المفصل، لا تكمل التمرين وأخبر مدربك/ولي أمرك واطلب تقييماً مناسباً.</div>";
+  box.appendChild(conditioning);
+
+  var mind=document.createElement("div");mind.className="card";
+  mind.innerHTML="<h2>🧠 سادساً: التركيز والذكاء التكتيكي</h2>"+
+    "<div class='dev-card'><h3>قبل التدريب أو المباراة — 3 دقائق</h3>خذ 5 أنفاس هادئة بزفير أطول من الشهيق، ثم تخيّل استلاماً ناجحاً، وقراراً سريعاً، ودفاعاً قانونياً.</div>"+
+    "<div class='cue'>أشوفها إلى يدي • احمِ الكرة • رجولي أول • التالي</div>"+
+    "<div class='dev-card'><h3>تحليل فيديو — 10 دقائق مرة أو مرتين أسبوعياً</h3>شاهد 3–5 لقطات فقط. في كل لقطة راقب: أين وقفت قبل الباس؟ هل رأيت الكرة؟ هل وصلت متوازناً؟ هل كان القرار سريعاً؟ اختر خطأ واحداً للتصحيح، لا خمسة.</div>"+
+    "<div class='dev-card'><h3>بعد الخطأ</h3>لا تدخل التحاماً أقوى لتعويضه. كلمة «التالي»، ثم ارجع لموقعك وركز على المهمة التالية.</div>";
+  box.appendChild(mind);
+
+  var food=document.createElement("div");food.className="card";
+  food.innerHTML="<h2>🍽️ سابعاً: تغذية واقعية حسب المتوفر</h2>"+
+    "<div class='dev-card'>لا تحتاج خطة مكلفة أو أوزان طعام. في الوجبة اجمع ما تستطيع من مصدر طاقة (رز/خبز/بطاطس/معكرونة) ومصدر بروتين (بيض/لبن/عدس/فاصوليا/دجاج/سمك/لحم)؛ وفاكهة أو خضار إذا توفرت.</div>"+
+    "<div class='dev-card'>إذا كانت الكميات في البيت قليلة، لا تحذف الوجبات ولا تتعمد تخفيض الوزن. أخبر الأسرة أنك تحتاج طعاماً كافياً لأنك تتدرب وتلعب مباريات. لا تشترِ مكملات لتعويض قلة الطعام.</div>"+
+    "<button class='bigbtn' onclick=\\"showTab('food')\\">افتح دليل الأكل المرن</button>";
+  box.appendChild(food);
+
+  var tracking=document.createElement("div");tracking.className="card";
+  tracking.innerHTML="<h2>📈 ثامناً: قياس التقدم أسبوعياً</h2>"+
+    "<div class='dev-card'><b>بعد المباراة سجّل:</b> الأهداف، الرميات الجزائية التي حصلت عليها، الاستلامات النظيفة/المرتدة/الساقطة، الإيقافات لدقيقتين وسبب كل واحد، أخطاء ما بعد الصافرة، وتقييمك للتركيز من 10.</div>"+
+    "<div class='dev-card'><b>مرة أسبوعياً:</b> اختبار 30 كرة (10 صدر +10 منخفضة +10 جانبية)، النوم، التعب من 10، والألم من 10. لا تختبر السرعة أو القفز إذا كنت مرهقاً.</div>"+
+    "<div class='dev-card'><b>InBody:</b> قارن كل 8–12 أسبوعاً وفي ظروف متشابهة قدر الإمكان، لا كل بضعة أيام. لا تجعل نسبة الدهون وحدها هدفك.</div>"+
+    "<button class='bigbtn green' onclick=\\"showTab('report')\\">افتح التقرير الأسبوعي</button>";
+  box.appendChild(tracking);
+
+  var rules=document.createElement("div");rules.className="card";
+  rules.innerHTML="<h2>🚦قواعد تعديل الحمل</h2>"+
+    "<div class='dev-card'><b>أخضر:</b> نوم جيد، لا ألم، وحركة طبيعية — نفّذ الجرعة القصيرة المقررة.</div>"+
+    "<div class='dev-card'><b>أصفر:</b> نوم سيئ، ثقل بالساقين أو تدريب فريق شاق — قلّل الجرعة إلى النصف أو احذفها.</div>"+
+    "<div class='dev-card'><b>أحمر:</b> ألم حاد، عرج، دوخة أو أعراض غير معتادة — أوقف التدريب وأخبر ولي أمرك والمدرب واطلب المساعدة المناسبة.</div>"+
+    "<div class='note'>الخطة تساعدك على التطور، لكنها لا تضمن أن تكون أفضل لاعب في كل مباراة. سنستخدم التقييم الأسبوعي لتعديل الجرعة تدريجياً، لا لإجبارك على الالتزام بتمرين غير مناسب.</div>";
+  box.appendChild(rules);
 }
 
+function renderFood(){
+  var box=document.getElementById("foodBox");
+  if(!box)return;
+  box.innerHTML="";
+  var intro=document.createElement("div");intro.className="card";
+  intro.innerHTML="<h2>🍽️ تغذية لاعب المحور — حسب الموجود في البيت</h2>"+
+    "<div class='muted'>هذه الصفحة مرنة وليست حمية أو قائمة مشتريات. لا تحتاج إلى ميزان طعام أو مكملات، ولا نريد إنقاص الوزن بسرعة أثناء النمو والتدريب.</div>";
+  box.appendChild(intro);
+
+  var meals=document.createElement("div");meals.className="card";
+  meals.innerHTML="<h2>🥣 كيف تكوّن وجبتك من الموجود؟</h2>"+
+    "<div class='dev-card'><h3>1) مصدر طاقة</h3>اختر المتوفر: رز، خبز، بطاطس، معكرونة، شوفان أو أي نشويات موجودة.</div>"+
+    "<div class='dev-card'><h3>2) مصدر بروتين</h3>اختر المتوفر: بيض، حليب أو لبن، زبادي، دجاج، سمك، لحم، فاصوليا أو عدس.</div>"+
+    "<div class='dev-card'><h3>3) فاكهة أو خضار إن توفرت</h3>موز أو أي فاكهة/خضار موجودة. ليست مشكلة إذا لم تتوفر في كل وجبة.</div>"+
+    "<div class='dev-card'><h3>4) إذا كانت الوجبة صغيرة</h3>إذا بقيت جائعاً، أخبر الأسرة أنك تحتاج كمية إضافية أو وجبة خفيفة بسبب التدريب. لا تتعمّد تخطي الوجبات ولا تحاول خفض وزنك بسرعة.</div>";
+  box.appendChild(meals);
+
+  var examples=document.createElement("div");examples.className="card";
+  examples.innerHTML="<h2>🍴 أمثلة بسيطة — استخدم المتوفر فقط</h2>"+
+    "<div class='foodrow'><div class='ft'><b>رز + دجاج/لحم/عدس</b><span>وجبة رئيسية قبل أو بعد التدريب.</span></div></div>"+
+    "<div class='foodrow'><div class='ft'><b>خبز + بيض أو جبن</b><span>فطور أو وجبة خفيفة مشبعة.</span></div></div>"+
+    "<div class='foodrow'><div class='ft'><b>حليب/لبن/زبادي + خبز أو فاكهة</b><span>خيار سريع إذا كان متوفراً.</span></div></div>"+
+    "<div class='foodrow'><div class='ft'><b>بطاطس/معكرونة + أي بروتين متوفر</b><span>بديل عندما لا يوجد رز.</span></div></div>"+
+    "<div class='note'>لا تحتاج شراء هذه الأطعمة تحديداً؛ هذه أمثلة فقط. استخدم الموجود في البيت، واطلب من الأسرة المساعدة إذا كان الطعام المتاح لا يكفيك باستمرار.</div>";
+  box.appendChild(examples);
+
+  var timing=document.createElement("div");timing.className="card";
+  timing.innerHTML="<h2>⏱️ حول التدريب والمباراة</h2>"+
+    "<div class='dev-card'><h3>قبل التدريب أو المباراة</h3>إذا توفر، تناول وجبة مألوفة قبلها بنحو 2–3 ساعات. إذا لم يتوفر وقت أو كانت الوجبة صغيرة، خذ سناك بسيطاً مثل خبز أو موز أو زبادي حسب الموجود.</div>"+
+    "<div class='dev-card'><h3>بعد التدريب</h3>تناول الوجبة العادية التالية، واجمع بين مصدر طاقة ومصدر بروتين إذا كانا متوفرين. لا تحتاج مشروباً أو مسحوقاً خاصاً.</div>"+
+    "<div class='dev-card'><h3>الماء</h3>اشرب بانتظام حسب العطش والحرارة والتعرّق، وخذ الماء إلى التدريب. لا تجبر نفسك على كميات ضخمة دفعة واحدة.</div>"+
+    "<div class='dev-card'><h3>النوم</h3>استهدف 8–10 ساعات؛ النوم جزء من التدريب وليس وقتاً ضائعاً.</div>";
+  box.appendChild(timing);
+
+  var supplements=document.createElement("div");supplements.className="card";
+  supplements.innerHTML="<h2>💊 المكملات</h2><div class='note'>لا تجعل المكملات أولوية ولا تستخدم الكافيين/Pre-workout أو تبدأ الكرياتين والفيتامينات من نفسك. بما أنك لاعب صغير السن، ناقش أي مكمل مع ولي أمرك وطبيب أو اختصاصي تغذية رياضية. المكمل لا يعوّض نقص الطعام.</div>";
+  box.appendChild(supplements);
+}
+
+
 renderTrain();
+renderComprehensivePlan();
 renderWeekOverview();
 renderSchedule();
 renderDevelop();
@@ -1008,8 +1094,8 @@ renderFood();
 </script>
 
 <footer id="site-version" aria-label="نسخة الموقع" style="max-width:680px;margin:14px auto 24px;padding:12px 10px 18px;text-align:center;color:#9ca3af;font:12px/1.8 system-ui,sans-serif;border-top:1px solid #303038;">
-  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v1.1.3</div>
-  <div>BUILD 2026.10.11.3 · آخر تعديل: 11 أكتوبر 2026</div>
+  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v1.1.4</div>
+  <div>BUILD 2026.10.16.1 · آخر تعديل: 16 أكتوبر 2026</div>
 </footer>
 
 </body>
