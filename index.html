@@ -75,8 +75,8 @@
   .top{position:sticky;top:0;z-index:20;background:rgba(14,14,16,.96);backdrop-filter:blur(8px);padding:8px 0 10px;}
   .top .day{font-size:21px;}
   .top .date{font-size:13px;}
-  .tabs{grid-template-columns:repeat(4,1fr);position:sticky;top:66px;z-index:19;background:rgba(14,14,16,.96);padding:6px 0;}
-  .tab{padding:10px 4px;font-size:12.5px;}
+  .tabs{display:flex;gap:7px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;position:sticky;top:66px;z-index:19;background:rgba(14,14,16,.98);padding:7px 0;white-space:nowrap;}
+  .tab{flex:0 0 auto;padding:10px 13px;font-size:12.5px;white-space:nowrap;}
   .card{padding:12px;border-radius:16px;}
   .card h2{font-size:16px;}
   .ex{padding:11px 10px;min-height:50px;}
@@ -99,8 +99,8 @@
   .sticky-save button{flex:1;}
   .hidden{display:none!important;}
   @media(max-width:520px){
-    .tabs{grid-template-columns:repeat(4,1fr);}
-    .tab{font-size:11.5px;padding:9px 2px;}
+    .tabs{gap:6px;}
+    .tab{font-size:12px;padding:9px 12px;}
     .quickbar{grid-template-columns:repeat(2,1fr);}
     .today-summary{grid-template-columns:repeat(3,1fr);}
     .weekly-grid{grid-template-columns:1fr;}
@@ -125,6 +125,17 @@
   .settingrow input[type="checkbox"]{width:22px;height:22px;accent-color:var(--ok);}
   .settingrow input[type="date"]{background:var(--card);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:7px;}
   .modehint{font-size:11px;color:var(--gold);margin-top:6px;}
+  .plan-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:8px 0 12px;}
+  .plan-nav button{border:1px solid var(--line);background:var(--card2);color:var(--txt);border-radius:11px;padding:10px 8px;font:inherit;font-size:12.5px;font-weight:850;cursor:pointer;text-align:center;}
+  .plan-nav button:active{border-color:var(--accent);}
+  .plan-section .accordion-title{padding:2px 0;}
+  .plan-section .accordion-title b{font-size:15px;line-height:1.5;}
+  .plan-section .accordion-body{margin-top:9px;}
+  .plan-section{scroll-margin-top:145px;}
+  .plan-intro{border-color:#71313a;background:linear-gradient(145deg,#241416,#1c1c20);}
+  .club-card{border-color:#334155;background:linear-gradient(145deg,#121b29,#1c1c20);}
+  .plan-nav-title{font-weight:900;margin:4px 0 7px;font-size:13px;color:var(--sub);}
+
 
 
   .dev-grid{display:grid;grid-template-columns:1fr;gap:8px;}
@@ -150,7 +161,7 @@
     <div class="date" id="dateSub"></div>
   </div>
 
-  <div class="tabs" style="grid-template-columns:repeat(3,1fr)">
+  <div class="tabs" aria-label="أقسام البرنامج">
     <button class="tab active" id="tabTrain" onclick="showTab('train')">🏠 اليوم</button>
     <button class="tab" id="tabWeek" onclick="showTab('week')">🗓️ الأسبوع</button>
     <button class="tab" id="tabSchedule" onclick="showTab('schedule')">🎓🏐 الجدول</button>
@@ -179,49 +190,38 @@ function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"
 
 /* ===== مكتبة تمارين صباح/مساء — اختر جرعة قصيرة واحدة حسب حمل الفريق ===== */
 var SCHED=[
- {day:"الأحد",title:"قوة أساسية + استقبال منخفض",cal:"جرعة فردية — اضبطها مع تدريب الأهلي",
+ {day:"الأحد",title:"سرعة وتسارع",cal:"الصباح: 15–25 دقيقة • المساء: الأهلي",
   am:[
-   {cat:"🔥 تهيئة قصيرة",ex:[["Ankle Rocks + فتح الحوض","2×8"],["Pogo Jump خفيف","2×10ث"],["انطلاق 5م — راحة كاملة","3×5م"]]},
-   {cat:"🏐 استقبال تقني",ex:[["Low Wall Catch — كرة اليد Size 2","2×8"],["Finger Catch + Absorb","2×8"]]}],
-  pm:[
-   {cat:"🏋️ قوة أساسية (إذا كنت منتعشاً)",ex:[["Box Squat أو Goblet Squat","3×5 — اترك 2–3 تكرارات"],["Bench Press","3×6–8"],["Row","3×8"]]},
-   {cat:"🧱 ثبات ووقاية",ex:[["Pallof Press","2×8/جهة"],["Calf/Soleus Raise","2×12"],["Band Pull Apart (حبل مقاومة)","2×12"]]}]},
- {day:"الاثنين",title:"استلام Pivot + حماية الكرة",cal:"مهارات قصيرة — لا تكرر تمرين الرجل الثقيل",
+   {cat:"🔥 إحماء ديناميكي",ex:[["Ankle Rocks + فتح الحوض","2×8"],["A-March","2×10م"],["Wall Sprint","2×5/رجل"]]},
+   {cat:"⚡ تسارع وجودة",ex:[["انطلاق 5م","4 تكرارات — راحة 60–90ث"],["توقف متزن بعد اندفاع قصير","3 تكرارات"]]},
+   {cat:"🏐 لمسة كرة اختيارية",ex:[["استلام نظيف بكرة اليد Size 2","2×6 — فقط إذا كنت منتعشاً"]]}
+  ],pm:[]},
+ {day:"الاثنين",title:"قوة A",cal:"الصباح: 30–40 دقيقة • المساء: الأهلي",
   am:[
-   {cat:"🏐 Pivot Receiving",ex:[["Seal → Find → Low Catch","3×5/جهة"],["استلام جانبي + حماية","2×5/جهة"],["Catch → Protect → Turn","3×4/جهة"]]}],
-  pm:[
-   {cat:"🛡️ وقاية + ثبات (خفيف)",ex:[["Copenhagen Plank","2×15–20ث/جهة"],["Single-Leg Balance Reach","2×5/جهة"],["Rotator Cuff External Rotation","2×12/جهة"]]}]},
- {day:"الثلاثاء",title:"تعافٍ + صحة الكتف + فهم اللعب",cal:"تعافٍ — لا تضف حصة شديدة",
+   {cat:"🏋️ قوة أساسية",ex:[["Goblet/Box Squat","3×5–6 — اترك 2–3 تكرارات"],["Romanian Deadlift خفيف","3×6"],["Dumbbell/Cable Row","3×8"]]},
+   {cat:"🧱 ثبات",ex:[["Calf Raise","2×10–12"],["Pallof Press","2×8/جهة"]]}
+  ],pm:[]},
+ {day:"الثلاثاء",title:"لياقة هوائية سهلة",cal:"الصباح: 20–25 دقيقة • المساء: الأهلي",
   am:[
-   {cat:"♻️ Recovery",ex:[["مشي أو دراجة سهلة","15–25 د"],["Mobility مريح","8–10 د"]]},
-   {cat:"🧠 Game IQ",ex:[["تحليل Pivot: استلام قبل الدوران","10–15 د"]]}],
-  pm:[
-   {cat:"🛡️ Injury Prevention",ex:[["Band Pull Apart","2×12"],["Tibialis Raise","2×12"],["Glute Bridge","2×10"],["Side Plank","2×20ث/جهة"]]}]},
- {day:"الأربعاء",title:"سرعة قصيرة + رؤية متأخرة",cal:"جودة عالية وحجم قليل",
+   {cat:"❤️ تحمّل سهل",ex:[["دراجة أو مشي سريع","20–25 د — شدة تسمح بالكلام"],["Mobility للكاحل والورك","5–8 د"]]},
+   {cat:"🎯 استقبال اختياري",ex:[["Low Catch بكرة اليد Size 2","2×6 — جودة فقط"]]}
+  ],pm:[]},
+ {day:"الأربعاء",title:"استشفاء ووقاية",cal:"الصباح: 12–18 دقيقة • المساء: الأهلي حسب الجاهزية",
   am:[
-   {cat:"🔥 إحماء",ex:[["Ankle Rocks + A-March","2 جولات"],["Wall Sprint","2×5/رجل"]]},
-   {cat:"⚡ Speed Specific",ex:[["انطلاق 5م","4 تكرارات — راحة كاملة"],["Deceleration ثم توقف متزن","3 تكرارات"],["انطلاق + Pivot Turn","3×/جهة"]]},
-   {cat:"👀 Receiving Reaction",ex:[["Tennis Late Vision Catch","2×6/جهة — كرة تنس فقط للرؤية"]]}],
-  pm:[
-   {cat:"💥 قوة انفجارية (اختياري إذا لا يوجد إرهاق)",ex:[["Med Ball Rotational Throw","2×4/جهة"],["Lateral Bound + Stick","2×3/جهة"]]},
-   {cat:"🧱 Core",ex:[["Pallof Press","2×8/جهة"]]}]},
- {day:"الخميس",title:"قوة الجزء العلوي + مهارة Pivot",cal:"حجم متوسط — خفف قبل المباراة",
+   {cat:"♻️ حركة ووقاية",ex:[["Glute Bridge","2×10"],["Single-Leg Balance","2×20ث/رجل"],["Tibialis Raise","2×12"],["Band Pull Apart","2×12"]]}
+  ],pm:[]},
+ {day:"الخميس",title:"قوة B",cal:"الصباح: 30–40 دقيقة • المساء: الأهلي",
   am:[
-   {cat:"🏐 Pivot Skill",ex:[["Block → Roll","3×4/جهة"],["Catch → Protect → Turn","3×4/جهة"],["تسديد بعد استلام جيد","3×4 بجودة عالية"]]}],
-  pm:[
-   {cat:"🏋️ Upper Strength",ex:[["Lat Pulldown","3×8"],["Row","2×10"],["Shoulder Press خفيف","2×8 — بدون ألم"]]},
-   {cat:"🛡️ Stability + Shoulder",ex:[["Single-Leg RDL خفيف","2×5/رجل"],["Band Pull Apart (حبل مقاومة)","2×12"],["Rotator Cuff External Rotation","2×12/جهة"]]}]},
- {day:"الجمعة",title:"راحة كاملة",cal:"راحة",
-  am:[{cat:"😴 Recovery",ex:[["مشي خفيف","اختياري 10–20 د"],["Mobility مريح","اختياري 5–10 د"]]}],
-  pm:[]},
- {day:"السبت",title:"استلام تحت ضغط + مراجعة أسبوعية",cal:"اختبر الجودة ولا تطارد التعب",
+   {cat:"🏋️ قوة الجسم بالكامل",ex:[["Split Squat","2×6/رجل"],["Hip Hinge أو RDL خفيف","2×6"],["Push-up أو ضغط مناسب","3×6–8"],["Row/Lat Pulldown","3×8"]]},
+   {cat:"🧱 ثبات وكتف",ex:[["Side Plank","2×20–30ث/جهة"],["Band Pull Apart","2×12"],["External Rotation","2×12/جهة"]]}
+  ],pm:[]},
+ {day:"الجمعة",title:"راحة كاملة",cal:"راحة من الإعداد البدني • لا يوجد تدريب الأهلي",
+  am:[],pm:[]},
+ {day:"السبت",title:"سرعة خاصة بكرة اليد — اختيارية",cal:"الصباح: 15–20 دقيقة إذا كنت منتعشاً • المساء: الأهلي",
   am:[
-   {cat:"🏐 استقبال تحت الضغط",ex:[["Band Pressure Catch — مقاومة خفيفة","2×5/جهة"],["Seal → Find → Low Catch","2×5/جهة"],["Catch → Protect → Turn","2×4/جهة"]]},
-   {cat:"🥅 Finishing",ex:[["Receive → Turn → Shoot","3×4 بجودة"],["Roll بعد البلوك","2×4/جهة"]]},
-   {cat:"📊 اختبار أسبوعي (إذا لا توجد مباراة/إرهاق)",ex:[["اختبار الاستلام 30 كرة","10 صدر + 10 منخفض + 10 جانبي"]]}],
-  pm:[
-   {cat:"⚡ تنشيط اختياري فقط",ex:[["Reaction Sprint 3–5م","3 تكرارات — راحة كاملة"],["Lateral Shuffle + Stop","2×10ث/جهة"]]},
-   {cat:"🔥 تهدئة",ex:[["تنفس + Mobility","5–8 د"]]}]}
+   {cat:"⚡ تسارع وتغيير اتجاه",ex:[["انطلاق 5م","3 تكرارات — راحة كاملة"],["انطلاق 10م","3 تكرارات — راحة كاملة"],["تغيير اتجاه مخطط + توقف متزن","3/جهة بسرعة متوسطة"]]},
+   {cat:"📝 شرط التنفيذ",ex:[["نفّذها فقط إذا لا توجد مباراة/إرهاق","وإلا خذ راحة"]]}
+  ],pm:[]}
 ];
 
 
@@ -484,14 +484,14 @@ function countSession(groups){
 }
 function renderWeekOverview(){
   var box=document.getElementById("weekBox"); if(!box)return;
-  box.innerHTML="<div class='card'><h2>🗓️ خريطة الأسبوع</h2><div class='muted'>هذه مكتبة خيارات وليست حصتين إلزاميتين. مركز الإعداد الشامل هو المرجع لتحديد الحمل؛ اختر جرعة إضافية قصيرة واحدة فقط حسب تدريب الأهلي والمباريات.</div></div>";
-  SCHED.forEach(function(d,i){
+  box.innerHTML="<div class='card'><h2>🗓️ خريطة الأسبوع</h2><div class='soft-note'>الصباح = الإعداد الفردي حسب الخطة. المساء = تدريب الأهلي فقط، وليس حصة جيم إضافية. عدّل الصباح حسب المباراة وحمل الفريق.</div></div>";
+  SCHED.forEach(function(d){
     var c=document.createElement("div");c.className="card";
-    var am=countSession(d.am),pm=countSession(d.pm);
-    c.innerHTML="<div class='accordion-title'><div><b>"+d.day+" — "+d.title+"</b><div class='muted'>☀️ "+am+" تمارين • 🌙 "+pm+" تمارين • "+d.cal+"</div></div><span class='arr'>▼</span></div>"+
+    var am=countSession(d.am);
+    c.innerHTML="<div class='accordion-title'><div><b>"+d.day+" — "+d.title+"</b><div class='muted'>☀️ "+(am?am+" تمارين صباحية":"راحة صباحية")+" • 🌙 "+(d.day==="الجمعة"?"راحة الفريق":"تدريب الأهلي")+"</div></div><span class='arr'>▼</span></div>"+
       "<div class='accordion-body muted' style='margin-top:8px'>"+
-      "<b>الصباح:</b> "+d.am.map(function(g){return g.cat.replace(/[^\u0600-\u06FF A-Za-z0-9]/g,"").trim();}).join(" • ")+"<br>"+
-      "<b>المساء:</b> "+(d.pm.length?d.pm.map(function(g){return g.cat.replace(/[^\u0600-\u06FF A-Za-z0-9]/g,"").trim();}).join(" • "):"راحة")+
+      "<b>الصباح:</b> "+(d.am.length?d.am.map(function(g){return g.cat.replace(/[^\u0600-\u06FF A-Za-z0-9 +\/]/g,"").trim();}).join(" • "):"راحة كاملة")+
+      "<div style='margin-top:7px'><b>المساء:</b> "+(d.day==="الجمعة"?"لا يوجد تدريب حسب الجدول المعتاد":"تدريب النادي الأهلي حسب خطة المدرب")+"</div>"+
       "</div>";
     c.classList.add("collapsed");
     c.querySelector(".accordion-title").onclick=function(){c.classList.toggle("collapsed");};
@@ -641,8 +641,8 @@ function renderTrain(){
   box.appendChild(q);
   var sm=document.createElement("div");sm.className="today-summary";
   sm.innerHTML="<div class='sum'><b>"+countSession(s.am)+"</b><span>تمارين صباح</span></div>"+
-               "<div class='sum'><b>"+countSession(s.pm)+"</b><span>تمارين مساء</span></div>"+
-               "<div class='sum'><b>"+(s.day==="الجمعة"?"راحة":"تدريب")+"</b><span>وضع اليوم</span></div>";
+               "<div class='sum'><b>"+(s.day==="الجمعة"?"راحة":"الأهلي")+"</b><span>الحصة الثانية</span></div>"+
+               "<div class='sum'><b>"+(s.day==="الجمعة"?"راحة":"حسب الفريق")+"</b><span>وضع اليوم</span></div>";
   box.appendChild(sm);
 
   if(shouldOverride(mode)){
@@ -860,8 +860,20 @@ function renderTrain(){
     updateP();
   }
 
-  buildSession("am","جرعة مهارية قصيرة — في البيت/الملعب","☀️","10–20 د",s.am);
-  buildSession("pm","جرعة قوة/وقاية اختيارية — النادي","🌙","اختيارية",s.pm);
+  if(s.am.length){
+    buildSession("am","برنامج الإعداد الصباحي","☀️",s.cal.split("•")[0].replace("الصباح:","").trim()||"حسب الخطة",s.am);
+  }else{
+    var rest=document.createElement("div");rest.className="card";rest.id="secAM";
+    rest.innerHTML="<h2>☀️ الصباح — راحة كاملة</h2><div class='muted'>لا توجد حصة إعداد اليوم. الراحة جزء من البرنامج.</div>";
+    box.appendChild(rest);
+  }
+  var club=document.createElement("div");club.className="card club-card";club.id="secPM";
+  club.innerHTML="<h2>🌙 الحصة الثانية — تدريب النادي الأهلي</h2>"+
+    "<div class='muted'>اتبع محتوى حصة الفريق وقرارات المدرب؛ هذه الصفحة لا تضيف تمارين جيم مسائية فوق التدريب الجماعي.</div>"+
+    "<div class='dev-card'><b>قبل التدريب:</b> إذا كانت حصة الصباح قوية أو شعرت بثقل في الساقين، أخبر المدرب وخفّف الجهد الإضافي. لا تعوّض تمارين فاتتك.</div>"+
+    "<div class='dev-card'><b>بعد التدريب:</b> وجبة مناسبة، ماء حسب العطش والتعرق، وتسجيل التعب/الألم. إذا كان تدريب الأهلي شديداً، تصبح الحصة التالية تعافياً.</div>"+
+    "<div class='note'>يوم المباراة واليوم التالي لمباراة U18 لهما الأولوية؛ اتبع تعليمات النادي، ولا تنفّذ سرعة أو قوة إضافية إذا كان الحمل مرتفعاً.</div>";
+  box.appendChild(club);
 }
 
 
@@ -949,7 +961,7 @@ function renderComprehensivePlan(){
   hero.innerHTML="<h2>🧭 مركز إعداد لاعب المحور — الخطة الشاملة</h2>"+
     "<div class='muted'>تحديث 28 أكتوبر 2026 • نسخة ما بعد اختبارات الميدتيرم: بداية العودة التدريجية 6–8 نوفمبر.</div>"+
     "<div class='cue'>قوي بذكاء • أشوفها إلى يدي • رجولي أول • التالي</div>"+
-    "<div class='soft-note'><b>قاعدة أساسية:</b> بعد الاختبارات: برنامج الصباح مخصص للإعداد البدني، وتدريب الأهلي بعد الظهر/المساء هو الحصة المهارية والتكتيكية. لا نجعل كل صباح شديداً؛ إذا كان تدريب الفريق أو المباراة شاقاً، خفّض جرعة الصباح أو استبدلها بالتعافي.</div>";
+    "<div class='soft-note'><b>قاعدة أساسية:</b> بعد الاختبارات: برنامج الصباح مخصص للإعداد البدني، وتدريب الأهلي بعد الظهر/المساء هو الحصة الجماعية؛ لا توجد حصة جيم مسائية إضافية مفروضة. لا نجعل كل صباح شديداً؛ إذا كان تدريب الفريق أو المباراة شاقاً، خفّض جرعة الصباح أو استبدلها بالتعافي.</div>";
   box.appendChild(hero);
 
   var match=document.createElement("div");match.className="card";
@@ -961,9 +973,9 @@ function renderComprehensivePlan(){
   box.appendChild(match);
 
   var report=document.createElement("div");report.className="card";
-  report.innerHTML="<h2>📊 بياناتك الحالية — لا نطارد نزول الوزن</h2>"+
+  report.innerHTML="<h2>📊 آخر قياس مسجل — لا نطارد نزول الوزن</h2>"+
     "<div class='metric-grid'>"+
-    "<div class='sum'><b>111.8 كغ</b><span>الوزن — 16 أكتوبر</span></div>"+
+    "<div class='sum'><b>111.8 كغ</b><span>آخر وزن مسجل — 16 أكتوبر</span></div>"+
     "<div class='sum'><b>46.5 كغ</b><span>الكتلة العضلية الهيكلية</span></div>"+
     "<div class='sum'><b>30.0 كغ</b><span>كتلة الدهون المقدرة</span></div>"+
     "<div class='sum'><b>26.8%</b><span>نسبة الدهون المقدرة</span></div></div>"+
@@ -1061,7 +1073,63 @@ function renderComprehensivePlan(){
     "<div class='dev-card'><b>أصفر:</b> نوم سيئ، ثقل بالساقين أو تدريب فريق شاق — قلّل الجرعة إلى النصف أو احذفها.</div>"+
     "<div class='dev-card'><b>أحمر:</b> ألم حاد، عرج، دوخة أو أعراض غير معتادة — أوقف التدريب وأخبر ولي أمرك والمدرب واطلب المساعدة المناسبة.</div>"+
     "<div class='note'>الخطة تساعدك على التطور، لكنها لا تضمن أن تكون أفضل لاعب في كل مباراة. سنستخدم التقييم الأسبوعي لتعديل الجرعة تدريجياً، لا لإجبارك على الالتزام بتمرين غير مناسب.</div>";
+
   box.appendChild(rules);
+
+  // Organize the long plan into collapsible sections with direct navigation.
+  var planNav=document.createElement("div");planNav.className="card";
+  planNav.innerHTML="<div class='plan-nav-title'>اختر القسم الذي تريد فتحه</div><div class='plan-nav' id='planNavButtons'></div>";
+  var navButtons=[
+    ["plan-speed","⚡ السرعة واللياقة"],
+    ["plan-strength","🏋️ القوة"],
+    ["plan-pivot","🏐 مهارات Pivot"],
+    ["plan-defense","🛡️ الدفاع"],
+    ["plan-recovery","♻️ الوقاية والتعافي"],
+    ["plan-tracking","📊 المتابعة"],
+    ["plan-mind","🧠 التركيز"],
+    ["plan-food","🍽️ التغذية"]
+  ];
+  var navHost=planNav.querySelector("#planNavButtons");
+  navButtons.forEach(function(item){
+    var b=document.createElement("button");b.type="button";b.textContent=item[1];
+    b.onclick=function(){
+      var target=document.getElementById(item[0]);
+      if(!target)return;
+      target.classList.remove("collapsed");
+      target.scrollIntoView({behavior:"smooth",block:"start"});
+    };
+    navHost.appendChild(b);
+  });
+  box.insertBefore(planNav,box.children[1]);
+
+  function organizeCard(card,id,open){
+    if(!card)return;
+    card.id=id;
+    card.classList.add("plan-section");
+    var oldTitle=card.querySelector(":scope > h2");
+    var title=oldTitle?oldTitle.textContent:"قسم البرنامج";
+    if(oldTitle)oldTitle.remove();
+    var body=document.createElement("div");body.className="accordion-body";
+    while(card.firstChild)body.appendChild(card.firstChild);
+    var head=document.createElement("div");head.className="accordion-title";
+    head.innerHTML="<b>"+title+"</b><span class='arr'>▼</span>";
+    head.onclick=function(){card.classList.toggle("collapsed");};
+    card.appendChild(head);card.appendChild(body);
+    if(!open)card.classList.add("collapsed");
+  }
+  var planCards=box.children;
+  // Child order after inserting navigation: hero, nav, start, profile, pivot, defense, strength, conditioning, speed, mind, food, tracking, rules.
+  organizeCard(planCards[2],"plan-start",true);
+  organizeCard(planCards[3],"plan-profile",false);
+  organizeCard(planCards[4],"plan-pivot",false);
+  organizeCard(planCards[5],"plan-defense",false);
+  organizeCard(planCards[6],"plan-strength",false);
+  organizeCard(planCards[7],"plan-recovery",false);
+  organizeCard(planCards[8],"plan-speed",true);
+  organizeCard(planCards[9],"plan-mind",false);
+  organizeCard(planCards[10],"plan-food",false);
+  organizeCard(planCards[11],"plan-tracking",false);
+  organizeCard(planCards[12],"plan-rules",false);
 }
 
 function renderFood(){
@@ -1114,8 +1182,8 @@ renderFood();
 </script>
 
 <footer id="site-version" aria-label="نسخة الموقع" style="max-width:680px;margin:14px auto 24px;padding:12px 10px 18px;text-align:center;color:#9ca3af;font:12px/1.8 system-ui,sans-serif;border-top:1px solid #303038;">
-  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v1.2.0</div>
-  <div>BUILD 2026.10.28.1 · آخر تعديل: 28 أكتوبر 2026</div>
+  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v1.3.0</div>
+  <div>BUILD 2026.10.28.2 · آخر تعديل: 28 أكتوبر 2026</div>
 </footer>
 
 </body>
