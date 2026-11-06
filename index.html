@@ -169,6 +169,7 @@
     <button class="tab" id="tabReport" onclick="showTab('report')">📊 التقرير</button>
     <button class="tab" id="tabFood" onclick="showTab('food')">🍽️ الأكل</button>
     <button class="tab" id="tabPlan" onclick="showTab('plan')">🧭 الإعداد الشامل</button>
+    <button class="tab" id="tabMonth" onclick="showTab('month')">📆 خطة 30 يوماً</button>
   </div>
 
   <div id="trainBox"></div>
@@ -178,6 +179,7 @@
   <div id="reportBox" style="display:none;"></div>
   <div id="foodBox" style="display:none;"></div>
   <div id="planBox" style="display:none;"></div>
+  <div id="monthBox" style="display:none;"></div>
 </div>
 
 <script>
@@ -190,37 +192,37 @@ function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"
 
 /* ===== مكتبة تمارين صباح/مساء — اختر جرعة قصيرة واحدة حسب حمل الفريق ===== */
 var SCHED=[
- {day:"الأحد",title:"سرعة وتسارع",cal:"الصباح: 15–25 دقيقة • المساء: الأهلي",
+ {day:"الأحد",title:"مهارات Pivot واتخاذ القرار",cal:"الصباح: 10–15 دقيقة مهارات • المساء: الأهلي",
   am:[
-   {cat:"🔥 إحماء ديناميكي",ex:[["Ankle Rocks + فتح الحوض","2×8"],["A-March","2×10م"],["Wall Sprint","2×5/رجل"]]},
-   {cat:"⚡ تسارع وجودة",ex:[["انطلاق 5م","4 تكرارات — راحة 60–90ث"],["توقف متزن بعد اندفاع قصير","3 تكرارات"]]},
-   {cat:"🏐 لمسة كرة اختيارية",ex:[["استلام نظيف بكرة اليد Size 2","2×6 — فقط إذا كنت منتعشاً"]]}
+   {cat:"🏐 استقبال وتحكم",ex:[["استلام كرة اليد مقاس 2","2×6 تمريرات نظيفة"],["استلام منخفض مع ثني الركبتين","2×5"],["Catch → Protect","2×5"]]},
+   {cat:"🧠 قرار",ex:[["اختيار اتجاه بعد إشارة زميل","2×5 — سرعة متحكم بها"]]}
   ],pm:[]},
- {day:"الاثنين",title:"قوة A",cal:"الصباح: 30–40 دقيقة • المساء: الأهلي",
+ {day:"الاثنين",title:"قوة A — الجسم السفلي والجذع",cal:"08:15–09:00 صباحاً • المساء: الأهلي",
   am:[
-   {cat:"🏋️ قوة أساسية",ex:[["Goblet/Box Squat","3×5–6 — اترك 2–3 تكرارات"],["Romanian Deadlift خفيف","3×6"],["Dumbbell/Cable Row","3×8"]]},
+   {cat:"🏋️ قوة بإشراف مدرب",ex:[["Goblet/Box Squat","2×8 — تقنية مريحة"],["Romanian Deadlift خفيف","2×8"],["Split Squat","2×6/رجل"]]},
    {cat:"🧱 ثبات",ex:[["Calf Raise","2×10–12"],["Pallof Press","2×8/جهة"]]}
   ],pm:[]},
- {day:"الثلاثاء",title:"لياقة هوائية سهلة",cal:"الصباح: 20–25 دقيقة • المساء: الأهلي",
+ {day:"الثلاثاء",title:"تحمل سهل أو استشفاء",cal:"الصباح: 15–20 دقيقة اختيارية • المساء: الأهلي",
   am:[
-   {cat:"❤️ تحمّل سهل",ex:[["دراجة أو مشي سريع","20–25 د — شدة تسمح بالكلام"],["Mobility للكاحل والورك","5–8 د"]]},
-   {cat:"🎯 استقبال اختياري",ex:[["Low Catch بكرة اليد Size 2","2×6 — جودة فقط"]]}
+   {cat:"❤️ تحمّل منخفض الشدة",ex:[["دراجة ثابتة أو مشي سريع","15–20 د — تستطيع التحدث بجمل كاملة"],["حركة الكاحل والورك","5 د"]]},
+   {cat:"🟡 شرط التنفيذ",ex:[["إذا كان تدريب الفريق شديداً أو متضمناً لياقة قوية","احذف هذه الحصة وخذ تعافياً"]]}
   ],pm:[]},
- {day:"الأربعاء",title:"استشفاء ووقاية",cal:"الصباح: 12–18 دقيقة • المساء: الأهلي حسب الجاهزية",
+ {day:"الأربعاء",title:"قرار واستلام خفيف",cal:"الصباح أو بعد الجامعة: 10–12 دقيقة • المساء: الأهلي",
   am:[
-   {cat:"♻️ حركة ووقاية",ex:[["Glute Bridge","2×10"],["Single-Leg Balance","2×20ث/رجل"],["Tibialis Raise","2×12"],["Band Pull Apart","2×12"]]}
+   {cat:"🎯 استجابة بصرية",ex:[["استلام من اتجاهين بإشارة زميل","2×5"],["كرة تنس: تتبع والتقاط بسيط","2×20ث — دون إنهاك"],["تخيل موقف Pivot وقرار مناسب","2 د"]]}
   ],pm:[]},
- {day:"الخميس",title:"قوة B",cal:"الصباح: 30–40 دقيقة • المساء: الأهلي",
+ {day:"الخميس",title:"قوة B — الجزء العلوي والثبات",cal:"12:15–12:50 ظهراً • المساء: الأهلي",
   am:[
-   {cat:"🏋️ قوة الجسم بالكامل",ex:[["Split Squat","2×6/رجل"],["Hip Hinge أو RDL خفيف","2×6"],["Push-up أو ضغط مناسب","3×6–8"],["Row/Lat Pulldown","3×8"]]},
-   {cat:"🧱 ثبات وكتف",ex:[["Side Plank","2×20–30ث/جهة"],["Band Pull Apart","2×12"],["External Rotation","2×12/جهة"]]}
+   {cat:"🏋️ قوة مساندة بإشراف مدرب",ex:[["Seated Cable Row","2×10"],["Dumbbell Bench Press","2×8"],["Band Pull-Apart","2×12–15"]]},
+   {cat:"🧱 الكتف والجذع",ex:[["Band External Rotation","2×12/جهة"],["Side Plank","2×20ث/جهة"]]}
   ],pm:[]},
  {day:"الجمعة",title:"راحة كاملة",cal:"راحة من الإعداد البدني • لا يوجد تدريب الأهلي",
   am:[],pm:[]},
- {day:"السبت",title:"سرعة خاصة بكرة اليد — اختيارية",cal:"الصباح: 15–20 دقيقة إذا كنت منتعشاً • المساء: الأهلي",
+ {day:"السبت",title:"تسارع قصير وجودة الحركة",cal:"الصباح: 15–20 دقيقة • المساء: الأهلي",
   am:[
-   {cat:"⚡ تسارع وتغيير اتجاه",ex:[["انطلاق 5م","3 تكرارات — راحة كاملة"],["انطلاق 10م","3 تكرارات — راحة كاملة"],["تغيير اتجاه مخطط + توقف متزن","3/جهة بسرعة متوسطة"]]},
-   {cat:"📝 شرط التنفيذ",ex:[["نفّذها فقط إذا لا توجد مباراة/إرهاق","وإلا خذ راحة"]]}
+   {cat:"🔥 إحماء ديناميكي",ex:[["Ankle Rocks + فتح الحوض","2×8"],["A-March","2×10م"],["Wall Sprint","2×5/رجل"]]},
+   {cat:"⚡ تسارع",ex:[["انطلاق 5م","3 مرات — راحة 2 د"],["انطلاق 10م","مرتان — راحة 2–3 د"],["توقف متزن بعد الانطلاق","2 مرات"]]},
+   {cat:"🟡 شرط التنفيذ",ex:[["إذا تضمن تدريب الفريق سرعات أو كنت مرهقاً","احذف السرعة الإضافية"]]}
   ],pm:[]}
 ];
 
@@ -456,7 +458,7 @@ function vidRow(name){
 }
 
 function showTab(t){
-  var ids=["train","week","schedule","develop","report","food","plan"];
+  var ids=["train","week","schedule","develop","report","food","plan","month"];
   ids.forEach(function(x){
     var btn=document.getElementById("tab"+x.charAt(0).toUpperCase()+x.slice(1));
     var box=document.getElementById(x+"Box");
@@ -959,9 +961,9 @@ function renderComprehensivePlan(){
   box.innerHTML="";
   var hero=document.createElement("div");hero.className="card";
   hero.innerHTML="<h2>🧭 مركز إعداد لاعب المحور — الخطة الشاملة</h2>"+
-    "<div class='muted'>تحديث 28 أكتوبر 2026 • نسخة ما بعد اختبارات الميدتيرم: بداية العودة التدريجية 6–8 نوفمبر.</div>"+
+    "<div class='muted'>تحديث 6 نوفمبر 2026 • الخطة العملية الحالية موجودة في تبويب «خطة 30 يوماً» للفترة 7 نوفمبر–6 ديسمبر.</div>"+
     "<div class='cue'>قوي بذكاء • أشوفها إلى يدي • رجولي أول • التالي</div>"+
-    "<div class='soft-note'><b>قاعدة أساسية:</b> بعد الاختبارات: برنامج الصباح مخصص للإعداد البدني، وتدريب الأهلي بعد الظهر/المساء هو الحصة الجماعية؛ لا توجد حصة جيم مسائية إضافية مفروضة. لا نجعل كل صباح شديداً؛ إذا كان تدريب الفريق أو المباراة شاقاً، خفّض جرعة الصباح أو استبدلها بالتعافي.</div>";
+    "<div class='soft-note'><b>قاعدة أساسية:</b> استخدم تبويب «خطة 30 يوماً» كبرنامجك الحالي. تدريب الأهلي 6 أيام أسبوعياً يُحسب ضمن الحمل؛ احذف الإضافة إذا كانت حصة الفريق شديدة أو تضمنت نفس المهارة أو اللياقة.</div>";
   box.appendChild(hero);
 
   var match=document.createElement("div");match.className="card";
@@ -1132,6 +1134,163 @@ function renderComprehensivePlan(){
   organizeCard(planCards[12],"plan-rules",false);
 }
 
+
+/* ===== 📆 برنامج 30 يوماً — 7 نوفمبر إلى 6 ديسمبر 2026 ===== */
+function render30DayPlan(){
+  var box=document.getElementById("monthBox");if(!box)return;
+  if(!DB.month30)DB.month30={logs:{}};
+  if(!DB.month30.logs)DB.month30.logs={};
+  box.innerHTML="";
+
+  var hero=document.createElement("div");hero.className="card plan-intro";
+  hero.innerHTML="<h2>📆 مشروع 30 يوماً — إعداد لاعب Pivot</h2>"+
+    "<div class='muted'>7 نوفمبر – 6 ديسمبر 2026 • العمر 17 • الطول 194 سم • الوزن الحالي المبلغ عنه 110 كغ</div>"+
+    "<div class='cue'>انطلق بقوة • استمر بذكاء • شوف الكرة • قرر • التالي</div>"+
+    "<div class='soft-note'><b>الأولويات:</b> التسارع 5–10م، القدرة على تكرار الجهد، سرعة القرار، التحكم بالتوتر، والقوة الوظيفية. فحص InBody بتاريخ 16 أكتوبر: 111.8 كغ، كتلة عضلية هيكلية 46.5 كغ، ودهون مقدرة 26.8%؛ استخدمه كمرجع لا كهدف لإنقاص الوزن.</div>"+
+    "<div class='note'><b>قاعدة أمان:</b> تدريب الأهلي 6 أيام أسبوعياً ولمدة ساعتين تقريباً يُحسب ضمن الحمل. هذه الخطة إضافة محدودة وليست 6 حصص أخرى. إذا كان تدريب الفريق شديداً أو يتضمن نفس العمل، احذف الحصة الإضافية. لا تعوّض ما فات ولا تتمرن حتى الإنهاك.</div>";
+  box.appendChild(hero);
+
+  var structure=document.createElement("div");structure.className="card";
+  structure.innerHTML="<h2>🗓️ هيكل الأسبوع الثابت</h2>"+
+    "<div class='sched-grid'>"+
+    "<div class='sched-day'><b>السبت — سرعة</b>15–20 دقيقة صباحاً: إحماء، 3×5م و2×10م مع راحة كاملة. ألغِها إذا كان تدريب الفريق يحتوي على سرعات.</div>"+
+    "<div class='sched-day'><b>الأحد — مهارات Pivot</b>10–15 دقيقة: استلام صدر ومنخفض، حماية الكرة، واستقبال من اتجاهين.</div>"+
+    "<div class='sched-day'><b>الاثنين — قوة A، 08:15–09:00</b>سكوات، RDL خفيف، Split Squat، سمانة وPallof Press. بإشراف مدرب وبجهد متوسط.</div>"+
+    "<div class='sched-day'><b>الثلاثاء — تحمل سهل اختياري</b>15–20 دقيقة دراجة أو مشي تسمح بالتحدث. احذفها إذا كانت حصة الفريق شديدة أو متضمنة لياقة.</div>"+
+    "<div class='sched-day'><b>الأربعاء — القرار والاستلام</b>10–12 دقيقة: تمريرات بإشارة غير متوقعة، رؤية الكرة، ثم اختيار الحل.</div>"+
+    "<div class='sched-day'><b>الخميس — قوة B، 12:15–12:50</b>سحب ظهر، ضغط صدر، Band Pull-Apart، دوران خارجي للكتف وثبات الجذع. لا أرجل ثقيلة قبل الأهلي.</div>"+
+    "<div class='sched-day'><b>الجمعة — راحة كاملة</b>لا جيم ولا سرعة ولا لياقة إضافية. مشي عادي اختياري فقط.</div></div>"+
+    "<div class='soft-note'>تدريبات الأهلي تقع ضمن نافذة 4:00–7:30 مساءً ومدتها نحو ساعتين؛ وقت بدايتها الفعلي يتغير. لا تفترض أن الحصة الإضافية إلزامية: الجاهزية وشدة تدريب الفريق تحددان تنفيذها.</div>";
+  box.appendChild(structure);
+
+  var strength=document.createElement("div");strength.className="card";
+  strength.innerHTML="<h2>🏋️ حصتا القوة</h2>"+
+    "<div class='dev-card'><h3>الاثنين — قوة A (35–45 دقيقة)</h3>Goblet/Box Squat 2×8؛ Romanian Deadlift خفيف 2×8؛ Split Squat 2×6 لكل رجل؛ Calf Raise 2×10–12؛ Pallof Press 2×8 لكل جهة. راحة 60–120 ثانية، واترك 2–3 تكرارات في الاحتياط.</div>"+
+    "<div class='dev-card'><h3>الخميس — قوة B (25–35 دقيقة)</h3>Seated Cable Row 2×10؛ Dumbbell Bench Press 2×8؛ Band Pull-Apart 2×12–15؛ Band External Rotation 2×12 لكل جهة؛ Side Plank 2×20 ثانية لكل جهة. جهد متوسط وتقنية سليمة.</div>"+
+    "<div class='note'>الحصتان مشروطتان بإشراف مدرب مؤهل وبأن تكون متعافياً. إذا كان تدريب الفريق في اليوم السابق شديداً أو كان تعبك مرتفعاً، اختصر الحصة أو ألغها. لا أوزان قصوى ولا تكرارات حتى الفشل، ولا تجمع جيم أرجل ثقيل مع تدريب فريق شديد.</div>";
+  box.appendChild(strength);
+
+  var speed=document.createElement("div");speed.className="card";
+  speed.innerHTML="<h2>⚡ التسارع والتحمل</h2>"+
+    "<div class='dev-card'><h3>التسارع</h3>إحماء 8–10 دقائق، 3 انطلاقات لمسافة 5م و2 لمسافة 10م، مع راحة 2–3 دقائق. توقف إذا تدهورت السرعة أو التقنية. لا تحول السرعة إلى سباق تحمل.</div>"+
+    "<div class='dev-card'><h3>التحمل</h3>لا نضيف فترات جري عالية الشدة فوق 6 تدريبات فريق. جرعة الدراجة/المشي 15–20 دقيقة سهلة مرة واحدة أسبوعياً فقط إذا لم تتضمن حصة الأهلي لياقة عالية وكان التعافي جيداً.</div>"+
+    "<div class='dev-card'><h3>الرشاقة</h3>تغيير اتجاه مخطط 2×3 لكل جهة بسرعة متوسطة، مع توقف متزن. أضفه فقط عندما لا يتضمن تدريب الفريق تغيير اتجاه مكثفاً.</div>";
+  box.appendChild(speed);
+
+  var skill=document.createElement("div");skill.className="card";
+  skill.innerHTML="<h2>🏐 مهارات Pivot وسرعة القرار</h2>"+
+    "<div class='dev-card'><h3>استلام الكرة — 10–15 دقيقة</h3>كرة مقاس 2: 2×6 تمريرات صدر؛ 2×5 كرات منخفضة مع ثني الركبتين؛ 2×5 استقبال متحرك. الهدف يدان جاهزتان، امتصاص الكرة، ثم حمايتها.</div>"+
+    "<div class='dev-card'><h3>قرار بعد الاستلام</h3>مع زميل: اتفقا على إشارتين؛ يختار الزميل إحداهما بشكل مفاجئ، وأنت تنظر للكرة والمدافع والمساحة ثم تمرر أو تدور أو تسدد وفق الموقف. ابدأ ببطء وارفع السرعة عندما تبقى التقنية جيدة.</div>"+
+    "<div class='cue'>شوف ← جهّز ← انزل ← امتص ← احمِ ← قرر</div>"+
+    "<div class='dev-card'><h3>قاعدة الخطأ</h3>بعد أي استلام ضائع أو قرار خاطئ: كلمة «التالي»، عودة للتمركز، ومهمة واحدة في الهجمة التالية. لا تحاول تعويض الخطأ باندفاع.</div>";
+  box.appendChild(skill);
+
+  var mind=document.createElement("div");mind.className="card";
+  mind.innerHTML="<h2>🧠 العقلية والتركيز — 8 دقائق يومياً</h2>"+
+    "<div class='dev-card'><b>دقيقتان تنفس:</b> شهيق هادئ 3 ثوانٍ وزفير 5 ثوانٍ، دون حبس النفس.</div>"+
+    "<div class='dev-card'><b>دقيقتان تخيل:</b> تخيل كرة قادمة من زاوية صعبة، تتابعها حتى اليد، تستلمها وتحميها.</div>"+
+    "<div class='dev-card'><b>دقيقتان قرار:</b> تخيل المدافع يتحرك، ثم اختَر التمرير أو الدوران أو التسديد.</div>"+
+    "<div class='dev-card'><b>دقيقتان بعد الخطأ:</b> تخيل أنك أخطأت ثم قلت «التالي» وعدت فوراً إلى مهمتك.</div>"+
+    "<div class='cue'>أشوفها إلى يدي • احمِ الكرة • التالي</div>"+
+    "<div class='note'>بما أنك وصفت توتراً وخفقاناً وتأخراً في رؤية الكرة أثناء المنافسة، أخبر ولي أمرك ومدرباً تثق به. إذا استمر الأمر وأثر في كل مباراة، اطلب مساعدة مختص نفسي رياضي أو مختص صحي. أوقف اللعب واطلب تقييماً عاجلاً عند ألم الصدر أو الإغماء أو الدوخة الشديدة.</div>";
+  box.appendChild(mind);
+
+  var life=document.createElement("div");life.className="card";
+  life.innerHTML="<h2>🌙 النوم والدراسة والهاتف</h2>"+
+    "<div class='dev-card'><h3>النوم</h3>الهدف 8–10 ساعات. موعد مستهدف 21:30. استيقاظ 06:15 يومي الأحد والأربعاء للمحاضرات المبكرة، و06:45–07:00 في بقية الأيام. إذا تأخر التدريب، قدّم العشاء والاستحمام ثم نم؛ لا تؤخر النوم لاستخدام الهاتف.</div>"+
+    "<div class='dev-card'><h3>الهاتف</h3>هدف مبدئي 90 دقيقة ترفيه يومياً، ولا هاتف أول 30 دقيقة بعد الاستيقاظ أو آخر 60 دقيقة قبل النوم. الدراسة والاتصالات الضرورية خارج حد الترفيه.</div>"+
+    "<div class='dev-card'><h3>الدراسة</h3>الأحد والأربعاء بعد الجامعة 60–90 دقيقة؛ الاثنين والخميس 60 دقيقة على الأقل؛ الثلاثاء والسبت فترة مراجعة 60–90 دقيقة حسب الواجبات. لا نلغي الدراسة للنشاط الإضافي.</div>"+
+    "<div class='dev-card'><h3>روتين الصباح</h3>ماء، ضوء صباح، إفطار، 5–8 دقائق حركة مفاصل عند الحاجة، ثم ابدأ بأهم مهمة بدلاً من فتح المقاطع.</div>";
+  box.appendChild(life);
+
+  var food=document.createElement("div");food.className="card";
+  food.innerHTML="<h2>🍽️ التغذية والمكملات</h2>"+
+    "<div class='dev-card'><h3>من وجبتين إلى نمط أكثر انتظاماً</h3>استهدف 3 وجبات رئيسية مع 1–2 وجبة خفيفة حسب الجوع والتدريب: إفطار، غداء، وجبة قبل الأهلي، وعشاء بعد التدريب. اجمع في الوجبة مصدراً للكربوهيدرات ومصدراً للبروتين وفاكهة أو خضار عندما تتوفر.</div>"+
+    "<div class='dev-card'><h3>قبل وبعد التدريب</h3>وجبة مألوفة قبل التدريب بنحو 2–3 ساعات إذا أمكن، وسناك بسيط قبلها عند الحاجة. بعد التدريب تناول العشاء المعتاد وماءً؛ لا تحتاج مسحوقاً خاصاً لإتمام الاستشفاء.</div>"+
+    "<div class='note'><b>المكملات:</b> ذكرت أنك تستخدم الكرياتين ومسحوق البروتين وعمرك 17 سنة. لا ترفع الجرعة ولا تضف مكملات أو Pre-workout. راجع ولي أمرك وطبيباً أو اختصاصي تغذية رياضية للناشئين مع عبوات المنتجات قبل الاستمرار؛ الطعام والنوم أساس البرنامج.</div>";
+  box.appendChild(food);
+
+  var phases=document.createElement("div");phases.className="card";
+  phases.innerHTML="<h2>📈 مراحل الثلاثين يوماً</h2>"+
+    "<div class='dev-card'><h3>الأيام 1–7 | 7–13 نوفمبر — تأسيس</h3>قياس آمن للتسارع والاستلام؛ مجموعتان خفيفتان في الجيم؛ مهارات أساسية؛ لا ترفع الحمل في الأسبوع الأول.</div>"+
+    "<div class='dev-card'><h3>الأيام 8–14 | 14–20 نوفمبر — تثبيت</h3>حافظ على نفس عدد المجموعات، وحسّن التقنية والاستقبال من زوايا مختلفة. زد التكرار فقط إذا كنت منتعشاً وبموافقة المدرب.</div>"+
+    "<div class='dev-card'><h3>الأيام 15–21 | 21–27 نوفمبر — تطوير القرار</h3>أضف إشارات غير متوقعة في تمرين الاستلام، مع المحافظة على جرعة السرعة قصيرة. لا تضف فترات لياقة عالية.</div>"+
+    "<div class='dev-card'><h3>الأيام 22–28 | 28 نوفمبر–4 ديسمبر — تخفيف</h3>قلل مجموعات الجيم والمهارات الإضافية بنحو الثلث إلى النصف، حافظ على بعض الانطلاقات القصيرة فقط إذا كنت منتعشاً، ولا تجرب تمارين جديدة.</div>"+
+    "<div class='dev-card'><h3>اليوم 29 | السبت 5 ديسمبر — الأهلي × الاتحاد U20</h3>المباراة 19:15 حسب الجدول المرسل. لا جيم ولا سرعة إضافية؛ وجبات مألوفة، سوائل، إحماء الفريق، وكلمة التركيز «أشوفها إلى يدي».</div>"+
+    "<div class='dev-card'><h3>اليوم 30 | الأحد 6 ديسمبر — استشفاء ومراجعة</h3>لا جيم ولا لياقة إضافية. اتبع تعليمات النادي للاستشفاء بعد المباراة، وسجل الاستلامات والتركيز والتعب.</div>";
+  box.appendChild(phases);
+
+  var report=document.createElement("div");report.className="card";
+  report.innerHTML="<h2>📊 سجل اللاعب اليومي</h2>"+
+    "<div class='muted'>اختر التاريخ وسجل النوم والتعب والتركيز وملاحظاتك. تُحفظ البيانات محلياً في متصفح جهازك.</div>"+
+    "<div class='weekly-grid'>"+
+    "<div class='tf weekly-wide'><label>التاريخ</label><input id='m30Date' type='date' min='2026-11-07' max='2026-12-06' value='2026-11-07'></div>"+
+    "<div class='tf'><label>ساعات النوم</label><input id='m30Sleep' type='number' min='0' max='14' step='0.5' placeholder='مثلاً 8.5'></div>"+
+    "<div class='tf'><label>التعب 1–10</label><input id='m30Fatigue' type='number' min='1' max='10' placeholder='1–10'></div>"+
+    "<div class='tf'><label>التوتر قبل التدريب 0–10</label><input id='m30StressBefore' type='number' min='0' max='10'></div>"+
+    "<div class='tf'><label>التوتر بعد التدريب 0–10</label><input id='m30StressAfter' type='number' min='0' max='10'></div>"+
+    "<div class='tf'><label>استلامات نظيفة /30</label><input id='m30Catch' type='number' min='0' max='30'></div>"+
+    "<div class='tf'><label>أفضل زمن 5م (ث)</label><input id='m30Sprint' type='number' min='0' step='0.01'></div>"+
+    "<div class='tf weekly-wide'><label>ملاحظات اليوم</label><textarea id='m30Notes' placeholder='الطاقة، جودة التدريب، القرار، أي ألم أو ملاحظة...'></textarea></div></div>"+
+    "<button class='bigbtn green' id='m30Save'>💾 حفظ سجل اليوم</button><div id='m30Status' class='weekly-status' aria-live='polite'></div>"+
+    "<div class='note'>إذا ظهر ألم يغير الجري أو الحركة، أو دوخة شديدة أو ألم صدر أو إغماء، أوقف التدريب وأخبر ولي أمرك واطلب تقييماً طبياً مناسباً.</div>";
+  box.appendChild(report);
+
+  function loadMonthLog(){
+    var date=document.getElementById("m30Date").value;
+    var log=DB.month30.logs[date]||{};
+    ["Sleep","Fatigue","StressBefore","StressAfter","Catch","Sprint","Notes"].forEach(function(k){
+      var e=document.getElementById("m30"+k);
+      if(e)e.value=log[k.toLowerCase()]||"";
+    });
+    document.getElementById("m30Status").textContent=log.savedAt?"✅ يوجد سجل محفوظ لهذا اليوم":"";
+  }
+  document.getElementById("m30Date").onchange=loadMonthLog;
+  document.getElementById("m30Save").onclick=function(){
+    var date=document.getElementById("m30Date").value;
+    if(!date){document.getElementById("m30Status").textContent="اختر التاريخ أولاً";return;}
+    var log={};
+    ["Sleep","Fatigue","StressBefore","StressAfter","Catch","Sprint","Notes"].forEach(function(k){
+      var e=document.getElementById("m30"+k);
+      log[k.toLowerCase()]=e?e.value:"";
+    });
+    log.savedAt=new Date().toISOString();
+    DB.month30.logs[date]=log;saveDB();
+    document.getElementById("m30Status").textContent="✅ تم حفظ سجل "+date+" على هذا الجهاز";
+  };
+  loadMonthLog();
+
+  var calendar=document.createElement("div");calendar.className="card";
+  calendar.innerHTML="<h2>🗓️ الأيام الثلاثون</h2><div class='muted'>الخطة اليومية الإضافية المختصرة؛ تدريب الأهلي يبقى حصتك الجماعية إذا كان مقرراً، والجمعة راحة كاملة.</div>";
+  var dayNames=["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+  var dayWork={
+    0:"مهارات Pivot واتخاذ القرار 10–15 د",
+    1:"قوة A صباحاً 08:15–09:00",
+    2:"تحمل سهل 15–20 د اختياري أو استشفاء",
+    3:"استلام ورد فعل وقرار 10–12 د",
+    4:"قوة B بعد الجامعة 12:15–12:50",
+    5:"راحة كاملة",
+    6:"تسارع 15–20 د إذا كنت منتعشاً"
+  };
+  for(var i=0;i<30;i++){
+    var dt=new Date(2026,10,7+i);
+    var iso=dt.getFullYear()+"-"+String(dt.getMonth()+1).padStart(2,"0")+"-"+String(dt.getDate()).padStart(2,"0");
+    var card=document.createElement("div");card.className="sched-day";
+    var special="";
+    if(i===0)special=" — تقييم البداية";
+    if(i===28)special=" — المباراة 19:15";
+    if(i===29)special=" — استشفاء ومراجعة";
+    var work=dayWork[dt.getDay()];
+    if(i===0)work="تقييم خفيف: 5م و10م إذا كنت منتعشاً + اختبار 30 كرة";
+    if(i===28)work="لا تمارين إضافية؛ مباراة الأهلي U20 ضد الاتحاد";
+    if(i===29)work="تعافٍ فقط، بلا جيم أو سرعة إضافية";
+    card.innerHTML="<b>اليوم "+(i+1)+" — "+dayNames[dt.getDay()]+" "+dt.getDate()+"/"+(dt.getMonth()+1)+special+"</b><div class='muted'>"+work+"</div>";
+    calendar.appendChild(card);
+  }
+  box.appendChild(calendar);
+}
+
+
 function renderFood(){
   var box=document.getElementById("foodBox");
   if(!box)return;
@@ -1174,6 +1333,7 @@ function renderFood(){
 
 renderTrain();
 renderComprehensivePlan();
+render30DayPlan();
 renderWeekOverview();
 renderSchedule();
 renderDevelop();
@@ -1182,8 +1342,8 @@ renderFood();
 </script>
 
 <footer id="site-version" aria-label="نسخة الموقع" style="max-width:680px;margin:14px auto 24px;padding:12px 10px 18px;text-align:center;color:#9ca3af;font:12px/1.8 system-ui,sans-serif;border-top:1px solid #303038;">
-  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v1.3.0</div>
-  <div>BUILD 2026.10.28.2 · آخر تعديل: 28 أكتوبر 2026</div>
+  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v1.4.0</div>
+  <div>BUILD 2026.11.06.1 · آخر تعديل: 6 نوفمبر 2026</div>
 </footer>
 
 </body>
