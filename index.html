@@ -184,7 +184,7 @@ function todayKey(){var d=new Date();return d.getFullYear()+"-"+String(d.getMont
 function fmtDate(d){return d.getDate()+" "+AR_MONTHS[d.getMonth()]+" "+d.getFullYear();}
 function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
-/* ===== مكتبة تمارين صباح/مساء — اختر جرعة قصيرة واحدة حسب حمل الفريق ===== */
+/* ===== الخطة الأسبوعية الفردية للاعب Pivot ===== */
 var SCHED=[
  {day:"الأحد",title:"راحة واستشفاء",cal:"راحة • 10–15 دقيقة حركة اختيارية",am:[],pm:[]},
  {day:"الاثنين",title:"قوة A + ثبات الكاحل",cal:"30–35 دقيقة",am:[{cat:"🧱 قوة الجسم السفلي",ex:[["Chair Squat","2×8"],["Glute Bridge","2×10"],["Supported Split Squat","2×6/رجل"]]},{cat:"🦶 ثبات الكاحل والجذع",ex:[["Calf Raise","2×12"],["Single-Leg Balance","2×20ث/رجل"],["Dead Bug","2×8/جهة"]]}],pm:[]},
@@ -195,16 +195,12 @@ var SCHED=[
  {day:"السبت",title:"تحمل متكرر خاص بكرة اليد",cal:"15–20 دقيقة • تُستبدل بالمباراة إذا كان لديك مباراة",am:[{cat:"🏃 جهد متكرر مضبوط",ex:[["تحرك سريع 10 ثوانٍ ثم مشي","5 جولات — راحة 50 ثانية"],["مشي هادئ للتبريد","5 دقائق"]]},{cat:"🟡 شرط التنفيذ",ex:[["إذا كان الكاحل يؤلمك أو غير ثابت","ألغِ الجولات واكتفِ بالمشي المريح"]]}],pm:[]}
 ];
 
-/* ===== خطة التدرج 8 أسابيع =====
-الأسبوع 1: تأسيس — RIR3، Plyo منخفض الحجم، تعلم الهبوط والاستلام النظيف.
-الأسبوع 2: تثبيت — نفس التمارين، +2.5–5% للأوزان فقط إذا بقيت التقنية ممتازة.
-الأسبوع 3: بناء — RIR2-3، أضف جولة واحدة لبعض السرعة/الاستلام فقط إذا الجودة ثابتة.
-الأسبوع 4: DELOAD — خفّض المجموعات 35–40%، لا أرقام قياسية، حافظ على السرعة.
-الأسبوع 5: Performance I — مقاومة أعلى قليلاً، استقبال Seal/Band، Reactive Speed.
-الأسبوع 6: Performance II — شدة أعلى مع نفس الحجم تقريباً، لا تدريب حتى الفشل.
-الأسبوع 7: Peak Quality — أعلى جودة/سرعة، حجم أقل 10–15%، استقبال بسرعة مباراة.
-الأسبوع 8: Taper + Test — خفّض الحجم 40–50% واختبر 5m، Broad Jump، الاستلام 30 كرة.
-قواعد: توقف عن Plyo/Sprint إذا انخفضت الجودة بوضوح؛ لا تضف تمارين فوق الجدول؛ يوم الجمعة راحة.
+/* ===== تدرج الخطة الحالية: 4 أسابيع =====
+الأسبوع 1: تعلّم التقنية، مجموعتان، وتحمل سهل.
+الأسبوع 2: زيادة بسيطة في تمرين أو اثنين فقط إذا كان التعافي جيداً.
+الأسبوع 3: جودة مهارات Pivot والسرعة القصيرة دون رفع الحجم كثيراً.
+الأسبوع 4: تخفيف 40–50%، تنشيط قصير قبل المباراة، والمباراة تستبدل الحصة.
+قواعد: لا حديد مفترض، لا قفز أو سرعة مع ألم/عدم ثبات الكاحل، ويوم الأحد استشفاء.
 ===== */
 
 /* ===== فيديوهات التمارين ===== */
@@ -504,14 +500,6 @@ function renderReportOnly(){
  document.getElementById("saveR2").onclick=function(){Object.keys(mp).forEach(function(id){var e=document.getElementById(id);if(e)wr[mp[id]]=e.value;});wr.savedAt=new Date().toISOString();DB.weekly["week"+wk]=wr;saveDB();document.getElementById("r2Status").textContent="✅ تم حفظ تقرير الأسبوع "+wk;};
 }
 /* ===== الجامعة + مباريات الأهلي ===== */
-var UNI={
-  0:["08:00–09:50 AP 5096-065","10:00–11:50 AP 5307-065"],
-  1:["12:00–13:50 AP 5201-065"],
-  2:[],
-  3:["08:00–09:50 AP 5201-065","10:00–11:50 AP 4103-065"],
-  4:["10:00–11:50 AP 4103-065"],
-  5:[],6:[]
-};
 var MATCHES=[
   {date:"2026-09-09",cat:"U18",opp:"سماهيج",time:"17:00"},
   {date:"2026-09-16",cat:"U18",opp:"التضامن",time:"17:00"},
@@ -535,36 +523,6 @@ var MATCHES=[
 function parseYMD(s){var p=s.split("-");return new Date(+p[0],+p[1]-1,+p[2],12,0,0);}
 function daysDiff(a,b){return Math.round((parseYMD(a)-parseYMD(b))/(24*60*60*1000));}
 function activeMatches(){return MATCHES.filter(function(m){return (m.cat==="U18"&&DB.settings.u18)||(m.cat==="U20"&&DB.settings.u20);});}
-function dayMode(k){
-  var ms=activeMatches();
-  var today=ms.filter(function(m){return m.date===k;});
-  var tomorrow=ms.filter(function(m){return daysDiff(m.date,k)===1;});
-  var yesterday=ms.filter(function(m){return daysDiff(k,m.date)===1;});
-  if(today.length)return {type:"match",matches:today};
-  if(tomorrow.length&&yesterday.length)return {type:"between",next:tomorrow,prev:yesterday};
-  if(tomorrow.length)return {type:"prematch",matches:tomorrow};
-  if(yesterday.length)return {type:"recovery",matches:yesterday};
-  return {type:"normal",matches:[]};
-}
-function smartPlanHTML(mode){
-  if(mode.type==="match")return "<div class='status-title'>🏐 يوم مباراة — المباراة هي تمرين اليوم</div><div class='status-sub'>لا جيم ثقيل • لا Plyometrics كاملة • لا Conditioning. فقط تفعيل خفيف ثم إحماء الفريق والمباراة.</div>";
-  if(mode.type==="between")return "<div class='status-title'>🔄 بين مباراتين — Recovery + Activation فقط</div><div class='status-sub'>بعد مباراة وقبل أخرى: لا تعوض أي تمرين فائت. تعافي + تفعيل خفيف فقط.</div>";
-  if(mode.type==="prematch")return "<div class='status-title'>⚡ قبل المباراة بـ24 ساعة</div><div class='status-sub'>Mobility + استلام خفيف + 2–3 انطلاقات قصيرة. لا Squat/RDL ثقيل، لا Nordics، لا Sled ثقيل.</div>";
-  if(mode.type==="recovery")return "<div class='status-title'>♻️ اليوم التالي للمباراة</div><div class='status-sub'>تعافي فقط: مشي/Bike خفيف + Mobility + نوم وسوائل. لا تعويض للتمارين الثقيلة.</div>";
-  return "<div class='status-title'>✅ يوم تدريب طبيعي — تدريب الأهلي هو الحمل الأساسي</div><div class='status-sub'>اختر جرعة فردية واحدة قصيرة من الخطة؛ لا تنفذ الصباح والمساء كاملين فوق تدريب الفريق. إذا كان تدريب الصالة يبدأ 4:00 م، فالجيم بعده اختياري وبحجم مختصر فقط إذا كنت منتعشاً. إذا كان تدريب الملعب يبدأ 5:30 م، لا تعمل رجل ثقيلة قبله؛ اكتفِ بتفعيل/جزء علوي خفيف. يوم ما بعد مباراة U18 اتبع قاعدة الأهلي: لا تدريب فريق، وتعافٍ فقط. خفّض أو أوقف التمرين عند الألم أو الإرهاق الواضح.</div>";
-}
-function renderSmartStatus(box,now){
-  var k=todayKey(),mode=dayMode(k),uni=UNI[now.getDay()]||[];
-  var c=document.createElement("div");c.className="status-card "+(mode.type==="between"?"prematch":mode.type);
-  var pills="";
-  if(uni.length)pills+="<span class='pill'>🎓 "+uni.join(" • ")+"</span>";
-  if(mode.type==="match")mode.matches.forEach(function(m){pills+="<span class='pill'>🏐 "+m.cat+" ضد "+m.opp+" — "+m.time+"</span>";});
-  if(mode.type==="prematch")mode.matches.forEach(function(m){pills+="<span class='pill'>غداً "+m.cat+" ضد "+m.opp+" — "+m.time+"</span>";});
-  if(mode.type==="between")mode.next.forEach(function(m){pills+="<span class='pill'>غداً "+m.cat+" ضد "+m.opp+" — "+m.time+"</span>";});
-  c.innerHTML=smartPlanHTML(mode)+(pills?"<div class='pillrow'>"+pills+"</div>":"");
-  box.appendChild(c);return mode;
-}
-function shouldOverride(mode){return mode.type!=="normal";}
 function renderSchedule(){
   var box=document.getElementById("scheduleBox");if(!box)return;box.innerHTML="";
   var c=document.createElement("div");c.className="card";
