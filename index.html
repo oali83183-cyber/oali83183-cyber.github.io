@@ -597,6 +597,16 @@ function renderTrain(){
  box.insertAdjacentHTML("beforeend",'<div class="note">هذه خطتك الفردية، ولا تعتمد على مواعيد أو شدة تدريبات النادي. لا نفترض دخول الحديد: تمارين القوة حالياً بوزن الجسم والحبل المطاطي. ابدأ بإحماء 5–8 دقائق واترك 2–3 تكرارات قبل التعب في تمارين القوة. بسبب إصابة الكاحل السابقة، لا تنفذ القفز أو السرعة إذا ظهر ألم أو عدم ثبات؛ استبدلهما بالمشي والحركة اللطيفة.</div>');
  var start=new Date((DB.settings.startDate||"2026-11-09")+"T00:00:00"),wk=Math.min(4,Math.max(1,Math.ceil((now-start)/(7*24*60*60*1000))+1));
  var phases=["الأسبوع 1 — تأسيس: تعلّم الحركات، مجموعتان، تحمل سهل 20–22 دقيقة، واستلام بجودة.","الأسبوع 2 — بناء تدريجي: زد تكراراً أو مجموعة واحدة فقط في تمرين أو اثنين إذا كان التعافي جيداً.","الأسبوع 3 — تخصص Pivot: حافظ على القوة، وركز على جودة الاستلام والحركة والسرعة القصيرة دون زيادة كبيرة في الحجم.","الأسبوع 4 — تخفيف واستعداد: خفّض حجم التدريب الإضافي 40–50%، لا تجرب تمارين جديدة، واجعل المباراة بدلاً من حصة ذلك اليوم."];
+ if(wk===4&&di===5){
+  s={day:"الجمعة",title:"تنشيط خفيف قبل المباراة",cal:"10–15 دقيقة",am:[{cat:"تنشيط وحركة",ex:[["Ankle Rocks","1×8/رجل"],["A-March","1×10م"],["انطلاق 5م","2 مرات — راحة كاملة"]]}],pm:[]};
+  document.getElementById("dayTitle").textContent=s.day+" — "+s.title;document.getElementById("dateSub").textContent=fmtDate(now)+" | "+s.cal;
+ }
+ var matchToday=typeof activeMatches==="function"?activeMatches().filter(function(m){return m.date===k;}):[];
+ if(matchToday.length){
+  var matchCard=document.createElement("div");matchCard.className="card";
+  matchCard.innerHTML="<h2>🏐 يوم المباراة</h2><div class='muted'>المباراة تستبدل حصة التدريب المخططة اليوم. لا تضف قوة أو سرعة أو تحمل؛ اكتفِ بإحماء المباراة المعتاد، الطعام والماء والراحة.</div>";
+  box.appendChild(matchCard);return;
+ }
  box.insertAdjacentHTML("beforeend","<div class='card'><h2>🗓️ الأسبوع "+wk+" من 4</h2><div class='muted'>"+phases[wk-1]+"</div></div>");
  if(!DB.fixed)DB.fixed={};var farr=DB.fixed[k]||[false,false,false],hab=document.createElement("div");hab.className="card";hab.innerHTML="<h2>📌 عادات يومية بسيطة</h2>";
  ["💧 شرب الماء بانتظام حسب العطش والحرارة","😴 إعطاء النوم 8–10 ساعات","🦶 ملاحظة ألم الكاحل أو عدم ثباته"].forEach(function(h,i){var row=document.createElement("div");row.className="habit";var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!farr[i];cb.onchange=function(){farr[i]=cb.checked;DB.fixed[k]=farr;saveDB();row.classList.toggle("done",cb.checked);};if(cb.checked)row.classList.add("done");var sp=document.createElement("span");sp.className="nm";sp.textContent=h;row.appendChild(cb);row.appendChild(sp);hab.appendChild(row);});box.appendChild(hab);
