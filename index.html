@@ -600,9 +600,11 @@ function renderTrain(){
  if(wk===4&&di===5){
   s={day:"الجمعة",title:"تنشيط خفيف قبل المباراة",cal:"10–15 دقيقة",am:[{cat:"تنشيط وحركة",ex:[["Ankle Rocks","1×8/رجل"],["A-March","1×10م"],["انطلاق 5م","2 مرات — راحة كاملة"]]}],pm:[]};
   document.getElementById("dayTitle").textContent=s.day+" — "+s.title;document.getElementById("dateSub").textContent=fmtDate(now)+" | "+s.cal;
+  summary.innerHTML="<div class='sum'><b>"+countSession(s.am)+"</b><span>تمارين اليوم</span></div><div class='sum'><b>"+s.cal+"</b><span>مدة/نوع اليوم</span></div><div class='sum'><b>تنشيط</b><span>وضع اليوم</span></div>";
  }
  var matchToday=typeof activeMatches==="function"?activeMatches().filter(function(m){return m.date===k;}):[];
  if(matchToday.length){
+  summary.innerHTML="<div class='sum'><b>🏐</b><span>مباراة</span></div><div class='sum'><b>راحة</b><span>لا تدريب إضافي</span></div><div class='sum'><b>استعداد</b><span>وضع اليوم</span></div>";
   var matchCard=document.createElement("div");matchCard.className="card";
   matchCard.innerHTML="<h2>🏐 يوم المباراة</h2><div class='muted'>المباراة تستبدل حصة التدريب المخططة اليوم. لا تضف قوة أو سرعة أو تحمل؛ اكتفِ بإحماء المباراة المعتاد، الطعام والماء والراحة.</div>";
   box.appendChild(matchCard);return;
