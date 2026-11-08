@@ -60,10 +60,10 @@ footer{text-align:center;color:var(--muted);font-size:11px;margin:20px 0}
 <div id="weekButtons"></div><div id="weekDetail" class="item"></div>
 </div>
 <div class="card"><h2>تدرّج الأسابيع حتى المباراة</h2>
-<div class="item"><b>9–15 نوفمبر | تأسيس</b><small>تعلم الحركات، بناء التحمل السهل، تثبيت أساس القوة والاستلام.</small></div>
-<div class="item"><b>16–22 نوفمبر | بناء</b><small>زيادة بسيطة في وقت التحمل أو عدد التكرارات، وليس الاثنين معاً.</small></div>
-<div class="item"><b>23–29 نوفمبر | تخصص Pivot</b><small>جودة الحركة والاستلام والحماية والسرعة القصيرة، مع الحفاظ على التعافي.</small></div>
-<div class="item"><b>30 نوفمبر–5 ديسمبر | تخفيف واستعداد</b><small>تقليل حجم التدريب بوضوح، إبقاء اللمسات المهارية، والراحة قبل المباراة.</small></div>
+<div class="item"><b>9–15 نوفمبر | الأسبوع 1: تأسيس</b><small>القوة مجموعتان لكل تمرين؛ التحمل السهل 20 دقيقة؛ المهارات 2–3 جولات؛ السرعة 4 × 5م فقط إذا كان الكاحل جاهزاً.</small></div>
+<div class="item"><b>16–22 نوفمبر | الأسبوع 2: بناء</b><small>القوة 2–3 مجموعات؛ التحمل 22–25 دقيقة؛ الجهد المتكرر 6 جولات؛ السرعة 4–5 انطلاقات قصيرة مع راحة كاملة.</small></div>
+<div class="item"><b>23–29 نوفمبر | الأسبوع 3: تخصص Pivot</b><small>القوة حتى 3 مجموعات إذا بقيت التقنية ممتازة؛ التحمل 25 دقيقة؛ الجهد المتكرر 7 جولات؛ السرعة 5–6 انطلاقات قصيرة إذا لا ألم ولا عدم ثبات.</small></div>
+<div class="item"><b>30 نوفمبر–5 ديسمبر | الأسبوع 4: تخفيف</b><small>خفض حجم التدريب؛ الثلاثاء مهارات خفيفة، الأربعاء تنشيط قصير، الخميس حركة ولمسات كرة، الجمعة راحة، والسبت المباراة.</small></div>
 </div>
 </section>
 
@@ -150,7 +150,8 @@ const STORE="pivotDailyOrganizerV3";
 let db={days:{},logs:{}};
 try{db=Object.assign(db,JSON.parse(localStorage.getItem(STORE))||{})}catch(e){}
 function saveDB(){localStorage.setItem(STORE,JSON.stringify(db))}
-function currentPlan(date){return weekPlan[new Date(date+"T12:00:00").getDay()]}
+const taperPlan={1:{day:1,name:"الاثنين",title:"تحمل خفيف + حركة",duration:"25–30 دقيقة",detail:"مشي أو دراجة سهلة 15–20 دقيقة، ثم حركة الكاحل والورك 8 دقائق.",type:"تخفيف"},2:{day:2,name:"الثلاثاء",title:"مهارات Pivot خفيفة",duration:"20–25 دقيقة",detail:"استلام مريح من الحائط، كرات منخفضة، وتحرك بسيط. لا تدريب قوة مرهق.",type:"مهارة"},3:{day:3,name:"الأربعاء",title:"تنشيط سرعة قصير",duration:"15–20 دقيقة",detail:"إحماء جيد، ثم 3–4 انطلاقات 5م فقط إذا كان الكاحل مستقراً تماماً وبلا ألم. وإلا اكتفِ بالمشي والحركة.",type:"تنشيط"},4:{day:4,name:"الخميس",title:"حركة ولمسات كرة",duration:"15–20 دقيقة",detail:"Mobility خفيفة وتمرير واستلام مريح. توقف وأنت تشعر بالنشاط.",type:"استعداد"},5:{day:5,name:"الجمعة",title:"راحة قبل المباراة",duration:"راحة",detail:"راحة ونوم جيد وتجهيز الأدوات. لا حصة لياقة أو قوة.",type:"راحة"},6:{day:6,name:"السبت",title:"يوم المباراة",duration:"حسب موعد المباراة",detail:"المباراة هي النشاط الرئيسي. إحماء الفريق المعتاد، ولا تضف تدريباً فردياً قبلها.",type:"مباراة"},0:{day:0,name:"الأحد",title:"استشفاء بعد المباراة",duration:"راحة / 10–15 دقيقة",detail:"راحة. مشي لطيف وحركة خفيفة فقط إذا شعرت أنك بخير.",type:"استشفاء"}};
+function currentPlan(date){const d=new Date(date+"T12:00:00");const start=new Date("2026-11-30T12:00:00");const end=new Date("2026-12-06T12:00:00");if(d>=start&&d<=end)return taperPlan[d.getDay()];return weekPlan[d.getDay()]}
 function renderWorkout(){const d=$("daydate").value,p=currentPlan(d);$("todayWorkout").innerHTML="<b>"+p.name+" · "+p.title+"</b><small>"+p.duration+"</small><p>"+p.detail+"</p><span class='tag'>"+p.type+"</span>"}
 function renderTasks(){
  const d=$("daydate").value; if(!db.days[d])db.days[d]=[];
@@ -160,7 +161,7 @@ function renderTasks(){
   const cb=document.createElement("input");cb.type="checkbox";cb.checked=!!t.done;cb.setAttribute("aria-label","تم الإنجاز");cb.onchange=()=>{t.done=cb.checked;saveDB();renderTasks()};
   const name=document.createElement("input");name.type="text";name.value=t.name||"";name.className="taskname";name.placeholder="اسم المهمة";name.onchange=()=>{t.name=name.value;saveDB()};
   const time=document.createElement("input");time.type="time";time.value=t.time||"";time.title="الوقت";time.onchange=()=>{t.time=time.value;saveDB()};
-  const mins=document.createElement("input");mins.type="number";mins.min="0";mins.placeholder="دقيقة";mins.value=t.mins||"";mins.title="المدة بالدقائق";mins.onchange=()=>{t.mins=mins.value;saveDB()};
+  const mins=document.createElement("input");mins.type="text";mins.placeholder="المدة";mins.value=t.mins||"";mins.title="المدة بالدقائق";mins.onchange=()=>{t.mins=mins.value;saveDB()};
   const del=document.createElement("button");del.textContent="×";del.title="حذف المهمة";del.onclick=()=>{db.days[d].splice(i,1);saveDB();renderTasks()};
   row.append(cb,name,time,mins,del);box.append(row);
  });
