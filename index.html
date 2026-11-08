@@ -188,13 +188,13 @@ function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"
 
 /* ===== الخطة الأسبوعية الفردية للاعب Pivot ===== */
 var SCHED=[
- {day:"الأحد",title:"راحة + استشفاء",cal:"راحة • 8–10 دقائق حركة اختيارية",am:[{cat:"♻️ استشفاء وحركة",ex:[["Ankle Rocks","2×8/رجل"],["Hip Mobility","2×8"],["مشي خفيف","10 دقائق — اختياري"]]}],pm:[]},
- {day:"الاثنين",title:"تحمل هوائي أساسي",cal:"20–25 دقيقة • شدة تسمح بالتحدث",am:[{cat:"❤️ التحمل الهوائي",ex:[["مشي سريع أو دراجة سهلة","15–20 دقيقة"],["Ankle Rocks","2×8/رجل"],["Hip Mobility","2×8"]]}],pm:[]},
- {day:"الثلاثاء",title:"مهارات Pivot والاستلام",cal:"20–25 دقيقة • جودة الاستلام أولاً",am:[{cat:"🏐 استقبال وتحكم",ex:[["حائط استلام خفيف (بيدين)","3×8"],["Low Ball Pickup","2×6"],["Catch → Protect → Turn","2×5"]]},{cat:"🧠 حركة وقرار",ex:[["حركة قدم Pivot 3 نقاط","2×3 جولات"],["استلام متحرك من الحائط","2×5"]]}],pm:[]},
- {day:"الأربعاء",title:"قوة الجسم والمفاصل",cal:"25–30 دقيقة • وزن الجسم والمطاط",am:[{cat:"🧱 القوة الأساسية",ex:[["Chair Squat","2×8"],["Glute Bridge","2×10"],["Supported Split Squat","2×6/رجل"],["Calf Raise","2×12"]]},{cat:"💪 الجزء العلوي والجذع",ex:[["Push-up","2×8"],["Band Row","2×10"],["Dead Bug","2×8/جهة"],["Single-Leg Balance","2×20ث/رجل"]]}],pm:[]},
- {day:"الخميس",title:"Mobility + توازن",cal:"15–20 دقيقة • تحكم ومدى مريح",am:[{cat:"🦶 الكاحل والتوازن",ex:[["Ankle Rocks","2×10/رجل"],["Calf Raise","2×10"],["Single-Leg Balance","2×20ث/رجل"]]},{cat:"🤸 الورك والجذع",ex:[["Hip Mobility","2×8"],["Dead Bug","2×8/جهة"],["Band Pull-Apart","2×12"]]}],pm:[]},
- {day:"الجمعة",title:"سرعة قصيرة وانفجار — عند الجاهزية فقط",cal:"15–20 دقيقة • لا تنفذها مع ألم أو عدم ثبات الكاحل",am:[{cat:"🔥 إحماء",ex:[["Ankle Rocks","2×8/رجل"],["A-March","2×10م"]]},{cat:"⚡ سرعة وتحكم",ex:[["انطلاق 5م","3 مرات — راحة 2 دقيقة"],["توقف متزن بعد الانطلاق","2×2 مرات"]]},{cat:"⬆️ هبوط منخفض — اختياري",ex:[["قفزات صغيرة والهبوط بثبات","2×3 فقط إذا كان الكاحل ثابتاً بلا ألم"]]}],pm:[]},
- {day:"السبت",title:"تحمل متكرر مضبوط — مرحلة لاحقة",cal:"لا تبدأ قبل التأكد من جاهزية الكاحل والتعافي",am:[{cat:"🏃 جهد متكرر",ex:[["تحرك سريع 10 ثوانٍ ثم مشي","4 جولات — 50 ثانية مشي بين الجولات"],["مشي سريع أو دراجة سهلة","5 دقائق تهدئة"]]},{cat:"🟡 بديل آمن",ex:[["مشي خفيف","10–15 دقيقة إذا لم تكن جاهزاً للجهد المتكرر"]]}],pm:[]}
+ {day:"الأحد",title:"استشفاء من تدريبات الفريق",cal:"راحة • 8–10 دقائق حركة اختيارية",am:[{cat:"♻️ استشفاء وحركة",ex:[["Ankle Rocks","2×8/رجل"],["Hip Mobility","2×8"],["مشي خفيف","10 دقائق — اختياري"]]}],pm:[]},
+ {day:"الاثنين",title:"تحمل خفيف — عند الحاجة فقط",cal:"10–15 دقيقة سهلة إذا لم تكن حصة الفريق مرهقة",am:[{cat:"❤️ التحمل الهوائي الاختياري",ex:[["مشي سريع أو دراجة سهلة","10–15 دقيقة — فقط إذا كان التعافي جيداً"],["Ankle Rocks","1×8/رجل"]]}],pm:[]},
+ {day:"الثلاثاء",title:"استلام Pivot — أولوية الأسبوع",cal:"10–15 دقيقة • الأفضل مع زميل",am:[{cat:"🏐 توقيت ومدى الاستلام",ex:[["استلام إلى نقطة اليد (مع زميل)","2×6 تمريرات"],["استلام متحرك خطوتين","2×5 تمريرات"],["استلام من جهتين مختلفتين","2×4 تمريرات"]]}],pm:[]},
+ {day:"الأربعاء",title:"راحة أو حركة لطيفة",cal:"لا تضف حصة قوة إذا كان تدريب الفريق قوياً",am:[{cat:"♻️ استشفاء",ex:[["Ankle Rocks","1×8/رجل"],["Hip Mobility","1×8"],["مشي خفيف","5–10 دقائق — اختياري"]]}],pm:[]},
+ {day:"الخميس",title:"قوة وثبات قصيرة — إذا كنت متعافياً",cal:"12–18 دقيقة • لا تصل للفشل العضلي",am:[{cat:"🧱 قوة أساسية",ex:[["Chair Squat","2×8"],["Glute Bridge","2×10"],["Band Row","2×10"],["Dead Bug","2×6/جهة"],["Single-Leg Balance","2×20ث/رجل"]]}],pm:[]},
+ {day:"الجمعة",title:"استلام خفيف أو راحة",cal:"8–10 دقائق • لا سرعة أو قفز إذا كان هناك إجهاد أو مباراة قريبة",am:[{cat:"🏐 لمس الكرة",ex:[["حائط استلام خفيف (بيدين)","2×8 — تمريرات مريحة"],["Low Ball Pickup","1×5 — تحكم فقط"]]}],pm:[]},
+ {day:"السبت",title:"راحة / استشفاء",cal:"إذا لعبت مباراة أو كان تدريب الفريق قوياً فهذه راحة",am:[{cat:"♻️ استشفاء اختياري",ex:[["مشي خفيف","10 دقائق — اختياري"],["Hip Mobility","1×8"]]}],pm:[]}
 ];
 
 /* ===== تدرج الخطة الحالية: 4 أسابيع =====
@@ -218,7 +218,10 @@ var VID={
   "Bulgarian Split Squat":"bulgarian split squat","Romanian Deadlift دمبل":"romanian deadlift dumbbell",
   "Lateral Lunge":"lateral lunge","Leg Press":"leg press","Calf Raise":"calf raise",
   "Farmer Walk ثقيل":"farmer carry","مشي سريع":"brisk walking","تدليك ساعد":"forearm massage ice bottle",
-  "حائط استلام خفيف (بيدين)":"handball wall catch two hands","دراجة Zone2":"stationary bike zone 2",
+  "حائط استلام خفيف (بيدين)":"handball wall catch two hands",
+  "استلام إلى نقطة اليد (مع زميل)":"handball pivot receiving pass hand target drill",
+  "استلام متحرك خطوتين":"handball pivot moving to receive pass drill",
+  "استلام من جهتين مختلفتين":"handball pivot catch passes left right drill","دراجة Zone2":"stationary bike zone 2",
   "Chair Squat":"chair squat exercise","Glute Bridge":"glute bridge exercise","Supported Split Squat":"supported split squat exercise","Single-Leg Balance":"single leg balance exercise","Dead Bug":"dead bug core exercise","Ankle Rocks":"ankle mobility rocks","Hip Mobility":"hip mobility exercises","Band Row":"resistance band row exercise","Band Pull-Apart":"resistance band pull apart exercise","A-March":"A march running drill","انطلاق 5م":"5 meter acceleration sprint","قفزات صغيرة والهبوط بثبات":"small jump landing mechanics",
   "Push-up":"push up form","Lat Pulldown":"lat pulldown","Dumbbell Shoulder Press":"dumbbell shoulder press",
   "تمدد كامل":"full body stretch","تفعيل جلوتس Bridge":"glute bridge activation","Wall Sprint":"wall sprint drill",
@@ -274,6 +277,10 @@ var EXPLAIN={
   "مرونة":"استطالة ناعمة لكل الجسم، كل وضعية 20-30 ثانية بدون ارتداد.",
   "دلو رز + تدليك ساعد":"اغمس يدك في دلو أرز وافتح/أغلق أصابعك بسرعة، ثم مرر زجاجة مثلجة على الساعد.",
   "حائط استلام خفيف (بيدين)":"ارمِ الكرة على الحائط واستلمها بيدين مفرودتين — أصابع مفرودة وامتصاص.",
+  "استلام إلى نقطة اليد (مع زميل)":"اطلب من زميلك تمريرات دقيقة أولاً إلى اليدين. جهّز اليدين مبكراً أمام مسار الكرة، مدّهما نحو نقطة وصولها، افتح الأصابع ثم اسحب الذراعين قليلاً لامتصاص الكرة. ابدأ ببطء ومن دون مدافع.",
+  "استلام متحرك خطوتين":"ابدأ من وضع Pivot، تحرك خطوتين لتفتح زاوية تمرير، أظهر يديك كهدف واضح، ثم استقبل الكرة بكلتا اليدين وأنت متوازن. لا تمد يديك قبل أن تتضح جهة التمريرة.",
+  "استلام من جهتين مختلفتين":"يقف الزميل أمامك ويمرر بالتناوب إلى يمينك ويسارك ضمن مدى مريح. حرّك القدمين والجذع أولاً لتقابل مسار الكرة، ثم مدّ اليدين. لا تحاول الوصول بمدّ الذراع فقط إذا كانت الكرة بعيدة؛ غيّر موقعك.",
+
   "دراجة Zone2 نبض 130-140":"دراجة ثابتة بنبض 130-140، خفيفة ومستمرة.",
   "Push-up + Lat Pulldown + Shoulder Press":"ضغط + سحب خلفي + ضغط كتف — علوي خفيف RIR4.",
   "Plank + تمدد كامل":"ثبت جسمك خطاً مستقيماً على الساعدين، ثم تمدد كامل للجسم.",
@@ -493,7 +500,7 @@ function countSession(groups){
 }
 function renderWeekOverview(){
  var box=document.getElementById("weekBox");if(!box)return;
- box.innerHTML="<div class='card'><h2>🗓️ جدول الأسبوع</h2><div class='soft-note'>خطة فردية لا تفترض مواعيد أو شدة تدريبات النادي، ولا تفترض استخدام الحديد. القوة حالياً بوزن الجسم والحبل المطاطي.</div></div>";
+ box.innerHTML="<div class='card'><h2>🗓️ جدول الأسبوع</h2><div class='soft-note'>بما أن تدريبات الأهلي 4 مرات أو أكثر أسبوعياً، فهذا جدول وحدات فردية قصيرة اختيارية وليس ستة أيام إضافية. تدريب الفريق والمباراة لهما الأولوية؛ احذف الوحدة الفردية في يوم الحصة القوية أو التعب.</div></div>";
  SCHED.forEach(function(d){var card=document.createElement("div");card.className="card";var n=countSession(d.am);
  var details=d.am.length?d.am.map(function(g){return "<b>"+g.cat+"</b><br>"+g.ex.map(function(x){return x[0]+" — "+x[1];}).join("<br>");}).join("<div style='margin-top:8px'></div>"):"راحة كاملة أو حركة لطيفة اختيارية";
  card.innerHTML="<div class='accordion-title'><div><b>"+d.day+" — "+d.title+"</b><div class='muted'>"+(n?n+" تمارين • "+d.cal:"راحة / استشفاء")+"</div></div><span class='arr'>▼</span></div><div class='accordion-body muted' style='margin-top:8px'>"+details+"</div>";
@@ -578,7 +585,7 @@ function renderTrain(){
  document.getElementById("dayTitle").textContent=s.day+" — "+s.title;document.getElementById("dateSub").textContent=fmtDate(now)+" | "+s.cal;box.innerHTML="";
  var q=document.createElement("div");q.className="quickbar";q.innerHTML="<button class='qbtn' onclick=\"document.getElementById('secSession')?.scrollIntoView({behavior:'smooth'})\">🏐 تمرين اليوم</button><button class='qbtn' onclick=\"showTab('week')\">🗓️ الأسبوع</button><button class='qbtn' onclick=\"showTab('report')\">📊 التقرير</button>";box.appendChild(q);
  var summary=document.createElement("div");summary.className="today-summary";summary.innerHTML="<div class='sum'><b>"+countSession(s.am)+"</b><span>تمارين اليوم</span></div><div class='sum'><b>"+(s.am.length?s.cal:"راحة")+"</b><span>مدة/نوع اليوم</span></div><div class='sum'><b>"+(s.am.length?"جلسة فردية":"استشفاء")+"</b><span>وضع اليوم</span></div>";box.appendChild(summary);
- box.insertAdjacentHTML("beforeend",'<div class="note">هذه خطتك الفردية، ولا تعتمد على مواعيد أو شدة تدريبات النادي. لا نفترض دخول الحديد: تمارين القوة حالياً بوزن الجسم والحبل المطاطي. ابدأ بإحماء 5–8 دقائق واترك 2–3 تكرارات قبل التعب في تمارين القوة. بسبب إصابة الكاحل السابقة، لا تنفذ القفز أو السرعة إذا ظهر ألم أو عدم ثبات؛ استبدلهما بالمشي والحركة اللطيفة.</div>');
+ box.insertAdjacentHTML("beforeend",'<div class="note">بما أنك تتدرب مع الأهلي 4 مرات أو أكثر أسبوعياً، فهذه وحدات فردية قصيرة واختيارية وليست 6 حصص إضافية. تدريب الفريق والمباراة لهما الأولوية: إذا كان لديك تدريب قوي اليوم، احذف الوحدة الفردية أو اكتفِ بالحركة اللطيفة. لا تنفذ التحمل أو القوة أو السرعة فوق حمل فريق مرتفع، والمباراة تستبدل أي حصة. للاستلام: ابدأ بتمريرات دقيقة وبطيئة مع زميل، جهّز يديك مبكراً كهدف، حرّك قدميك وجذعك إلى مسار الكرة ثم استقبل بكلتا اليدين وامتصاص؛ زد الزوايا والحركة ثم ضغط المدافع تدريجياً فقط بإشراف المدرب. لا تصل للفشل العضلي، ولا تنفذ القفز/السرعة عند الألم أو عدم الثبات.</div>');
  var start=new Date((DB.settings.startDate||"2026-11-09")+"T00:00:00"),wk=Math.min(4,Math.max(1,Math.ceil((now-start)/(7*24*60*60*1000))+1));
  var phases=["الأسبوع 1 — تأسيس: تعلّم الحركات، مجموعتان، تحمل سهل 20–22 دقيقة، واستلام بجودة.","الأسبوع 2 — بناء تدريجي: زد تكراراً أو مجموعة واحدة فقط في تمرين أو اثنين إذا كان التعافي جيداً.","الأسبوع 3 — تخصص Pivot: حافظ على القوة، وركز على جودة الاستلام والحركة والسرعة القصيرة دون زيادة كبيرة في الحجم.","الأسبوع 4 — تخفيف واستعداد: خفّض حجم التدريب الإضافي 40–50%، لا تجرب تمارين جديدة، واجعل المباراة بدلاً من حصة ذلك اليوم."];
  if(wk===4&&di===5){
