@@ -42,6 +42,8 @@
   .exname{background:transparent;border:none;color:var(--txt);text-align:right;cursor:pointer;padding:0;font-family:inherit;}
   .exname:after{content:" 💡";opacity:.6;}
   .exinfo{font-size:12.5px;color:var(--sub);background:var(--card2);border:1px dashed var(--line);border-radius:8px;padding:8px 10px;margin:6px 0;line-height:1.7;}
+  .exhelp-btn{display:block;width:100%;margin:6px 0 2px;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:#202a38;color:#dbeafe;font:700 12.5px system-ui,Tahoma,sans-serif;text-align:right;cursor:pointer;}
+  .exinfo b{color:var(--gold);}
   .bigbtn{display:block;width:100%;border:none;border-radius:13px;padding:13px;font-size:14.5px;font-weight:900;cursor:pointer;font-family:inherit;background:var(--accent);color:#fff;}
   .bigbtn.green{background:var(--ok);color:#06210f;}
   .note{background:#1e1a0a;border:1px solid #6b5900;color:var(--gold);border-radius:10px;padding:8px 10px;font-size:11.5px;margin-bottom:10px;}
@@ -389,7 +391,31 @@ var EXPLAIN={
   "قفزات صغيرة والهبوط بثبات":"قفزات منخفضة جداً بالقدمين مع هبوط هادئ وثني بسيط للركبتين؛ ألغها إذا ظهر ألم أو عدم ثبات.",
   "مشي سريع أو دراجة سهلة":"جهد خفيف تستطيع خلاله التحدث بجمل كاملة.",
   "تحرك سريع 10 ثوانٍ ثم مشي":"تحرك بسرعة متحكم بها لعشر ثوانٍ ثم امشِ خمسين ثانية. لا تصل إلى العدو الأقصى.",
-  "استلام متحرك من الحائط":"ارمِ الكرة للحائط، تحرك خطوة جانبية قبل رجوعها ثم استلمها بكلتا اليدين."
+  "استلام متحرك من الحائط":"ارمِ الكرة للحائط، تحرك خطوة جانبية قبل رجوعها ثم استلمها بكلتا اليدين.",
+  "Chair Squat":"ضع كرسياً ثابتاً خلفك. افتح القدمين بعرض الكتفين، وادفع الوركين للخلف ثم انزل ببطء حتى تلمس الكرسي بخفة. قف بدفع الأرض بالقدمين. اجعل الركبتين باتجاه أصابع القدمين ولا تسقط على الكرسي.",
+  "Glute Bridge":"استلقِ على ظهرك، اثنِ الركبتين وضع القدمين على الأرض. شدّ عضلات البطن والمؤخرة وارفع الحوض حتى يصبح الجذع والفخذان على خط واحد، ثم انزل ببطء. لا تبالغ في تقويس أسفل الظهر.",
+  "Supported Split Squat":"قف في وضعية خطوة وامسك جداراً أو دعامة للتوازن. اثنِ الركبتين وانزل مسافة مريحة مع بقاء الجذع مستقراً، ثم ادفع بالقدم الأمامية للوقوف. اجعل الركبة في اتجاه أصابع القدم.",
+  "Calf Raise":"قف قرب جدار للتوازن، ارفع الكعبين ببطء حتى تقف على مقدمة القدمين، اثبت لحظة ثم انزل بتحكم. لا ترتد ولا تدع الكاحل يميل للخارج أو الداخل.",
+  "Single-Leg Balance":"قف قرب جدار أو كرسي ثابت. ارفع قدماً قليلاً عن الأرض وحافظ على توازنك 20 ثانية. انظر للأمام وحافظ على الركبة مرتخية. استخدم الدعامة عند الحاجة ولا تختبر التوازن إذا كان الكاحل غير ثابت.",
+  "Dead Bug":"استلقِ على ظهرك وارفع الذراعين والركبتين. مدّ الذراع اليمنى مع الساق اليسرى ببطء، ثم بدّل الجهة. حافظ على أسفل الظهر قريباً من الأرض ولا تسرّع الحركة.",
+  "مشي سريع أو دراجة سهلة":"اختر المشي أو الدراجة بوتيرة خفيفة إلى متوسطة. يجب أن تستطيع التحدث بجمل كاملة دون لهاث. خفف السرعة إذا لم تستطع الكلام براحة.",
+  "Ankle Rocks":"قف أمام جدار وضع إحدى القدمين أمام الأخرى. حرّك الركبة الأمامية باتجاه الجدار مع إبقاء الكعب ملامساً للأرض، ثم ارجع. نفّذ مدى حركة مريحاً دون ألم أو إجبار.",
+  "Hip Mobility":"قف مستنداً إلى دعامة عند الحاجة. حرّك الورك ببطء في دوائر صغيرة أو ارفع الركبة وافتحها للخارج ثم أعدها. حافظ على الجذع ثابتاً ولا تجبر المفصل على مدى واسع.",
+  "حائط استلام خفيف (بيدين)":"قف على مسافة قصيرة من الحائط ومرّر كرة اليد إليه بقوة متوسطة. جهّز اليدين أمام الجسم والأصابع مفتوحة، واستقبل الكرة بكلتا اليدين مع ثني بسيط للمرفقين وامتصاص سرعتها بسحبها نحو الصدر. ابدأ برميات مستقيمة وسهلة.",
+  "Low Ball Pickup":"اطلب من زميل تمرير الكرة منخفضة أو اجعلها ترتد أمامك. اثنِ الركبتين والوركين وانزل بجسمك بدلاً من ثني الظهر وحده. ضع اليدين خلف الكرة، استقبلها بهدوء ثم قرّبها إلى الصدر. لا تمدّ يدك فقط.",
+  "Catch → Protect → Turn":"استقبل الكرة بكلتا اليدين أولاً. اسحبها مباشرة إلى الصدر واحمها بالجسم مع إبقاء المرفقين في وضع طبيعي. بعد السيطرة عليها، ثبت قدم الارتكاز ثم نفّذ دوراناً قصيراً يميناً أو يساراً. لا تبدأ الدوران قبل امتلاك الكرة.",
+  "حركة قدم Pivot 3 نقاط":"ضع ثلاث علامات على شكل مثلث. تحرك بخطوات قصيرة بين العلامات مع بقاء الركبتين مثنيتين والجذع متوازناً. غيّر الاتجاه بهدوء، ولا تلفّ على الكاحل بقوة. الهدف دقة القدمين وليس السرعة القصوى.",
+  "استلام متحرك من الحائط":"مرّر الكرة إلى الحائط، خذ خطوة جانبية صغيرة ثم تحرك لاستقبال الارتداد بكلتا اليدين. حافظ على النظر على الكرة واستقبلها أمام الجسم. ابدأ ببطء ثم زد سرعة الحركة فقط مع بقاء الاستلام نظيفاً.",
+  "Push-up":"ضع اليدين تحت الكتفين والجسم في خط مستقيم. اثنِ المرفقين وانزل حتى يصبح الصدر قريباً من الأرض، ثم ادفع للعودة. إذا كان صعباً، نفّذه واليدان على سطح مرتفع ثابت. لا تدع أسفل الظهر يهبط.",
+  "Band Row":"ثبّت الحبل المطاطي في نقطة آمنة بمستوى الصدر أو الخصر. اسحب المرفقين للخلف باتجاه الجذع مع ضم لوحي الكتف، ثم ارجع ببطء. لا ترفع الكتفين ولا تستخدم اندفاع الجسم.",
+  "Band Pull-Apart":"أمسك الحبل أمام الصدر والذراعان شبه مستقيمتين. افتح الذراعين للخارج حتى يقترب الحبل من الصدر، ثم ارجع ببطء. حافظ على الكتفين منخفضين ولا تقوّس الظهر.",
+  "Band External Rotation":"ثبّت المرفق بجانب الجسم واثنه 90 درجة. أمسك الحبل واسحب اليد للخارج مع بقاء المرفق ملاصقاً للجذع، ثم ارجع ببطء. استخدم مقاومة خفيفة وحركة صغيرة دون ألم.",
+  "Side Plank":"استلقِ على جانبك واسند الجسم على الساعد، واجعل المرفق تحت الكتف. ارفع الحوض حتى يصبح الجسم بخط مستقيم، واثبت للمدة المطلوبة. يمكن ثني الركبتين لتسهيل التمرين.",
+  "A-March":"امشِ للأمام بخطوات متزنة. ارفع ركبة واحدة إلى مستوى مريح مع تحريك الذراع المعاكسة، ثم بدّل الجهة. اجعل القدم تهبط أسفل الجسم ولا تمِل للخلف.",
+  "انطلاق 5م":"قف خلف خط البداية مع ميل بسيط للأمام. انطلق بخطوات أولى قصيرة وقوية لمسافة 5 أمتار ثم أبطئ تدريجياً. خذ راحة كاملة بين المحاولات حتى تحافظ على جودة كل انطلاقة. لا تنفذه إذا ظهر ألم أو عدم ثبات بالكاحل.",
+  "توقف متزن بعد الانطلاق":"بعد انطلاقة قصيرة، خفف سرعتك تدريجياً بخطوات قصيرة ومتتابعة. اثنِ الركبتين قليلاً وحافظ على الجذع متوازناً. لا تتوقف فجأة ولا تلتف على قدم ثابتة.",
+  "قفزات صغيرة والهبوط بثبات":"نفّذ قفزات منخفضة جداً بالقدمين على سطح ثابت وغير زلق. اهبط بهدوء مع ثني بسيط للركبتين واحتفظ بالتوازن ثانيتين. هذا التمرين اختياري فقط إذا كان الكاحل بلا ألم وثابتاً؛ ألغِه عند أي ألم أو عدم ثبات.",
+  "تحرك سريع 10 ثوانٍ ثم مشي":"تحرك بسرعة متحكم بها لمدة 10 ثوانٍ، ثم امشِ بهدوء 50 ثانية لاستعادة التنفس. كرر العدد المحدد دون تحويله إلى عدو أقصى. أوقف الجولة إذا تراجعت جودة الحركة أو ظهر ألم."
 };
 
 var ALT={
@@ -577,7 +603,7 @@ function renderTrain(){
  s.am.forEach(function(grp){var gh=document.createElement("div");gh.className="section-title";gh.textContent=grp.cat;list.appendChild(gh);
   grp.ex.forEach(function(ex){var n=idx++,b=document.createElement("div");b.className="exbox";var row=document.createElement("div");row.className="ex";var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!arr[n];cb.onchange=function(){arr[n]=cb.checked;DB.am[k]=arr;saveDB();row.classList.toggle("done",cb.checked);update();};if(cb.checked)row.classList.add("done");
    var name=document.createElement("button");name.type="button";name.className="nm exname";name.textContent=ex[0];var st=document.createElement("span");st.className="st";st.textContent=ex[1];row.appendChild(cb);row.appendChild(name);row.appendChild(st);b.appendChild(row);
-   var info=document.createElement("div");info.className="exinfo";info.style.display="none";info.textContent=EXPLAIN[ex[0]]||"نفّذ الحركة بتحكم وتوقف إذا ظهر ألم.";name.onclick=function(){info.style.display=info.style.display==="none"?"block":"none";};b.appendChild(info);b.appendChild(vidRow(ex[0]));list.appendChild(b);
+   var info=document.createElement("div");info.className="exinfo";info.style.display="none";var expl=EXPLAIN[ex[0]]||"نفّذ الحركة ببطء وتحكم، وحافظ على وضعية جسم مريحة. توقف إذا ظهر ألم أو عدم ثبات.";info.innerHTML="<b>📌 طريقة الأداء:</b> "+esc(expl)+"<br><b>تنبيه:</b> حافظ على جودة الحركة، ولا تتجاوز العدد المحدد أو تتمرن حتى الفشل.";var help=document.createElement("button");help.type="button";help.className="exhelp-btn";help.textContent="📖 شرح التمرين وطريقة الأداء";function toggleHelp(){var open=info.style.display==="none";info.style.display=open?"block":"none";help.textContent=open?"✖ إخفاء الشرح":"📖 شرح التمرين وطريقة الأداء";}help.onclick=toggleHelp;name.onclick=toggleHelp;b.appendChild(help);b.appendChild(info);b.appendChild(vidRow(ex[0]));list.appendChild(b);
   });
  });
  card.appendChild(list);var bar=document.createElement("div");bar.className="pbar";var fill=document.createElement("div");bar.appendChild(fill);card.appendChild(bar);var label=document.createElement("div");label.className="plabel";card.appendChild(label);box.appendChild(card);
