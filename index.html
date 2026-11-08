@@ -4,185 +4,183 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#10151d">
-<title>ملف اللاعب | Pivot Performance</title>
+<title>منظّم يوم اللاعب | Pivot Performance</title>
 <style>
 :root{--bg:#10151d;--panel:#192330;--panel2:#202d3c;--line:#314153;--text:#f4f7fb;--muted:#a9b7c7;--accent:#65d6a5;--gold:#f4c96b;--red:#ff8585}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.7 system-ui,Tahoma,sans-serif}
-.app{max-width:820px;margin:auto;padding:14px 12px 48px}.header{padding:18px 16px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,#1d3040,#192330);margin-bottom:12px}
-h1{font-size:23px;margin:0 0 4px}.sub{color:var(--muted);font-size:13px}.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.chip{border:1px solid var(--line);border-radius:30px;padding:4px 10px;font-size:12px;color:var(--muted)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.75 system-ui,Tahoma,sans-serif}
+.app{max-width:900px;margin:auto;padding:14px 12px 48px}.header{padding:18px 16px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,#1d3040,#192330);margin-bottom:12px}
+h1{font-size:23px;margin:0 0 4px}h2{font-size:18px;margin:0 0 8px}h3{font-size:15px;margin:13px 0 5px}.sub,.muted,small{color:var(--muted)}.sub{font-size:13px}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.chip,.tag{border:1px solid var(--line);border-radius:30px;padding:4px 10px;font-size:12px;color:var(--muted)}
 .nav{display:flex;gap:7px;overflow:auto;padding:3px 0 10px;position:sticky;top:0;background:var(--bg);z-index:5}
-.nav button,.btn{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:10px 13px;border-radius:11px;font:inherit;font-weight:750;white-space:nowrap;cursor:pointer}
-.nav button.active,.btn.primary{background:var(--accent);color:#102019;border-color:var(--accent)}
+button,.btn{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:9px 12px;border-radius:10px;font:inherit;font-weight:700;cursor:pointer}
+.nav button{white-space:nowrap}.nav button.active,.primary{background:var(--accent);color:#102019;border-color:var(--accent)}
 .page{display:none}.page.active{display:block}.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:14px;margin:0 0 11px}
-h2{font-size:17px;margin:0 0 8px}h3{font-size:14px;margin:12px 0 5px}.muted{color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.stat{background:var(--panel2);padding:10px;border-radius:11px}.stat b{display:block;font-size:19px}.stat span{font-size:11px;color:var(--muted)}
-ul{padding-right:20px;margin:7px 0}li{margin:4px 0}.pill{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:30px;padding:3px 9px;font-size:11px;color:var(--muted);margin:2px}
-.notice{border:1px solid #806a35;background:#2b2618;color:#f5dfa5;padding:10px 12px;border-radius:12px;font-size:13px;margin:9px 0}
-.good{border-color:#28664f;background:#142a24}.bad{border-color:#754040;background:#2a1c20}
-.item{padding:10px;background:var(--panel2);border:1px solid var(--line);border-radius:11px;margin:7px 0}.item b{display:block}.item small{color:var(--muted)}
-label{display:block;font-size:13px;font-weight:700;margin:9px 0 4px}input,select,textarea{width:100%;background:#111a24;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:10px;font:inherit}textarea{min-height:80px;resize:vertical}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.progress{height:9px;background:#0e1720;border-radius:20px;overflow:hidden;margin-top:8px}.progress div{height:100%;background:var(--accent);width:0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.stat{background:var(--panel2);padding:11px;border-radius:11px}.stat b{display:block;font-size:21px}.stat span{font-size:12px;color:var(--muted)}
+.item{padding:11px;background:var(--panel2);border:1px solid var(--line);border-radius:11px;margin:8px 0}.item b{display:block}.notice{border:1px solid #806a35;background:#2b2618;color:#f5dfa5;padding:10px 12px;border-radius:12px;font-size:13px;margin:9px 0}.good{border-color:#28664f;background:#142a24}.bad{border-color:#754040;background:#2a1c20}
+label{display:block;font-size:13px;font-weight:700;margin:8px 0 4px}input,select,textarea{width:100%;background:#111a24;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:10px;font:inherit}input[type=checkbox]{width:auto;accent-color:var(--accent);transform:scale(1.2)}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.row3{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:8px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.task{display:grid;grid-template-columns:30px 1fr 74px 74px 38px;gap:7px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}.task:last-child{border:0}.task input[type=text]{min-width:0}.task input[type=time],.task input[type=number]{padding:7px;font-size:12px}.task.done .taskname{text-decoration:line-through;opacity:.55}
+.progress{height:9px;background:#0e1720;border-radius:20px;overflow:hidden;margin-top:8px}.progress div{height:100%;background:var(--accent);width:0}
 table{width:100%;border-collapse:collapse;font-size:13px}td,th{border-bottom:1px solid var(--line);padding:8px 5px;text-align:right;vertical-align:top}th{color:var(--muted)}
+.daybtn{margin:3px;padding:7px 10px}.daybtn.selected{background:var(--accent);color:#102019}
 footer{text-align:center;color:var(--muted);font-size:11px;margin:20px 0}
-@media(max-width:540px){.grid,.row{grid-template-columns:1fr 1fr}.app{padding:9px}.header{padding:14px}}
+@media(max-width:560px){.app{padding:9px}.header{padding:14px}.row3{grid-template-columns:1fr 1fr}.task{grid-template-columns:25px 1fr 66px 60px 34px;gap:4px}.task input{padding:7px 5px}.grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
-<body>
-<div class="app">
+<body><div class="app">
 <header class="header">
-<h1>🏐 ملف اللاعب – Pivot Performance</h1>
-<div class="sub">خطة تطوير فردية مبنية على تقييمك الرياضي، قابلة للتعديل مع تقدمك.</div>
-<div class="chips"><span class="chip">17 سنة</span><span class="chip">Pivot – اليد اليمنى</span><span class="chip">الهدف: 5 ديسمبر 2026</span><span class="chip">نسخة 2.0</span></div>
+<h1>🏐 منظّم يوم اللاعب | Pivot Performance</h1>
+<div class="sub">رتّب يومك، أضف محاضراتك ومهامك، اعرف حصة التدريب، وتابع إنجازك من مكان واحد.</div>
+<div class="chips"><span class="chip">Pivot · اليد اليمنى</span><span class="chip">الهدف: 5 ديسمبر 2026</span><span class="chip">نسخة 3.0</span></div>
 </header>
 <nav class="nav">
-<button class="active" data-page="home">الرئيسية</button>
-<button data-page="plan">خطة الإعداد</button>
-<button data-page="skills">مهارات Pivot</button>
-<button data-page="mobility">الحركة والوقاية</button>
-<button data-page="log">سجل التطور</button>
-<button data-page="profile">ملف اللاعب</button>
+<button class="active" data-page="today">جدول اليوم</button><button data-page="week">الخطة الأسبوعية</button><button data-page="training">تفاصيل التمارين</button><button data-page="skills">مهارات Pivot</button><button data-page="progress">التطور</button><button data-page="profile">ملفي</button>
 </nav>
 
-<section id="home" class="page active">
+<section id="today" class="page active">
 <div class="card">
-<h2>هدفنا حتى 5 ديسمبر</h2>
-<p>رفع قدرتك على المحافظة على الأداء طوال المباراة، وتحسين الاستلام تحت الضغط والسرعة والانفجار العضلي، مع الاستمرار في تطوير القوة والدفاع والتسديد والحركة والجانب الذهني.</p>
-<div class="grid">
-<div class="stat"><b>1</b><span>التحمل طوال المباراة</span></div>
-<div class="stat"><b>2</b><span>الاستلام تحت الضغط</span></div>
-<div class="stat"><b>3</b><span>السرعة والانفجار</span></div>
-<div class="stat"><b>+6</b><span>جوانب أخرى مستمرة</span></div>
-</div>
-<div class="notice">هذه الخطة تخص إعدادك الفردي فقط. لم أضع فيها جدول تدريبات الأهلي أو افتراضات عن الحديد؛ ستُضاف تفاصيل التدريب الجماعي أو الأوزان بعد أن تزودني بها.</div>
+<h2>جدول يومك</h2>
+<div class="row"><div><label for="daydate">اختر التاريخ</label><input id="daydate" type="date"></div><div><label>إنجاز مهام اليوم</label><div class="stat"><b id="doneCount">0 / 0</b><span>المهام المكتملة</span><div class="progress"><div id="dayProgress"></div></div></div></div></div>
+<div class="notice">هذا الجدول لك أنت: أضف أوقات الجامعة، المذاكرة، الوجبات، الراحة، المشاوير والتدريب. يتم حفظ كل يوم على هذا الجهاز تلقائياً عند التعديل.</div>
+<div id="tasks"></div>
+<div class="actions"><button class="primary" id="addTask">＋ إضافة مهمة</button><button id="addWorkout">إضافة حصة البرنامج لهذا اليوم</button><button id="copyYesterday">نسخ مهام الأمس</button><button id="clearDay">مسح مهام هذا اليوم</button></div>
 </div>
 <div class="card">
-<h2>ملخص تقييمك الحالي</h2>
-<table><tr><th>المجال</th><th>تقييمك الذاتي</th></tr>
-<tr><td>القوة</td><td>متوسط</td></tr><tr><td>السرعة والقفز</td><td>ضعيف</td></tr><tr><td>التحمل</td><td>ضعيف</td></tr><tr><td>Mobility</td><td>ضعيفة</td></tr><tr><td>التوازن</td><td>متوسط</td></tr><tr><td>الاستلام تحت ضغط</td><td>ضعيف</td></tr><tr><td>الحجز وقراءة الدفاع</td><td>جيد</td></tr></table>
-</div>
-<div class="card">
-<h2>قواعد البرنامج</h2>
-<ul>
-<li>ستة أيام نشاط فردي كحد تخطيطي، ويوم راحة؛ ليس مطلوباً أن تكون كل الأيام شديدة.</li>
-<li>لا توجد تمارين حديد أو أوزان مفروضة في هذه النسخة.</li>
-<li>أي حصة جماعية أو مباراة تخبرني بها لاحقاً حتى نعيد توزيع الحمل.</li>
-<li>إذا ظهر ألم أو عدم ثبات في الكاحل الأيمن، أوقف التمرين الذي يسببه ولا تختبر القفز أو تغيير الاتجاه.</li>
-<li>لا نستخدم اختبارات أوزان قصوى أو تدريبات حتى الفشل.</li>
-</ul>
+<h2>حصة البرنامج اليوم</h2>
+<div id="todayWorkout" class="item"></div>
+<p class="muted">إذا كان اليوم راحة، لا تحتاج إلى إضافة حصة. يمكنك إضافة أي التزام آخر في جدولك أعلاه.</p>
 </div>
 </section>
 
-<section id="plan" class="page">
+<section id="week" class="page">
 <div class="card">
-<h2>مراحل الإعداد</h2>
-<div class="item"><b>8–14 نوفمبر | تأسيس</b><small>تعلم الحركة، بناء روتين التحمل الخفيف، تأسيس استلام الكرة وقياس خط البداية.</small></div>
-<div class="item"><b>15–21 نوفمبر | بناء</b><small>تطوير تدريجي للتحمل والسرعة والتحكم، مع رفع صعوبة المهارات دون زيادة كل الأحمال معاً.</small></div>
-<div class="item"><b>22–28 نوفمبر | تخصص Pivot</b><small>دمج التحرك دون كرة والاستلام والحماية والقرار والتسديد، مع المحافظة على السرعة.</small></div>
-<div class="item"><b>29 نوفمبر–5 ديسمبر | جاهزية</b><small>تقليل حجم التدريب، المحافظة على اللمسات السريعة والمهارية، وعدم تجربة شيء جديد قرب المباراة.</small></div>
+<h2>برنامجك الأسبوعي المستقل</h2>
+<p>خطة ثابتة من 6 أيام نشاط متفاوتة ويوم راحة، لا تعتمد على جدول النادي ولا على افتراض وجود حديد. الجلسات قصيرة ومحددة؛ لا تحتاج إلى ملء ساعتين تدريب كل يوم.</p>
+<div class="notice">هذه حصص برنامجك الفردي. إذا كان عندك ألم أو عدم ثبات بالكاحل، لا تنفذ السرعة أو القفز. لا تضاعف حصة شديدة إذا شعرت بإجهاد واضح.</div>
+<div id="weekButtons"></div><div id="weekDetail" class="item"></div>
+</div>
+<div class="card"><h2>تدرّج الأسابيع حتى المباراة</h2>
+<div class="item"><b>9–15 نوفمبر | تأسيس</b><small>تعلم الحركات، بناء التحمل السهل، تثبيت أساس القوة والاستلام.</small></div>
+<div class="item"><b>16–22 نوفمبر | بناء</b><small>زيادة بسيطة في وقت التحمل أو عدد التكرارات، وليس الاثنين معاً.</small></div>
+<div class="item"><b>23–29 نوفمبر | تخصص Pivot</b><small>جودة الحركة والاستلام والحماية والسرعة القصيرة، مع الحفاظ على التعافي.</small></div>
+<div class="item"><b>30 نوفمبر–5 ديسمبر | تخفيف واستعداد</b><small>تقليل حجم التدريب بوضوح، إبقاء اللمسات المهارية، والراحة قبل المباراة.</small></div>
+</div>
+</section>
+
+<section id="training" class="page">
+<div class="card">
+<h2>قوة الجسم – بدون حديد</h2>
+<p>نفّذ حصتي القوة في الأسبوع بالتناوب A وB. ابدأ بمجموعتين، ثم 3 مجموعات إذا كانت التقنية جيدة والتعافي ممتازاً. اترك 2–3 تكرارات ممكنة ولا تصل للفشل.</p>
+<h3>الحصة A</h3>
+<ul><li>Squat إلى كرسي: 2–3 × 8–10</li><li>Glute Bridge: 2–3 × 10–12</li><li>Push-up مائل على سطح ثابت: 2–3 × 6–10</li><li>Band Row: 2–3 × 10–12</li><li>Dead Bug: 2 × 8 لكل جهة</li><li>Calf Raise مع الاستناد: 2 × 10</li></ul>
+<h3>الحصة B</h3>
+<ul><li>Hip Hinge بدون وزن: 2–3 × 10</li><li>Split Squat مدعوم وبمدى مريح: 2 × 6 لكل جهة</li><li>ضغط كتف بالمطاط الخفيف أو Push-up مائل: 2 × 8</li><li>Band Row: 2–3 × 10</li><li>Side Plank: 2 × 15–20 ثانية لكل جهة</li><li>Bird Dog: 2 × 8 لكل جهة</li></ul>
+<div class="notice">لا تستخدم الحديد أو الأوزان القصوى ضمن هذه الخطة. إذا لم تكن متأكداً من التقنية، اطلب من مدرب مؤهل أن يراجع الحركة. أوقف أي تمرين يسبب ألماً.</div>
 </div>
 <div class="card">
-<h2>وحدات التدريب الفردي – اختر حسب يومك</h2>
-<p class="muted">لا يوجد جدول أسبوعي ثابت حالياً لأنك ستخبرني لاحقاً بتفاصيل تدريباتك الأخرى. اختر الوحدة المناسبة بعد مراعاة التعب والتعافي.</p>
-<div class="item"><b>التحمل الهوائي – بداية</b><small>دراجة ثابتة أو مشي سريع 15–20 دقيقة بشدة تسمح بالتحدث. يمكن التدرج إلى 25 دقيقة إذا كان التعافي جيداً. لا تستخدم الجري إذا كان الكاحل غير مستقر.</small></div>
-<div class="item"><b>الجهد المتكرر – لاحقاً وبعد التقييم</b><small>لا تبدأ الانطلاقات المتكررة قبل التأكد من تحمل الكاحل والجودة الحركية. نبدأ بعدد قليل من المحاولات القصيرة مع راحة كافية، وتُضبط الجرعة بعد معرفة أحمالك الأخرى.</small></div>
-<div class="item"><b>السرعة والانفجار</b><small>انطلاقات قصيرة وقفزات منخفضة الحجم فقط بعد تقييم الكاحل والهبوط، ويفضل بإشراف مدرب. لا تنفذها مع الألم أو عدم الثبات.</small></div>
-<div class="item"><b>القوة</b><small>حالياً لا توجد وصفة أوزان. سنحدد هل نستخدم الحديد أم المطاط وتمارين وزن الجسم بعد معرفة إشرافك وجدولك وموافقتك وتفاصيلك الإضافية.</small></div>
-<div class="item"><b>مهارات الكرة</b><small>استلام من الحائط، كرات تنس للتتبع، تحرك واستلام، ثم تدريبات ضغط حقيقي مع زميل عندما يتوفر.</small></div>
-<div class="notice">قاعدة الحمل: لا تضف حصة تحمل عالية أو سرعة فوق يوم شديد آخر. إذا كانت الحركة تتدهور أو التعب مرتفعاً، خفف أو ألغِ الحصة.</div>
+<h2>التحمل</h2>
+<ul><li><b>تحمل سهل:</b> مشي سريع أو دراجة 20–25 دقيقة بشدة تستطيع معها التحدث بجمل كاملة.</li><li><b>جهد متكرر:</b> بعد بناء الأساس، 6–8 جولات: دقيقة نشاط متوسط ثم دقيقتان سهلة، ويفضل على دراجة ثابتة إذا كان الكاحل حساساً.</li><li>لا تجعل كل جلسة اختباراً لنفسك. الهدف المحافظة على جودة الحركة والتدرج.</li></ul>
 </div>
 <div class="card">
-<h2>أهداف الأسبوع</h2>
-<ul>
-<li>تكرار روتين الحركة والكاحل عدة مرات بجرعة قصيرة.</li>
-<li>ممارسة الاستلام المنفرد بجودة عالية دون استعجال.</li>
-<li>تسجيل النوم والتعب والألم بعد النشاط.</li>
-<li>إضافة الجهد المتكرر والقفز بعد تقييم الجاهزية فقط.</li>
-</ul>
+<h2>السرعة والانفجار</h2>
+<ul><li>إحماء 8–10 دقائق.</li><li>تدريبات وضعية الجسم والمشي السريع ورفع الركبة بتحكم.</li><li>فقط إذا كان الكاحل مستقراً ولا يوجد ألم أو تورم: 4–6 انطلاقات قصيرة لمسافة 5–10 أمتار، بسرعة متدرجة وراحة كاملة بين المحاولات.</li><li>لا تبدأ القفزات أو تغيير الاتجاه العنيف قبل التأكد من ثبات الكاحل، ويفضل مراجعة أخصائي علاج طبيعي أو مدرب مؤهل بسبب الالتواء السابق.</li></ul>
+<div class="notice">اختبار الجاهزية ليس تشخيصاً طبياً. إذا شعرت أن الكاحل يخونك أو يتورم أو يؤلمك، أوقف السرعة والقفز واطلب تقييماً مختصاً.</div>
+</div>
+<div class="card">
+<h2>شكل كل حصة</h2>
+<p>إحماء 8–10 دقائق ← الجزء الرئيسي 20–30 دقيقة ← مهارات خفيفة أو تهدئة 5–10 دقائق. الجودة أهم من طول الحصة.</p>
 </div>
 </section>
 
 <section id="skills" class="page">
 <div class="card">
 <h2>مهارات Pivot – الأولويات</h2>
-<div class="item"><b>1. الاستلام تحت الضغط</b><small>التركيز: تتبع الكرة حتى اليد، تجهيز اليدين، امتصاص الكرة، المحافظة على التوازن. التدريب المنفرد يحسن الأساس لكنه لا يعوض مدافعاً حقيقياً.</small></div>
-<div class="item"><b>2. حماية الكرة</b><small>استلام ثم تثبيت قاعدة الارتكاز وحماية الكرة بالجسم بطريقة قانونية، ثم اتخاذ قرار التمرير أو التسديد.</small></div>
-<div class="item"><b>3. التحرك دون كرة</b><small>تغيير الزاوية والتوقيت وفتح مساحة لصانع اللعب بدلاً من الوقوف وانتظار التمريرة.</small></div>
-<div class="item"><b>4. الدوران والتسديد</b><small>تدريب الدوران على الجهتين مع تحكم، ثم التسديد من وضع متزن. أضف الضغط تدريجياً مع مدرب أو زميل.</small></div>
-<div class="item"><b>5. الدفاع والالتحام</b><small>التركيز على وضعية الجسم، القدمين، التوازن، والالتزام بقواعد اللعبة. لا تتدرب على احتكاك قوي بمفردك.</small></div>
+<div class="item"><b>الاستلام – 12 إلى 15 دقيقة</b><small>3 × 10 تمريرات للحائط مع استلام باليدين. ثم 2 × 8 كرات منخفضة. ركّز على النظر للكرة حتى تصل لليدين وامتصاصها.</small></div>
+<div class="item"><b>الاستلام بعد الحركة – 8 دقائق</b><small>تحرك خطوتين جانباً، عد لوضع متزن، ثم استلم الكرة من الحائط. 3 × 6 لكل جهة.</small></div>
+<div class="item"><b>حماية الكرة – 5 دقائق</b><small>استلم، ثبّت القدمين، احم الكرة بالجسم دون دفع أو مخالفة، ثم مرر. 3 × 5 تكرارات.</small></div>
+<div class="item"><b>الدوران والتسديد – 8 إلى 10 دقائق</b><small>تدرب على الدوران يميناً ويساراً ببطء وتحكم، ثم أضف التسديد إذا توفر مرمى ومساحة آمنة.</small></div>
+<div class="notice">التدريب المنفرد يحسن الأساس، لكنه لا يحاكي مدافعاً حقيقياً أو تمريرة تحت احتكاك. لا تحاول تعويض ذلك باحتكاك خطير بمفردك.</div>
 </div>
 <div class="card">
-<h2>تدريب منزلي متاح بمعداتك</h2>
-<ul>
-<li><b>كرة اليد:</b> تمرير للحائط واستلام نظيف، كرات منخفضة، استلام بعد خطوتين من الحركة.</li>
-<li><b>كرات التنس:</b> تتبع بصري والتقاط بالتبادل بين اليدين، دون تحويلها لاختبار إجهاد.</li>
-<li><b>مطاط المقاومة:</b> سحب خفيف، دوران خارجي للكتف، مقاومة دوران الجذع؛ اختر مقاومة تسمح بتحكم كامل.</li>
-<li><b>رول المساج:</b> استخدام مريح وخفيف إذا كان يساعدك، وليس فوق موضع ألم أو إصابة.</li>
-</ul>
-<div class="notice">لا يمكن تطوير الاستلام تحت ضغط مدافعين حقيقيين بشكل كامل وأنت وحدك. سنضيف جلسات مع زميل عندما تخبرني بتوفر ذلك.</div>
+<h2>معداتك المتوفرة</h2>
+<ul><li>كرة يد مقاس 2: تمرير واستلام وحركة.</li><li>3 كرات تنس: تتبع بصري والتقاط خفيف بالتبادل بين اليدين.</li><li>مطاط مقاومة طويل: سحب وتمارين كتف وجذع بمقاومة خفيفة.</li><li>رول مساج: اختياري وبشكل مريح، وليس فوق موضع ألم.</li></ul>
 </div>
 </section>
 
-<section id="mobility" class="page">
+<section id="progress" class="page">
 <div class="card">
-<h2>Mobility وثبات الكاحل الأيمن</h2>
-<p>لديك تاريخ التواء سابق في الكاحل الأيمن، لذلك نبدأ بالحركة والتحكم قبل القفز وتغيير الاتجاه السريع.</p>
-<div class="item"><b>Knee-to-Wall</b><small>حركة الكاحل للأمام ببطء ضمن مدى مريح، دون رفع الكعب أو ألم.</small></div>
-<div class="item"><b>Calf Raises</b><small>رفع الكعبين بتحكم مع الاستناد إلى سطح ثابت. لا تبدأ على رجل واحدة إذا كان التوازن غير ثابت.</small></div>
-<div class="item"><b>Single-Leg Balance</b><small>توازن قرب جدار أو دعامة، على سطح ثابت، لمدة قصيرة مع تحكم. لا تغمض العينين ولا تستخدم سطحاً غير ثابت.</small></div>
-<div class="item"><b>Hip & Thoracic Mobility</b><small>حركة الورك ودوران أعلى الظهر بمدى مريح، دون دفع قسري.</small></div>
-<div class="notice">إذا تكرر التواء الكاحل أو شعرت بأنه يخونك/يتزحلق أو ظهر تورم أو ألم، يلزم تقييم مختص علاج طبيعي أو طبيب رياضي قبل تمارين القفز والرشاقة.</div>
-</div>
-<div class="card">
-<h2>روتين مختصر</h2>
-<p>ابدأ بـ 8–10 دقائق: حركة كاحل هادئة، رفع كعبين مدعوم، توازن مدعوم، حركة الورك، ودوران أعلى الظهر. أوقف أي حركة تسبب ألماً.</p>
-</div>
-</section>
-
-<section id="log" class="page">
-<div class="card">
-<h2>سجل يومي</h2>
-<p class="muted">تُحفظ المدخلات محلياً على هذا الجهاز في المتصفح.</p>
-<label>التاريخ</label><input type="date" id="date">
-<div class="row"><div><label>ساعات النوم</label><input type="number" id="sleep" min="0" max="14" step=".5" placeholder="مثلاً 8"></div><div><label>التعب 1–10</label><input type="number" id="fatigue" min="1" max="10" placeholder="1–10"></div></div>
-<div class="row"><div><label>الألم 0–10</label><input type="number" id="pain" min="0" max="10" placeholder="0–10"></div><div><label>التركيز 1–10</label><input type="number" id="focus" min="1" max="10" placeholder="1–10"></div></div>
-<div class="row"><div><label>استلام نظيف من 30</label><input type="number" id="catches" min="0" max="30" placeholder="عدد"></div><div><label>زمن 5م بالثواني</label><input type="number" id="sprint" min="0" step=".01" placeholder="يُترك فارغاً إذا لم تختبر"></div></div>
-<label>النشاط الذي نفذته</label><select id="activity"><option>Mobility / كاحل</option><option>استلام ومهارات</option><option>تحمل سهل</option><option>سرعة / قفز</option><option>قوة</option><option>راحة</option><option>مباراة / تدريب جماعي</option></select>
-<label>ملاحظات – بما فيها أي نشاط جماعي أو مباراة</label><textarea id="notes" placeholder="اكتب ما نفذته، شعورك، وأي ألم أو ملاحظة."></textarea>
-<div class="actions"><button class="btn primary" id="save">حفظ السجل</button><button class="btn" id="export">تصدير السجلات CSV</button></div>
-<div id="status" class="muted" aria-live="polite"></div>
+<h2>سجل التطور اليومي</h2>
+<div class="row"><div><label>التاريخ</label><input id="logdate" type="date"></div><div><label>النوم (ساعات)</label><input id="sleep" type="number" min="0" max="14" step=".5" placeholder="8"></div></div>
+<div class="row"><div><label>التعب 1–10</label><input id="fatigue" type="number" min="1" max="10"></div><div><label>الألم 0–10</label><input id="pain" type="number" min="0" max="10"></div></div>
+<div class="row"><div><label>استلام نظيف من 30</label><input id="catches" type="number" min="0" max="30"></div><div><label>ملاحظات</label><input id="notes" type="text" placeholder="كيف كان أداؤك؟"></div></div>
+<div class="actions"><button class="primary" id="saveLog">حفظ التقييم</button><button id="export">تصدير CSV</button></div><div id="logStatus" class="muted"></div>
 </div>
 <div class="card"><h2>السجلات السابقة</h2><div id="history" class="muted">لا توجد سجلات بعد.</div></div>
 </section>
 
 <section id="profile" class="page">
 <div class="card">
-<h2>ملف اللاعب</h2>
-<table>
-<tr><th>العمر</th><td>17 سنة</td></tr><tr><th>الطول / الوزن</th><td>194 سم / 110 كجم</td></tr><tr><th>المركز</th><td>Pivot</td></tr><tr><th>اليد الأقوى</th><td>اليمنى</td></tr><tr><th>الخبرة</th><td>3–5 سنوات</td></tr><tr><th>المستوى</th><td>فريق الفئات السنية – لاعب أساسي</td></tr><tr><th>المشاركة</th><td>أكثر من 45 دقيقة</td></tr><tr><th>الإصابة السابقة</th><td>التواء الكاحل الأيمن، دون ألم حالي حسب إفادتك</td></tr><tr><th>المعدات المنزلية</th><td>كرة يد، مطاط مقاومة، كرات تنس، رول مساج</td></tr><tr><th>القياس</th><td>هاتف وتصوير فيديو</td></tr>
-</table>
-<h3>أهدافك الثلاثة الأولى</h3>
-<p><span class="pill">التحمل طوال المباراة</span><span class="pill">الاستلام تحت الضغط</span><span class="pill">السرعة والانفجار العضلي</span></p>
-<h3>الجوانب التي لا نهملها</h3>
-<p><span class="pill">القوة</span><span class="pill">الدفاع والالتحام</span><span class="pill">التسديد</span><span class="pill">التمركز</span><span class="pill">Mobility</span><span class="pill">التوازن</span><span class="pill">الجانب الذهني</span></p>
+<h2>ملفك الرياضي</h2>
+<table><tr><th>العمر</th><td>17 سنة</td></tr><tr><th>الطول والوزن</th><td>194 سم · 110 كجم</td></tr><tr><th>المركز</th><td>Pivot</td></tr><tr><th>اليد الأقوى</th><td>اليمنى</td></tr><tr><th>الخبرة</th><td>3–5 سنوات</td></tr><tr><th>المستوى</th><td>فئات سنية · لاعب أساسي</td></tr><tr><th>الإصابة السابقة</th><td>التواء الكاحل الأيمن، ولا يوجد ألم حالي حسب إفادتك</td></tr><tr><th>الأدوات</th><td>كرة يد، مطاط مقاومة، كرات تنس، رول مساج، هاتف للتصوير</td></tr></table>
+<h3>أهم 3 أولويات</h3><p><span class="tag">التحمل طوال المباراة</span> <span class="tag">الاستلام تحت الضغط</span> <span class="tag">السرعة والانفجار</span></p>
+<h3>جوانب نواصل تطويرها</h3><p><span class="tag">القوة</span> <span class="tag">الدفاع</span> <span class="tag">التسديد</span> <span class="tag">الحركة دون كرة</span> <span class="tag">التوازن</span> <span class="tag">Mobility</span> <span class="tag">الجانب الذهني</span></p>
 </div>
 <div class="card">
-<h2>ملاحظات تُحدّث لاحقاً</h2>
-<p>تفاصيل تدريبات النادي، الأيام والشدة، توفر الحديد والإشراف، ومواعيد المباريات ستُضاف عندما تزودني بها. لن أفترضها مسبقاً.</p>
+<h2>ملاحظات مهمة</h2>
+<ul><li>الموقع لا يفترض جدول محاضرات أو مواعيد النادي؛ أنت تضيفها في جدول اليوم.</li><li>برنامج التدريب هنا مستقل عن النادي، ولا يحتوي على حديد مفروض.</li><li>استهدف 8–10 ساعات نوم، ووجبات منتظمة وماء كافياً لدعم التدريب والنمو.</li><li>لا تحتاج إلى التدريب ساعتين يومياً؛ التزم بالجرعة المكتوبة وخذ الراحة بجدية.</li></ul>
 </div>
 </section>
-<footer>Pivot Performance · v2.0.0 · تحديث 8 نوفمبر 2026</footer>
+<footer>Pivot Performance · منظّم يوم اللاعب · v3.0.0 · 8 نوفمبر 2026</footer>
 </div>
 <script>
 "use strict";
-var buttons=document.querySelectorAll(".nav button");
-buttons.forEach(function(b){b.addEventListener("click",function(){buttons.forEach(function(x){x.classList.remove("active")});b.classList.add("active");document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});document.getElementById(b.dataset.page).classList.add("active")})});
-var DBKEY="pivotPerformanceV2";
-function readDB(){try{return JSON.parse(localStorage.getItem(DBKEY))||{logs:{}}}catch(e){return {logs:{}}}}
-var db=readDB();
-var dateEl=document.getElementById("date");dateEl.value=new Date().toISOString().slice(0,10);
-function renderHistory(){var entries=Object.keys(db.logs).sort().reverse();var target=document.getElementById("history");if(!entries.length){target.textContent="لا توجد سجلات بعد.";return;}target.innerHTML=entries.map(function(d){var x=db.logs[d];return "<div class='item'><b>"+d+" · "+x.activity+"</b><small>نوم: "+(x.sleep||"—")+" س | تعب: "+(x.fatigue||"—")+"/10 | ألم: "+(x.pain||"—")+"/10 | استلام: "+(x.catches||"—")+"/30 | 5م: "+(x.sprint||"—")+" ث</small><div>"+(x.notes||"")+"</div></div>"}).join("")}
-document.getElementById("save").addEventListener("click",function(){var d=dateEl.value;if(!d){document.getElementById("status").textContent="اختر التاريخ أولاً.";return;}db.logs[d]={sleep:document.getElementById("sleep").value,fatigue:document.getElementById("fatigue").value,pain:document.getElementById("pain").value,focus:document.getElementById("focus").value,catches:document.getElementById("catches").value,sprint:document.getElementById("sprint").value,activity:document.getElementById("activity").value,notes:document.getElementById("notes").value};localStorage.setItem(DBKEY,JSON.stringify(db));document.getElementById("status").textContent="تم حفظ السجل على هذا الجهاز.";renderHistory()});
-document.getElementById("export").addEventListener("click",function(){var rows=[["date","sleep","fatigue","pain","focus","catches","sprint","activity","notes"]];Object.keys(db.logs).sort().forEach(function(d){var x=db.logs[d];rows.push([d,x.sleep,x.fatigue,x.pain,x.focus,x.catches,x.sprint,x.activity,x.notes])});var csv=rows.map(function(r){return r.map(function(v){return '"'+String(v||"").replace(/"/g,'""')+'"'}).join(",")}).join("\n");var a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"}));a.download="pivot-progress.csv";a.click();URL.revokeObjectURL(a.href)});
-renderHistory();
-</script>
-</body>
-</html>
+const $=id=>document.getElementById(id);
+const dayNames=["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+const weekPlan=[
+{day:1,name:"الاثنين",title:"تحمل سهل + حركة",duration:"30–40 دقيقة",detail:"مشي سريع أو دراجة 20–25 دقيقة بشدة محادثة، ثم Mobility للكاحل والورك وأعلى الظهر 8–10 دقائق.",type:"تحمل"},
+{day:2,name:"الثلاثاء",title:"قوة A + استلام",duration:"40–50 دقيقة",detail:"إحماء 8 دقائق، حصة القوة A بمجموعتين، ثم استلام من الحائط والكرات المنخفضة 10–12 دقيقة.",type:"قوة ومهارة"},
+{day:3,name:"الأربعاء",title:"مهارات Pivot + حركة خفيفة",duration:"30–40 دقيقة",detail:"استلام بعد الحركة، حماية الكرة، دوران متحكم، ثم مشي سهل 10 دقائق. ركز على الجودة لا السرعة.",type:"مهارة"},
+{day:4,name:"الخميس",title:"سرعة قصيرة وتحكم",duration:"25–35 دقيقة",detail:"إحماء 10 دقائق ثم تدريبات وضعية الجسم. فقط مع كاحل مستقر بلا ألم: 4–6 انطلاقات 5–10م بسرعة متدرجة وراحة كاملة. وإلا استبدلها بدراجة سهلة 15 دقيقة.",type:"سرعة"},
+{day:5,name:"الجمعة",title:"استشفاء وحركة",duration:"20–30 دقيقة",detail:"مشي مريح 10–15 دقيقة وروتين حركة وثبات الكاحل 8–10 دقائق. لا توجد شدة عالية.",type:"استشفاء"},
+{day:6,name:"السبت",title:"قوة B + تحمل متقطع",duration:"35–50 دقيقة",detail:"حصة القوة B بمجموعتين، ثم 6 جولات على دراجة أو مشي سريع: دقيقة متوسطة + دقيقتان سهلة. لا تستخدم الجري المتعرج إذا الكاحل غير جاهز.",type:"قوة وتحمل"},
+{day:0,name:"الأحد",title:"راحة",duration:"راحة",detail:"راحة من التدريب. يمكنك المشي الخفيف إذا رغبت، والنوم والتغذية الجيدة.",type:"راحة"}
+];
+function localDate(d=new Date()){const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,"0"),day=String(d.getDate()).padStart(2,"0");return y+"-"+m+"-"+day}
+const STORE="pivotDailyOrganizerV3";
+let db={days:{},logs:{}};
+try{db=Object.assign(db,JSON.parse(localStorage.getItem(STORE))||{})}catch(e){}
+function saveDB(){localStorage.setItem(STORE,JSON.stringify(db))}
+function currentPlan(date){return weekPlan[new Date(date+"T12:00:00").getDay()]}
+function renderWorkout(){const d=$("daydate").value,p=currentPlan(d);$("todayWorkout").innerHTML="<b>"+p.name+" · "+p.title+"</b><small>"+p.duration+"</small><p>"+p.detail+"</p><span class='tag'>"+p.type+"</span>"}
+function renderTasks(){
+ const d=$("daydate").value; if(!db.days[d])db.days[d]=[];
+ const box=$("tasks");box.innerHTML="";
+ db.days[d].forEach((t,i)=>{
+  const row=document.createElement("div");row.className="task"+(t.done?" done":"");
+  const cb=document.createElement("input");cb.type="checkbox";cb.checked=!!t.done;cb.setAttribute("aria-label","تم الإنجاز");cb.onchange=()=>{t.done=cb.checked;saveDB();renderTasks()};
+  const name=document.createElement("input");name.type="text";name.value=t.name||"";name.className="taskname";name.placeholder="اسم المهمة";name.onchange=()=>{t.name=name.value;saveDB()};
+  const time=document.createElement("input");time.type="time";time.value=t.time||"";time.title="الوقت";time.onchange=()=>{t.time=time.value;saveDB()};
+  const mins=document.createElement("input");mins.type="number";mins.min="0";mins.placeholder="دقيقة";mins.value=t.mins||"";mins.title="المدة بالدقائق";mins.onchange=()=>{t.mins=mins.value;saveDB()};
+  const del=document.createElement("button");del.textContent="×";del.title="حذف المهمة";del.onclick=()=>{db.days[d].splice(i,1);saveDB();renderTasks()};
+  row.append(cb,name,time,mins,del);box.append(row);
+ });
+ const total=db.days[d].length,done=db.days[d].filter(x=>x.done).length;$("doneCount").textContent=done+" / "+total;$("dayProgress").style.width=(total?done/total*100:0)+"%";saveDB();
+}
+$("daydate").value=localDate();$("logdate").value=localDate();
+$("daydate").onchange=()=>{renderTasks();renderWorkout()};
+$("addTask").onclick=()=>{db.days[$("daydate").value].push({name:"",time:"",mins:"",done:false});renderTasks()};
+$("addWorkout").onclick=()=>{const p=currentPlan($("daydate").value);if(p.type==="راحة"){alert("اليوم راحة حسب البرنامج. لا تحتاج لإضافة حصة.");return;}db.days[$("daydate").value].push({name:"حصة التدريب: "+p.title,time:"",mins:p.duration,done:false});renderTasks()};
+$("copyYesterday").onclick=()=>{const d=new Date($("daydate").value+"T12:00:00");d.setDate(d.getDate()-1);const prev=localDate(d);db.days[$("daydate").value]=(db.days[prev]||[]).map(t=>({...t,done:false}));renderTasks()};
+$("clearDay").onclick=()=>{if(confirm("هل تريد حذف جميع مهام هذا اليوم؟")){db.days[$("daydate").value]=[];renderTasks()}};
+function renderWeek(){
+ const box=$("weekButtons");box.innerHTML="";
+ weekPlan.forEach(p=>{const b=document.createElement("button");b.className="daybtn";b.textContent=p.name;b.onclick=()=>showWeek(p.day);b.dataset.day=p.day;box.append(b)});
+ showWeek(new Date().getDay());
+}
+function showWeek(day){const p=weekPlan.find(x=>x.day===day);document.querySelectorAll(".daybtn").forEach(b=>b.classList.toggle("selected",Number(b.dataset.day)===day));$("weekDetail").innerHTML="<b>"+p.name+" · "+p.title+"</b><small>"+p.duration+"</small><p>"+p.detail+"</p><span class='tag'>"+p.type+"</span>"}
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$(b.dataset.page).classList.add("active")});
+function renderHistory(){const el=$("history"),keys=Object.keys(db.logs||{}).sort().reverse();if(!keys.length){el.textContent="لا توجد سجلات بعد.";return;}el.innerHTML=keys.map(d=>{const x=db.logs[d];return "<div class='item'><b>"+d+"</b><small>نوم "+(x.sleep||"—")+" س · تعب "+(x.fatigue||"—")+"/10 · ألم "+(x.pain||"—")+"/10 · استلام "+(x.catches||"—")+"/30</small><div>"+(x.notes||"")+"</div></div>"}).join("")}
+$("saveLog").onclick=()=>{const d=$("logdate").value;if(!d){$("logStatus").textContent="اختر التاريخ.";return;}db.logs[d]={sleep:$("sleep").value,fatigue:$("fatigue").value,pain:$("pain").value,catches:$("catches").value,notes:$("notes").value};saveDB();$("logStatus").textContent="تم حفظ التقييم على هذا الجهاز.";renderHistory()};
+$("export").onclick=()=>{const rows=[["date","sleep","fatigue","pain","catches","notes"]];Object.keys(db.logs||{}).sort().forEach(d=>{const x=db.logs[d];rows.push([d,x.sleep,x.fatigue,x.pain,x.catches,x.notes])});const csv=rows.map(r=>r.map(v=>'"'+String(v||"").replace(/"/g,'""')+'"').join(",")).join("\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"}));a.download="pivot-progress.csv";a.click();URL.revokeObjectURL(a.href)};
+renderTasks();renderWorkout();renderWeek();renderHistory();
+</script></body></html>
