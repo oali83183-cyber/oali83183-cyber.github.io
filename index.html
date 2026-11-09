@@ -170,6 +170,7 @@
     <button class="tab" id="tabReport" onclick="showTab('report')">📊 التقرير</button>
     <button class="tab" id="tabFood" onclick="showTab('food')">🍽️ الأكل</button>
     <button class="tab" id="tabMental" onclick="showTab('mental')">🧠 THE WALL</button>
+    <button class="tab" id="tabLibrary" onclick="showTab('library')">📚 التعلم والتحليل</button>
   </div>
 
   <div id="trainBox"></div>
@@ -178,6 +179,7 @@
   <div id="reportBox" style="display:none;"></div>
   <div id="foodBox" style="display:none;"></div>
   <div id="mentalBox" style="display:none;"></div>
+  <div id="libraryBox" style="display:none;"></div>
 </div>
 
 <script>
@@ -502,7 +504,7 @@ function vidRow(name){
 }
 
 function showTab(t){
-  var ids=["train","week","schedule","report","food","mental"];
+  var ids=["train","week","schedule","report","food","mental","library"];
   ids.forEach(function(x){
     var btn=document.getElementById("tab"+x.charAt(0).toUpperCase()+x.slice(1));
     var box=document.getElementById(x+"Box");
@@ -676,6 +678,62 @@ function renderMental(){
  document.getElementById("saveWall").onclick=function(){saved.checks=Array.from(wrap.querySelectorAll("input")).map(function(x){return x.checked;});saved.focus=document.getElementById("wallFocus").value;saved.date=document.getElementById("wallDate").value;saved.note=document.getElementById("wallNote").value;DB.mental.wall=saved;saveDB();document.getElementById("wallStatus").textContent="✅ تم حفظ سجل THE WALL على هذا الجهاز";};
 }
 
+/* ===== مكتبة التعلم وتحليل مباريات Pivot ===== */
+function renderLibrary(){
+ var box=document.getElementById("libraryBox");if(!box)return;box.innerHTML="";
+ var intro=document.createElement("div");intro.className="card plan-intro";
+ intro.innerHTML="<h2>📚 مكتبة THE WALL</h2><div class='cue'>LEARN → OBSERVE → APPLY</div><div class='muted'>لا تجمع مصادر كثيرة. ابدأ بكتاب واحد، واستمع إلى فكرة واحدة أسبوعياً، ثم طبّقها في تدريب الأهلي.</div>";box.appendChild(intro);
+ var books=document.createElement("div");books.className="card";
+ books.innerHTML="<h2>📖 الكتب الثلاثة — ابدأ بالأول</h2>"+
+ "<div class='dev-card'><h3>1. The Inner Game of Tennis — ابدأ به</h3>يساعدك على تقليل التفكير الزائد والثقة بتنفيذ المهارة. <b>تطبيق الملعب:</b> لا تكرر التفكير في الخطأ أثناء المباراة؛ أعد انتباهك إلى الكرة والمهمة الحالية. ابدأ بـ10 صفحات في الجلسة.</div>"+
+ "<div class='dev-card'><h3>2. Mind Gym: An Athlete's Guide to Inner Excellence</h3>كتاب عملي عن الثقة والتركيز والتخيل والاستعداد الذهني. <b>تطبيق الملعب:</b> تخيل استلام الكرة أمام مدافع U20، حماية الكرة، ثم اتخاذ القرار الصحيح.</div>"+
+ "<div class='dev-card'><h3>3. Grit — Angela Duckworth</h3>عن المثابرة والعمل طويل الأمد. <b>تطبيق الملعب:</b> لا تجعل عدم حصولك على دقائق لعب الآن سبباً للتوقف عن التطور.</div>"+
+ "<div class='note'>لا تحتاج إلى شراء الكتب الثلاثة دفعة واحدة. ابدأ بالأول، ولا تعتبر القراءة بديلاً عن التدريب أو ملاحظات المدرب.</div>";box.appendChild(books);
+ var podcasts=document.createElement("div");podcasts.className="card";
+ podcasts.innerHTML="<h2>🎧 البودكاست</h2>"+
+ "<div class='dev-card'><h3>Finding Mastery — Dr. Michael Gervais</h3>الأداء العالي، التعامل مع الضغط، والثقة بالنفس.<br><a href='https://findingmastery.com/' target='_blank' rel='noopener'>افتح Finding Mastery ↗</a></div>"+
+ "<div class='dev-card'><h3>AASP Featured Podcast Library</h3>موضوعات في التركيز، إدارة الانفعالات، والاستعداد للمنافسة.<br><a href='https://appliedsportpsych.org/media/featured-podcast-library/' target='_blank' rel='noopener'>افتح مكتبة AASP ↗</a></div>"+
+ "<div class='soft-note'>حلقة واحدة أسبوعياً تكفي كبداية. اختر فكرة واحدة فقط، واكتب كيف ستطبقها في الملعب.</div>";box.appendChild(podcasts);
+ var matches=document.createElement("div");matches.className="card";
+ matches.innerHTML="<h2>🏐 مباريات للمشاهدة والتحليل</h2>"+
+ "<div class='dev-card'><h3>1. Barça vs Füchse Berlin — نهائي EHF Champions League 2026</h3><b>الأولوية الأولى.</b> راقب تحركات Pivot أمام دفاع منظم، وكيف تُخلق المساحات.<br><a href='https://www.hand-ball.org/videos/2025-26/171/EHF-Champions-League' target='_blank' rel='noopener'>أرشيف فيديو EHF ↗</a></div>"+
+ "<div class='dev-card'><h3>2. SC Magdeburg vs Füchse Berlin — نصف نهائي 2026</h3>راقب Magnus Saugstrup: التمركز، البلوك، التحرك قبل التمريرة، والدفاع.<br><a href='https://www.hand-ball.org/videos/2025-26/171/EHF-Champions-League' target='_blank' rel='noopener'>أرشيف فيديو EHF ↗</a></div>"+
+ "<div class='dev-card'><h3>3. Denmark vs France — مباريات المنتخبات</h3>قارن بين Magnus Saugstrup وLudovic Fabregas: الاستلام، التعامل مع المدافعين، والتمركز.<br><a href='https://www.youtube.com/results?search_query=Denmark+vs+France+handball+full+match+Saugstrup+Fabregas' target='_blank' rel='noopener'>ابحث عن المباراة على YouTube ↗</a></div>"+
+ "<div class='dev-card'><h3>4. مباريات SC Magdeburg — ركّز على Saugstrup</h3>شاهد المباراة كاملة متى أمكن، وليس لقطات التسجيل فقط.<br><a href='https://ehftv.com/' target='_blank' rel='noopener'>EHFTV — مباريات وإعادات ↗</a></div>"+
+ "<div class='note'>قد تتطلب بعض المباريات اشتراكاً، وقد تختلف الإتاحة حسب حقوق البث والمنطقة.</div>";box.appendChild(matches);
+ var method=document.createElement("div");method.className="card";
+ method.innerHTML="<h2>🔎 طريقة المشاهدة</h2><div class='soft-note'>شاهد مرتين أسبوعياً لمدة 20–30 دقيقة في كل مرة. لا تشاهد كمتفرج؛ راقب لاعب Pivot فقط.</div>"+
+ "<div class='dev-card'><b>Positioning:</b> أين يقف Pivot قبل التمريرة؟</div>"+
+ "<div class='dev-card'><b>Receiving:</b> كيف يجهز يديه وجسمه؟</div>"+
+ "<div class='dev-card'><b>Footwork:</b> كيف يغيّر زاويته قبل وصول الكرة؟</div>"+
+ "<div class='dev-card'><b>Blocking:</b> كيف يفتح مساحة لزملائه دون مخالفة؟</div>"+
+ "<div class='dev-card'><b>Finishing:</b> كيف ينهي الهجمة من زوايا مختلفة؟</div>"+
+ "<div class='dev-card'><b>Defence:</b> كيف يقرأ الخصم ويعود للدفاع؟</div>"+
+ "<div class='cue'>أوقف الفيديو قبل التمريرة — توقّع حركة Pivot — شغّل اللقطة — قارن توقعك.</div>";box.appendChild(method);
+ var tracker=document.createElement("div");tracker.className="card";
+ tracker.innerHTML="<h2>📝 سجل تحليل المباراة</h2><div class='weekly-grid'>"+
+ "<div class='tf'><label>المباراة / الفريقان</label><input id='filmMatch' placeholder='مثلاً Barça vs Füchse'></div>"+
+ "<div class='tf'><label>اللاعب الذي تراقبه</label><input id='filmPlayer' placeholder='مثلاً Saugstrup'></div>"+
+ "<div class='tf'><label>المدة التي شاهدتها</label><input id='filmMinutes' type='number' min='1' placeholder='20'></div>"+
+ "<div class='tf'><label>تاريخ المشاهدة</label><input id='filmDate' type='date'></div>"+
+ "<div class='tf weekly-wide'><label>ماذا لاحظت في تحركه قبل التمريرة؟</label><textarea id='filmMove' placeholder='اكتب ملاحظة عن التمركز وفتح الزاوية...'></textarea></div>"+
+ "<div class='tf weekly-wide'><label>ماذا ستطبق في تدريب الأهلي؟</label><textarea id='filmApply' placeholder='اختر سلوكاً واحداً قابلاً للتطبيق...'></textarea></div></div>"+
+ "<button class='bigbtn' id='saveFilm'>💾 حفظ تحليل المباراة</button><div id='filmStatus' class='weekly-status'></div><div id='filmHistory'></div>";box.appendChild(tracker);
+ if(!DB.library)DB.library={films:[]};
+ var saved=DB.library.draft||{};
+ ["filmMatch","filmPlayer","filmMinutes","filmDate","filmMove","filmApply"].forEach(function(id){var el=document.getElementById(id);if(el)el.value=saved[id]|| (id==="filmDate"?todayKey():"");});
+ document.getElementById("saveFilm").onclick=function(){
+  var item={};["filmMatch","filmPlayer","filmMinutes","filmDate","filmMove","filmApply"].forEach(function(id){item[id]=document.getElementById(id).value.trim();});
+  if(!item.filmMatch&&!item.filmMove&&!item.filmApply){document.getElementById("filmStatus").textContent="أضف اسم المباراة أو ملاحظة واحدة على الأقل.";return;}
+  DB.library.films.unshift(item);DB.library.draft={};saveDB();renderLibrary();
+  var st=document.getElementById("filmStatus");if(st)st.textContent="✅ تم حفظ التحليل.";
+ };
+ var history=document.getElementById("filmHistory");
+ if(DB.library.films.length){history.innerHTML="<h3>التحليلات السابقة</h3>";DB.library.films.slice(0,8).forEach(function(f){var d=document.createElement("div");d.className="dev-card";d.innerHTML="<b>"+esc(f.filmDate||"")+"</b> — "+esc(f.filmMatch||"مباراة")+(f.filmPlayer?" • "+esc(f.filmPlayer):"")+"<br><span class='muted'>"+esc(f.filmMove||"")+"</span><br><b>التطبيق:</b> "+esc(f.filmApply||"");history.appendChild(d);});}
+ var mind=document.createElement("div");mind.className="card";
+ mind.innerHTML="<h2>🧠 تحدي العقل — 4 أسابيع</h2><div class='dev-card'><b>الأسبوع 1 — Identity:</b> اقرأ 10 صفحات من الكتاب الأول، ودوّن صفات THE WALL وقيمه.</div><div class='dev-card'><b>الأسبوع 2 — Confidence:</b> تدرب على طلب الكرة والتواصل مع زملائك، وسجّل المواقف التي طلبت فيها الكرة رغم وجود المدافع.</div><div class='dev-card'><b>الأسبوع 3 — Pressure:</b> استخدم RESET بعد الخطأ، واطلب من المدرب إدخال مواقف استلام تحت ضغط تدريجي.</div><div class='dev-card'><b>الأسبوع 4 — Competition:</b> طبّق روتين المباراة، وركز على المهام التي تتحكم فيها.</div><div class='note'>هذا التدرج يكمل روتين THE WALL الموجود في قسم العقلية. لا يضيف حصصاً بدنية إضافية.</div>";box.appendChild(mind);
+}
+
 /* ===== عرض الأكل ===== */
 
 function renderFood(){
@@ -702,11 +760,12 @@ renderSchedule();
 renderReportOnly();
 renderFood();
 renderMental();
+renderLibrary();
 </script>
 
 <footer id="site-version" aria-label="نسخة الموقع" style="max-width:680px;margin:14px auto 24px;padding:12px 10px 18px;text-align:center;color:#9ca3af;font:12px/1.8 system-ui,sans-serif;border-top:1px solid #303038;">
-  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v1.6.0</div>
-  <div>BUILD 2026.11.09.1 · آخر تعديل: 9 نوفمبر 2026</div>
+  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v1.7.0</div>
+  <div>BUILD 2026.11.09.2 · آخر تعديل: 9 نوفمبر 2026</div>
 </footer>
 
 </body>
