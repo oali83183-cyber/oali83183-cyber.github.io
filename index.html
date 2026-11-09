@@ -169,6 +169,7 @@
     <button class="tab" id="tabSchedule" onclick="showTab('schedule')">🎓🏐 الجدول</button>
     <button class="tab" id="tabReport" onclick="showTab('report')">📊 التقرير</button>
     <button class="tab" id="tabFood" onclick="showTab('food')">🍽️ الأكل</button>
+    <button class="tab" id="tabMental" onclick="showTab('mental')">🧠 THE WALL</button>
   </div>
 
   <div id="trainBox"></div>
@@ -176,6 +177,7 @@
   <div id="scheduleBox" style="display:none;"></div>
   <div id="reportBox" style="display:none;"></div>
   <div id="foodBox" style="display:none;"></div>
+  <div id="mentalBox" style="display:none;"></div>
 </div>
 
 <script>
@@ -500,7 +502,7 @@ function vidRow(name){
 }
 
 function showTab(t){
-  var ids=["train","week","schedule","report","food"];
+  var ids=["train","week","schedule","report","food","mental"];
   ids.forEach(function(x){
     var btn=document.getElementById("tab"+x.charAt(0).toUpperCase()+x.slice(1));
     var box=document.getElementById(x+"Box");
@@ -644,6 +646,36 @@ function renderTrain(){
  card.appendChild(list);var bar=document.createElement("div");bar.className="pbar";var fill=document.createElement("div");bar.appendChild(fill);card.appendChild(bar);var label=document.createElement("div");label.className="plabel";card.appendChild(label);box.appendChild(card);
  function update(){var done=arr.filter(Boolean).length;fill.style.width=(done/total*100)+"%";label.textContent="أنجزت "+done+" من "+total;}update();
 }
+/* ===== THE WALL: الهوية الذهنية والتركيز ===== */
+function renderMental(){
+ var box=document.getElementById("mentalBox");if(!box)return;box.innerHTML="";
+ if(!DB.mental)DB.mental={};
+ var intro=document.createElement("div");intro.className="card plan-intro";
+ intro.innerHTML="<h2>🧱 THE WALL — THE COMPLETE PIVOT</h2><div class='cue'>CALM. POWERFUL. INTELLIGENT.</div><div class='muted'>هذه شخصية أداء تذكّرك بأن تكون هادئاً وقوياً وذكياً داخل الملعب — أنت تبقى نفسك، وهذه الكلمات تساعدك على التركيز واتخاذ القرار.</div>";box.appendChild(intro);
+ var rules=document.createElement("div");rules.className="card";
+ rules.innerHTML="<h2>القواعد الخمس</h2><div class='dev-card'><b>1. Eyes on the game</b><br>عينك على الكرة والمدافع والمساحة.</div><div class='dev-card'><b>2. Ready before the pass</b><br>جهّز يديك وقدميك قبل وصول التمريرة.</div><div class='dev-card'><b>3. Move with purpose</b><br>تحرك لفتح زاوية تمرير، لا تنتظر ثابتاً.</div><div class='dev-card'><b>4. Next action</b><br>بعد الخطأ، انتقل مباشرة إلى المهمة التالية.</div><div class='dev-card'><b>5. Respect, then compete</b><br>احترم زملاءك والحكم والمنافس، ثم نافس بقوة وذكاء.</div>";box.appendChild(rules);
+ var pre=document.createElement("div");pre.className="card";
+ pre.innerHTML="<h2>⏱️ روتين ما قبل التدريب — 8 دقائق</h2><div class='dev-card'>دقيقة تنفس هادئ: شهيق مريح وزفير أطول قليلاً.</div><div class='dev-card'>دقيقتان تخيّل: افتح زاوية تمرير، استلم أمام المدافع، احمِ الكرة واتخذ القرار.</div><div class='dev-card'>دقيقتان: اختر هدفين فنيين واضحين للحصة، مثل طلب الكرة مبكراً والتحرك قبل التمريرة.</div><div class='dev-card'>دقيقة: كرر بهدوء <b>CALM. POWERFUL. INTELLIGENT.</b></div><div class='dev-card'>دقيقتان في الإحماء: تابع مسار الكرة بعينيك وجهّز اليدين مبكراً.</div>";box.appendChild(pre);
+ var cue=document.createElement("div");cue.className="card";
+ cue.innerHTML="<h2>🎯 أثناء اللعب: SCAN → MOVE → EXECUTE</h2><div class='cue'>SCAN → MOVE → EXECUTE</div><div class='dev-card'><b>SCAN:</b> افحص الكرة، المدافع، والمساحة المتاحة.</div><div class='dev-card'><b>MOVE:</b> حرّك قدميك وجسمك لفتح خط تمرير واضح.</div><div class='dev-card'><b>EXECUTE:</b> استلم بكلتا اليدين، احمِ الكرة، ثم مرّر أو استدر أو أنهِ الهجمة حسب الموقف.</div>";box.appendChild(cue);
+ var reset=document.createElement("div");reset.className="card";
+ reset.innerHTML="<h2>🔄 بعد الخطأ: RESET</h2><ol><li>لاحظ الخطأ دون لوم نفسك.</li><li>أخرج زفيراً هادئاً.</li><li>قل في ذهنك: <b>NEXT ACTION</b>.</li><li>أعد نظرك إلى الكرة والمدافع.</li><li>ارجع فوراً إلى دورك في الهجمة أو الدفاع.</li></ol>";box.appendChild(reset);
+ var match=document.createElement("div");match.className="card";
+ match.innerHTML="<h2>🏆 روتين المباراة</h2><div class='dev-card'><b>قبل المباراة:</b> حافظ على نومك ووجباتك المعتادة. تخيل أول استلام ناجح، وحدد هدفين فنيين وهدفاً دفاعياً.</div><div class='dev-card'><b>الإحماء:</b> تابع الكرة بعينيك، استخدم SCAN–MOVE–EXECUTE، ولا تستعجل.</div><div class='dev-card'><b>أثناء المباراة:</b> اطلب الكرة، تحرك قبل التمريرة، وبعد كل هجمة ارجع إلى مهمتك. لا تنشغل بالجمهور أو الخطأ السابق.</div><div class='dev-card'><b>بين الشوطين:</b> اسأل نفسك: هل أطلب الكرة؟ هل أتحرك قبل التمريرة؟ ما التعديل الواحد الذي سأطبقه؟</div><div class='dev-card'><b>بعد المباراة:</b> سجل نقطة قوة واحدة، وخطأ واحداً، واستمع لملاحظة المدرب. لا تحكم على نفسك وأنت غاضب.</div>";box.appendChild(match);
+ var progression=document.createElement("div");progression.className="card";
+ progression.innerHTML="<h2>📈 التدرج الذهني لأربعة أسابيع</h2><div class='dev-card'><b>الأسبوع 1:</b> التزم بإشارة SCAN–MOVE–EXECUTE.</div><div class='dev-card'><b>الأسبوع 2:</b> استخدم RESET مباشرة بعد الخطأ.</div><div class='dev-card'><b>الأسبوع 3:</b> حافظ على التركيز مع زيادة ضغط الاستلام تدريجياً بإشراف المدرب.</div><div class='dev-card'><b>الأسبوع 4:</b> طبّق روتين المباراة كاملاً مع تخفيف الحمل البدني.</div>";box.appendChild(progression);
+ var log=document.createElement("div");log.className="card";
+ log.innerHTML="<h2>📝 سجل THE WALL اليومي</h2><div class='muted'>علّم ما طبقته بعد الحصة. تُحفظ اختياراتك على هذا الجهاز والمتصفح.</div><div id='wallChecks'></div><div class='weekly-grid'><div class='tf'><label>تركيزي اليوم من 10</label><input id='wallFocus' type='number' min='1' max='10' placeholder='مثلاً 7'></div><div class='tf'><label>تاريخ المراجعة</label><input id='wallDate' type='date'></div><div class='tf weekly-wide'><label>ملاحظة: ما الذي شتت تركيزي؟ وما هدف المرة القادمة؟</label><textarea id='wallNote' placeholder='اكتب ملاحظة قصيرة...'></textarea></div></div><button class='bigbtn' id='saveWall'>💾 حفظ سجل THE WALL</button><div id='wallStatus' class='weekly-status'></div>";box.appendChild(log);
+ var checks=["نفذت روتين ما قبل التدريب","حددت هدفين فنيين للحصة","استخدمت SCAN–MOVE–EXECUTE","عدت للتركيز بعد الخطأ باستخدام RESET","كتبت مراجعة قصيرة بعد الحصة"];
+ var saved=DB.mental.wall||{};
+ var wrap=document.getElementById("wallChecks");
+ checks.forEach(function(label,i){var row=document.createElement("div");row.className="habit";var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!(saved.checks&&saved.checks[i]);var sp=document.createElement("span");sp.className="nm";sp.textContent=label;row.appendChild(cb);row.appendChild(sp);wrap.appendChild(row);cb.onchange=function(){if(!saved.checks)saved.checks=[];saved.checks[i]=cb.checked;};});
+ document.getElementById("wallFocus").value=saved.focus||"";
+ document.getElementById("wallDate").value=saved.date||todayKey();
+ document.getElementById("wallNote").value=saved.note||"";
+ document.getElementById("saveWall").onclick=function(){saved.checks=Array.from(wrap.querySelectorAll("input")).map(function(x){return x.checked;});saved.focus=document.getElementById("wallFocus").value;saved.date=document.getElementById("wallDate").value;saved.note=document.getElementById("wallNote").value;DB.mental.wall=saved;saveDB();document.getElementById("wallStatus").textContent="✅ تم حفظ سجل THE WALL على هذا الجهاز";};
+}
+
 /* ===== عرض الأكل ===== */
 
 function renderFood(){
@@ -654,14 +686,11 @@ function renderFood(){
  "<div class='dev-card'><h3>الغداء</h3>رز أو بطاطس أو معكرونة أو خبز + دجاج أو سمك أو لحم أو عدس/فاصوليا + خضار إن توفرت.</div>"+
  "<div class='dev-card'><h3>العشاء</h3>وجبة منزلية عادية تجمع النشويات والبروتين حسب الموجود. لا تتخطَّها إذا كان عندك تدريب أو جوع.</div>"+
  "<div class='dev-card'><h3>وجبة خفيفة عند الحاجة</h3>موز، حليب، لبن، زبادي، ساندويتش جبن/بيض أو خبز؛ اختر المتوفر وما يناسب معدتك.</div>";box.appendChild(daily);
- var schedule=document.createElement("div");schedule.className="card";schedule.innerHTML="<h2>📅 الأكل حول أيام الجدول</h2>"+
- "<div class='dev-card'><h3>الاثنين — قوة A</h3>وجبة مألوفة فيها نشويات وبروتين قبل التمرين بساعتين إلى ثلاث إن أمكن، ثم الوجبة التالية بعده مثل رز ودجاج أو خبز وبيض.</div>"+
- "<div class='dev-card'><h3>الثلاثاء — التحمل</h3>حافظ على الإفطار والغداء والعشاء. إذا شعرت بالجوع قبل المشي أو الدراجة، خذ فاكهة أو خبزاً أو زبادي.</div>"+
- "<div class='dev-card'><h3>الأربعاء — مهارات Pivot</h3>وجبات منتظمة. إذا كانت الحصة بعد فترة طويلة من آخر وجبة، خذ سناكاً بسيطاً قبلها ثم وجبتك العادية بعدها.</div>"+
- "<div class='dev-card'><h3>الخميس — قوة B</h3>مثل يوم القوة A: وجبة مألوفة قبل الحصة، وبعدها مصدر نشويات وبروتين من طعام البيت.</div>"+
- "<div class='dev-card'><h3>الجمعة — السرعة والقوة الانفجارية</h3>لا تتمرن على معدة جائعة. تناول وجبة كافية قبلها، ولا تضف مشروبات طاقة أو منبهات.</div>"+
- "<div class='dev-card'><h3>السبت — التحمل المتكرر أو المباراة</h3>إذا كانت حصة التحمل: وجبات عادية وسناك عند الحاجة. إذا كانت مباراة: لا تجرب طعاماً جديداً؛ تناول وجبة مألوفة قبلها بنحو 2–3 ساعات وسناك بسيطاً إذا احتجت.</div>"+
- "<div class='dev-card'><h3>الأحد — الراحة</h3>استمر على الوجبات المعتادة. يوم الراحة ليس يوماً لتقليل الطعام أو تخطي الوجبات؛ جسمك يتعافى ويبني.</div>";box.appendChild(schedule);
+ var schedule=document.createElement("div");schedule.className="card";schedule.innerHTML="<h2>📅 الأكل حول جدولك الفعلي</h2>"+
+ "<div class='dev-card'><h3>الأحد إلى الخميس والسبت — تدريب الأهلي</h3>حافظ على الإفطار والغداء. قبل تدريب 16:00–19:00 تناول وجبة مألوفة قبلها بنحو 2–3 ساعات إن أمكن، أو سناك بسيط مثل موز أو زبادي أو ساندويتش إذا كان الغداء مبكراً. بعد التدريب تناول وجبة فيها نشويات وبروتين.</div>"+
+ "<div class='dev-card'><h3>الثلاثاء — الجيم صباحاً + الأهلي مساءً</h3>لا تدخل الجيم صائماً أو مرهقاً. تناول إفطاراً مناسباً قبله، ووجبة غداء كافية قبل تدريب الأهلي. إذا كان التعب مرتفعاً، ألغِ الجيم الإضافي وأعطِ الأولوية لتعافي الفريق.</div>"+
+ "<div class='dev-card'><h3>الجمعة — راحة كاملة من الرياضة</h3>استمر على الوجبات المعتادة؛ لا تقلل الطعام ولا تتخطَّ الوجبات لأن الجسم يتعافى.</div>"+
+ "<div class='dev-card'><h3>يوم المباراة</h3>المباراة تستبدل التدريب. تناول وجبة مألوفة قبلها بنحو 2–3 ساعات، وسناك بسيطاً عند الحاجة، ولا تجرب أطعمة جديدة.</div>";box.appendChild(schedule)box.appendChild(schedule);
  var hydration=document.createElement("div");hydration.className="card";hydration.innerHTML="<h2>💧 الماء والتعافي</h2><div class='dev-card'>اشرب بانتظام خلال اليوم، وخذ الماء معك للحصة. انتبه للسوائل في الحر والتعرق، ولا تجبر نفسك على كميات كبيرة دفعة واحدة.</div><div class='dev-card'>استهدف 8–10 ساعات نوم. النوم المنتظم جزء من تطور القوة والتحمل ورد الفعل.</div>";box.appendChild(hydration);
  var supplements=document.createElement("div");supplements.className="card";supplements.innerHTML="<h2>💊 المكملات</h2><div class='note'>ذكرت سابقاً أنك تستخدم الكرياتين ومسحوق البروتين. وبما أن عمرك 17 سنة، لا تغيّر الجرعات ولا تضف منتجات من نفسك؛ ناقش العبوات واستخدامها مع ولي أمرك وطبيب أو اختصاصي تغذية رياضية للناشئين. الأولوية للطعام والنوم والتدريب المناسب.</div>";box.appendChild(supplements);
 }
@@ -672,11 +701,12 @@ renderWeekOverview();
 renderSchedule();
 renderReportOnly();
 renderFood();
+renderMental();
 </script>
 
 <footer id="site-version" aria-label="نسخة الموقع" style="max-width:680px;margin:14px auto 24px;padding:12px 10px 18px;text-align:center;color:#9ca3af;font:12px/1.8 system-ui,sans-serif;border-top:1px solid #303038;">
-  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v1.5.0</div>
-  <div>BUILD 2026.11.08.1 · آخر تعديل: 8 نوفمبر 2026</div>
+  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v1.6.0</div>
+  <div>BUILD 2026.11.09.1 · آخر تعديل: 9 نوفمبر 2026</div>
 </footer>
 
 </body>
