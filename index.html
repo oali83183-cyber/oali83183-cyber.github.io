@@ -200,7 +200,7 @@ var SCHED=[
  {day:"الاثنين",title:"Partner Receiving — استلام الكرة",cal:"تطوير فردي 20–22 دقيقة مع زميل • الأهلي 16:00–19:00",am:[
   {cat:"🤝 إعداد الاستلام مع شريك — 3 دقائق",ex:[["Partner Hand-Target Reception","1×6 تمريرات سهلة للإحماء"]]},
   {cat:"🏐 Receiving Foundation — 12–14 دقيقة",ex:[["Partner Low-Ball Reception","2×5 تمريرات منخفضة"],["Two-Step Moving Reception","2×5 تمريرات بعد خطوتين"],["Left/Right Angle Reception","2×4 تمريرات من الجهتين"]]},
-  {cat:"📊 قياس الجودة — 2 دقائق",ex:[["Partner Clean-Catch Count","سجّل النظيفة / 28 محاولة"]]}
+  {cat:"📊 قياس الجودة — 2 دقائق",ex:[["Partner Clean-Catch Count","سجّل النظيفة / 34 محاولة"]]}
  ],pm:[]},
  {day:"الثلاثاء",title:"Gym Strength — القوة الأساسية",cal:"جيم 40–45 دقيقة صباحاً عند التعافي • الأهلي 16:00–19:00",am:[
   {cat:"🔥 Warm-up — 6 دقائق",ex:[["Dynamic Gym Warm-up","4 دقائق حركة عامة"],["Band Pull-Apart","2×12"]]},
@@ -309,7 +309,6 @@ Object.assign(VID,{
  "Partner Low-Ball Reception":"handball low pass reception pivot drill",
  "Two-Step Moving Reception":"handball pivot moving receiving pass two steps drill",
  "Left/Right Angle Reception":"handball passing receiving left right angles partner drill",
- "Partner Clean-Catch Count":"handball catching technique partner drill",
  "Dynamic Gym Warm-up":"dynamic warm up for strength training",
  "Dumbbell Romanian Deadlift":"dumbbell romanian deadlift tutorial",
  "Seated Cable Row":"seated cable row proper technique",
@@ -322,7 +321,6 @@ Object.assign(VID,{
  "Reposition to Passing Lane":"handball pivot reposition create passing lane drill",
  "Pivot Decision: Catch & Pass/Turn":"handball pivot catch pass turn decision making drill",
  "Shadow Defender Timing":"handball pivot timing against defender shadow drill",
- "Pivot Space-Creation Review":"handball pivot movement create space analysis",
  "Snap-Down Landing":"athletic snap down landing mechanics drill",
  "Low Vertical Jump + Stick":"low vertical jump stick landing mechanics",
  "Progressive 5m Acceleration":"5 meter acceleration sprint technique",
@@ -737,7 +735,7 @@ function renderTrain(){
  s.am.forEach(function(grp){var gh=document.createElement("div");gh.className="section-title";gh.textContent=grp.cat;list.appendChild(gh);
   grp.ex.forEach(function(ex){var n=idx++,b=document.createElement("div");b.className="exbox";var row=document.createElement("div");row.className="ex";var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!arr[n];cb.onchange=function(){arr[n]=cb.checked;DB.am[k]=arr;saveDB();row.classList.toggle("done",cb.checked);update();};if(cb.checked)row.classList.add("done");
    var name=document.createElement("button");name.type="button";name.className="nm exname";name.textContent=ex[0];var st=document.createElement("span");st.className="st";st.textContent=ex[1];row.appendChild(cb);row.appendChild(name);row.appendChild(st);b.appendChild(row);
-   var info=document.createElement("div");info.className="exinfo";info.style.display="none";var expl=EXPLAIN[ex[0]]||"نفّذ الحركة ببطء وتحكم، وحافظ على وضعية جسم مريحة. توقف إذا ظهر ألم أو عدم ثبات.";info.innerHTML="<b>📌 طريقة الأداء:</b> "+esc(expl)+"<br><b>تنبيه:</b> حافظ على جودة الحركة، ولا تتجاوز العدد المحدد أو تتمرن حتى الفشل.";var help=document.createElement("button");help.type="button";help.className="exhelp-btn";help.textContent="📖 شرح التمرين وطريقة الأداء";function toggleHelp(){var open=info.style.display==="none";info.style.display=open?"block":"none";help.textContent=open?"✖ إخفاء الشرح":"📖 شرح التمرين وطريقة الأداء";}help.onclick=toggleHelp;name.onclick=toggleHelp;b.appendChild(help);b.appendChild(info);b.appendChild(vidRow(ex[0]));list.appendChild(b);
+   var info=document.createElement("div");info.className="exinfo";info.style.display="none";var expl=EXPLAIN[ex[0]]||"نفّذ الحركة ببطء وتحكم، وحافظ على وضعية جسم مريحة. توقف إذا ظهر ألم أو عدم ثبات.";info.innerHTML="<b>📌 طريقة الأداء:</b> "+esc(expl)+"<br><b>تنبيه:</b> حافظ على جودة الحركة، ولا تتجاوز العدد المحدد أو تتمرن حتى الفشل.";var help=document.createElement("button");help.type="button";help.className="exhelp-btn";help.textContent="📖 شرح التمرين وطريقة الأداء";function toggleHelp(){var open=info.style.display==="none";info.style.display=open?"block":"none";help.textContent=open?"✖ إخفاء الشرح":"📖 شرح التمرين وطريقة الأداء";}help.onclick=toggleHelp;name.onclick=toggleHelp;b.appendChild(help);b.appendChild(info);if(VID[ex[0]])b.appendChild(vidRow(ex[0]));list.appendChild(b);
   });
  });
  card.appendChild(list);var bar=document.createElement("div");bar.className="pbar";var fill=document.createElement("div");bar.appendChild(fill);card.appendChild(bar);var label=document.createElement("div");label.className="plabel";card.appendChild(label);box.appendChild(card);
