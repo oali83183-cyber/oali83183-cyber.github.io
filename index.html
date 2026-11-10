@@ -192,35 +192,38 @@ function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"
 
 /* ===== الخطة الأسبوعية الفردية للاعب Pivot ===== */
 var SCHED=[
- {day:"الأحد",title:"الأهلي + التوافق البصري والقدمي",cal:"الأهلي 16:00–19:00 • التدريب الفعلي قرابة ساعتين",am:[
-  {cat:"🧠 تهيئة ذهنية — 5 دقائق",ex:[["هدف الحصة + تنفس هادئ","3–5 دقائق"]]},
-  {cat:"👁️👣 توافق العين والقدم — 3–4 دقائق ضمن الإحماء",ex:[["استجابة لاتجاه بصري مع خطوات Pivot","2×20 ثانية — إشارة يمين/يسار/أمام"]]},
-  {cat:"🏐 داخل تدريب الأهلي",ex:[["التحرك دون كرة وفتح زاوية","طبّقها مع الفريق — دون حصة إضافية"],["ملاحظة Pivot بعد التدريب","3 دقائق — سجّل أفضل تحرك"]]}
+ {day:"الأحد",title:"Mobility + Core — المنزل",cal:"تطوير فردي 15–18 دقيقة • الجامعة صباحاً • الأهلي 16:00–19:00",am:[
+  {cat:"🦶 Mobility & Activation — 5 دقائق",ex:[["Ankle Rocks","2×8 لكل كاحل"],["90/90 Hip Switch","2×6 بالتبادل"],["Open Book Rotation","1×6 لكل جهة"]]},
+  {cat:"🧱 Core + Joint Control — 7 دقائق",ex:[["Dead Bug","2×8 لكل جهة"],["Side Plank","2×20 ثانية لكل جهة"],["Single-Leg Balance + Reach","2×3 اتجاهات لكل رجل"]]},
+  {cat:"🏐 Ball Feel — 4–5 دقائق",ex:[["Wall Handball Catch (Two Hands)","2×12 تمريرة سهلة"]]}
  ],pm:[]},
- {day:"الاثنين",title:"الأهلي + الاستلام والتوافق البصري اليدوي",cal:"الأهلي 16:00–19:00 • 10–12 دقيقة مهارة مدمجة بالإحماء",am:[
-  {cat:"🏐 استلام مع زميل — ضمن الإحماء",ex:[["استلام إلى نقطة اليد (مع زميل)","2×6 تمريرات"],["استلام متحرك خطوتين","2×5 تمريرات"]]},
-  {cat:"👀🤲 تتبع بصري واستجابة اليد — 3 دقائق ضمن الإحماء",ex:[["التقاط كرة التنس بعد إشارة بصرية","2×4 محاولات — بالتبادل يميناً ويساراً"]]},
-  {cat:"🧠 تركيز",ex:[["روتين الكرة التالية","دقيقة واحدة قبل التدريب"]]}
+ {day:"الاثنين",title:"Partner Receiving — استلام الكرة",cal:"تطوير فردي 20–22 دقيقة مع زميل • الأهلي 16:00–19:00",am:[
+  {cat:"🤝 إعداد الاستلام مع شريك — 3 دقائق",ex:[["Partner Hand-Target Reception","1×6 تمريرات سهلة للإحماء"]]},
+  {cat:"🏐 Receiving Foundation — 12–14 دقيقة",ex:[["Partner Low-Ball Reception","2×5 تمريرات منخفضة"],["Two-Step Moving Reception","2×5 تمريرات بعد خطوتين"],["Left/Right Angle Reception","2×4 تمريرات من الجهتين"]]},
+  {cat:"📊 قياس الجودة — 2 دقائق",ex:[["Partner Clean-Catch Count","سجّل النظيفة / 28 محاولة"]]}
  ],pm:[]},
- {day:"الثلاثاء",title:"جيم القوة + الأهلي",cal:"الجيم 08:30–09:15 عند التعافي • الأهلي 16:00–19:00",am:[
-  {cat:"🏋️ القوة الأساسية — بإشراف مدرب",ex:[["إحماء الجيم + حركة الكاحل والورك والكتف","7 دقائق — حركة مريحة وتنشيط خفيف"],["Goblet Squat","2×8"],["Romanian Deadlift خفيف","2×8"],["Supported Split Squat","2×6/رجل"],["Push-up أو Chest Press","2×8"],["Seated Row","2×10"],["Band External Rotation","2×12 — مقاومة خفيفة"],["Dead Bug","2×8/جهة"],["Calf Raise","2×12"]]},
-  {cat:"🦶 توافق عصبي عضلي وإحساس بالمفاصل — ضمن الإحماء",ex:[["اتزان مع وصول متعدد الاتجاهات","2×3 اتجاهات لكل رجل — على أرض ثابتة"]]}
+ {day:"الثلاثاء",title:"Gym Strength — القوة الأساسية",cal:"جيم 40–45 دقيقة صباحاً عند التعافي • الأهلي 16:00–19:00",am:[
+  {cat:"🔥 Warm-up — 6 دقائق",ex:[["Dynamic Gym Warm-up","4 دقائق حركة عامة"],["Band Pull-Apart","2×12"]]},
+  {cat:"🏋️ Strength — بإشراف مدرب، RIR 2–3",ex:[["Goblet Squat","3×6–8"],["Dumbbell Romanian Deadlift","3×8"],["Supported Split Squat","2×6 لكل رجل"],["Seated Cable Row","3×8–10"],["Push-up","2×8–12"]]},
+  {cat:"🛡️ Injury Prevention + Core — 6 دقائق",ex:[["Pallof Press","2×8 لكل جهة"],["Band External Rotation","2×12 لكل كتف"],["Calf Raise","2×12"]]}
  ],pm:[]},
- {day:"الأربعاء",title:"الأهلي + الدفاع والتوافق السمعي الحركي",cal:"الجامعة 08:00–11:50 • الأهلي 16:00–19:00",am:[
-  {cat:"🧠 تحضير ذهني — 3 دقائق",ex:[["تخيل موقف دفاعي ناجح","3 دقائق"]]},
-  {cat:"👂 توافق سمعي حركي — 3 دقائق ضمن إحماء الفريق",ex:[["استجابة صوتية مع تثبيت وضعية Pivot","2×4 إشارات — يمين/يسار/ثبات"]]},
-  {cat:"🏐 داخل تدريب الأهلي",ex:[["ثبات وضعية Pivot والالتحام القانوني","طبّقها مع الفريق"],["قراءة حركة المدافع","اختر ملاحظة واحدة بعد التدريب"]]}
+ {day:"الأربعاء",title:"Reaction + Footwork — سرعة الاستجابة",cal:"تطوير فردي 12–15 دقيقة قبل الأهلي • الجامعة 08:00–11:50",am:[
+  {cat:"⚡ تهيئة عصبية حركية — 3 دقائق",ex:[["A-March","2×10 أمتار"]]},
+  {cat:"👁️ Reaction & Pivot Footwork — 5 دقائق",ex:[["Visual Cue Pivot Footwork","3×20 ثانية — يمين/يسار/أمام"],["Tennis Ball Reaction Catch","2×4 محاولات"]]},
+  {cat:"👣 Agility & Deceleration — 4–5 دقائق",ex:[["Lateral Shuffle + Stick","2×4 أمتار لكل اتجاه"],["Controlled 5m Acceleration","3×5 أمتار عند 75–80%"]]}
  ],pm:[]},
- {day:"الخميس",title:"الأهلي + الاستلام والتوافق متعدد الإشارات",cal:"الجامعة 10:00–11:50 • الأهلي 16:00–19:00",am:[
-  {cat:"🏐 استلام وقرار — 8–10 دقائق مدمجة بالإحماء",ex:[["استلام بعد مسح بصري من جهتين","2×4 تمريرات"],["استلام وقرار بإشارة متغيرة (تمرير/دوران/تصويب)","2×4 تمريرات — ضغط تدريجي بإشراف المدرب"]]},
-  {cat:"🧠 تركيز",ex:[["كلمة تركيز قبل الاستلام","دقيقة واحدة"]]}
+ {day:"الخميس",title:"Pivot Skills + Space Creation — مع زميل",cal:"تطوير فردي 20–22 دقيقة مع زميل • الجامعة 10:00–11:50 • الأهلي 16:00–19:00",am:[
+  {cat:"📐 Positioning & Space Creation — 7 دقائق",ex:[["Seal → Show Target","3×4 محاولات — دون مدافع"],["Reposition to Passing Lane","2×4 محاولات لكل جهة"]]},
+  {cat:"🤲 Receive, Protect & Decide — 10 دقائق",ex:[["Catch → Protect → Turn","2×4 محاولات"],["Pivot Decision: Catch & Pass/Turn","2×4 تمريرات بإشارة قرار"],["Shadow Defender Timing","2×4 محاولات — ضغط ظلي متدرج"]]},
+  {cat:"🎯 مقياس الجودة",ex:[["Pivot Space-Creation Review","سجّل: فتحت زاوية؟ طلبت الكرة؟ استلمت؟"]]}
  ],pm:[]},
- {day:"الجمعة",title:"راحة كاملة من الرياضة + مراجعة ذهنية اختيارية",cal:"لا جيم ولا جري ولا كرة • راحة واستشفاء",am:[
-  {cat:"🧠 Mentality — اختياري دون مجهود بدني",ex:[["تحليل فيديو Pivot","10–15 دقيقة — راقب التحرك قبل استلام الكرة"],["مراجعة الأسبوع وكتابة 3 ملاحظات","5 دقائق"]]}
+ {day:"الجمعة",title:"راحة كاملة — مراجعة فيديو اختيارية",cal:"راحة رياضية كاملة • لا جيم ولا جري ولا كرة",am:[
+  {cat:"📚 مراجعة ذهنية فقط — اختيارية، دون نشاط بدني",ex:[["Pivot Video Analysis","10–15 دقيقة — راقب الحركة قبل التمريرة"],["Weekly Review Notes","5 دقائق — قوة، خطأ، هدف الأسبوع القادم"]]}
  ],pm:[]},
- {day:"السبت",title:"الأهلي أو المباراة — تطبيق التوافقات في اللعب",cal:"الأهلي 16:00–19:00 • إذا وجدت مباراة فهي تستبدل التدريب",am:[
-  {cat:"🧠 روتين ما قبل الأداء",ex:[["روتين ما قبل التدريب أو المباراة","3–5 دقائق"],["هدفان للمباراة/الحصة","دقيقتان — استلام ثابت وتمركز ذكي"]]},
-  {cat:"🏐 داخل تدريب الأهلي أو المباراة",ex:[["دمج النظر والسمع والقدمين في اللعب","امسح الكرة والمدافع والمساحة، استجب لنداء الزميل، ثم انتقل من الهجوم للدفاع"],["مراجعة الأداء بعد الحصة","3 دقائق"]]}
+ {day:"السبت",title:"Explosive Technique — تنشيط قبل الأهلي",cal:"10–12 دقيقة اختيارية قبل الأهلي فقط إذا لا توجد مباراة والتعافي جيد",am:[
+  {cat:"🦘 Landing & Jump Quality — بإذن المدرب وعلى أرض ثابتة",ex:[["Snap-Down Landing","2×4 — تثبيت الهبوط ثانيتين"],["Low Vertical Jump + Stick","2×3 — قفزات منخفضة وهبوط متزن"]]},
+  {cat:"🚀 Acceleration — جودة لا إنهاك",ex:[["Progressive 5m Acceleration","3×5 أمتار عند 80–85% مع راحة كاملة"]]},
+  {cat:"🏐 داخل تدريب الأهلي",ex:[["Pivot Movement: Block → Reposition","طبّق صناعة المساحة ثم أعد فتح زاوية التمرير"]]}
  ],pm:[]}
 ];
 
@@ -294,6 +297,37 @@ var VID={
   "التقاط كرة اليد من الأرض بيد واحدة":"pick up handball one hand grip",
   "حمل الكرة بأطراف الأصابع":"fingertip ball hold grip strength",
 };
+
+
+/* فيديوهات توضيحية — أزرار كل تمرين تفتح بحثاً بالاسم على المنصة */
+Object.assign(VID,{
+ "90/90 Hip Switch":"90 90 hip switches mobility exercise",
+ "Open Book Rotation":"open book thoracic rotation exercise",
+ "Single-Leg Balance + Reach":"single leg balance three way reach exercise",
+ "Wall Handball Catch (Two Hands)":"handball wall passing two hand catching drill",
+ "Partner Hand-Target Reception":"handball partner passing hand target receiving drill",
+ "Partner Low-Ball Reception":"handball low pass reception pivot drill",
+ "Two-Step Moving Reception":"handball pivot moving receiving pass two steps drill",
+ "Left/Right Angle Reception":"handball passing receiving left right angles partner drill",
+ "Partner Clean-Catch Count":"handball catching technique partner drill",
+ "Dynamic Gym Warm-up":"dynamic warm up for strength training",
+ "Dumbbell Romanian Deadlift":"dumbbell romanian deadlift tutorial",
+ "Seated Cable Row":"seated cable row proper technique",
+ "Pallof Press":"pallof press core stability exercise",
+ "Tennis Ball Reaction Catch":"tennis ball reaction catching drill partner",
+ "Visual Cue Pivot Footwork":"handball pivot footwork visual reaction drill",
+ "Lateral Shuffle + Stick":"lateral shuffle deceleration stick landing drill",
+ "Controlled 5m Acceleration":"acceleration mechanics short sprint drill",
+ "Seal → Show Target":"handball pivot seal defender show target receive drill",
+ "Reposition to Passing Lane":"handball pivot reposition create passing lane drill",
+ "Pivot Decision: Catch & Pass/Turn":"handball pivot catch pass turn decision making drill",
+ "Shadow Defender Timing":"handball pivot timing against defender shadow drill",
+ "Pivot Space-Creation Review":"handball pivot movement create space analysis",
+ "Snap-Down Landing":"athletic snap down landing mechanics drill",
+ "Low Vertical Jump + Stick":"low vertical jump stick landing mechanics",
+ "Progressive 5m Acceleration":"5 meter acceleration sprint technique",
+ "Pivot Movement: Block → Reposition":"handball pivot block reposition create space drill"
+});
 
 /* ===== شروحات التمارين — اضغط على اسم التمرين يظهر شرحه ===== */
 var EXPLAIN={
@@ -487,6 +521,39 @@ var EXPLAIN={
   "دمج النظر والسمع والقدمين في اللعب":"داخل التدريب أو المباراة فقط: امسح الكرة والمدافع والمساحة قبل التحرك، اسمع نداء الزميل، افتح زاوية بخطوات متوازنة، ثم اطلب الكرة واستلم واتخذ قرارك. لا تضف تكرارات أو جرياً منفصلاً؛ الهدف نقل التوافق إلى اللعب الحقيقي."
 };
 
+
+/* شروحات الحصة الفردية الجديدة */
+Object.assign(EXPLAIN,{
+ "Ankle Rocks":"قف أمام جدار وقدّم الركبة باتجاهه مع بقاء الكعب ثابتاً على الأرض. ارجع ببطء. نفّذ مدى مريحاً دون ألم أو إجبار.",
+ "90/90 Hip Switch":"اجلس والركبتان مثنيتان بزاوية مريحة، وبدّل الرجلين من جهة إلى أخرى بتحكم. أبقِ الحركة هادئة ولا تضغط على الورك.",
+ "Open Book Rotation":"استلقِ على جانبك مع ثني الركبتين ومد الذراعين أمامك. افتح الذراع العلوية للخلف واتبعها بعينيك، ثم عد. لا تدع الركبتين تتحركان كثيراً.",
+ "Single-Leg Balance + Reach":"قف قرب جدار على قدم واحدة، ومد القدم الحرة بلمسات خفيفة للأمام والجانب والخلف. حافظ على الركبة بمحاذاة القدم والحوض ثابتاً.",
+ "Wall Handball Catch (Two Hands)":"قف على مسافة قصيرة من الحائط. مرّر الكرة بقوة مريحة واستقبلها أمام الجسم بكلتا اليدين، والأصابع مفتوحة والمرفقان مرتخيان. امتص الكرة بسحب اليدين نحو الجسم.",
+ "Partner Hand-Target Reception":"يقف الشريك أمامك ويعرض يديه كهدف واضح. يمرر 6 كرات مريحة نحو الصدر/اليدين؛ قابل الكرة بخطوة صغيرة، جهّز اليدين مبكراً، واستقبل بكلتا اليدين. لا تسرّع قبل ثبات التقنية.",
+ "Partner Low-Ball Reception":"يمرر الشريك الكرة منخفضة على ارتفاع الركبة أو أسفلها. اخفض مركز الجسم بثني الركبتين والوركين، وقدّم اليدين خلف الكرة، ثم ضمها بأمان إلى الجسم. لا تنحنِ من الظهر وحده.",
+ "Two-Step Moving Reception":"ابدأ في وضع استعداد، تحرك خطوتين قصيرتين لفتح خط التمرير، ثم واجه الشريك واستقبل الكرة بكلتا اليدين. لا تبتعد عن مسار الكرة ولا تقف منتظراً.",
+ "Left/Right Angle Reception":"يقف الشريك على جهتين بالتبادل. امسح المكان بعينيك، غيّر زاوية جسمك بخطوات قصيرة، أظهر اليدين واستقبل. لا تلتف بعنف على قدم ثابتة.",
+ "Partner Clean-Catch Count":"استخدم نفس عدد التمريرات والارتفاعات في كل مرة. صنّف كل محاولة: Clean = سيطرة كاملة من أول لمسة، Bobble = لمسة غير مستقرة ثم سيطرة، Drop = سقوط الكرة. سجّل النتائج دون إخفاء الأخطاء.",
+ "Dynamic Gym Warm-up":"4 دقائق من مشي أو دراجة سهلة، ثم حركات ديناميكية للكاحل والورك والكتف. لا تبدأ مجموعات العمل قبل أن تشعر بأن الحركة سهلة ومسيطر عليها.",
+ "Dumbbell Romanian Deadlift":"امسك الدمبلين أمام الفخذين، اثنِ الركبتين قليلاً وادفع الورك للخلف مع ظهر محايد. أنزل الدمبلين قرب الساقين حتى تشعر بتمدد خلف الفخذ، ثم قف.",
+ "Seated Cable Row":"اجلس بثبات واسحب المقبض باتجاه أسفل القفص الصدري مع إبقاء الجذع هادئاً. أعد الذراعين ببطء ولا تستخدم اندفاع الظهر.",
+ "Pallof Press":"ثبّت حبل المقاومة جانبياً عند مستوى الصدر. أمسكه أمام الصدر وادفع اليدين للأمام دون أن يدور الجذع، ثم أعدهما. نفّذ الجهتين بمقاومة خفيفة.",
+ "Tennis Ball Reaction Catch":"يمسك الشريك كرة تنس ويتركها تسقط أو يطلقها إلى أحد الجانبين دون نمط ثابت. تابعها بعينيك وتحرك لالتقاطها. 2×4 محاولات؛ لا تجعلها قفزات أو اندفاعات عشوائية.",
+ "Visual Cue Pivot Footwork":"يقف الشريك أمامك ويشير إلى اليمين أو اليسار أو الأمام. استجب بخطوتين قصيرتين مع بقاء الجذع متوازناً ثم عد لوضع الاستعداد. ابدأ ببطء وزد سرعة الإشارة فقط إذا بقيت الحركة نظيفة.",
+ "Lateral Shuffle + Stick":"تحرك جانبياً بخطوات قصيرة لمسافة 4 أمتار، ثم خفف السرعة وتوقف متزناً لثانيتين. حافظ على الركبتين فوق اتجاه القدمين ولا تعبر القدمين.",
+ "Controlled 5m Acceleration":"انطلق 5 أمتار عند 75–80% فقط. خذ 45–60 ثانية راحة بين المحاولات. ركز على أول خطوتين ووضع الجذع، ولا تطارد أقصى سرعة.",
+ "Seal → Show Target":"خذ موقعاً قانونياً بين المدافع والكرة دون دفع أو إمساك. ثبت المساحة بجسم متوازن، ثم أظهر يديك كهدف عندما تصبح زاوية التمرير مناسبة. 3×4 محاولات مع شريك.",
+ "Reposition to Passing Lane":"بعد أن يغيّر الشريك زاوية الكرة أو يتحرك المدافع، اخرج بخطوات قصيرة إلى مساحة رؤية وتمرير جديدة، ثم أظهر يديك. لا تسحب المدافع ولا تمسكه.",
+ "Catch → Protect → Turn":"استقبل الكرة بكلتا اليدين أولاً، ضمها قرب الجسم، احمها بوضع جسم قانوني، ثم ثبت قدم الارتكاز ونفذ دوراناً قصيراً أو مرر للشريك. لا تبدأ الدوران قبل السيطرة.",
+ "Pivot Decision: Catch & Pass/Turn":"يعطي الشريك إشارة متفقاً عليها بعد إرسال الكرة: مرّر، أو استدر إذا كان المسار مفتوحاً. تابع الكرة أولاً، استقبلها، ثم نفّذ القرار. ابدأ دون مدافع وبعدها زد الضغط قليلاً.",
+ "Shadow Defender Timing":"يقف الشريك كمدافع ظلي ولا يستخدم دفعاً أو مسكاً. غيّر توقيتك وموقعك لفتح زاوية تمرير قانونية. خفف الضغط إذا أثّر على نظافة الاستلام.",
+ "Pivot Space-Creation Review":"بعد كل مجموعة، أجب: هل ثبتّ موقعاً قانونياً؟ هل فتحت زاوية؟ هل أظهرت يديك؟ هل تحركت مجدداً بعد تغيّر المدافع؟ سجل ملاحظة واحدة قابلة للتطبيق.",
+ "Snap-Down Landing":"قف باستقامة ثم انزل بسرعة مضبوطة إلى وضع نصف سكوات ثابت، واثبت ثانيتين. ركبتاك باتجاه أصابع القدمين، والهبوط هادئ. هذا تدريب هبوط وليس قفزة عالية.",
+ "Low Vertical Jump + Stick":"بعد إحماء جيد وبإذن المدرب، نفّذ قفزة عمودية منخفضة ثم اهبط بهدوء واثبت ثانيتين. 2×3 فقط. احذفها إذا ظهر ألم أو عدم ثبات في الكاحل أو الركبة.",
+ "Progressive 5m Acceleration":"نفّذ 3 انطلاقات لمسافة 5 أمتار عند 80–85% مع راحة كاملة 60–90 ثانية. الهدف تكنيك نظيف وليس اختبار سرعة أو إنهاك.",
+ "Pivot Movement: Block → Reposition":"داخل تدريب الأهلي، نفّذ بلوكاً قانونياً لفتح مساحة للزميل، ثم أعد تمركزك فوراً في زاوية تمرير جديدة وابقَ جاهزاً للاستلام. لا تدفع أو تمسك المدافع."
+});
+
 var ALT={
   "Back Squat صندوق ناعم":"بديل: سكوات هوائي بطيء على كرسي",
   "Broad Jump أمامي (بساط/نجيل)":"بديل: قفزة وقوف صغيرة للأمام",
@@ -523,7 +590,7 @@ function saveDB(){try{localStorage.setItem(KEY,JSON.stringify(DB));}catch(e){}}
 function vidRow(name){
   var q=VID[name]||name;
   var r=document.createElement("div");r.className="vidrow";
-  [["▶️ يوتيوب","#e11d2d","https://www.youtube.com/results?search_query="],
+  [["▶️ بحث فيديو يوتيوب","#e11d2d","https://www.youtube.com/results?search_query="],
    ["🎵 تيك توك","#111827","https://www.tiktok.com/search?q="],
    ["📸 انستا","#8a3ab9","https://www.instagram.com/explore/search/keyword/?q="]].forEach(function(x){
     var b=document.createElement("button");b.className="vbtn";b.style.background=x[1];
@@ -562,7 +629,7 @@ function countSession(groups){
 }
 function renderWeekOverview(){
  var box=document.getElementById("weekBox");if(!box)return;
- box.innerHTML="<div class='card'><h2>🗓️ جدول الأسبوع</h2><div class='soft-note'>الأهلي 6 أيام: الأحد–الخميس والسبت، 16:00–19:00 (نحو ساعتين فعلياً). الجمعة راحة رياضية كاملة. التوافقات الحركية موزعة داخل الإحماء والتدريب وليست وقتاً إضافياً: عين-قدم، عين-يد، توازن/إحساس بالمفاصل، سمعي-حركي، ومسح بصري مع قرار. الثلاثاء جيم واحد فقط إذا كنت متعافياً؛ المباراة تستبدل التدريب.</div></div>";
+ box.innerHTML="<div class='card'><h2>🗓️ جدول الأسبوع</h2><div class='soft-note'>برنامج فردي مستقل موزع بجرعات قصيرة فوق جدول الأهلي: الأحد Mobility/Core، الاثنين استلام مع شريك، الثلاثاء جيم قوة، الأربعاء Reaction/Footwork، الخميس Pivot/Space Creation مع شريك، الجمعة راحة كاملة ومراجعة فيديو اختيارية، السبت قفز وانطلاق اختياريان فقط إذا لا توجد مباراة والتعافي جيد. الفردي لا يتحول إلى جلسة إنهاك؛ المباراة تلغي الإضافات.</div></div>";
  SCHED.forEach(function(d){var card=document.createElement("div");card.className="card";var n=countSession(d.am);
  var details=d.am.length?d.am.map(function(g){return "<b>"+g.cat+"</b><br>"+g.ex.map(function(x){return x[0]+" — "+x[1];}).join("<br>");}).join("<div style='margin-top:8px'></div>"):"راحة كاملة أو حركة لطيفة اختيارية";
  card.innerHTML="<div class='accordion-title'><div><b>"+d.day+" — "+d.title+"</b><div class='muted'>"+(n?n+" تمارين • "+d.cal:"راحة / استشفاء")+"</div></div><span class='arr'>▼</span></div><div class='accordion-body muted' style='margin-top:8px'>"+details+"</div>";
@@ -648,9 +715,11 @@ function renderTrain(){
  document.getElementById("dayTitle").textContent=s.day+" — "+s.title;document.getElementById("dateSub").textContent=fmtDate(now)+" | "+s.cal;box.innerHTML="";
  var q=document.createElement("div");q.className="quickbar";q.innerHTML="<button class='qbtn' onclick=\"document.getElementById('secSession')?.scrollIntoView({behavior:'smooth'})\">🏐 تمرين اليوم</button><button class='qbtn' onclick=\"showTab('week')\">🗓️ الأسبوع</button><button class='qbtn' onclick=\"showTab('report')\">📊 التقرير</button>";box.appendChild(q);
  var summary=document.createElement("div");summary.className="today-summary";summary.innerHTML="<div class='sum'><b>"+countSession(s.am)+"</b><span>تمارين اليوم</span></div><div class='sum'><b>"+(s.am.length?s.cal:"راحة")+"</b><span>مدة/نوع اليوم</span></div><div class='sum'><b>"+(s.am.length?"جلسة فردية":"استشفاء")+"</b><span>وضع اليوم</span></div>";box.appendChild(summary);
- box.insertAdjacentHTML("beforeend",'<div class="note">جدولك مبني على الأهلي 6 أيام (الأحد–الخميس والسبت) من 16:00 إلى 19:00، والتدريب الفعلي قرابة ساعتين؛ الجمعة راحة كاملة من الرياضة. التوافقات الحركية أصبحت مدمجة في أيام التدريب: عين-قدم، عين-يد، سمعي-حركي، توازن/إحساس بالمفاصل، ومسح بصري واتخاذ قرار. الجرعات القصيرة (3–5 دقائق غالباً) جزء من الإحماء وتستبدل جزءاً من الإحماء المعتاد، وليست حصصاً إضافية فوقه. الجيم مرة واحدة الثلاثاء صباحاً فقط إذا كان التعافي جيداً وبإشراف مدرب. إذا كانت حصة الفريق شديدة أو لديك مباراة، اختصر أو احذف الإضافات واتبع توجيه المدرب؛ المباراة تستبدل التدريب. السرعة والتوقف وتغيير الاتجاه والتحمل الخاص بكرة اليد تُطوّر داخل تمارين الأهلي حسب خطة المدرب؛ لا تضف عدوات أو قفزات منفصلة فوق ست حصص. تمارين Pivot تشمل أيضاً الإنهاء من 6م والعودة للدفاع ضمن تدريب الفريق. حافظ على حركة الكاحل والورك والكتف في الإحماء، وأوقف أي تمرين يسبب ألماً أو عدم ثبات. الجمعة راحة كاملة، والفيديو والمراجعة الذهنية اختياريان فقط.</div>');
+ if(s.day==="الجمعة"){summary.innerHTML="<div class='sum'><b>♻️</b><span>راحة رياضية</span></div><div class='sum'><b>15–20د</b><span>مراجعة اختيارية</span></div><div class='sum'><b>تعافٍ</b><span>وضع اليوم</span></div>";}
+
+ box.insertAdjacentHTML("beforeend",'<div class="note">هذا برنامج تطوير فردي مستقل مدمج مع جدول الأهلي (الأحد–الخميس والسبت، 16:00–19:00؛ نحو ساعتين فعلياً). لا تجعل توفر أكثر من 90 دقيقة هدفاً للتدريب اليومي: الجرعات الفردية محددة الجودة، والجيم الثلاثاء هو حصة القوة الرئيسية. الاثنين والخميس مهارات شريك؛ الأربعاء استجابة وحركة بجرعة صغيرة؛ السبت قفز/انطلاق اختياري يحل محل جزء من الإحماء فقط إذا لا توجد مباراة والتعافي جيد. الجمعة راحة رياضية كاملة. أزرار الفيديو تفتح نتائج بحث بالتمرين وليست اعتماداً لفيديو واحد بعينه؛ اختر شرحاً واضحاً وطبّق التقنية مع المدرب. لا نضيف جرياً متقطعاً حالياً لأن لديك ست حصص فريق؛ راجع المدرب قبل إضافة حمل تحمل. إذا كان تدريب الأهلي شديداً أو كان الإرهاق مرتفعاً، احذف الإضافات لذلك اليوم. المباراة تلغي الإضافات الفردية. الجيم بإشراف مدرب، أوزان متحكم بها مع 2–3 تكرارات احتياطية، ولا اختبار أقصى أو تدريب حتى الفشل. أوقف أي تمرين يسبب ألماً أو عدم ثبات.</div>');
  var start=new Date((DB.settings.startDate||"2026-11-09")+"T00:00:00"),wk=Math.min(4,Math.max(1,Math.ceil((now-start)/(7*24*60*60*1000))+1));
- var phases=["الأسبوع 1 — تأسيس: تعلّم الحركات، مجموعتان، تحمل سهل 20–22 دقيقة، واستلام بجودة.","الأسبوع 2 — بناء تدريجي: زد تكراراً أو مجموعة واحدة فقط في تمرين أو اثنين إذا كان التعافي جيداً.","الأسبوع 3 — تخصص Pivot: حافظ على القوة، وركز على جودة الاستلام والحركة والسرعة القصيرة دون زيادة كبيرة في الحجم.","الأسبوع 4 — تخفيف واستعداد: خفّض حجم التدريب الإضافي 40–50%، لا تجرب تمارين جديدة، واجعل المباراة بدلاً من حصة ذلك اليوم."];
+ var phases=["الأسبوع 1 — تأسيس: تعلم التمارين، ضغط شريك خفيف، وسجل Clean/Bobble/Drop دون زيادة الحمل.","الأسبوع 2 — بناء تدريجي: زد تمريناً واحداً فقط أو زِد صعوبة تمريرات الشريك إذا كان النوم والتعافي جيدين.","الأسبوع 3 — تخصص Pivot: أضف ضغطاً ظلياً متدرجاً في الاستلام وصناعة المساحة، مع الحفاظ على نفس حجم الجيم.","الأسبوع 4 — تخفيف وتقييم: خفّض حجم الفردي 40–50%، أعد قياس الاستلام بالطريقة نفسها، ولا تختبر أقصى سرعة أو قوة."];
  var matchToday=typeof activeMatches==="function"?activeMatches().filter(function(m){return m.date===k;}):[];
  if(matchToday.length){
   summary.innerHTML="<div class='sum'><b>🏐</b><span>مباراة</span></div><div class='sum'><b>راحة</b><span>لا تدريب إضافي</span></div><div class='sum'><b>استعداد</b><span>وضع اليوم</span></div>";
@@ -790,8 +859,8 @@ renderLibrary();
 </script>
 
 <footer id="site-version" aria-label="نسخة الموقع" style="max-width:680px;margin:14px auto 24px;padding:12px 10px 18px;text-align:center;color:#9ca3af;font:12px/1.8 system-ui,sans-serif;border-top:1px solid #303038;">
-  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v1.8.1</div>
-  <div>BUILD 2026.11.10.2 · آخر تعديل: 10 نوفمبر 2026</div>
+  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v1.9.0</div>
+  <div>BUILD 2026.11.10.3 · آخر تعديل: 10 نوفمبر 2026</div>
 </footer>
 
 </body>
