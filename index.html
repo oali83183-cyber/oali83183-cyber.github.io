@@ -710,7 +710,10 @@ function campDay(title,cal,phase,groups,match){
  return {title:title,cal:cal,phase:phase,match:!!match,am:groups.map(function(g){return {cat:g[0],ex:g[1]};})};
 }
 var CAMP_PLAN={
-"2026-11-15":campDay("تهيئة قبل المعسكر","راحة وتجهيز","15 نوفمبر | جهّز أدواتك ونَم جيداً؛ لا تحتاج إلى حصة مرهقة قبل بداية البرنامج",[]),
+"2026-11-15":campDay("تهيئة خفيفة + إحساس بالكرة","20–25 دقيقة","15 نوفمبر | حصة تمهيدية خفيفة قبل بداية الحمل التدريبي؛ الهدف تنشيط الجسم ولمس الكرة دون إرهاق",[
+["إحماء وحركة",[["Dynamic Warm-up","5–6 دقائق · حركة تدريجية"],["Mobility Flow","4 دقائق · كاحل وورك وكتف"]]],
+["لمسات الكرة والاستلام",[["Wall Passing — Chest Height","2 × 10 تمريرات · راحة 30 ثانية"],["Low + High Ball Reception","2 × 5 لكل ارتفاع · راحة 30–45 ثانية"],["Lateral Step + Catch","2 × 4 لكل جهة · راحة 45 ثانية"]]]
+]),
 "2026-11-16":campDay("Receiving + Pivot Skills","60–70 دقيقة","16–22 نوفمبر | تأسيس وقياس",[
 ["الاستلام الأساسي",[["Wall Passing — Chest Height","3 × 15 تمريرة · راحة 45 ثانية"],["Low Ball Reception","3 × 8 · راحة 45 ثانية"],["High Ball Reception","3 × 8 · راحة 45 ثانية"]]],
 ["الاستلام أثناء الحركة",[["Lateral Step + Catch","3 × 6 لكل جهة · راحة 60 ثانية"],["Catch + Protect + Pivot Turn","3 × 6 · راحة 60–75 ثانية"],["Tennis Ball Reaction Catch","3 × 20 ثانية · راحة 40 ثانية"]]]
@@ -908,8 +911,8 @@ renderLibrary();
 </script>
 
 <footer id="site-version" aria-label="نسخة الموقع" style="max-width:680px;margin:14px auto 24px;padding:12px 10px 18px;text-align:center;color:#9ca3af;font:12px/1.8 system-ui,sans-serif;border-top:1px solid #303038;">
-  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v2.5.1</div>
-  <div>BUILD 2026.11.15.8 · تنظيف الأقسام وتحديث إرشادات المعسكر</div>
+  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v2.5.2</div>
+  <div>BUILD 2026.11.15.9 · إضافة حصة تهيئة خفيفة ليوم 15 نوفمبر</div>
 </footer>
 
 </body>
