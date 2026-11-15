@@ -724,24 +724,110 @@ function savePivotCampLog(){
 }
 
 /* ===== عرض التمرين (صباح + مساء) ===== */
+
+/* ===== تدريبات المعسكر حسب التاريخ — تعرض داخل جدول اليوم ===== */
+function campDay(title,cal,phase,groups,match){
+ return {title:title,cal:cal,phase:phase,match:!!match,am:groups.map(function(g){return {cat:g[0],ex:g[1]};})};
+}
+var CAMP_PLAN={
+"2026-11-16":campDay("Receiving + Pivot Skills","60–70 دقيقة","16–22 نوفمبر | تأسيس وقياس",[
+["الاستلام الأساسي",[["Wall Passing — Chest Height","3 × 15 تمريرة · راحة 45 ثانية"],["Low Ball Reception","3 × 8 · راحة 45 ثانية"],["High Ball Reception","3 × 8 · راحة 45 ثانية"]]],
+["الاستلام أثناء الحركة",[["Lateral Step + Catch","3 × 6 لكل جهة · راحة 60 ثانية"],["Catch + Protect + Pivot Turn","3 × 6 · راحة 60–75 ثانية"],["Tennis Ball Reaction Catch","3 × 20 ثانية · راحة 40 ثانية"]]]
+]),
+"2026-11-17":campDay("Speed + Explosive Power","60–70 دقيقة","16–22 نوفمبر | تأسيس وقياس",[
+["السرعة",[["10m Acceleration Sprint","4 محاولات · راحة 90–120 ثانية"],["20m Sprint","3 محاولات · راحة دقيقتين"]]],
+["القوة الانفجارية",[["Box Jump","3 × 3 · راحة 90 ثانية؛ صندوق منخفض وهبوط ثابت"],["Broad Jump","3 × 3 · راحة 90 ثانية"],["Lateral Bound","2 × 4 لكل جهة · راحة 60–90 ثانية"],["Medicine Ball Rotational Throw","3 × 4 لكل جهة · راحة 60 ثانية"]]]
+]),
+"2026-11-18":campDay("Upper Body + Contact Strength","60–70 دقيقة","16–22 نوفمبر | تأسيس وقياس",[
+["القوة العلوية — بإشراف المدرب",[["Machine Chest Press","3 × 8 · راحة 90 ثانية"],["Chest-Supported Row","3 × 8 · راحة 90 ثانية"],["Lat Pulldown","3 × 8 · راحة 75–90 ثانية"],["Half-Kneeling Landmine Press","2 × 8 لكل جهة · راحة 60 ثانية"]]],
+["الثبات والقبضة",[["Farmer Carry","3 × 20 متراً · راحة 60 ثانية"],["Face Pull","2 × 12–15"],["Grip Hold","2 × 20 ثانية"]]]
+]),
+"2026-11-19":campDay("Conditioning + Agility + Stability","50–60 دقيقة","16–22 نوفمبر | تأسيس وقياس",[
+["الرشاقة والتحمل",[["5-10-5 Agility","3 محاولات بجودة عالية · راحة 90 ثانية"],["Shuttle Intervals","2 × 4 جولات: 15 ثانية جهد مضبوط / 45 ثانية راحة؛ 3 دقائق بين المجموعتين"]]],
+["الثبات والوقاية",[["Band Lateral Walk","2 × 10 خطوات لكل جهة"],["Single-Leg Balance + Reach","2 × 20 ثانية لكل رجل"],["Calf Raise + Tibialis Raise","2 × 12 لكل تمرين"],["Side Plank","2 × 25 ثانية لكل جهة"]]]
+]),
+"2026-11-20":campDay("راحة كاملة","استشفاء","20 نوفمبر | راحة كاملة واستشفاء",[]),
+"2026-11-21":campDay("Pivot Movement + Rotational Power","50–60 دقيقة","16–22 نوفمبر | تأسيس وقياس",[
+["حركة لاعب الدائرة",[["Pivot Footwork Around Markers","4 × 20 ثانية · راحة 40 ثانية"],["Lateral Movement Around Cones","3 × 15 ثانية · راحة 45 ثانية"],["Wall Catch + Turn + Target Throw","3 × 6 · راحة 60 ثانية"]]],
+["القوة الدورانية",[["Medicine Ball Rotational Throw","3 × 4 لكل جهة · راحة 60 ثانية"],["Band Anti-Rotation Press","2 × 10 لكل جهة"]]]
+]),
+"2026-11-22":campDay("Lower Body Strength + Core","65–75 دقيقة","16–22 نوفمبر | تأسيس وقياس",[
+["القوة السفلية — بإشراف المدرب",[["Front Squat أو Goblet Squat","3 × 6 · راحة دقيقتين · 2–3 تكرارات احتياطية"],["Romanian Deadlift","3 × 8 · راحة 90 ثانية"],["Bulgarian Split Squat","2 × 8 لكل رجل · راحة 75 ثانية"],["Hip Thrust","2 × 8 · راحة 90 ثانية"]]],
+["الجذع والعضلات المقربة",[["Copenhagen Plank — Short Lever","2 × 15 ثانية لكل جهة"],["Dead Bug","2 × 8 لكل جهة"]]]
+]),
+"2026-11-23":campDay("Receiving Under Movement","60–70 دقيقة","23–29 نوفمبر | تطوير متخصص",[
+["تنويع التمريرات",[["Wall Passing — Change Distance","3 × 15 تمريرة من مسافتين · راحة 45 ثانية"],["Low / Chest / High Reception","3 × 6 لكل ارتفاع · راحة 45 ثانية"]]],
+["الاستلام والتحرك",[["Move 2 Steps + Catch","3 × 6 لكل جهة · راحة 60 ثانية"],["Catch + Shield + Turn + Finish","3 × 5 · راحة 75 ثانية"],["30-Ball Reception Test","30 تمريرة مضبوطة؛ سجّل الاستلام النظيف فقط"]]]
+]),
+"2026-11-24":campDay("Speed + Jump Quality","55–65 دقيقة","23–29 نوفمبر | تطوير متخصص",[
+["السرعة",[["10m Sprint","4 محاولات · راحة دقيقتين"],["20m Sprint","2 محاولتان · راحة 2–3 دقائق"]]],
+["القفز والانفجار",[["Box Jump","3 × 3 · راحة 90 ثانية"],["Broad Jump","2 × 3 · راحة 90 ثانية"],["Medicine Ball Scoop Toss","3 × 4 · راحة 60 ثانية"]]]
+]),
+"2026-11-25":campDay("Upper Body Strength","55–65 دقيقة","23–29 نوفمبر | تطوير متخصص",[
+["القوة العلوية — بإشراف المدرب",[["Machine Chest Press","3 × 8 · راحة 90 ثانية"],["Chest-Supported Row","3 × 8 · راحة 90 ثانية"],["Lat Pulldown","2 × 8 · راحة 75 ثانية"],["Landmine Press","2 × 8 لكل جهة · راحة 60 ثانية"]]],
+["القبضة والكتف",[["Farmer Carry","2 × 20 متراً · راحة 60 ثانية"],["Face Pull","2 × 12"]]]
+]),
+"2026-11-26":campDay("Conditioning + Agility","45–55 دقيقة","23–29 نوفمبر | تطوير متخصص",[
+["التحمل وتغيير الاتجاه",[["5-10-5 Agility","3 محاولات · راحة 90 ثانية"],["Shuttle Intervals","2 × 3 جولات: 15 ثانية جهد مضبوط / 45 ثانية راحة؛ 3 دقائق بين المجموعتين"]]],
+["الثبات",[["Band Lateral Walk","2 × 10 خطوات"],["Calf Raise + Tibialis Raise","2 × 12 لكل تمرين"],["Side Plank","2 × 20 ثانية لكل جهة"]]]
+]),
+"2026-11-27":campDay("راحة كاملة","استشفاء","27 نوفمبر | راحة كاملة واستشفاء",[]),
+"2026-11-28":campDay("Pivot Skills + Receiving","45–55 دقيقة","23–29 نوفمبر | تطوير متخصص",[
+["المهارات الخاصة",[["Pivot Footwork + Change of Direction","3 × 20 ثانية · راحة 45 ثانية"],["Wall Catch + Turn + Target Throw","3 × 5 · راحة 60 ثانية"],["Medicine Ball Rotational Throw","2 × 4 لكل جهة · راحة 60 ثانية"],["Band Anti-Rotation","2 × 8 لكل جهة"],["Easy Mobility","8 دقائق"]]]
+]),
+"2026-11-29":campDay("Reduced Lower Body Strength","45–55 دقيقة","23–29 نوفمبر | تطوير متخصص",[
+["القوة السفلية — حمل متوسط وبإشراف المدرب",[["Goblet Squat","2 × 6 · راحة 90 ثانية"],["Romanian Deadlift","2 × 6 · راحة 90 ثانية"],["Split Squat","2 × 6 لكل رجل · راحة 60 ثانية"]]],
+["الجذع",[["Copenhagen Plank — Short Lever","2 × 12 ثانية لكل جهة"],["Dead Bug","2 × 6 لكل جهة"]]]
+]),
+"2026-11-30":campDay("Sharp Receiving + Quick Movement","40–50 دقيقة","30 نوفمبر–2 ديسمبر | تخفيف الحمل",[
+["استلام سريع بحجم منخفض",[["Wall Passing","2 × 12 تمريرة"],["Low / Chest / High Catch","2 × 5 لكل ارتفاع"],["Lateral Step + Catch + Turn","2 × 5 لكل جهة"],["Catch + Quick Release","2 × 4"]]]
+]),
+"2026-12-01":campDay("Speed + Power Activation","35–45 دقيقة","30 نوفمبر–2 ديسمبر | تخفيف الحمل",[
+["تنشيط السرعة والانفجار",[["10m Sprint","3 محاولات سريعة ومريحة · راحة دقيقتين"],["Box Jump","2 × 2 · راحة 90 ثانية"],["Broad Jump","2 × 2 · راحة 90 ثانية"],["Medicine Ball Rotational Throw","2 × 3 لكل جهة · راحة 60 ثانية"]]]
+]),
+"2026-12-02":campDay("Light Upper Body + Catching","30–40 دقيقة","30 نوفمبر–2 ديسمبر | تخفيف الحمل",[
+["تنشيط خفيف — دون إجهاد",[["Machine Chest Press","2 × 6 بحمل خفيف ومريح"],["Chest-Supported Row","2 × 6 بحمل خفيف ومريح"],["Face Pull","2 × 10"],["Wall Catch + Pivot Turn","2 × 5 بتركيز وسرعة مريحة"]]]
+]),
+"2026-12-03":campDay("Pre-Match Primer","20–30 دقيقة","3 ديسمبر | تنشيط خفيف فقط؛ أنهِ الحصة وأنت تشعر بالنشاط",[
+["تنشيط قبل المباراة",[["Dynamic Warm-up","8 دقائق"],["10m Strides","3 انطلاقات تدريجية دون أقصى جهد · راحة 90 ثانية"],["Low Box Jump","2 × 2 فقط، هبوط هادئ وثابت"],["Easy Passing + Catching","5–8 دقائق دون إجهاد"]]]
+]),
+"2026-12-04":campDay("راحة قبل المباراة","استشفاء","4 ديسمبر | راحة كاملة قبل المباراة",[]),
+"2026-12-05":campDay("يوم المباراة","MATCH DAY","5 ديسمبر | المباراة الأولى",[],true)
+};
+
 function renderTrain(){
- var now=new Date(),di=now.getDay(),s=SCHED[di],k=todayKey(),box=document.getElementById("trainBox");
+ var now=new Date(),di=now.getDay(),s=SCHED[di],k=todayKey(),box=document.getElementById("trainBox"),camp=CAMP_PLAN[k]||null;
+ if(camp)s={day:AR_DAYS[di],title:camp.title,cal:camp.cal,am:camp.am};
  document.getElementById("dayTitle").textContent=s.day+" — "+s.title;document.getElementById("dateSub").textContent=fmtDate(now)+" | "+s.cal;box.innerHTML="";
  var q=document.createElement("div");q.className="quickbar";q.innerHTML="<button class='qbtn' onclick=\"document.getElementById('secSession')?.scrollIntoView({behavior:'smooth'})\">🏐 تمرين اليوم</button><button class='qbtn' onclick=\"showTab('week')\">🗓️ الأسبوع</button><button class='qbtn' onclick=\"showTab('report')\">📊 التقرير</button>";box.appendChild(q);
  var summary=document.createElement("div");summary.className="today-summary";summary.innerHTML="<div class='sum'><b>"+countSession(s.am)+"</b><span>تمارين اليوم</span></div><div class='sum'><b>"+(s.am.length?s.cal:"راحة")+"</b><span>مدة/نوع اليوم</span></div><div class='sum'><b>"+(s.am.length?"جلسة فردية":"استشفاء")+"</b><span>وضع اليوم</span></div>";box.appendChild(summary);
  if(s.day==="الجمعة"){summary.innerHTML="<div class='sum'><b>♻️</b><span>راحة رياضية</span></div><div class='sum'><b>15–20د</b><span>مراجعة اختيارية</span></div><div class='sum'><b>تعافٍ</b><span>وضع اليوم</span></div>";}
 
+ if(camp){
+  box.insertAdjacentHTML("beforeend",'<div class="note">هذه حصة المعسكر المحددة لهذا التاريخ. نفّذ التمارين بالترتيب وعلّم كل تمرين بعد إنجازه. تمارين القوة تحت إشراف المدرب مع 2–3 تكرارات احتياطية؛ لا أقصى أوزان ولا فشل عضلي. في السرعة والقفز، الراحة كاملة والجودة أهم من العدد. في الاستلام، استخدم مدرباً أو زميلاً عند توفره لمحاكاة تمريرات متغيرة وضغط تدريجي. أوقف أي تمرين يسبب ألماً أو عدم ثبات.</div>');
+ }else{
  box.insertAdjacentHTML("beforeend",'<div class="note">هذا برنامج تطوير فردي مستقل مدمج مع جدول الأهلي (الأحد–الخميس والسبت، 16:00–19:00؛ نحو ساعتين فعلياً). لا تجعل توفر أكثر من 90 دقيقة هدفاً للتدريب اليومي: الجرعات الفردية محددة الجودة، والجيم الثلاثاء هو حصة القوة الرئيسية. الاثنين والخميس مهارات شريك؛ الأربعاء استجابة وحركة بجرعة صغيرة؛ السبت قفز/انطلاق اختياري يحل محل جزء من الإحماء فقط إذا لا توجد مباراة والتعافي جيد. الجمعة راحة رياضية كاملة. أزرار الفيديو تفتح نتائج بحث بالتمرين وليست اعتماداً لفيديو واحد بعينه؛ اختر شرحاً واضحاً وطبّق التقنية مع المدرب. لا نضيف جرياً متقطعاً حالياً لأن لديك ست حصص فريق؛ راجع المدرب قبل إضافة حمل تحمل. إذا كان تدريب الأهلي شديداً أو كان الإرهاق مرتفعاً، احذف الإضافات لذلك اليوم. المباراة تلغي الإضافات الفردية. الجيم بإشراف مدرب، أوزان متحكم بها مع 2–3 تكرارات احتياطية، ولا اختبار أقصى أو تدريب حتى الفشل. أوقف أي تمرين يسبب ألماً أو عدم ثبات.</div>');
+ }
  var start=new Date((DB.settings.startDate||"2026-11-09")+"T00:00:00"),wk=Math.min(4,Math.max(1,Math.ceil((now-start)/(7*24*60*60*1000))+1));
  var phases=["الأسبوع 1 — تأسيس: تعلم التمارين، ضغط شريك خفيف، وسجل Clean/Bobble/Drop دون زيادة الحمل.","الأسبوع 2 — بناء تدريجي: زد تمريناً واحداً فقط أو زِد صعوبة تمريرات الشريك إذا كان النوم والتعافي جيدين.","الأسبوع 3 — تخصص Pivot: أضف ضغطاً ظلياً متدرجاً في الاستلام وصناعة المساحة، مع الحفاظ على نفس حجم الجيم.","الأسبوع 4 — تخفيف وتقييم: خفّض حجم الفردي 40–50%، أعد قياس الاستلام بالطريقة نفسها، ولا تختبر أقصى سرعة أو قوة."];
  var matchToday=typeof activeMatches==="function"?activeMatches().filter(function(m){return m.date===k;}):[];
+ if(camp&&camp.match){
+  summary.innerHTML="<div class='sum'><b>🏆</b><span>المباراة الأولى</span></div><div class='sum'><b>راحة</b><span>لا تدريب إضافي</span></div><div class='sum'><b>استعداد</b><span>وضع اليوم</span></div>";
+  var campMatch=document.createElement("div");campMatch.className="card";
+  campMatch.innerHTML="<h2>🏐 يوم المباراة — 5 ديسمبر 2026</h2><div class='muted'>لا توجد حصة تدريب إضافية اليوم. اتبع إحماء المدرب والفريق، وتناول طعامك المعتاد واشرب بانتظام. ركّز على قراءة المدافع، تجهيز اليدين مبكراً، تأمين الكرة، وخلق مساحة للفريق.</div>";
+  box.appendChild(campMatch);return;
+ }
  if(matchToday.length){
   summary.innerHTML="<div class='sum'><b>🏐</b><span>مباراة</span></div><div class='sum'><b>راحة</b><span>لا تدريب إضافي</span></div><div class='sum'><b>استعداد</b><span>وضع اليوم</span></div>";
   var matchCard=document.createElement("div");matchCard.className="card";
   matchCard.innerHTML="<h2>🏐 يوم المباراة</h2><div class='muted'>المباراة تستبدل حصة التدريب المخططة اليوم. لا تضف قوة أو سرعة أو تحمل؛ اكتفِ بإحماء المباراة المعتاد، الطعام والماء والراحة.</div>";
   box.appendChild(matchCard);return;
  }
+ if(camp){
+  box.insertAdjacentHTML("beforeend","<div class='card'><h2>🎯 مرحلة الإعداد</h2><div class='muted'>"+camp.phase+"</div></div>");
+ }else{
  box.insertAdjacentHTML("beforeend","<div class='card'><h2>🗓️ الأسبوع "+wk+" من 4</h2><div class='muted'>"+phases[wk-1]+"</div></div>");
+ }
  if(!DB.fixed)DB.fixed={};var farr=DB.fixed[k]||[false,false,false],hab=document.createElement("div");hab.className="card";hab.innerHTML="<h2>📌 عادات يومية بسيطة</h2>";
  ["💧 شرب الماء بانتظام حسب العطش والحرارة","😴 إعطاء النوم 8–10 ساعات","🦶 ملاحظة ألم الكاحل أو عدم ثباته"].forEach(function(h,i){var row=document.createElement("div");row.className="habit";var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!farr[i];cb.onchange=function(){farr[i]=cb.checked;DB.fixed[k]=farr;saveDB();row.classList.toggle("done",cb.checked);};if(cb.checked)row.classList.add("done");var sp=document.createElement("span");sp.className="nm";sp.textContent=h;row.appendChild(cb);row.appendChild(sp);hab.appendChild(row);});box.appendChild(hab);
  if(!s.am.length){var rest=document.createElement("div");rest.className="card";rest.innerHTML="<h2>♻️ يوم استشفاء</h2><div class='muted'>اليوم راحة من التمرين المخطط. إذا رغبت، حركة مريحة 10–15 دقيقة فقط، ولا تحاول تعويض أي حصة فاتتك.</div>";box.appendChild(rest);return;}
@@ -873,8 +959,8 @@ renderLibrary();
 </script>
 
 <footer id="site-version" aria-label="نسخة الموقع" style="max-width:680px;margin:14px auto 24px;padding:12px 10px 18px;text-align:center;color:#9ca3af;font:12px/1.8 system-ui,sans-serif;border-top:1px solid #303038;">
-  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v2.3.0</div>
-  <div>BUILD 2026.11.15.4 · استعادة لوحة الموقع الأصلية وإدراج الخطة في صفحة اليوم</div>
+  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v2.4.0</div>
+  <div>BUILD 2026.11.15.5 · تمارين Pivot حسب التاريخ داخل جدول اليوم</div>
 </footer>
 
 </body>
