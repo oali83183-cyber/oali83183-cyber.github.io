@@ -874,7 +874,7 @@ function renderSchedule(){
 /* ===== Pivot Camp local training log ===== */
 function readPivotCampLogs(){try{return JSON.parse(localStorage.getItem("pivotCampLogs")||"[]");}catch(e){return [];}}
 function renderPivotCampLog(){
- var d=document.getElementById("campDate");if(d)d.value=todayKey();
+ var d=document.getElementById("campDate");if(d)d.value=(todayKey()<"2026-11-16"?"2026-11-16":todayKey());
  var logs=readPivotCampLogs(),h=document.getElementById("campLogHistory");
  if(h)h.innerHTML="<h3>السجلات السابقة</h3>"+logs.slice(0,10).map(function(x){return "<div class='dev-card'><b>"+esc(x.date)+" — "+esc(x.session)+"</b><br>RPE: "+esc(x.rpe||"—")+" • النوم: "+esc(x.sleep||"—")+" • الحالة: "+esc(x.feel)+" • الألم: "+esc(x.pain)+"<br>"+esc(x.notes||"")+"</div>";}).join("");
 }
@@ -1026,13 +1026,6 @@ function renderFood(){
 
 
 renderPivotCampLog();
-renderTrain();
-renderWeekOverview();
-renderSchedule();
-renderReportOnly();
-renderFood();
-renderMental();
-renderLibrary();
 </script>
 
 <footer id="site-version" aria-label="نسخة الموقع" style="max-width:680px;margin:14px auto 24px;padding:12px 10px 18px;text-align:center;color:#9ca3af;font:12px/1.8 system-ui,sans-serif;border-top:1px solid #303038;">
