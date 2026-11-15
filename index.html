@@ -828,7 +828,7 @@ function renderTrain(){
 function renderLibrary(){
  var box=document.getElementById("libraryBox");if(!box)return;box.innerHTML="";
  var intro=document.createElement("div");intro.className="card plan-intro";
- intro.innerHTML="<h2>📚 مكتبة THE WALL</h2><div class='cue'>LEARN → OBSERVE → APPLY</div><div class='muted'>لا تجمع مصادر كثيرة. ابدأ بكتاب واحد، واستمع إلى فكرة واحدة أسبوعياً، ثم طبّقها في تدريب الأهلي.</div>";box.appendChild(intro);
+ intro.innerHTML="<h2>📚 مكتبة Pivot</h2><div class='cue'>LEARN → OBSERVE → APPLY</div><div class='muted'>لا تجمع مصادر كثيرة. ابدأ بكتاب واحد، واستمع إلى فكرة واحدة أسبوعياً، ثم طبّق فكرة واحدة في تدريبك الفردي.</div>";box.appendChild(intro);
  var books=document.createElement("div");books.className="card";
  books.innerHTML="<h2>📖 الكتب الثلاثة — ابدأ بالأول</h2>"+
  "<div class='dev-card'><h3>1. The Inner Game of Tennis — ابدأ به</h3>يساعدك على تقليل التفكير الزائد والثقة بتنفيذ المهارة. <b>تطبيق الملعب:</b> لا تكرر التفكير في الخطأ أثناء المباراة؛ أعد انتباهك إلى الكرة والمهمة الحالية. ابدأ بـ10 صفحات في الجلسة.</div>"+
@@ -877,24 +877,24 @@ function renderLibrary(){
  var history=document.getElementById("filmHistory");
  if(DB.library.films.length){history.innerHTML="<h3>التحليلات السابقة</h3>";DB.library.films.slice(0,8).forEach(function(f){var d=document.createElement("div");d.className="dev-card";d.innerHTML="<b>"+esc(f.filmDate||"")+"</b> — "+esc(f.filmMatch||"مباراة")+(f.filmPlayer?" • "+esc(f.filmPlayer):"")+"<br><span class='muted'>"+esc(f.filmMove||"")+"</span><br><b>التطبيق:</b> "+esc(f.filmApply||"");history.appendChild(d);});}
  var mind=document.createElement("div");mind.className="card";
- mind.innerHTML="<h2>🧠 تحدي العقل — 4 أسابيع</h2><div class='dev-card'><b>الأسبوع 1 — Identity:</b> اقرأ 10 صفحات من الكتاب الأول، ودوّن صفات THE WALL وقيمه.</div><div class='dev-card'><b>الأسبوع 2 — Confidence:</b> تدرب على طلب الكرة والتواصل مع زملائك، وسجّل المواقف التي طلبت فيها الكرة رغم وجود المدافع.</div><div class='dev-card'><b>الأسبوع 3 — Pressure:</b> استخدم RESET بعد الخطأ، واطلب من المدرب إدخال مواقف استلام تحت ضغط تدريجي.</div><div class='dev-card'><b>الأسبوع 4 — Competition:</b> طبّق روتين المباراة، وركز على المهام التي تتحكم فيها.</div><div class='note'>هذا التدرج يكمل روتين THE WALL الموجود في قسم العقلية. لا يضيف حصصاً بدنية إضافية.</div>";box.appendChild(mind);
+ mind.innerHTML="<h2>🧠 تحدي العقل — 4 أسابيع</h2><div class='dev-card'><b>الأسبوع 1 — التركيز:</b> اقرأ 10 صفحات من الكتاب الأول، ودوّن فكرتين تطبقهما في الملعب.</div><div class='dev-card'><b>الأسبوع 2 — الثقة:</b> تدرب على طلب الكرة والتواصل مع زملائك، وسجّل المواقف التي تحركت فيها لطلب الكرة.</div><div class='dev-card'><b>الأسبوع 3 — الضغط:</b> استخدم RESET بعد الخطأ، واطلب من المدرب إدخال مواقف استلام تحت ضغط تدريجي.</div><div class='dev-card'><b>الأسبوع 4 — المنافسة:</b> طبّق روتين المباراة، وركز على المهام التي تتحكم فيها.</div><div class='note'>هذا التدرج الذهني يدعم المعسكر ولا يضيف حصصاً بدنية.</div>";box.appendChild(mind);
 }
 
 /* ===== عرض الأكل ===== */
 
 function renderFood(){
  var box=document.getElementById("foodBox");if(!box)return;box.innerHTML="";
- var intro=document.createElement("div");intro.className="card";intro.innerHTML="<h2>🍽️ التغذية حسب جدول التدريب</h2><div class='muted'>نستخدم الطعام الموجود في البيت لدعم القوة والتحمل ومهارات Pivot والتعافي. لا توجد حمية لإنقاص الوزن ولا حاجة لحساب السعرات.</div>";box.appendChild(intro);
+ var intro=document.createElement("div");intro.className="card";intro.innerHTML="<h2>🍽️ التغذية خلال معسكر Pivot</h2><div class='muted'>وجبات منزلية منتظمة لدعم التدريب والتعافي. لا توجد حمية لإنقاص الوزن أو خفض سريع للوزن قبل المباراة.</div>";box.appendChild(intro);
  var daily=document.createElement("div");daily.className="card";daily.innerHTML="<h2>🥣 أساس يومي</h2>"+
  "<div class='dev-card'><h3>الإفطار</h3>خبز أو شوفان أو رز متبقٍ + بيض أو جبن أو لبن/زبادي + فاكهة إن توفرت.</div>"+
  "<div class='dev-card'><h3>الغداء</h3>رز أو بطاطس أو معكرونة أو خبز + دجاج أو سمك أو لحم أو عدس/فاصوليا + خضار إن توفرت.</div>"+
  "<div class='dev-card'><h3>العشاء</h3>وجبة منزلية عادية تجمع النشويات والبروتين حسب الموجود. لا تتخطَّها إذا كان عندك تدريب أو جوع.</div>"+
  "<div class='dev-card'><h3>وجبة خفيفة عند الحاجة</h3>موز، حليب، لبن، زبادي، ساندويتش جبن/بيض أو خبز؛ اختر المتوفر وما يناسب معدتك.</div>";box.appendChild(daily);
- var schedule=document.createElement("div");schedule.className="card";schedule.innerHTML="<h2>📅 الأكل حول جدولك الفعلي</h2>"+
- "<div class='dev-card'><h3>الأحد إلى الخميس والسبت — تدريب الأهلي</h3>حافظ على الإفطار والغداء. قبل تدريب 16:00–19:00 تناول وجبة مألوفة قبلها بنحو 2–3 ساعات إن أمكن، أو سناك بسيط مثل موز أو زبادي أو ساندويتش إذا كان الغداء مبكراً. بعد التدريب تناول وجبة فيها نشويات وبروتين.</div>"+
- "<div class='dev-card'><h3>الثلاثاء — الجيم صباحاً + الأهلي مساءً</h3>لا تدخل الجيم صائماً أو مرهقاً. تناول إفطاراً مناسباً قبله، ووجبة غداء كافية قبل تدريب الأهلي. إذا كان التعب مرتفعاً، ألغِ الجيم الإضافي وأعطِ الأولوية لتعافي الفريق.</div>"+
- "<div class='dev-card'><h3>الجمعة — راحة كاملة من الرياضة</h3>استمر على الوجبات المعتادة؛ لا تقلل الطعام ولا تتخطَّ الوجبات لأن الجسم يتعافى.</div>"+
- "<div class='dev-card'><h3>يوم المباراة</h3>المباراة تستبدل التدريب. تناول وجبة مألوفة قبلها بنحو 2–3 ساعات، وسناك بسيطاً عند الحاجة، ولا تجرب أطعمة جديدة.</div>";box.appendChild(schedule);
+ var schedule=document.createElement("div");schedule.className="card";schedule.innerHTML="<h2>📅 الأكل حول الحصة اليومية</h2>"+
+ "<div class='dev-card'><h3>قبل التدريب</h3>تناول وجبة مألوفة قبل الحصة بنحو 2–3 ساعات إن أمكن، أو وجبة خفيفة مثل موز أو زبادي أو ساندويتش إذا كان موعد الوجبة قريباً.</div>"+
+ "<div class='dev-card'><h3>بعد التدريب</h3>تناول وجبة تجمع مصدراً للبروتين مع الكربوهيدرات، واشرب بانتظام لتعويض السوائل.</div>"+
+ "<div class='dev-card'><h3>أيام القوة والسرعة</h3>لا تبدأ الحصة وأنت صائم أو مرهق. حافظ على وجباتك المعتادة وخذ وقتاً كافياً للتعافي.</div>"+
+ "<div class='dev-card'><h3>أيام الراحة وقبل المباراة</h3>استمر على الطعام المعتاد ولا تقلل الكميات أو تجرب أطعمة جديدة قبل المباراة.</div>";box.appendChild(schedule);
  var hydration=document.createElement("div");hydration.className="card";hydration.innerHTML="<h2>💧 الماء والتعافي</h2><div class='dev-card'>اشرب بانتظام خلال اليوم، وخذ الماء معك للحصة. انتبه للسوائل في الحر والتعرق، ولا تجبر نفسك على كميات كبيرة دفعة واحدة.</div><div class='dev-card'>استهدف 8–10 ساعات نوم. النوم المنتظم جزء من تطور القوة والتحمل ورد الفعل.</div>";box.appendChild(hydration);
  var supplements=document.createElement("div");supplements.className="card";supplements.innerHTML="<h2>💊 المكملات</h2><div class='note'>ذكرت سابقاً أنك تستخدم الكرياتين ومسحوق البروتين. وبما أن عمرك 17 سنة، لا تغيّر الجرعات ولا تضف منتجات من نفسك؛ ناقش العبوات واستخدامها مع ولي أمرك وطبيب أو اختصاصي تغذية رياضية للناشئين. الأولوية للطعام والنوم والتدريب المناسب.</div>";box.appendChild(supplements);
 }
@@ -908,8 +908,8 @@ renderLibrary();
 </script>
 
 <footer id="site-version" aria-label="نسخة الموقع" style="max-width:680px;margin:14px auto 24px;padding:12px 10px 18px;text-align:center;color:#9ca3af;font:12px/1.8 system-ui,sans-serif;border-top:1px solid #303038;">
-  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v2.5.0</div>
-  <div>BUILD 2026.11.15.7 · تنظيف الأقسام وإزالة بطاقة الراحة الزائدة</div>
+  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v2.5.1</div>
+  <div>BUILD 2026.11.15.8 · تنظيف الأقسام وتحديث إرشادات المعسكر</div>
 </footer>
 
 </body>
