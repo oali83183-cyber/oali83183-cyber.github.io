@@ -189,40 +189,38 @@ function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"
 
 /* ===== الخطة الأسبوعية الفردية للاعب Pivot ===== */
 var SCHED=[
- {day:"الأحد",title:"Mobility + Core — المنزل",cal:"تطوير فردي 15–18 دقيقة • الجامعة صباحاً • الأهلي 16:00–19:00",am:[
-  {cat:"🦶 Mobility & Activation — 5 دقائق",ex:[["Ankle Rocks","2×8 لكل كاحل"],["90/90 Hip Switch","2×6 بالتبادل"],["Open Book Rotation","1×6 لكل جهة"]]},
-  {cat:"🧱 Core + Joint Control — 7 دقائق",ex:[["Dead Bug","2×8 لكل جهة"],["Side Plank","2×20 ثانية لكل جهة"],["Single-Leg Balance + Reach","2×3 اتجاهات لكل رجل"]]},
-  {cat:"🏐 Ball Feel — 4–5 دقائق",ex:[["Wall Handball Catch (Two Hands)","2×12 تمريرة سهلة"]]}
+ {day:"الأحد",title:"Pivot Skills + Shot Mechanics — مهارة التصويب",cal:"15–20 دقيقة تطوير فردي • الأهلي 16:00–18:00",am:[
+  {cat:"🔥 إحماء فني — 3 دقائق",ex:[["Dynamic Warm-up","3 دقائق حركة ديناميكية سهلة"]]},
+  {cat:"🎯 ميكانيكية التصويب — 10 دقائق",ex:[["Shadow Throw — بدون كرة","2×5 ببطء مع تسلسل الحوض والجذع والذراع"],["Standing Throw — 60–70%","2×5 تصويبات فنية دون أقصى قوة"],["Target Throw — 60–70%","2×4 نحو هدف محدد"]]},
+  {cat:"🏐 إحساس الكرة — 4 دقائق",ex:[["Wall Passing — Chest Height","2×12 تمريرة نظيفة"]]}
  ],pm:[]},
- {day:"الاثنين",title:"Partner Receiving — استلام الكرة",cal:"تطوير فردي 20–22 دقيقة مع زميل • الأهلي 16:00–19:00",am:[
-  {cat:"🤝 إعداد الاستلام مع شريك — 3 دقائق",ex:[["Partner Hand-Target Reception","1×6 تمريرات سهلة للإحماء"]]},
-  {cat:"🏐 Receiving Foundation — 12–14 دقيقة",ex:[["Partner Low-Ball Reception","2×5 تمريرات منخفضة"],["Two-Step Moving Reception","2×5 تمريرات بعد خطوتين"],["Left/Right Angle Reception","2×4 تمريرات من الجهتين"]]},
-  {cat:"📊 قياس الجودة — 2 دقائق",ex:[["Partner Clean-Catch Count","سجّل النظيفة / 34 محاولة"]]}
+ {day:"الاثنين",title:"Lower Body Strength — قوة الجزء السفلي",cal:"جيم 35–45 دقيقة في وقت منفصل • الأهلي 16:00–18:00",am:[
+  {cat:"🔥 إحماء الجيم — 6 دقائق",ex:[["Dynamic Gym Warm-up","5–6 دقائق حركة ومجموعات إحماء خفيفة"]]},
+  {cat:"🏋️ قوة أساسية — بإشراف مدرب، RIR 2–3",ex:[["Goblet Squat","3×6–8"],["Dumbbell Romanian Deadlift","2×8"],["Supported Split Squat","2×6 لكل رجل"],["Hip Thrust","2×8"]]},
+  {cat:"🧱 الجذع",ex:[["Dead Bug","2×8 لكل جهة"]]}
  ],pm:[]},
- {day:"الثلاثاء",title:"Gym Strength — القوة الأساسية",cal:"جيم 40–45 دقيقة صباحاً عند التعافي • الأهلي 16:00–19:00",am:[
-  {cat:"🔥 Warm-up — 6 دقائق",ex:[["Dynamic Gym Warm-up","4 دقائق حركة عامة"],["Band Pull-Apart","2×12"]]},
-  {cat:"🏋️ Strength — بإشراف مدرب، RIR 2–3",ex:[["Goblet Squat","3×6–8"],["Dumbbell Romanian Deadlift","3×8"],["Supported Split Squat","2×6 لكل رجل"],["Seated Cable Row","3×8–10"],["Push-up","2×8–12"]]},
-  {cat:"🛡️ Injury Prevention + Core — 6 دقائق",ex:[["Pallof Press","2×8 لكل جهة"],["Band External Rotation","2×12 لكل كتف"],["Calf Raise","2×12"]]}
+ {day:"الثلاثاء",title:"Speed + Jump Quality — السرعة والانفجار",cal:"15–20 دقيقة فقط • الأهلي 16:00–18:00",am:[
+  {cat:"⚡ السرعة — راحة كاملة بين المحاولات",ex:[["10m Acceleration Sprint","4 محاولات عند 85–90% · راحة 90–120 ثانية"],["15m Sprint","2 محاولتان عند 85–90% · راحة دقيقتين"]]},
+  {cat:"🦘 القفز والتحكم بالهبوط",ex:[["Low Vertical Jump + Stick","2×3 قفزات منخفضة وهبوط ثابت"],["Lateral Shuffle + Stick","2×3 لكل اتجاه"]]}
  ],pm:[]},
- {day:"الأربعاء",title:"Reaction + Footwork — سرعة الاستجابة",cal:"تطوير فردي 12–15 دقيقة قبل الأهلي • الجامعة 08:00–11:50",am:[
-  {cat:"⚡ تهيئة عصبية حركية — 3 دقائق",ex:[["A-March","2×10 أمتار"]]},
-  {cat:"👁️ Reaction & Pivot Footwork — 5 دقائق",ex:[["Visual Cue Pivot Footwork","3×20 ثانية — يمين/يسار/أمام"],["Tennis Ball Reaction Catch","2×4 محاولات"]]},
-  {cat:"👣 Agility & Deceleration — 4–5 دقائق",ex:[["Lateral Shuffle + Stick","2×4 أمتار لكل اتجاه"],["Controlled 5m Acceleration","3×5 أمتار عند 75–80%"]]}
+ {day:"الأربعاء",title:"Receiving + Shot Accuracy — الاستقبال ودقة التصويب",cal:"15–20 دقيقة فردية • الأهلي 16:00–18:00",am:[
+  {cat:"🏐 استقبال فردي — الجدار",ex:[["Wall Passing — Change Distance","2×12 من مسافتين"],["Low / Chest / High Reception","2×5 لكل ارتفاع"]]},
+  {cat:"🎯 التصويب بعد الحركة",ex:[["Step-in Throw — 70–75%","2×4 تصويبات بعد خطوة اقتراب"],["Pivot Move + Shot","2×3 بعد حركة Pivot قصيرة"]]},
+  {cat:"📹 مراجعة",ex:[["Shot Technique Video Check","صوّر محاولتين من الجانب وراجع التوازن والتوقيت"]]}
  ],pm:[]},
- {day:"الخميس",title:"Pivot Skills + Space Creation — مع زميل",cal:"تطوير فردي 20–22 دقيقة مع زميل • الجامعة 10:00–11:50 • الأهلي 16:00–19:00",am:[
-  {cat:"📐 Positioning & Space Creation — 7 دقائق",ex:[["Seal → Show Target","3×4 محاولات — دون مدافع"],["Reposition to Passing Lane","2×4 محاولات لكل جهة"]]},
-  {cat:"🤲 Receive, Protect & Decide — 10 دقائق",ex:[["Catch → Protect → Turn","2×4 محاولات"],["Pivot Decision: Catch & Pass/Turn","2×4 تمريرات بإشارة قرار"],["Shadow Defender Timing","2×4 محاولات — ضغط ظلي متدرج"]]},
-  {cat:"🎯 مقياس الجودة",ex:[["Pivot Space-Creation Review","سجّل: فتحت زاوية؟ طلبت الكرة؟ استلمت؟"]]}
+ {day:"الخميس",title:"Upper Body + Shoulder Control — قوة الجزء العلوي",cal:"جيم 35–40 دقيقة في وقت منفصل • الأهلي 16:00–18:00",am:[
+  {cat:"🏋️ قوة الجزء العلوي — بإشراف مدرب",ex:[["Machine Chest Press","2×8 بحمل متحكم به"],["Chest-Supported Row","3×8"],["Lat Pulldown","2×8"]]},
+  {cat:"🛡️ الكتف والجذع",ex:[["Face Pull","2×12"],["Band External Rotation","2×12 لكل كتف"],["Pallof Press","2×8 لكل جهة"]]}
  ],pm:[]},
- {day:"الجمعة",title:"راحة كاملة — مراجعة فيديو اختيارية",cal:"راحة رياضية كاملة • لا جيم ولا جري ولا كرة",am:[
-  {cat:"📚 مراجعة ذهنية فقط — اختيارية، دون نشاط بدني",ex:[["Pivot Video Analysis","10–15 دقيقة — راقب الحركة قبل التمريرة"],["Weekly Review Notes","5 دقائق — قوة، خطأ، هدف الأسبوع القادم"]]}
+ {day:"الجمعة",title:"راحة كاملة — Recovery",cal:"راحة رياضية كاملة • لا جيم ولا جري ولا تصويب قوي",am:[
+  {cat:"📚 مراجعة اختيارية دون نشاط بدني",ex:[["Pivot Video Analysis","10 دقائق مشاهدة وتحليل حركة لاعب الدائرة"],["Weekly Review Notes","5 دقائق: نجاح واحد، نقطة تحسين، سؤال للمدرب"]]}
  ],pm:[]},
- {day:"السبت",title:"Explosive Technique — تنشيط قبل الأهلي",cal:"10–12 دقيقة اختيارية قبل الأهلي فقط إذا لا توجد مباراة والتعافي جيد",am:[
-  {cat:"🦘 Landing & Jump Quality — بإذن المدرب وعلى أرض ثابتة",ex:[["Snap-Down Landing","2×4 — تثبيت الهبوط ثانيتين"],["Low Vertical Jump + Stick","2×3 — قفزات منخفضة وهبوط متزن"]]},
-  {cat:"🚀 Acceleration — جودة لا إنهاك",ex:[["Progressive 5m Acceleration","3×5 أمتار عند 80–85% مع راحة كاملة"]]},
-  {cat:"🏐 داخل تدريب الأهلي",ex:[["Pivot Movement: Block → Reposition","طبّق صناعة المساحة ثم أعد فتح زاوية التمرير"]]}
+ {day:"السبت",title:"Handball Fitness — لياقة كرة اليد",cal:"15–20 دقيقة اختيارية فقط إذا لم تتضمن حصة الأهلي جرياً مكثفاً • الأهلي 16:00–18:00",am:[
+  {cat:"🔥 إحماء",ex:[["Dynamic Warm-up","5 دقائق تدريجية"]]},
+  {cat:"🏃 تكرار الجهد — شدة مضبوطة",ex:[["15s Shuttle Efforts","2×4 جولات: 15 ثانية عند 75–80% / 45 ثانية مشي؛ 3 دقائق بين المجموعتين"]]},
+  {cat:"🧘 تهدئة",ex:[["Easy Mobility","5 دقائق حركة مريحة للكاحل والورك والكتف"]]}
  ],pm:[]}
-];
+];;
 
 /* ===== تدرج الخطة الحالية: 4 أسابيع =====
 الأسبوع 1: تعلّم التقنية، مجموعتان، وتحمل سهل.
@@ -348,7 +346,21 @@ Object.assign(VID,{
  "Snap-Down Landing":"athletic snap down landing mechanics drill",
  "Low Vertical Jump + Stick":"low vertical jump stick landing mechanics",
  "Progressive 5m Acceleration":"5 meter acceleration sprint technique",
- "Pivot Movement: Block → Reposition":"handball pivot block reposition create space drill"
+ "Pivot Movement: Block → Reposition":"handball pivot block reposition create space drill",
+  "Shadow Throw — بدون كرة":"handball standing overarm throw shadow mechanics drill",
+  "Standing Throw — 50–60%":"handball standing throw technique sequence",
+  "Standing Throw — 60–70%":"handball standing throw technique sequence",
+  "Target Throw — 60–70%":"handball shooting accuracy target practice",
+  "Target Throw — 50–60%":"handball shooting accuracy target practice",
+  "Step-in Throw — 70–75%":"handball step in overarm throw technique",
+  "Pivot Move + Shot":"handball pivot turn and shoot technique",
+  "Shot Technique Video Check":"handball throwing technique side view analysis",
+  "15s Shuttle Efforts":"handball repeated sprint shuttle conditioning intervals",
+  "Low / Chest / High Reception":"handball wall passing low chest high catch drill",
+  "Medicine Ball Rotational Throw — خفيفة":"light medicine ball rotational throw technique",
+  "Easy Mobility":"easy ankle hip shoulder mobility routine",
+  "Progressive 10m Strides":"progressive 10 meter acceleration run drill",
+  "Band External Rotation":"resistance band shoulder external rotation exercise"
 });
 
 /* ===== شروحات التمارين — اضغط على اسم التمرين يظهر شرحه ===== */
@@ -586,6 +598,21 @@ Object.assign(EXPLAIN,{
  "Pivot Movement: Block → Reposition":"داخل تدريب الأهلي، نفّذ بلوكاً قانونياً لفتح مساحة للزميل، ثم أعد تمركزك فوراً في زاوية تمرير جديدة وابقَ جاهزاً للاستلام. لا تدفع أو تمسك المدافع."
 });
 
+Object.assign(EXPLAIN,{
+  "Shadow Throw — بدون كرة":"قف بوضعية تصويب مريحة باليد اليمنى. ابدأ بتوازن القدمين، جهّز الذراع خلف/بجانب الرأس دون ألم، ثم نفّذ الحركة ببطء: الحوض والجذع أولاً، ثم الكتف والمرفق، ثم حركة الرسغ والأصابع. 2×5 فقط؛ الهدف تعلم الترتيب وليس السرعة.",
+  "Standing Throw — 50–60%":"قف جانبياً للهدف مع توازن مريح. جهّز الكرة قرب الكتف الأيمن، انقل الوزن من الرجل الخلفية إلى الأمامية، واسمح للحوض والجذع بالدوران قبل تسريع الذراع. أطلق الكرة نحو مساحة واسعة بقوة 50–60%، ثم أكمل حركة الذراع. 2×5؛ أوقف التمرين إذا تدهورت التقنية أو ظهر ألم.",
+  "Standing Throw — 60–70%":"نفس ميكانيكية التصويب من الثبات: توازن، تجهيز الذراع، دوران الحوض والجذع، تسريع الذراع، ثم متابعة الحركة. استخدم 60–70% فقط ولا تبحث عن أقصى قوة. ركّز على ثبات نقطة الإطلاق واتجاه الكرة.",
+  "Target Throw — 60–70%":"اختر علامة كبيرة وواضحة داخل المرمى. نفّذ التصويب بقوة متوسطة مع توجيه اليد والأصابع نحو الهدف. لا تغيّر القوة والزاوية في المحاولة نفسها؛ اختر هدفاً واحداً لكل مجموعة وسجّل الإصابات الصحيحة.",
+  "Target Throw — 50–60%":"اختر مساحة واضحة داخل المرمى وصوّب بقوة خفيفة إلى متوسطة. الهدف تثبيت الدقة والإحساس بالكرة، وليس اختبار قوة التصويبة.",
+  "Step-in Throw — 70–75%":"ابدأ بخطوة اقتراب قصيرة ومضبوطة. ضع القدم اليسرى أماماً عند التصويب باليد اليمنى إذا كان ذلك طبيعياً لتقنيتك، ثم انقل الوزن ودور الجذع قبل تسريع الذراع. نفّذ عند 70–75%، ولا تقفز أو تندفع إذا فقدت التوازن.",
+  "Pivot Move + Shot":"تحرك خطوتين قصيرتين كما لو أنك تفتح زاوية تمرير، ثم ثبت التوازن ونفذ دوراناً قصيراً وتصويبة فنية. استخدم تمريرة من الجدار أو ابدأ من وضعية مماثلة، وتدرب دون مدافع مع مراعاة قواعد الخطوات والقدم المحورية.",
+  "Shot Technique Video Check":"صوّر محاولتين من الجانب أو الأمام. راجع توازن القدمين، تجهيز الذراع، توقيت دوران الحوض والجذع، مسار المرفق، ونقطة إطلاق الكرة. قارن دقة المحاولات وثبات الحركة، ولا تحكم على القوة من الصوت فقط.",
+  "15s Shuttle Efforts":"بعد إحماء 5 دقائق، نفّذ مجموعتين من 4 تكرارات: 15 ثانية جري ذهاباً وإياباً عند 75–80% ثم 45 ثانية مشي/راحة. استرح 3 دقائق بين المجموعتين. إذا كانت حصة الأهلي تحتوي على جري متكرر أو ألعاب شديدة، احذف هذا التمرين.",
+  "Low / Chest / High Reception":"من مسافة مريحة أمام الجدار، مرّر الكرة بالتناوب إلى ارتفاع منخفض ثم الصدر ثم أعلى الصدر. تحرك بالقدمين لمقابلة الكرة، استقبل باليدين وامتص السرعة. لا ترفع السرعة قبل ثبات الاستقبال.",
+  "Medicine Ball Rotational Throw — خفيفة":"استخدم كرة طبية خفيفة مألوفة وتحت إشراف مدرب. قف جانبياً إلى جدار آمن أو هدف، وابدأ بدوران صغير من الورك والجذع ثم أطلق الكرة دون تقويس أسفل الظهر. 2×3 لكل جهة فقط؛ احذف التمرين إن لم تتقن الحركة أو ظهر ألم بالكتف.",
+  "Easy Mobility":"حرك الكاحل والورك والعمود الصدري والكتف ضمن مدى مريح لمدة 5 دقائق. لا تضغط بقوة ولا تستخدم تمطيطاً مؤلماً.",
+  "Progressive 10m Strides":"نفّذ 3 انطلاقات لمسافة 10 أمتار: ابدأ بسهولة ثم ارفع السرعة تدريجياً إلى 70–80%، مع راحة 90 ثانية. أنهِ وأنت نشيط، لا منهك."
+});
 var ALT={
   "Back Squat صندوق ناعم":"بديل: سكوات هوائي بطيء على كرسي",
   "Broad Jump أمامي (بساط/نجيل)":"بديل: قفزة وقوف صغيرة للأمام",
@@ -670,6 +697,9 @@ function renderReportOnly(){
  "<div class='tf'><label>Bobble /30</label><input id='r2Bobble' type='number' min='0' max='30'></div>"+
  "<div class='tf'><label>Drop /30</label><input id='r2Drop' type='number' min='0' max='30'></div>"+
  "<div class='tf'><label>استلامات المباراة % (إن وجدت)</label><input id='r2Match' type='number' min='0' max='100'></div>"+
+  "<div class='tf'><label>أهداف التصويب /20</label><input id='r2ShotAccuracy' type='number' min='0' max='20'></div>"+
+  "<div class='tf'><label>تقنية التصويب /10</label><input id='r2ShotTech' type='number' min='0' max='10'></div>"+
+  "<div class='tf'><label>جودة تكرار الجهد /10</label><input id='r2CondQuality' type='number' min='0' max='10'></div>"+
  "<div class='tf'><label>زمن 5م (اختياري)</label><input id='r25m' type='number' min='0' step='0.01'></div>"+
  "<div class='tf'><label>متوسط النوم (ساعات)</label><input id='r2Sleep' type='number' min='0' max='14' step='0.1'></div>"+
  "<div class='tf'><label>التعب 1–10</label><input id='r2Fatigue' type='number' min='1' max='10'></div>"+
@@ -680,9 +710,9 @@ function renderReportOnly(){
  "<div class='tf'><label>التركيز /10</label><input id='r2Focus' type='number' min='0' max='10'></div>"+
  "<div class='tf weekly-wide'><label>ملاحظات الأسبوع (المهارات، السرعة، التعب، أي ألم)</label><textarea id='r2Notes'></textarea></div></div>"+
  "<button class='bigbtn green' id='saveR2'>💾 حفظ التقرير</button><div id='r2Status' class='weekly-status'></div>"+
- "<div class='note'>اختبار 30 كرة: 10 على الصدر، 10 منخفضة، 10 جانبية. سجّله بالطريقة نفسها كل مرة. اختبر 5م فقط وأنت مرتاح والكاحل ثابت ودون ألم؛ لا حاجة لاختباره كل أسبوع.</div>";
+ "<div class='note'>اختبار 30 كرة: 10 على الصدر، 10 منخفضة، 10 جانبية. للتصويب سجّل الأهداف من 20 محاولة وتقنية الحركة من 10 دون اختبار أقصى سرعة للكرة. للياقة سجّل جودة تكرار الجهد بعد الحصة ولا تضف اختباراً مرهقاً خلال فترة ما قبل المباراة. اختبر السرعة فقط وأنت مرتاح ودون ألم.</div>";
  rb.appendChild(card);
- var mp={r2Sessions:"sessions",r2Endurance:"endurance",r2Clean:"clean",r2Bobble:"bobble",r2Drop:"drop",r2Match:"match",r25m:"s5",r2Sleep:"sleep",r2Fatigue:"fatigue",r2Pain:"pain",r2Ankle:"ankle",r2CatchConf:"catchConf",r2Coord:"coord",r2Focus:"focus",r2Notes:"notes"};
+ var mp={r2Sessions:"sessions",r2Endurance:"endurance",r2Clean:"clean",r2Bobble:"bobble",r2Drop:"drop",r2Match:"match",r2ShotAccuracy:"shotAccuracy",r2ShotTech:"shotTech",r2CondQuality:"condQuality",r25m:"s5",r2Sleep:"sleep",r2Fatigue:"fatigue",r2Pain:"pain",r2Ankle:"ankle",r2CatchConf:"catchConf",r2Coord:"coord",r2Focus:"focus",r2Notes:"notes"};
  Object.keys(mp).forEach(function(id){var e=document.getElementById(id);if(e&&wr[mp[id]]!==undefined)e.value=wr[mp[id]];});
  document.getElementById("saveR2").onclick=function(){Object.keys(mp).forEach(function(id){var e=document.getElementById(id);if(e)wr[mp[id]]=e.value;});wr.savedAt=new Date().toISOString();DB.weekly["week"+wk]=wr;saveDB();document.getElementById("r2Status").textContent="✅ تم حفظ تقرير الأسبوع "+wk;};
 }
@@ -772,48 +802,49 @@ var CAMP_PLAN={
 ["حركة لاعب الدائرة",[["Pivot Footwork Around Markers","4 × 20 ثانية · راحة 40 ثانية"],["Lateral Movement Around Cones","3 × 15 ثانية · راحة 45 ثانية"],["Wall Catch + Turn + Target Throw","3 × 6 · راحة 60 ثانية"]]],
 ["القوة الدورانية",[["Medicine Ball Rotational Throw","3 × 4 لكل جهة · راحة 60 ثانية"],["Band Anti-Rotation Press","2 × 10 لكل جهة"]]]
 ]),
-"2026-11-22":campDay("Lower Body Strength + Core","65–75 دقيقة","16–22 نوفمبر | تأسيس وقياس",[
-["القوة السفلية — بإشراف المدرب",[["Front Squat أو Goblet Squat","3 × 6 · راحة دقيقتين · 2–3 تكرارات احتياطية"],["Romanian Deadlift","3 × 8 · راحة 90 ثانية"],["Bulgarian Split Squat","2 × 8 لكل رجل · راحة 75 ثانية"],["Hip Thrust","2 × 8 · راحة 90 ثانية"]]],
-["الجذع والعضلات المقربة",[["Copenhagen Plank — Short Lever","2 × 15 ثانية لكل جهة"],["Dead Bug","2 × 8 لكل جهة"]]]
+"2026-11-22":campDay("مراجعة تقنية التصويب + استشفاء","10 دقائق دون حمل بدني","22 نوفمبر | مراجعة قصيرة فقط؛ لا تضف تدريباً بدنياً متأخراً بعد حصة الأهلي",[
+ ["فحص التقنية دون إجهاد",[["Shadow Throw — بدون كرة","1×5 ببطء؛ راقب تسلسل الحركة"],["Shot Technique Video Check","5 دقائق مراجعة فيديو أو تخيل حركي؛ لا تصويبات قصوى"]]]
 ]),
-"2026-11-23":campDay("Receiving Under Movement","60–70 دقيقة","23–29 نوفمبر | تطوير متخصص",[
-["تنويع التمريرات",[["Wall Passing — Change Distance","3 × 15 تمريرة من مسافتين · راحة 45 ثانية"],["Low / Chest / High Reception","3 × 6 لكل ارتفاع · راحة 45 ثانية"]]],
-["الاستلام والتحرك",[["Move 2 Steps + Catch","3 × 6 لكل جهة · راحة 60 ثانية"],["Catch + Shield + Turn + Finish","3 × 5 · راحة 75 ثانية"],["30-Ball Reception Test","30 تمريرة مضبوطة؛ سجّل الاستلام النظيف فقط"]]]
+"2026-11-23":campDay("Lower Body Strength — قوة الجزء السفلي","35–40 دقيقة + الأهلي 16:00–18:00","23 نوفمبر | حصة جيم متوسطة في وقت منفصل؛ اترك نحو 6 ساعات بين الحصتين إن أمكن",[
+ ["القوة السفلية — بإشراف مدرب، RIR 3",[["Goblet Squat","3×6 · راحة 90–120 ثانية"],["Romanian Deadlift","2×6–8 · راحة 90 ثانية"],["Supported Split Squat","2×6 لكل رجل · راحة 75 ثانية"],["Calf Raise","2×10"]]],
+ ["الجذع",[["Dead Bug","2×8 لكل جهة"],["Side Plank","2×20 ثانية لكل جهة"]]]
 ]),
-"2026-11-24":campDay("Speed + Jump Quality","55–65 دقيقة","23–29 نوفمبر | تطوير متخصص",[
-["السرعة",[["10m Sprint","4 محاولات · راحة دقيقتين"],["20m Sprint","2 محاولتان · راحة 2–3 دقائق"]]],
-["القفز والانفجار",[["Box Jump","3 × 3 · راحة 90 ثانية"],["Broad Jump","2 × 3 · راحة 90 ثانية"],["Medicine Ball Scoop Toss","3 × 4 · راحة 60 ثانية"]]]
+"2026-11-24":campDay("Speed + Jump Activation — السرعة والانفجار","20–25 دقيقة + الأهلي 16:00–18:00","24 نوفمبر | جودة عالية وراحة كاملة؛ احذف القفز إذا تضمن تدريب الفريق قفزاً كثيراً",[
+ ["السرعة",[["10m Acceleration Sprint","4 محاولات عند 85–90% · راحة 90–120 ثانية"],["15m Sprint","2 محاولتان عند 85–90% · راحة دقيقتين"]]],
+ ["القفز والهبوط",[["Low Vertical Jump + Stick","2×3 · قفزات منخفضة وهبوط ثابت"],["Lateral Shuffle + Stick","2×3 لكل اتجاه"]]]
 ]),
-"2026-11-25":campDay("Upper Body Strength","55–65 دقيقة","23–29 نوفمبر | تطوير متخصص",[
-["القوة العلوية — بإشراف المدرب",[["Machine Chest Press","3 × 8 · راحة 90 ثانية"],["Chest-Supported Row","3 × 8 · راحة 90 ثانية"],["Lat Pulldown","2 × 8 · راحة 75 ثانية"],["Landmine Press","2 × 8 لكل جهة · راحة 60 ثانية"]]],
-["القبضة والكتف",[["Farmer Carry","2 × 20 متراً · راحة 60 ثانية"],["Face Pull","2 × 12"]]]
+"2026-11-25":campDay("Receiving + Shot Technique — الاستقبال وميكانيكية التصويب","20–25 دقيقة + الأهلي 16:00–18:00","25 نوفمبر | تدريب فردي فني؛ لا تعتمد على وجود شريك، ولا تصوّب بأقصى قوة",[
+ ["الاستقبال الفردي",[["Wall Passing — Chest Height","2×12 تمريرة نظيفة"],["Low / Chest / High Reception","2×5 لكل ارتفاع · راحة 30–45 ثانية"],["Lateral Step + Catch","2×5 لكل جهة"]]],
+ ["ميكانيكية التصويب",[["Shadow Throw — بدون كرة","2×5؛ ابدأ بالحوض والجذع ثم الذراع"],["Standing Throw — 50–60%","2×5 تصويبات فنية مع توجيه الكرة"],["Target Throw — 60–70%","2×4 نحو هدف محدد"]]]
 ]),
-"2026-11-26":campDay("Conditioning + Agility","45–55 دقيقة","23–29 نوفمبر | تطوير متخصص",[
-["التحمل وتغيير الاتجاه",[["5-10-5 Agility","3 محاولات · راحة 90 ثانية"],["Shuttle Intervals","2 × 3 جولات: 15 ثانية جهد مضبوط / 45 ثانية راحة؛ 3 دقائق بين المجموعتين"]]],
-["الثبات",[["Band Lateral Walk","2 × 10 خطوات"],["Calf Raise + Tibialis Raise","2 × 12 لكل تمرين"],["Side Plank","2 × 20 ثانية لكل جهة"]]]
+"2026-11-26":campDay("Upper Body + Shoulder Control — القوة العلوية","35–40 دقيقة + الأهلي 16:00–18:00","26 نوفمبر | جيم متوسط بإشراف مدرب؛ لا تصل إلى الفشل العضلي",[
+ ["قوة الجزء العلوي",[["Machine Chest Press","2×8 · حمل متحكم به"],["Chest-Supported Row","3×8 · راحة 90 ثانية"],["Lat Pulldown","2×8 · راحة 75 ثانية"]]],
+ ["الكتف والجذع",[["Face Pull","2×12"],["Band External Rotation","2×12 لكل كتف"],["Pallof Press","2×8 لكل جهة"]]]
 ]),
-"2026-11-27":campDay("راحة كاملة","استشفاء","27 نوفمبر | راحة كاملة واستشفاء",[]),
-"2026-11-28":campDay("Pivot Skills + Receiving","45–55 دقيقة","23–29 نوفمبر | تطوير متخصص",[
-["المهارات الخاصة",[["Pivot Footwork + Change of Direction","3 × 20 ثانية · راحة 45 ثانية"],["Wall Catch + Turn + Target Throw","3 × 5 · راحة 60 ثانية"],["Medicine Ball Rotational Throw","2 × 4 لكل جهة · راحة 60 ثانية"],["Band Anti-Rotation","2 × 8 لكل جهة"],["Easy Mobility","8 دقائق"]]]
+"2026-11-27":campDay("راحة كاملة","استشفاء","27 نوفمبر | راحة رياضية كاملة؛ لا جيم ولا جري ولا تصويب قوي",[]),
+"2026-11-28":campDay("Pivot Skills + Rotational Control — مهارات لاعب الدائرة","20–25 دقيقة + الأهلي 16:00–18:00","28 نوفمبر | جودة الحركة والاستلام والحماية؛ لا شريك مطلوب",[
+ ["حركة Pivot",[["Pivot Footwork + Change of Direction","2×15 ثانية · راحة 45 ثانية"],["Wall Catch + Turn + Target Throw","2×5 · راحة 60 ثانية"],["Band Anti-Rotation","2×8 لكل جهة"]]],
+ ["التصويب",[["Pivot Move + Shot","2×3 تصويبات بعد حركة قصيرة عند 60–70%"],["Medicine Ball Rotational Throw — خفيفة","2×3 لكل جهة فقط إذا كانت التقنية مألوفة وتحت إشراف"]]]
 ]),
-"2026-11-29":campDay("Reduced Lower Body Strength","45–55 دقيقة","23–29 نوفمبر | تطوير متخصص",[
-["القوة السفلية — حمل متوسط وبإشراف المدرب",[["Goblet Squat","2 × 6 · راحة 90 ثانية"],["Romanian Deadlift","2 × 6 · راحة 90 ثانية"],["Split Squat","2 × 6 لكل رجل · راحة 60 ثانية"]]],
-["الجذع",[["Copenhagen Plank — Short Lever","2 × 12 ثانية لكل جهة"],["Dead Bug","2 × 6 لكل جهة"]]]
+"2026-11-29":campDay("Handball Fitness — لياقة وتكرار الجهد","18–22 دقيقة + الأهلي 16:00–18:00","29 نوفمبر | جرعة لياقة واحدة مضبوطة؛ إذا احتوى تدريب الأهلي على جري متكرر أو ألعاب شديدة، احذف هذه الحصة",[
+ ["التحمل الخاص بكرة اليد",[["Dynamic Warm-up","5 دقائق تدريجية"],["15s Shuttle Efforts","2×4 جولات: 15 ثانية عند 75–80% / 45 ثانية مشي؛ راحة 3 دقائق بين المجموعتين"],["Easy Mobility","5 دقائق تهدئة"]]]
 ]),
-"2026-11-30":campDay("Sharp Receiving + Quick Movement","40–50 دقيقة","30 نوفمبر–2 ديسمبر | تخفيف الحمل",[
-["استلام سريع بحجم منخفض",[["Wall Passing","2 × 12 تمريرة"],["Low / Chest / High Catch","2 × 5 لكل ارتفاع"],["Lateral Step + Catch + Turn","2 × 5 لكل جهة"],["Catch + Quick Release","2 × 4"]]]
+"2026-11-30":campDay("Reduced Full-Body Strength — قوة مخففة","25–30 دقيقة + الأهلي 16:00–18:00","30 نوفمبر | آخر حصة مقاومة؛ حجم منخفض، لا أوزان جديدة ولا إجهاد عضلي",[
+ ["قوة خفيفة — بإشراف مدرب، RIR 4",[["Goblet Squat","2×6 بحمل سهل"],["Romanian Deadlift","2×6 بحمل سهل"],["Chest-Supported Row","2×8"],["Dead Bug","2×6 لكل جهة"]]]
 ]),
-"2026-12-01":campDay("Speed + Power Activation","35–45 دقيقة","30 نوفمبر–2 ديسمبر | تخفيف الحمل",[
-["تنشيط السرعة والانفجار",[["10m Sprint","3 محاولات سريعة ومريحة · راحة دقيقتين"],["Box Jump","2 × 2 · راحة 90 ثانية"],["Broad Jump","2 × 2 · راحة 90 ثانية"],["Medicine Ball Rotational Throw","2 × 3 لكل جهة · راحة 60 ثانية"]]]
+"2026-12-01":campDay("Speed Primer — تنشيط السرعة","15–18 دقيقة + الأهلي 16:00–18:00","1 ديسمبر | تنشيط عصبي قصير؛ لا تحمل لياقة إضافياً",[
+ ["السرعة",[["10m Acceleration Sprint","3 محاولات عند 85–90% · راحة كاملة"],["Low Vertical Jump + Stick","2×2 فقط إذا كان الهبوط ثابتاً"]]],
+ ["دوران الجذع والتصويب",[["Medicine Ball Rotational Throw — خفيفة","2×3 لكل جهة بوزن خفيف مألوف، أو احذفها"],["Shadow Throw — بدون كرة","1×5 بتسلسل مضبوط"]]]
 ]),
-"2026-12-02":campDay("Light Upper Body + Catching","30–40 دقيقة","30 نوفمبر–2 ديسمبر | تخفيف الحمل",[
-["تنشيط خفيف — دون إجهاد",[["Machine Chest Press","2 × 6 بحمل خفيف ومريح"],["Chest-Supported Row","2 × 6 بحمل خفيف ومريح"],["Face Pull","2 × 10"],["Wall Catch + Pivot Turn","2 × 5 بتركيز وسرعة مريحة"]]]
+"2026-12-02":campDay("Shot Accuracy + Pivot Reception — دقة التصويب والاستقبال","15–20 دقيقة + الأهلي 16:00–18:00","2 ديسمبر | آخر جرعة فنية للتصويب؛ لا تصويبات قصوى ولا حجم كبير",[
+ ["الاستقبال",[["Wall Passing — Chest Height","2×10 تمريرات سهلة"],["Low / Chest / High Reception","1×5 لكل ارتفاع"]]],
+ ["دقة وميكانيكية التصويب",[["Shadow Throw — بدون كرة","1×5 ببطء"],["Target Throw — 60–70%","2×4 نحو هدف محدد"],["Step-in Throw — 70–75%","2×3 بعد خطوة اقتراب"]]]
 ]),
-"2026-12-03":campDay("Pre-Match Primer","20–30 دقيقة","3 ديسمبر | تنشيط خفيف فقط؛ أنهِ الحصة وأنت تشعر بالنشاط",[
-["تنشيط قبل المباراة",[["Dynamic Warm-up","8 دقائق"],["10m Strides","3 انطلاقات تدريجية دون أقصى جهد · راحة 90 ثانية"],["Low Box Jump","2 × 2 فقط، هبوط هادئ وثابت"],["Easy Passing + Catching","5–8 دقائق دون إجهاد"]]]
+"2026-12-03":campDay("Pre-Match Primer — تنشيط ما قبل المباراة","15–20 دقيقة + الأهلي 16:00–18:00 إذا كان التدريب خفيفاً","3 ديسمبر | أنهِ الحصة وأنت تشعر بالنشاط؛ إذا كانت حصة الأهلي عادية فاجعلها الإحماء الفني فقط",[
+ ["تنشيط",[["Dynamic Warm-up","5–6 دقائق حركة سهلة"],["Progressive 10m Strides","3 انطلاقات تدريجية عند 70–80% · راحة 90 ثانية"],["Easy Passing + Catching","2×8 تمريرات سهلة"],["Target Throw — 50–60%","4 تصويبات فقط نحو هدف واضح"]]]
 ]),
-"2026-12-04":campDay("راحة قبل المباراة","استشفاء","4 ديسمبر | راحة كاملة قبل المباراة",[]),
-"2026-12-05":campDay("يوم المباراة","MATCH DAY","5 ديسمبر | المباراة الأولى",[],true)
+"2026-12-04":campDay("راحة كاملة قبل المباراة","استشفاء","4 ديسمبر | راحة كاملة؛ ماء وطعام معتاد ونوم جيد",[]),
+"2026-12-05":campDay("يوم المباراة","MATCH DAY","5 ديسمبر | المباراة؛ لا توجد حصة إضافية",[],true)
 };
 
 function renderTrain(){
@@ -825,9 +856,9 @@ function renderTrain(){
  if(s.day==="الجمعة"){summary.innerHTML="<div class='sum'><b>♻️</b><span>راحة رياضية</span></div><div class='sum'><b>15–20د</b><span>مراجعة اختيارية</span></div><div class='sum'><b>تعافٍ</b><span>وضع اليوم</span></div>";}
 
  if(camp){
-  box.insertAdjacentHTML("beforeend",'<div class="note">هذه حصة المعسكر المحددة لهذا التاريخ. نفّذ التمارين بالترتيب وعلّم كل تمرين بعد إنجازه. تمارين القوة تحت إشراف المدرب مع 2–3 تكرارات احتياطية؛ لا أقصى أوزان ولا فشل عضلي. في السرعة والقفز، الراحة كاملة والجودة أهم من العدد. في الاستلام، استخدم مدرباً أو زميلاً عند توفره لمحاكاة تمريرات متغيرة وضغط تدريجي. أوقف أي تمرين يسبب ألماً أو عدم ثبات.</div>');
+  box.insertAdjacentHTML("beforeend",'<div class="note">هذه جرعة فردية مكملة لتدريب الأهلي (الأحد–الخميس والسبت، 16:00–18:00). لا تنفذ الإضافة إذا كانت حصة الفريق شديدة أو شعرت بإرهاق. الجيم في وقت منفصل مع ترك فاصل مناسب بين الحصتين، وتحت إشراف مدرب وبـ2–3 تكرارات احتياطية. لا توجد تمارين تعتمد على شريك؛ استخدم الجدار والأقماع. التصويب فني ودقيق وليس أقصى قوة. اللياقة الإضافية مرة واحدة فقط إذا لم يغطِّ تدريب الفريق هذا الحمل. أوقف أي تمرين عند الألم.</div>');
  }else{
- box.insertAdjacentHTML("beforeend",'<div class="note">هذا برنامج تطوير فردي مستقل مدمج مع جدول الأهلي (الأحد–الخميس والسبت، 16:00–19:00؛ نحو ساعتين فعلياً). لا تجعل توفر أكثر من 90 دقيقة هدفاً للتدريب اليومي: الجرعات الفردية محددة الجودة، والجيم الثلاثاء هو حصة القوة الرئيسية. الاثنين والخميس مهارات شريك؛ الأربعاء استجابة وحركة بجرعة صغيرة؛ السبت قفز/انطلاق اختياري يحل محل جزء من الإحماء فقط إذا لا توجد مباراة والتعافي جيد. الجمعة راحة رياضية كاملة. أزرار الفيديو تفتح نتائج بحث بالتمرين وليست اعتماداً لفيديو واحد بعينه؛ اختر شرحاً واضحاً وطبّق التقنية مع المدرب. لا نضيف جرياً متقطعاً حالياً لأن لديك ست حصص فريق؛ راجع المدرب قبل إضافة حمل تحمل. إذا كان تدريب الأهلي شديداً أو كان الإرهاق مرتفعاً، احذف الإضافات لذلك اليوم. المباراة تلغي الإضافات الفردية. الجيم بإشراف مدرب، أوزان متحكم بها مع 2–3 تكرارات احتياطية، ولا اختبار أقصى أو تدريب حتى الفشل. أوقف أي تمرين يسبب ألماً أو عدم ثبات.</div>');
+ box.insertAdjacentHTML("beforeend",'<div class="note">تدريب الأهلي ثابت الأحد–الخميس والسبت من 16:00 إلى 18:00، ست حصص أسبوعياً. الخطة الفردية مكملة وليست بديلاً عن الفريق: الأحد والأربعاء مهارات واستقبال وتصويب بجرعة قصيرة، الاثنين قوة سفلية، الثلاثاء سرعة وقفز قليل، الخميس قوة علوية ووقاية للكتف، والسبت لياقة قصيرة فقط إذا لم تتضمن حصة الفريق جرياً مكثفاً. الجمعة راحة كاملة. لا توجد تمارين تفترض وجود شريك؛ استخدم الجدار والأقماع. افصل الجيم عن تدريب الأهلي بنحو 6 ساعات متى أمكن، والجيم بإشراف مدرب مع 2–3 تكرارات احتياطية. لا تضف الجري أو القفز إذا تضمن تدريب الفريق نفس الحمل. المباراة تلغي الإضافات. لا أقصى أوزان ولا تدريب حتى الفشل، وأوقف أي تمرين يسبب ألماً أو عدم ثبات.</div>');
  }
  var start=new Date((DB.settings.startDate||"2026-11-09")+"T00:00:00"),wk=Math.min(4,Math.max(1,Math.ceil((now-start)/(7*24*60*60*1000))+1));
  var phases=["الأسبوع 1 — تأسيس: تعلم التمارين، ضغط شريك خفيف، وسجل Clean/Bobble/Drop دون زيادة الحمل.","الأسبوع 2 — بناء تدريجي: زد تمريناً واحداً فقط أو زِد صعوبة تمريرات الشريك إذا كان النوم والتعافي جيدين.","الأسبوع 3 — تخصص Pivot: أضف ضغطاً ظلياً متدرجاً في الاستلام وصناعة المساحة، مع الحفاظ على نفس حجم الجيم.","الأسبوع 4 — تخفيف وتقييم: خفّض حجم الفردي 40–50%، أعد قياس الاستلام بالطريقة نفسها، ولا تختبر أقصى سرعة أو قوة."];
@@ -868,7 +899,7 @@ function renderTrain(){
 function renderLibrary(){
  var box=document.getElementById("libraryBox");if(!box)return;box.innerHTML="";
  var intro=document.createElement("div");intro.className="card plan-intro";
- intro.innerHTML="<h2>📚 مكتبة Pivot</h2><div class='cue'>LEARN → OBSERVE → APPLY</div><div class='muted'>لا تجمع مصادر كثيرة. ابدأ بكتاب واحد، واستمع إلى فكرة واحدة أسبوعياً، ثم طبّق فكرة واحدة في تدريبك الفردي.</div>";box.appendChild(intro);
+ intro.innerHTML="<h2>📚 مكتبة Pivot</h2><div class='cue'>LEARN → OBSERVE → APPLY</div><div class='muted'>لا تجمع مصادر كثيرة. ابدأ بكتاب واحد، واستمع إلى فكرة واحدة أسبوعياً، ثم طبّق فكرة واحدة في تدريبك الفردي. الخطة الحالية مصممة للتدريب الفردي ولا تفترض وجود شريك؛ تمارين الشريك في المكتبة تستخدم فقط عندما يتاح زميل أو مدرب.</div>";box.appendChild(intro);
  var books=document.createElement("div");books.className="card";
  books.innerHTML="<h2>📖 الكتب الثلاثة — ابدأ بالأول</h2>"+
  "<div class='dev-card'><h3>1. The Inner Game of Tennis — ابدأ به</h3>يساعدك على تقليل التفكير الزائد والثقة بتنفيذ المهارة. <b>تطبيق الملعب:</b> لا تكرر التفكير في الخطأ أثناء المباراة؛ أعد انتباهك إلى الكرة والمهمة الحالية. ابدأ بـ10 صفحات في الجلسة.</div>"+
@@ -948,8 +979,8 @@ renderLibrary();
 </script>
 
 <footer id="site-version" aria-label="نسخة الموقع" style="max-width:680px;margin:14px auto 24px;padding:12px 10px 18px;text-align:center;color:#9ca3af;font:12px/1.8 system-ui,sans-serif;border-top:1px solid #303038;">
-  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v2.5.3</div>
-  <div>BUILD 2026.11.18.1 · تحسين شروحات التمارين وروابط فيديو YouTube لكل تمرين</div>
+  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v2.6.0</div>
+  <div>BUILD 2026.11.22.1 · دمج تدريب الأهلي 16:00–18:00، تطوير التصويب، وتوزيع السرعة والقوة واللياقة قبل المباراة</div>
 </footer>
 
 </body>
