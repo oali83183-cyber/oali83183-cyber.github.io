@@ -209,20 +209,19 @@ var SCHED=[
   {cat:"⚡ التسارع — راحة كاملة",ex:[["Progressive 5m Acceleration","3×5 أمتار عند 80–85% · راحة 60–90 ثانية"],["10m Acceleration Sprint","3×10 أمتار بجودة عالية · راحة 90–120 ثانية"]]},
   {cat:"🦘 القفز والهبوط — حجم قليل",ex:[["Low Vertical Jump + Stick","2×3 قفزات منخفضة وهبوط ثابت"],["Lateral Shuffle + Stick","2×3 لكل اتجاه"]]}
  ],pm:[]},
- {day:"الخميس",title:"Gym B + Aerobic Fitness — قوة علوية ولياقة",cal:"40–50 دقيقة جيم + لياقة حسب المرحلة • الأهلي 16:00–18:00",am:[
+ {day:"الخميس",title:"Gym B — Upper Body + Shoulder Care",cal:"35–45 دقيقة جيم فقط إذا كنت مستعداً • الأهلي 16:00–18:00",am:[
   {cat:"🔥 إحماء",ex:[["Dynamic Gym Warm-up","5 دقائق حركة ومجموعات إحماء خفيفة"]]},
   {cat:"🏋️ الجزء العلوي — بإشراف مدرب",ex:[["Machine Chest Press","2×8 · حمل متحكم به"],["Chest-Supported Row","3×8–10"],["Lat Pulldown","2×8–10"]]},
-  {cat:"🛡️ الكتف والجذع — Long Resistance Band",ex:[["Band Face Pull","2×12 · مقاومة خفيفة"],["Band External Rotation","2×12 لكل كتف"],["Band Pallof Press","2×8 لكل جهة"]]},
-  {cat:"❤️ اللياقة الهوائية — لا تنفذها إذا كان تدريب الفريق شديداً",ex:[["Aerobic Fitness Progression","الأسابيع 1–4: 15–20 دقيقة سهلة RPE 3–4. الأسابيع 5–8: 4×2 دقيقة RPE 6 وبينها دقيقتان سهلة. الأسابيع 9–11: مجموعتان × 5 جولات (15 ثانية سريعة مضبوطة / 45 ثانية سهلة)، راحة 3 دقائق. الأسبوع 12 تخفيف."]]}
+  {cat:"🛡️ الكتف والجذع — Long Resistance Band",ex:[["Band Face Pull","2×12 · مقاومة خفيفة"],["Band External Rotation","2×12 لكل كتف"],["Band Pallof Press","2×8 لكل جهة"]]}
  ],pm:[]},
  {day:"الجمعة",title:"Rest + Recovery — راحة واستشفاء",cal:"راحة من التدريب • رول اختياري 5–8 دقائق",am:[
   {cat:"♻️ استشفاء اختياري — لا يحل محل الراحة",ex:[["Foam Roller Recovery","30–45 ثانية لكل منطقة: عضلات الفخذ الأمامية، السمانة، الألوية، وأعلى الظهر؛ ضغط مريح فقط"],["Easy Mobility","5 دقائق حركة لطيفة إذا شعرت بالتيبس"]]},
   {cat:"📚 مراجعة اختيارية",ex:[["Weekly Review Notes","5 دقائق: نجاح واحد، نقطة تحسين، وسؤال للمدرب"]]}
  ],pm:[]},
- {day:"السبت",title:"Pivot Skills — تطبيق مهارات الدائرة",cal:"10–15 دقيقة داخل تدريب الفريق • لا حصة فردية شاقة",am:[
-  {cat:"🏐 الاستلام أمام مدافع — مع المدرب/زميل",ex:[["Partner Hand-Target Reception","2×5 تمريرات · دون ضغط أولاً"],["Partner Low-Ball Reception","2×5 تمريرات منخفضة · تقدم تدريجي"],["Shadow Defender Timing","2×4 محاولات ضغط تدريجي دون دفع أو مسك"]]},
-  {cat:"🧱 Block وإعادة التموضع",ex:[["Pivot Movement: Block → Reposition","3×4 مواقف · بلوك قانوني ثم فتح زاوية تمرير"],["Catch → Protect → Turn","2×4 · استلام ثم حماية الكرة واتخاذ قرار"]]},
-  {cat:"🎯 الإنهاء",ex:[["6m Pivot Finishing","2×4 محاولات فنية أمام الحارس إذا توفر، دون إجهاد أو تصويب أقصى"]]}
+ {day:"السبت",title:"Solo Pivot Skills — مهارات الدائرة بشكل مستقل",cal:"15–20 دقيقة فردية • مستقلة بالكامل بالحائط والأقماع",am:[
+  {cat:"🏐 الاستلام بالحائط — دون شريك",ex:[["Wall Lateral Step + Catch","2×6 لكل جهة · تمرير مائل إلى الحائط ثم التحرك للاستلام"],["Wall Low-Ball Reception","2×6 تمريرات منخفضة · سيطرة هادئة"],["Catch → Secure → Reset","2×6 · تثبيت الكرة قبل الحركة التالية"]]},
+  {cat:"🧱 حركة Pivot والبلوك الوهمي — باستخدام الأقماع",ex:[["Solo Pivot Footwork Around Cone","3×15 ثانية · خطوات قصيرة حول مخروط دون احتكاك"],["Solo Shadow Block + Reposition","2×4 لكل جهة · اتخذ وضعية بلوك قانونية ثم أعد التموضع دون مدافع"]]},
+  {cat:"🎯 دوران وإنهاء فردي",ex:[["Wall Catch → Pivot Turn","2×5 · استقبل ارتداد الحائط وثبّت الكرة ثم نفذ دوراناً متوازناً"],["Solo 6m Target Finishing","2×4 تصويبات فنية نحو هدف محدد من مسافة مناسبة، دون حارس"] ]}
  ],pm:[]}
 ];
 
@@ -665,7 +664,7 @@ function saveDB(){try{localStorage.setItem(KEY,JSON.stringify(DB));}catch(e){}}
 
 /* ===== فيديو ===== */
 function vidRow(name){
-  var q=VID[name]||name;
+  var q=VID[name]||(name+" exercise demonstration tutorial");
   var r=document.createElement("div");r.className="vidrow";
   [["▶️ بحث فيديو يوتيوب","#e11d2d","https://www.youtube.com/results?search_query="],
    ["🎵 تيك توك","#111827","https://www.tiktok.com/search?q="],
@@ -841,6 +840,14 @@ Object.assign(EXPLAIN,{
  "6m Pivot Finishing":"مع حارس ومدرب إن أمكن: ابدأ من منطقة الدائرة خارج خط المنطقة، تحرك لفتح زاوية تمرير، استقبل الكرة وثبّتها ثم أنهِ من مسافة 6 أمتار وفق الموقف وقواعد اللعب. نفّذ 2×4 محاولات مع راحة كافية، وابدأ بدقة وقوة متوسطة لا أقصى قوة. سجل هل كان التصويب على الهدف وهل حافظت على التوازن. لا تكرر القفز أو الدوران إذا ظهر ألم أو تعب يغير التقنية."
 });
 
+
+Object.assign(EXPLAIN,{
+ "Solo Pivot Footwork Around Cone":"ضع مخروطاً على الأرض ليكون علامة مكان المدافع، وقف على مسافة آمنة منه بوضعية Pivot. تحرك حوله بخطوات جانبية قصيرة، وافتح زاوية تمرير ثم غيّر اتجاهك وعد إلى وضع الاستعداد. نفّذ 3×15 ثانية مع راحة 30–40 ثانية. لا تلمس المخروط ولا تحاول دفعه أو محاكاة احتكاك قوي. حافظ على الركبتين باتجاه أصابع القدمين والجذع متوازناً.",
+ "Solo Shadow Block + Reposition":"استخدم مخروطاً أو علامة أرضية كموقع افتراضي للمدافع. قف بجانبه واتخذ وضعية بلوك قانونية: قدمان ثابتتان، قاعدة متوازنة، الذراعان ضمن حدود جسمك. اثبت لحظة، ثم تحرك بخطوتين قصيرتين إلى زاوية أخرى كأنك تعيد التموضع لتصبح هدفاً للتمرير. نفّذ 2×4 لكل جهة. لا تدفع المخروط ولا تمد الذراعين لإعاقة شخص؛ هذا تدريب حركة وظلي فقط.",
+ "Wall Catch → Pivot Turn":"قف على بعد 3–4 أمتار من الحائط. مرر الكرة بزاوية بحيث ترتد نحو جانبك، تحرك لمقابلة الكرة واستقبلها بكلتا اليدين، ثبّتها قرب الجذع، ثم نفّذ دوران Pivot قصيراً ومتوازناً مع احترام قدم الارتكاز وقواعد الخطوات. أعد الكرة للحائط. نفّذ 2×5، وابدأ ببطء قبل زيادة السرعة.",
+ "Solo 6m Target Finishing":"ضع هدفاً كبيراً محدداً داخل المرمى (زاوية أو مساحة مرسومة) وابدأ من مسافة آمنة مناسبة قرب خط 6 أمتار مع الالتزام بعدم دخول منطقة المرمى. نفّذ حركة اقتراب قصيرة، جهّز الكرة وصوّب بقوة 60–70% نحو الهدف. نفّذ 2×4 مع راحة كافية وسجّل الإصابات الصحيحة. لا تقفز إذا لم تكن الأرضية مناسبة أو إذا شعرت بألم. هذا يطوّر الدقة والميكانيكية لكنه لا يعوض التصويب أمام حارس."
+});
+
 function renderTrain(){
  var now=new Date(),di=now.getDay(),s=SCHED[di],k=todayKey(),box=document.getElementById("trainBox"),camp=null;
  if(camp)s={day:AR_DAYS[di],title:camp.title,cal:camp.cal,am:camp.am};
@@ -852,7 +859,7 @@ function renderTrain(){
  if(camp){
   box.insertAdjacentHTML("beforeend",'<div class="note">هذه جرعة فردية مكملة لتدريب الأهلي (الأحد–الخميس والسبت، 16:00–18:00). لا تنفذ الإضافة إذا كانت حصة الفريق شديدة أو شعرت بإرهاق. الجيم في وقت منفصل مع ترك فاصل مناسب بين الحصتين، وتحت إشراف مدرب وبـ2–3 تكرارات احتياطية. لا توجد تمارين تعتمد على شريك؛ استخدم الجدار والأقماع. التصويب فني ودقيق وليس أقصى قوة. اللياقة الإضافية مرة واحدة فقط إذا لم يغطِّ تدريب الفريق هذا الحمل. أوقف أي تمرين عند الألم.</div>');
  }else{
- box.insertAdjacentHTML("beforeend",'<div class="note">تدريب الأهلي الأحد–الخميس والسبت 16:00–18:00. الخطة الفردية مكملة وليست بديلاً عن الفريق: الأحد استقبال بالحائط، الاثنين قوة سفلية، الثلاثاء وقاية وحركة خفيفة، الأربعاء سرعة مشروطة بالجاهزية، الخميس قوة علوية ولياقة متدرجة، السبت استقبال أمام مدافع وBlock وإنهاء داخل الفريق، والجمعة راحة. استخدم الحلقة المطاطية للرجلين والمطاط الطويل للكتف والجذع. الرول اختياري للاستشفاء اللطيف وليس علاجاً. لا تنفذ السرعة إذا كان التعب 6/10 أو أكثر أو يوجد ألم، ولا تضف اللياقة إذا كان تدريب الفريق شديداً. افصل الجيم عن تدريب الأهلي عدة ساعات متى أمكن، وبإشراف مدرب. لا أقصى أوزان ولا تدريب حتى الفشل.</div>');
+ box.insertAdjacentHTML("beforeend",'<div class="note">تدريب الأهلي الأحد–الخميس والسبت 16:00–18:00. الخطة الفردية لا تفترض وجود شريك: استعمل الحائط والأقماع والهدف المحدد. تمارين السبت أصبحت بدائل فردية؛ لا تحاكي احتكاكاً حقيقياً وحدك. الخميس قوة علوية فقط عند الجاهزية، ولا توجد لياقة إضافية فوق يومين متتاليين مرهقين. اللياقة الإضافية تُضاف فقط إذا لم يتضمن تدريب الفريق جرياً أو مباريات وكانت جاهزيتك جيدة. إذا فاتتك حصة بسبب التعب أو ضيق الوقت فلا تعوضها ولا تجمع حصتين في اليوم التالي. إذا كان التعب 6/10 أو أكثر أو يوجد ألم، ألغِ الجلسة الفردية أو خففها. افصل الجيم عن تدريب الأهلي عدة ساعات متى أمكن، وبإشراف مدرب. لا أقصى أوزان ولا تدريب حتى الفشل.</div>');
  }
  var start=new Date((DB.settings.startDate||"2026-11-30")+"T00:00:00"),wk=Math.min(12,Math.max(1,Math.ceil((now-start)/(7*24*60*60*1000))+1));
  var phases=["الأسبوع 1 — تأسيس: تعلم الحركات، مجموعتان خفيفتان في الجيم، واستقبال نظيف دون ضغط.","الأسبوع 2 — تثبيت التقنية: نفس الجرعة تقريباً؛ لا تزد الحمل إذا ظهر ألم عضلي يؤثر في السرعة.","الأسبوع 3 — بناء تدريجي: زد تكراراً أو حملاً بسيطاً في تمرين واحد فقط إذا كان التعافي جيداً.","الأسبوع 4 — تخفيف: خفّض حجم التدريب الفردي نحو 30–40% وراجع جودة الاستلام والحركة.","الأسبوع 5 — بناء القوة واللياقة: تقدم بسيط في الجيم وابدأ فترات التحمل المتوسطة إذا كان حمل الأهلي يسمح.","الأسبوع 6 — تقييم: أعد اختبارات السرعة والقفز والاستقبال والتصويب والقوة الآمنة.","الأسبوع 7 — تطوير: استمر في القوة، وأضف تحدياً واحداً للاستلام المتحرك.","الأسبوع 8 — بناء الأداء: حافظ على التقنية وارفع صعوبة الاستلام تدريجياً لا عدد التمارين كلها.","الأسبوع 9 — تحويل للملعب: سرعة قصيرة، استقبال متحرك، وتحمل جهود متكررة عند الجاهزية.","الأسبوع 10 — تخصص Pivot: ركز على الاستلام والحماية وإعادة التموضع والإنهاء.","الأسبوع 11 — تثبيت: حافظ على جودة القوة والسرعة دون زيادة كبيرة في الحجم.","الأسبوع 12 — تخفيف واختبار نهائي: خفّض حجم التدريب الفردي 40–50% وأعد الاختبارات."];
@@ -883,7 +890,7 @@ function renderTrain(){
  s.am.forEach(function(grp){var gh=document.createElement("div");gh.className="section-title";gh.textContent=grp.cat;list.appendChild(gh);
   grp.ex.forEach(function(ex){var n=idx++,b=document.createElement("div");b.className="exbox";var row=document.createElement("div");row.className="ex";var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!arr[n];cb.onchange=function(){arr[n]=cb.checked;DB.am[k]=arr;saveDB();row.classList.toggle("done",cb.checked);update();};if(cb.checked)row.classList.add("done");
    var name=document.createElement("button");name.type="button";name.className="nm exname";name.textContent=ex[0];var st=document.createElement("span");st.className="st";st.textContent=ex[1];row.appendChild(cb);row.appendChild(name);row.appendChild(st);b.appendChild(row);
-   var info=document.createElement("div");info.className="exinfo";info.style.display="none";var expl=EXPLAIN[ex[0]]||"نفّذ الحركة ببطء وتحكم، وحافظ على وضعية جسم مريحة. توقف إذا ظهر ألم أو عدم ثبات.";info.innerHTML="<b>📌 الشرح التفصيلي — وضع البداية والتنفيذ والتنفس والأخطاء الشائعة:</b> "+esc(expl)+"<br><b>تنبيه:</b> حافظ على جودة الحركة، ولا تتجاوز العدد المحدد أو تتمرن حتى الفشل.";var help=document.createElement("button");help.type="button";help.className="exhelp-btn";help.textContent="📖 شرح التمرين وطريقة الأداء";function toggleHelp(){var open=info.style.display==="none";info.style.display=open?"block":"none";help.textContent=open?"✖ إخفاء الشرح":"📖 شرح التمرين وطريقة الأداء";}help.onclick=toggleHelp;name.onclick=toggleHelp;b.appendChild(help);b.appendChild(info);if(VID[ex[0]])b.appendChild(vidRow(ex[0]));list.appendChild(b);
+   var info=document.createElement("div");info.className="exinfo";info.style.display="none";var expl=EXPLAIN[ex[0]]||"نفّذ الحركة ببطء وتحكم، وحافظ على وضعية جسم مريحة. توقف إذا ظهر ألم أو عدم ثبات.";info.innerHTML="<b>📌 الشرح التفصيلي — وضع البداية والتنفيذ والتنفس والأخطاء الشائعة:</b> "+esc(expl)+"<br><b>تنبيه:</b> حافظ على جودة الحركة، ولا تتجاوز العدد المحدد أو تتمرن حتى الفشل.";var help=document.createElement("button");help.type="button";help.className="exhelp-btn";help.textContent="📖 شرح التمرين وطريقة الأداء";function toggleHelp(){var open=info.style.display==="none";info.style.display=open?"block":"none";help.textContent=open?"✖ إخفاء الشرح":"📖 شرح التمرين وطريقة الأداء";}help.onclick=toggleHelp;name.onclick=toggleHelp;b.appendChild(help);b.appendChild(info);b.appendChild(vidRow(ex[0]));list.appendChild(b);
   });
  });
  card.appendChild(list);var bar=document.createElement("div");bar.className="pbar";var fill=document.createElement("div");bar.appendChild(fill);card.appendChild(bar);var label=document.createElement("div");label.className="plabel";card.appendChild(label);box.appendChild(card);
@@ -973,8 +980,8 @@ renderLibrary();
 </script>
 
 <footer id="site-version" aria-label="نسخة الموقع" style="max-width:680px;margin:14px auto 24px;padding:12px 10px 18px;text-align:center;color:#9ca3af;font:12px/1.8 system-ui,sans-serif;border-top:1px solid #303038;">
-  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v2.7.1</div>
-  <div>BUILD 2026.11.24.2 · شروحات تفصيلية لجميع تمارين Pivot: الوضعية والتنفيذ والتنفس والأخطاء الشائعة</div>
+  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v2.7.2</div>
+  <div>BUILD 2026.11.26.1 · زر يوتيوب لكل تمرين، بدائل فردية دون شريك، وتعديل حمل الخميس والاستشفاء</div>
 </footer>
 
 </body>
