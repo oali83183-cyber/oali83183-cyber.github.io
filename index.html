@@ -769,7 +769,17 @@ function renderSchedule(){
   ["setU18","setU20","setStart"].forEach(function(id){document.getElementById(id).onchange=function(){DB.settings.u18=document.getElementById("setU18").checked;DB.settings.u20=document.getElementById("setU20").checked;DB.settings.startDate=document.getElementById("setStart").value||"2026-11-30";saveDB();renderTrain();renderReportOnly();renderSchedule();};});
   var mcard=document.createElement("div");mcard.className="card";mcard.innerHTML="<h2>🏐 مباريات الأهلي القادمة</h2>";
   activeMatches().filter(function(m){return parseYMD(m.date)>=parseYMD(todayKey());}).slice(0,10).forEach(function(m){var d=document.createElement("div");d.className="matchitem";d.innerHTML="<b>"+m.date+" — "+m.cat+"</b><br>الأهلي ضد "+m.opp+" • "+m.time;mcard.appendChild(d);});
+
   box.appendChild(mcard);
+  var fitness=document.createElement("div");fitness.className="card";
+  fitness.innerHTML="<h2>❤️ اللياقة البدنية — حصة أسبوعية لا تُحذف</h2>"+
+   "<div class='soft-note'>هذه الحصة جزء من برنامجك. نفّذها مرة واحدة أسبوعياً في اليوم الأخف من تدريبات الأهلي، وليس بالضرورة يوم الخميس. لا تنفذها بعد يومين متتاليين من اللياقة أو حصة فريق شديدة. إذا فاتتك بسبب التعب فلا تعوّضها بحصتين.</div>"+
+   "<div class='dev-card'><h3>الأسابيع 1–4 — التحمل الهوائي Aerobic Base</h3>15–20 دقيقة دراجة ثابتة أو Elliptical أو مشي سريع عند RPE 3–4/10؛ تستطيع التحدث بجمل كاملة. أضف 5 دقائق إحماء و3 دقائق تهدئة.</div>"+
+   "<div class='dev-card'><h3>الأسابيع 5–8 — تحمل متوسط Interval Endurance</h3>إحماء 5 دقائق، ثم 4 جولات × دقيقتين عند RPE 6/10 وبينها دقيقتان سهلة، ثم تهدئة 3–5 دقائق. اختر الدراجة أو Elliptical إذا كانت الرجلان متعبتين.</div>"+
+   "<div class='dev-card'><h3>الأسابيع 9–11 — تكرار الجهد Repeated Efforts</h3>بعد إحماء جيد: مجموعتان × 4 جولات، كل جولة 15 ثانية سريعة مضبوطة عند 80–85% ثم 45 ثانية مشي أو حركة سهلة. راحة 3 دقائق بين المجموعتين. تُنفذ فقط إذا كانت الرجلان منتعشتين ولم يتضمن تدريب الفريق جرياً متقطعاً أو مباريات.</div>"+
+   "<div class='dev-card'><h3>الأسبوع 12 — تخفيف</h3>خفّض جرعة اللياقة الإضافية بنحو 40–50%، ولا تنفذ اختباراً أقصى وأنت متعب.</div>"+
+   "<div class='note'>قاعدة الجاهزية: إذا كان التعب 6/10 أو أكثر أو يوجد ألم، ألغِ الحصة. إذا كانت حصص الأهلي قد غطّت التحمل أو تكرار الجهد، لا تضف جرعة أخرى. اللياقة لا تُلغى من الخطة؛ نختار فقط توقيتها المناسب.</div>";
+  box.appendChild(fitness);
 }
 
 
@@ -980,8 +990,8 @@ renderLibrary();
 </script>
 
 <footer id="site-version" aria-label="نسخة الموقع" style="max-width:680px;margin:14px auto 24px;padding:12px 10px 18px;text-align:center;color:#9ca3af;font:12px/1.8 system-ui,sans-serif;border-top:1px solid #303038;">
-  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v2.7.2</div>
-  <div>BUILD 2026.11.26.1 · زر يوتيوب لكل تمرين، بدائل فردية دون شريك، وتعديل حمل الخميس والاستشفاء</div>
+  <div style="font-weight:800;color:#facc15;letter-spacing:.3px">نسخة الموقع: v2.7.3</div>
+  <div>BUILD 2026.11.26.2 · استعادة حصة اللياقة الأسبوعية بتدرج واضح وتوقيت مرن حسب حمل الأهلي</div>
 </footer>
 
 </body>
