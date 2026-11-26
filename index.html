@@ -2,200 +2,258 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>خطة PIVOT الشاملة 🏐 — علي</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#0e0e10">
+<title>علي — خطة PIVOT الشاملة 🏐</title>
 <style>
-:root{--bg:#f5f7f5;--card:#fff;--ink:#26332f;--muted:#718078;--line:#dce5df;--green:#247a55;--gold:#a77b20;--soft:#edf5ef;--warn:#fff7e6}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.85 system-ui,Tahoma,sans-serif}
-.wrap{max-width:980px;margin:auto;padding:18px 14px 55px}.hero{text-align:center;padding:28px 14px;background:linear-gradient(140deg,#e7f2e9,#fff);border:1px solid var(--line);border-radius:20px}
-h1{font-size:clamp(25px,5vw,38px);margin:0;color:#1c5039}.sub{color:var(--muted);margin:6px 0 18px}.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:18px}.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 5px}.stat b{display:block;font-size:19px;color:var(--green)}.stat span{font-size:12px;color:var(--muted)}
-nav{display:flex;gap:7px;overflow:auto;position:sticky;top:0;background:#f5f7f5ed;padding:10px 0;z-index:5;margin:12px 0}nav a{white-space:nowrap;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:30px;padding:7px 13px;font-size:13px}
-section{scroll-margin-top:70px;margin:18px 0}.section-title{font-size:23px;margin:0 0 12px;color:#20563d}.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:16px;margin:10px 0}.card h3{margin:0 0 8px;font-size:18px}.muted{color:var(--muted)}.good{background:var(--soft);border-color:#c9dfcf}.warning{background:var(--warn);border-color:#ead9ae}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.phase{border-right:5px solid var(--green)}.phase h3{display:flex;justify-content:space-between;gap:8px}.tag{font-size:12px;background:var(--soft);padding:3px 9px;border-radius:20px;white-space:nowrap}
-table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}th,td{padding:10px 9px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}th{background:#edf4ef;color:#315a43;font-size:13px}td{font-size:13px}
-ul{margin:6px 0;padding-right:21px}li{margin:4px 0}.day{border-top:4px solid #4e8b68}.day-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.day-head h3{margin:0}.kcal{color:var(--green);font-weight:800;font-size:13px}
-.exercise{margin:10px 0;padding:10px 12px;background:#f8faf8;border:1px solid var(--line);border-radius:10px}.exercise b{display:block}.detail{font-size:13px;color:var(--muted)}.rest{font-size:12px;color:var(--gold)}
-.foodgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.food{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px;text-align:center}.food b{font-size:20px;color:var(--green);display:block}
-.quote{text-align:center;font-size:18px;font-weight:700;color:#315a43;padding:20px}
-@media(max-width:650px){.stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.foodgrid{grid-template-columns:1fr}.wrap{padding:10px}.card{padding:13px}th,td{padding:8px 6px;font-size:12px}}
+:root{--bg:#0e0e10;--card:#1c1c20;--card2:#25252c;--line:#303038;--txt:#f5f5f7;--sub:#9aa0a6;--ok:#1fd07c;--accent:#e11d2d;--gold:#ffdf6b;--warn:#2a2011;--blue:#111a27}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.7 system-ui,Tahoma,sans-serif}
+.app{max-width:680px;margin:0 auto;padding:10px 10px 45px}
+.top{position:sticky;top:0;z-index:20;text-align:center;background:rgba(14,14,16,.97);backdrop-filter:blur(8px);padding:9px 0 10px;border-bottom:1px solid #222229}
+.brand{font-size:20px;font-weight:950}.date{color:var(--sub);font-size:12px}
+.profile{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0}
+.metric{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:8px 4px;text-align:center}
+.metric b{display:block;color:var(--ok);font-size:16px}.metric span{display:block;color:var(--sub);font-size:10px}
+.tabs{display:flex;gap:6px;overflow-x:auto;position:sticky;top:69px;z-index:19;background:rgba(14,14,16,.98);padding:7px 0;white-space:nowrap;scrollbar-width:thin}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--sub);border-radius:11px;padding:9px 12px;font:800 12px system-ui,Tahoma,sans-serif;cursor:pointer}
+.tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:12px;margin:9px 0}
+.card h2{font-size:16px;margin:0 0 8px}.card h3{font-size:14px;margin:0 0 7px}
+.muted{color:var(--sub);font-size:12px}.gold{color:var(--gold)}.green{color:var(--ok)}
+.note{background:#1e1a0a;border:1px solid #6b5900;color:var(--gold);border-radius:11px;padding:10px;font-size:12px;margin:8px 0}
+.soft{background:#102019;border-color:#14532d}.warn{background:#241d0f;border-color:#854d0e}
+.phase{border-right:4px solid var(--ok)}.phase-top{display:flex;justify-content:space-between;align-items:center;gap:8px}.pill{border:1px solid var(--line);background:var(--card2);border-radius:99px;padding:3px 9px;font-size:10px;color:var(--sub);white-space:nowrap}
+ul{margin:5px 0;padding-right:20px}li{margin:3px 0;font-size:13px}
+.daynav{display:flex;gap:6px;overflow-x:auto;padding:3px 0 9px;scrollbar-width:thin}.daybtn{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--sub);border-radius:10px;padding:9px 12px;font:800 12px system-ui;cursor:pointer}.daybtn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.day-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.day-head h2{margin:0}.kcal{font-size:11px;color:var(--ok);font-weight:900;white-space:nowrap}
+.section-title{font-size:13px;color:var(--gold);font-weight:900;margin:14px 0 7px}
+.ex{display:flex;align-items:flex-start;gap:8px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:9px;margin:6px 0}
+.ex input{width:19px;height:19px;accent-color:var(--ok);flex-shrink:0;margin-top:2px}
+.ex.done{opacity:.48}.ex.done .exname{text-decoration:line-through}
+.exbody{flex:1;min-width:0}.exname{display:block;font-size:13px;font-weight:850}.exdetail{font-size:11.5px;color:var(--sub);line-height:1.6}.rest{color:var(--gold)}
+.progress{height:7px;background:var(--card2);border-radius:99px;overflow:hidden;margin:8px 0 3px}.progress>div{height:100%;background:var(--ok);width:0;transition:width .2s}.progress-label{text-align:center;color:var(--sub);font-size:11px}
+.daynote{font-size:12px;color:var(--gold);background:#201c12;border:1px solid #4d401d;border-radius:9px;padding:9px;margin-top:8px}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:440px}th,td{padding:8px 7px;text-align:right;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--gold);font-size:11px;background:#222229}td{color:var(--txt)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:11px;margin:8px 0}
+.foodcards{display:grid;grid-template-columns:1fr;gap:7px}.foodcard{background:var(--card2);border:1px solid var(--line);border-radius:11px;padding:11px}.foodcard b{font-size:20px;color:var(--ok)}.foodcard .sub{color:var(--sub);font-size:11px}
+.meal{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:9px;margin:6px 0;display:grid;grid-template-columns:55px 1fr auto;gap:8px;align-items:center;font-size:12px}.meal time{color:var(--gold);font-weight:900}.meal b{font-size:12px}.protein{color:var(--ok);white-space:nowrap;font-weight:800;font-size:11px}
+.target{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;background:var(--card2);padding:9px;border-radius:9px;margin:6px 0;font-size:11px}.target span:first-child{color:var(--sub)}
+.tracker input{width:100%;min-width:58px;background:var(--card2);border:1px solid var(--line);border-radius:7px;padding:7px;color:var(--txt);font:12px system-ui;text-align:center}
+.btn{border:0;border-radius:11px;background:var(--accent);color:white;padding:11px 14px;font:800 13px system-ui;cursor:pointer;width:100%;margin-top:8px}.btn.secondary{background:var(--card2);border:1px solid var(--line);color:var(--txt)}
+.quote{text-align:center;padding:18px 12px;color:var(--gold);font-size:15px;font-weight:900}
+@media(min-width:520px){.profile{grid-template-columns:repeat(6,1fr)}.foodcards{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:380px){.brand{font-size:18px}.tab{font-size:11px;padding:8px 10px}.meal{grid-template-columns:46px 1fr auto}}
 </style>
 </head>
-<body><main class="wrap">
-<header class="hero">
-<div style="font-size:35px">🏐</div><h1>خطة PIVOT الشاملة</h1>
-<div class="sub">علي · لاعب دائرة · طريقه للمنتخب</div>
-<div class="stats">
-<div class="stat"><b>194 سم</b><span>الطول</span></div>
-<div class="stat"><b>17 سنة</b><span>العمر</span></div>
-<div class="stat"><b>111.8 كجم</b><span>الوزن الحالي</span></div>
-<div class="stat"><b>46.5 كجم</b><span>كتلة عضلية</span></div>
-<div class="stat"><b>76/100</b><span>InBody Score</span></div>
-</div>
-<div class="stats" style="grid-template-columns:repeat(4,1fr)">
-<div class="stat"><b>4 أشهر</b><span>الهدف</span></div>
-<div class="stat"><b>30.0 كجم</b><span>كتلة الدهون</span></div>
-<div class="stat"><b>26.8%</b><span>نسبة الدهون</span></div>
-<div class="stat"><b>129.9 cm²</b><span>دهون حشوية VFA</span></div>
-</div>
+<body>
+<div class="app">
+<header class="top">
+ <div class="brand">🏐 خطة PIVOT الشاملة</div>
+ <div class="date">26 نوفمبر 2026 · نقطة البداية الرسمية · الهدف 4 أشهر</div>
 </header>
-<nav>
-<a href="#truth">الصراحة الكاملة</a><a href="#phases">المراحل</a><a href="#weekly">الجدول الأسبوعي</a><a href="#nutrition">التغذية</a><a href="#targets">الأهداف</a><a href="#rules">القواعد</a><a href="#tracking">المتابعة</a>
+<div class="profile">
+ <div class="metric"><b>194 سم</b><span>الطول</span></div>
+ <div class="metric"><b>17 سنة</b><span>العمر</span></div>
+ <div class="metric"><b>111.8 كجم</b><span>الوزن الحالي</span></div>
+ <div class="metric"><b>46.5 كجم</b><span>كتلة عضلية</span></div>
+ <div class="metric"><b>26.8%</b><span>نسبة الدهون</span></div>
+ <div class="metric"><b>76/100</b><span>InBody Score</span></div>
+</div>
+<nav class="tabs" aria-label="أقسام الخطة">
+ <button class="tab active" data-tab="truth">الصراحة والمراحل</button>
+ <button class="tab" data-tab="training">الجدول الأسبوعي</button>
+ <button class="tab" data-tab="food">التغذية</button>
+ <button class="tab" data-tab="goals">الأهداف والقواعد</button>
+ <button class="tab" data-tab="tracking">المتابعة</button>
 </nav>
 
-<section id="truth"><h2 class="section-title">الصراحة الكاملة — ما يميزك وما يمنعك</h2>
-<div class="card good"><h3>✅ ما تملكه — لا يملكه معظم اللاعبين</h3>194 سم وكتلة عضلية 46.5 كجم في عمر 17 سنة. هذا ليس شائعًا. جسمك مبني للدائرة بشكل طبيعي. أنت لم تختر هذا — لكنه ميزة حقيقية يجب أن تستغلها.</div>
-<div class="card warning"><h3>⚠️ ما يمنعك حاليًا</h3>30 كجم دهون ودهون حشوية VFA 129.9 — هذا مرتفع. ليست مشكلة مظهر فقط، بل تؤثر مباشرة على سرعتك الأولى، تعافيك، وقدرتك على تكرار الجهد في المباراة.</div>
+<section class="panel active" id="truth">
+ <div class="card">
+  <h2>الصراحة الكاملة — ما يميزك وما يمنعك</h2>
+  <div class="card soft"><h3>✅ ما تملكه — لا يملكه معظم اللاعبين</h3>194 سم وكتلة عضلية 46.5 كجم في عمر 17 سنة. هذا ليس شائعًا. جسمك مبني للدائرة بشكل طبيعي. أنت لم تختر هذا — لكنه ميزة حقيقية يجب أن تستغلها.</div>
+  <div class="card warn"><h3>⚠️ ما يمنعك حاليًا</h3>30 كجم دهون ودهون حشوية VFA 129.9 — هذا مرتفع. ليست مشكلة مظهر فقط، بل تؤثر مباشرة على سرعتك الأولى، تعافيك، وقدرتك على تكرار الجهد في المباراة.</div>
+  <div class="profile">
+   <div class="metric"><b>30.0 كجم</b><span>كتلة دهنية</span></div><div class="metric"><b>129.9 cm²</b><span>دهون حشوية</span></div><div class="metric"><b>76/100</b><span>InBody Score</span></div>
+  </div>
+ </div>
+ <div class="card"><h2>خارطة الطريق — 4 مراحل / 16 أسبوعًا</h2><div class="muted">المرحلة الأولى تبدأ الأحد القادم</div></div>
+ <div class="card phase"><div class="phase-top"><h3>1 — بناء القاعدة</h3><span class="pill">الأسابيع 1–4</span></div><b class="gold">الهدف: خسارة 2–3 كجم دهون + تثبيت العادات</b><ul><li>البرنامج الحالي بدون أي تغيير</li><li>الوصول لـ190–210 جم بروتين يوميًا بانتظام</li><li>Zone 2 Cardio ثلاث مرات أسبوعيًا</li><li>تسجيل الوزن كل أحد صباحًا</li><li>Single Leg Broad Jump مؤجل حتى الأسبوع 3–4</li></ul></div>
+ <div class="card phase"><div class="phase-top"><h3>2 — بناء الانفجار</h3><span class="pill">الأسابيع 5–8</span></div><b class="gold">الهدف: قوة +10–15% + خسارة 2–3 كجم إضافية</b><ul><li>زيادة أوزان Squat وRDL تدريجيًا</li><li>Sprint يرتفع من 20m إلى 30m</li><li>إضافة Single Leg Broad Jump رسميًا</li><li>تمارين Repeated Effort (Sprint intervals)</li><li>Zone 2 يرتفع إلى 35 دقيقة</li></ul></div>
+ <div class="card phase"><div class="phase-top"><h3>3 — ربط القوة بالملعب</h3><span class="pill">الأسابيع 9–12</span></div><b class="gold">الهدف: تحويل القوة لأداء Pivot حقيقي</b><ul><li>تقليل حجم الأوزان الثقيلة 20%</li><li>زيادة مهارات Pivot: Spin, Seal, Drop Step</li><li>تمارين Footwork تحت الضغط</li><li>تدريب الاحتكاك: Partner Push Resistance</li><li>Farmer's Carry + Dead Hang لقوة القبضة</li></ul></div>
+ <div class="card phase"><div class="phase-top"><h3>4 — الذروة قبل المعسكر</h3><span class="pill">الأسابيع 13–16</span></div><b class="gold">الهدف: أفضل حالة ممكنة عند دخول المعسكر</b><ul><li>تخفيف الحمل التدريبي 30%</li><li>التركيز على المهارات والسرعة فقط</li><li>النوم والتغذية أولوية قصوى</li><li>لا تمارين جديدة أبدًا</li><li>InBody جديد لقياس التقدم</li></ul></div>
 </section>
 
-<section id="phases"><h2 class="section-title">خارطة الطريق — 4 مراحل، 16 أسبوعًا</h2>
-<div class="grid">
-<div class="card phase"><h3>1. بناء القاعدة <span class="tag">الأسابيع 1–4 · الأحد القادم تبدأ</span></h3><b>الهدف: خسارة 2–3 كجم دهون + تثبيت العادات</b><ul><li>البرنامج الحالي بدون أي تغيير</li><li>الوصول لـ190–210 جم بروتين يوميًا بانتظام</li><li>Zone 2 Cardio ثلاث مرات أسبوعيًا</li><li>تسجيل الوزن كل أحد صباحًا</li><li>Single Leg Broad Jump مؤجل حتى الأسبوع 3–4</li></ul></div>
-<div class="card phase"><h3>2. بناء الانفجار <span class="tag">الأسابيع 5–8</span></h3><b>الهدف: قوة +10–15% + خسارة 2–3 كجم إضافية</b><ul><li>زيادة أوزان Squat وRDL تدريجيًا</li><li>Sprint يرتفع من 20m إلى 30m</li><li>إضافة Single Leg Broad Jump رسميًا</li><li>تمارين Repeated Effort (Sprint intervals)</li><li>Zone 2 يرتفع إلى 35 دقيقة</li></ul></div>
-<div class="card phase"><h3>3. ربط القوة بالملعب <span class="tag">الأسابيع 9–12</span></h3><b>الهدف: تحويل القوة لأداء Pivot حقيقي</b><ul><li>تقليل حجم الأوزان الثقيلة 20%</li><li>زيادة مهارات Pivot: Spin, Seal, Drop Step</li><li>تمارين Footwork تحت الضغط</li><li>تدريب الاحتكاك: Partner Push Resistance</li><li>Farmer's Carry + Dead Hang لقوة القبضة</li></ul></div>
-<div class="card phase"><h3>4. الذروة قبل المعسكر <span class="tag">الأسابيع 13–16</span></h3><b>الهدف: أفضل حالة ممكنة عند دخول المعسكر</b><ul><li>تخفيف الحمل التدريبي 30%</li><li>التركيز على المهارات والسرعة فقط</li><li>النوم والتغذية أولوية قصوى</li><li>لا تمارين جديدة أبدًا</li><li>InBody جديد لقياس التقدم</li></ul></div>
-</div></section>
-
-<section id="weekly"><h2 class="section-title">الجدول الأسبوعي — النسخة النهائية المعتمدة</h2>
-<div class="card day">
-<div class="day-head"><h3>الأحد — Day 1 · Lower Power & Explosive</h3><span class="kcal">2900–3100 kcal</span></div>
-<h4>التسخين (15 دقيقة)</h4><table><tr><th>التمرين</th><th>التفاصيل</th><th>ملاحظة</th></tr>
-<tr><td>إحماء عام — مشي / دراجة</td><td>5 دقائق</td><td></td></tr><tr><td>Lateral Band Walks</td><td>2×10 لكل جهة</td><td>تفعيل الأرداف والركبة — تسخين</td></tr><tr><td>Dynamic Stretching</td><td>3 دقائق</td><td></td></tr></table>
-<h4>التمرين الأساسي</h4>
-<div class="exercise"><b>Jump on Fit-Box</b>3×3 <span class="rest">راحة 60–90 ثانية</span><div class="detail">تركيز على الهبوط الناعم.</div></div>
-<div class="exercise"><b>Depth Jump to Hurdle Hop</b>3×3 <span class="rest">راحة 60–90 ثانية</span></div>
-<div class="exercise"><b>Full Squat</b>5×4 <span class="rest">راحة 2–3 دقائق</span><div class="detail">RIR 2–3 دائمًا.</div></div>
-<div class="exercise"><b>Dumbbell Walking Lunges</b>3×8 لكل رجل <span class="rest">راحة 60–90 ثانية</span></div>
-<div class="exercise"><b>Lever Lying Leg Curl</b>3×12 <span class="rest">راحة 60 ثانية</span></div>
-<div class="exercise"><b>KAS Glute Bridge</b>2×10 <span class="rest">راحة 60 ثانية</span><div class="detail">posterior chain</div></div>
-<div class="exercise"><b>Cable Half Kneeling Pallof Press</b>3×12 <span class="rest">راحة 60 ثانية</span></div>
-<div class="exercise"><b>Lever Seated Hip Adduction</b>3×15 <span class="rest">راحة 45 ثانية</span></div>
-<div class="exercise"><b>Lever Seated Calf Raise</b>4×15 <span class="rest">راحة 45 ثانية</span></div>
-<div class="exercise"><b>Single Leg Balance (عيون مغلقة)</b>3×20 ثانية لكل رجل <span class="rest">راحة 30 ثانية</span></div>
-<div class="exercise"><b>Power Sled Push</b>3×20 متر <span class="rest">راحة 90–120 ثانية</span></div>
-<h4>بعد التمرين</h4><ul><li>Zone 2 Cardio (مشي سريع / دراجة): 20–30 دقيقة</li><li>تمطيط ستاتيكي: 10 دقائق</li></ul>
-</div>
-
-<div class="card day">
-<div class="day-head"><h3>الاثنين — Day 2 · Agility, Speed & Repeated Effort</h3><span class="kcal">2900–3100 kcal</span></div>
-<h4>التسخين</h4><div class="exercise"><b>مشي / دراجة</b>5 دقائق</div><div class="exercise"><b>Monster Walk</b>2×10 (أمام + خلف)</div>
-<h4>السرعة والرشاقة</h4>
-<div class="exercise"><b>Sprint 20m</b>6×20 متر <span class="rest">راحة 60 ثانية — راحة كاملة بين كل واحدة</span></div>
-<div class="exercise"><b>Pro Agility 5-10-5</b>4 محاولات <span class="rest">راحة 60 ثانية</span></div>
-<div class="exercise"><b>Lateral Shuffle Squat Tap</b>3×10 لكل جهة <span class="rest">راحة 60 ثانية</span></div>
-<div class="exercise"><b>ZigZag Hops</b>3×6 <span class="rest">راحة 60 ثانية</span></div>
-<div class="exercise"><b>Broad Jump to Vertical</b>3×4 <span class="rest">راحة 60–90 ثانية</span></div>
-<div class="exercise"><b>Single Leg Broad Jump</b>2×4 لكل رجل <span class="rest">راحة 60 ثانية</span><div class="detail">يبدأ من الأسبوع 3–4.</div></div>
-<div class="exercise"><b>Hollow Rock</b>3×10–15 <span class="rest">راحة 45 ثانية</span></div>
-<div class="card good"><h3>✅ REPEATED EFFORT — تكرار الجهد (مهم جدًا للدائرة)</h3><b>Sprint 10m + توقف 5 ث + Sprint 10m</b><div class="detail">6 مجموعات — راحة 45 ثانية بين كل مجموعة — يحاكي لعب الدائرة الحقيقي.</div></div>
-</div>
-
-<div class="card day">
-<div class="day-head"><h3>الثلاثاء — Active Recovery</h3><span class="kcal">2600–2800 kcal</span></div>
-<div class="exercise"><b>Zone 2 Cardio (مشي / دراجة هادئة)</b>20–35 دقيقة</div>
-<div class="exercise"><b>Mobility & Stretching</b>15–20 دقيقة</div>
-<div class="exercise"><b>Foam Rolling</b>10 دقائق</div>
-<div class="card warning">ممنوع: أوزان ثقيلة · قفزات · سرعة</div>
-</div>
-
-<div class="card day">
-<div class="day-head"><h3>الأربعاء — Day 3 · Upper Athletic Power</h3><span class="kcal">2900–3100 kcal</span></div>
-<h4>التسخين</h4><div class="exercise"><b>مشي / دراجة</b>5 دقائق</div><div class="exercise"><b>Band Pull-Aparts</b>2×15 <span class="detail">تفعيل الكتف الخلفي</span></div>
-<h4>التمرين الأساسي</h4>
-<div class="exercise"><b>Medicine Ball Chest Throw</b>5×4 <span class="rest">راحة 60–90 ثانية</span></div>
-<div class="exercise"><b>Plyo Push-Up</b>5×3 <span class="rest">راحة 60–90 ثانية</span></div>
-<div class="exercise"><b>Dumbbell Incline Bench Press</b>4×8 <span class="rest">راحة 60–90 ثانية</span></div>
-<div class="exercise"><b>Lat Pulldown</b>4×8 <span class="rest">راحة 60–90 ثانية</span></div>
-<div class="exercise"><b>One Arm Seated Row</b>4×8 <span class="rest">راحة 60–90 ثانية</span></div>
-<div class="exercise"><b>Shoulder Press</b>2×8 <span class="rest">راحة 60 ثانية</span></div>
-<div class="exercise"><b>Cable Face Pull</b>4×15 <span class="rest">راحة 45–60 ثانية</span><div class="detail">4 سيت — حماية الكتف.</div></div>
-<div class="exercise"><b>Captains Chair Leg Raise</b>3×12 <span class="rest">راحة 45 ثانية</span></div>
-<div class="exercise"><b>Farmer's Carry</b>3×30 متر <span class="rest">راحة 60 ثانية</span><div class="detail">قوة القبضة — مهم للاستلام.</div></div>
-<div class="exercise"><b>Dead Hang</b>3×20–30 ثانية <span class="rest">راحة 60 ثانية</span><div class="detail">قوة القبضة والكتف.</div></div>
-<h4>بعد التمرين</h4><div>Zone 2 Cardio: 20–30 دقيقة</div>
-</div>
-
-<div class="card day">
-<div class="day-head"><h3>الخميس — Legs, Agility & Conditioning</h3><span class="kcal">2900–3100 kcal</span></div>
-<h4>التسخين</h4><div class="exercise"><b>مشي / دراجة</b>5 دقائق</div><div class="exercise"><b>Dynamic Stretching</b>3 دقائق</div>
-<h4>التمرين الأساسي</h4>
-<div class="exercise"><b>Jump Box Over</b>3×4 <span class="rest">راحة 60–90 ثانية</span></div>
-<div class="exercise"><b>Lateral Cone Hop</b>4 مجموعات <span class="rest">راحة 45–60 ثانية</span></div>
-<div class="exercise"><b>Skater Hops</b>3×6 لكل جهة <span class="rest">راحة 60 ثانية</span></div>
-<div class="exercise"><b>Full Squat</b>3×6 <span class="rest">راحة 2–3 دقائق</span><div class="detail">70–75% من وزن Day 1 — أخف.</div></div>
-<div class="exercise"><b>Romanian Deadlift</b>3×8 <span class="rest">راحة 60–90 ثانية</span></div>
-<div class="exercise"><b>Walking Lunges</b>3×8 لكل رجل <span class="rest">راحة 60–90 ثانية</span></div>
-<div class="exercise"><b>Leg Curl</b>3×12 <span class="rest">راحة 60 ثانية</span></div>
-<div class="exercise"><b>Standing Calf Raise</b>4×15 <span class="rest">راحة 45 ثانية</span></div>
-<div class="exercise"><b>Side Plank</b>3×30–45 ثانية لكل جهة <span class="rest">راحة 45 ثانية</span></div>
-<h4>التبريد</h4><div class="exercise"><b>Glute Bridge with Band</b>2×12</div><div class="exercise"><b>تمطيط ستاتيكي</b>10 دقائق</div>
-</div>
-
-<div class="card day">
-<div class="day-head"><h3>الجمعة — راحة كاملة</h3><span class="kcal">2300–2550 kcal</span></div>
-<div class="exercise"><b>نوم +8 ساعات</b><span class="detail">غير قابل للتفاوض</span></div>
-<div class="exercise"><b>مشي خفيف (اختياري)</b>15–20 دقيقة</div>
-</div>
-
-<div class="card day">
-<div class="day-head"><h3>السبت — Pivot Skills + Zone 2</h3><span class="kcal">2400–2700 kcal</span></div>
-<div class="exercise"><b>Zone 2 Cardio خفيف</b>30–40 دقيقة</div>
-<div class="exercise"><b>مهارات Pivot</b>30 دقيقة<div class="detail">Spin · Seal · Re-seal · Drop Step · Finish</div></div>
-<div class="card warning">ممنوع: أوزان قصوى · تمارين عشوائية · إضافة برنامج جديد</div>
-</div>
+<section class="panel" id="training">
+ <div class="card"><h2>الجدول الأسبوعي — النسخة النهائية المعتمدة</h2><div class="muted">اختر اليوم لعرض الإحماء والتمارين والراحة وتفاصيل ما بعد التدريب.</div></div>
+ <div class="daynav" id="daynav"></div>
+ <div id="dayContent"></div>
 </section>
 
-<section id="nutrition"><h2 class="section-title">التغذية — الوقود الصحيح لجسمك</h2>
-<div class="foodgrid">
-<div class="food"><span>أيام التمرين (الأحد، الاثنين، الأربعاء، الخميس)</span><b>2900–3100</b>سعرة حرارية<br>190–210 جم بروتين<br>كارب عالي · دهون +75 جم</div>
-<div class="food"><span>الثلاثاء — Recovery</span><b>2600–2800</b>سعرة حرارية<br>180–200 جم بروتين<br>كارب متوسط</div>
-<div class="food"><span>الجمعة والسبت — راحة</span><b>2300–2550</b>سعرة حرارية<br>180–200 جم بروتين<br>كارب منخفض</div>
-</div>
-<div class="card"><h3>خطة الوجبات اليومية (أيام التمرين)</h3>
-<table><tr><th>الوقت</th><th>الوجبة</th><th>البروتين التقريبي</th></tr>
-<tr><td>7:00</td><td>4 بيض + 2 توست أسمر + موزة</td><td>~30 جم</td></tr>
-<tr><td>10:00</td><td>200 جم زبادي يوناني + عسل + مكسرات</td><td>~20 جم</td></tr>
-<tr><td>13:00</td><td>200 جم دجاج + 200 جم رز بني + خضار</td><td>~50 جم</td></tr>
-<tr><td>16:00</td><td>موزة + ملعقة زبدة فول سوداني (قبل التمرين)</td><td>~5 جم</td></tr>
-<tr><td>بعد</td><td>Whey Protein + موزة (بعد التمرين مباشرة)</td><td>~25 جم</td></tr>
-<tr><td>20:30</td><td>200 جم لحم أو دجاج + خضار + 2 بيض</td><td>~55 جم</td></tr>
-<tr><td>22:00</td><td>150 جم جبن قريش (قبل النوم)</td><td>~18 جم</td></tr>
-<tr><td><th>المجموع</th><th>7 وجبات يوميًا</th><th>~203 جم</th></tr></table>
-</div>
-<div class="card warning"><h3>⚠️ 3 قواعد لا تتنازل عليها</h3><ul><li>الدهون لا تنزل عن 70–80 جم يوميًا — أنت في مرحلة نمو</li><li>لا تحذف وجبات أبدًا مهما كانت الظروف</li><li>الكارب يكون أعلى في أيام الأرجل (الأحد والخميس)</li></ul></div>
+<section class="panel" id="food">
+ <div class="card"><h2>التغذية — الوقود الصحيح لجسمك</h2><div class="muted">السعرات والبروتين حسب نوع اليوم كما وردت في الخطة.</div></div>
+ <div class="foodcards">
+  <div class="foodcard"><span>أيام التمرين<br>الأحد، الاثنين، الأربعاء، الخميس</span><br><b>2900–3100</b><div class="sub">سعرة حرارية · 190–210 جم بروتين · كارب عالي · دهون +75 جم</div></div>
+  <div class="foodcard"><span>الثلاثاء — Recovery</span><br><b>2600–2800</b><div class="sub">سعرة حرارية · 180–200 جم بروتين · كارب متوسط</div></div>
+  <div class="foodcard"><span>الجمعة والسبت — راحة</span><br><b>2300–2550</b><div class="sub">سعرة حرارية · 180–200 جم بروتين · كارب منخفض</div></div>
+ </div>
+ <div class="card"><h2>خطة الوجبات اليومية — أيام التمرين</h2>
+  <div class="meal"><time>7:00</time><div><b>4 بيض + 2 توست أسمر + موزة</b></div><span class="protein">~30 جم</span></div>
+  <div class="meal"><time>10:00</time><div><b>200 جم زبادي يوناني + عسل + مكسرات</b></div><span class="protein">~20 جم</span></div>
+  <div class="meal"><time>13:00</time><div><b>200 جم دجاج + 200 جم رز بني + خضار</b></div><span class="protein">~50 جم</span></div>
+  <div class="meal"><time>16:00</time><div><b>موزة + ملعقة زبدة فول سوداني (قبل التمرين)</b></div><span class="protein">~5 جم</span></div>
+  <div class="meal"><time>بعد</time><div><b>Whey Protein + موزة (بعد التمرين مباشرة)</b></div><span class="protein">~25 جم</span></div>
+  <div class="meal"><time>20:30</time><div><b>200 جم لحم أو دجاج + خضار + 2 بيض</b></div><span class="protein">~55 جم</span></div>
+  <div class="meal"><time>22:00</time><div><b>150 جم جبن قريش (قبل النوم)</b></div><span class="protein">~18 جم</span></div>
+  <div class="card soft"><b>المجموع: 7 وجبات يوميًا · ~203 جم بروتين</b></div>
+ </div>
+ <div class="card warn"><h2>⚠️ 3 قواعد لا تتنازل عليها</h2><ul><li>الدهون لا تنزل عن 70–80 جم يوميًا — أنت في مرحلة نمو</li><li>لا تحذف وجبات أبدًا مهما كانت الظروف</li><li>الكارب يكون أعلى في أيام الأرجل (الأحد والخميس)</li></ul></div>
 </section>
 
-<section id="targets"><h2 class="section-title">الأهداف بالأرقام — ما ستصل إليه</h2>
-<table><tr><th>المؤشر</th><th>الآن</th><th>بعد 4 أشهر</th></tr>
-<tr><td>الوزن</td><td>111.8 كجم</td><td>104–107 كجم</td></tr>
-<tr><td>كتلة الدهون</td><td>30.0 كجم</td><td>22–24 كجم</td></tr>
-<tr><td>نسبة الدهون</td><td>26.8%</td><td>20–22%</td></tr>
-<tr><td>InBody Score</td><td>76/100</td><td>83–86/100</td></tr>
-<tr><td>الكتلة العضلية</td><td>46.5 كجم</td><td>+46.5 كجم (محافظ عليها)</td></tr></table>
-<div class="card"><h3>ما تراقبه في الشهر الأول — وليس الميزان فقط</h3><ul><li>⚡ هل أول خطوة أسرع؟</li><li>🏐 هل الاستلام أسهل تحت الضغط؟</li><li>💪 هل الاحتكاك أقل إرهاقًا؟</li><li>🦵 هل الركبة والكاحل بخير؟</li><li>😴 هل تنام 8 ساعات بانتظام؟</li></ul></div>
+<section class="panel" id="goals">
+ <div class="card"><h2>الأهداف بالأرقام — ما ستصل إليه بعد 4 أشهر</h2>
+  <div class="target"><span>المؤشر</span><span>الآن</span><span>الهدف</span></div>
+  <div class="target"><span>الوزن</span><b>111.8 كجم</b><b class="green">104–107 كجم</b></div>
+  <div class="target"><span>كتلة الدهون</span><b>30.0 كجم</b><b class="green">22–24 كجم</b></div>
+  <div class="target"><span>نسبة الدهون</span><b>26.8%</b><b class="green">20–22%</b></div>
+  <div class="target"><span>InBody Score</span><b>76/100</b><b class="green">83–86/100</b></div>
+  <div class="target"><span>الكتلة العضلية</span><b>46.5 كجم</b><b class="green">+46.5 كجم (محافظ عليها)</b></div>
+ </div>
+ <div class="card"><h2>ما تراقبه في الشهر الأول — وليس الميزان فقط</h2><ul><li>⚡ هل أول خطوة أسرع؟</li><li>🏐 هل الاستلام أسهل تحت الضغط؟</li><li>💪 هل الاحتكاك أقل إرهاقًا؟</li><li>🦵 هل الركبة والكاحل بخير؟</li><li>😴 هل تنام 8 ساعات بانتظام؟</li></ul></div>
+ <div class="card"><h2>القواعد الذهبية — ما لا تتفاوض عليه</h2>
+  <div class="card"><h3>🎯 RIR 2–3 دائمًا</h3>لا تصل للفشل العضلي. أوقف 2–3 تكرارات قبل العجز. الجودة أهم من الكمية.</div>
+  <div class="card"><h3>📅 لا تغيير لـ8 أسابيع</h3>لا تغييرات كبيرة. التغييرات الصغيرة بسبب ألم أو إجهاد مسموح بها.</div>
+  <div class="card"><h3>💧 3.5–4 لتر ماء</h3>يوميًا بدون استثناء. الجفاف يقلل الأداء والتعافي بشكل مباشر.</div>
+  <div class="card"><h3>😴 نوم 8 ساعات</h3>التعافي والنمو يحصلان أثناء النوم. 6 ساعات = نصف تمرين فقط.</div>
+  <div class="card"><h3>🦵 راقب الركبة والكتف</h3>إذا ظهر ألم حقيقي في المفصل — خفف الحمل فورًا ولا تتجاهله.</div>
+  <div class="card"><h3>📱 سجّل يوميًا</h3>Lyfta للتمارين · Cronometer للأكل. البيانات تصنع القرارات الصحيحة.</div>
+ </div>
 </section>
 
-<section id="rules"><h2 class="section-title">القواعد الذهبية — ما لا تتفاوض عليه</h2>
-<div class="grid">
-<div class="card"><h3>🎯 RIR 2–3 دائمًا</h3>لا تصل للفشل العضلي. أوقف 2–3 تكرارات قبل العجز. الجودة أهم من الكمية.</div>
-<div class="card"><h3>📅 لا تغيير لـ8 أسابيع</h3>لا تغييرات كبيرة. التغييرات الصغيرة بسبب ألم أو إجهاد أو إجهاد مسموح بها.</div>
-<div class="card"><h3>💧 3.5–4 لتر ماء</h3>يوميًا بدون استثناء. الجفاف يقلل الأداء والتعافي بشكل مباشر.</div>
-<div class="card"><h3>😴 نوم 8 ساعات</h3>التعافي والنمو يحصلان أثناء النوم. 6 ساعات = نصف تمرين فقط.</div>
-<div class="card"><h3>🦵 راقب الركبة والكتف</h3>إذا ظهر ألم حقيقي في المفصل — خفف الحمل فورًا ولا تتجاهله.</div>
-<div class="card"><h3>📱 سجّل يوميًا</h3>Lyfta للتمارين · Cronometer للأكل. البيانات تصنع القرارات الصحيحة.</div>
+<section class="panel" id="tracking">
+ <div class="card"><h2>المتابعة — قياس التقدم الحقيقي</h2><div class="muted">كل أحد صباحًا — على معدة فارغة.</div></div>
+ <div class="card tracker"><div class="table-wrap"><table>
+ <thead><tr><th>المؤشر</th><th>الآن</th><th>أسبوع 4</th><th>أسبوع 8</th><th>أسبوع 12</th><th>أسبوع 16</th></tr></thead>
+ <tbody id="trackingRows"></tbody></table></div>
+ <button class="btn" id="saveTracking">💾 حفظ المتابعة</button><div class="muted" id="trackingStatus" style="text-align:center;margin-top:7px"></div>
+ </div>
+ <div class="card soft"><b>نقطة البداية الرسمية</b><h2 style="font-size:27px;color:var(--ok);margin:4px 0">111.8 كجم</h2>26 نوفمبر 2026 · علي · 🏐 Pivot</div>
+</section>
+
+<div class="quote">"التطور الحقيقي يأتي من أسابيع جيدة ومتكررة،<br>وليس من البحث المستمر عن خطة جديدة."</div>
+<footer class="muted" style="text-align:center;border-top:1px solid var(--line);padding:12px 0">خطة PIVOT الشاملة · 16 أسبوعًا</footer>
 </div>
-</section>
 
-<section id="tracking"><h2 class="section-title">المتابعة — قياس التقدم الحقيقي</h2>
-<div class="card">كل أحد صباحًا — على معدة فارغة.</div>
-<table><tr><th>المؤشر</th><th>الآن</th><th>أسبوع 4</th><th>أسبوع 8</th><th>أسبوع 12</th><th>أسبوع 16</th></tr>
-<tr><td>الوزن (كجم)</td><td>111.8</td><td>____</td><td>____</td><td>____</td><td>____</td></tr>
-<tr><td>محيط الخصر (سم)</td><td>—</td><td>____</td><td>____</td><td>____</td><td>____</td></tr>
-<tr><td>Vertical Jump</td><td>—</td><td>____</td><td>—</td><td>____</td><td>____</td></tr>
-<tr><td>20m Sprint (ثانية)</td><td>—</td><td>____</td><td>—</td><td>____</td><td>____</td></tr>
-<tr><td>InBody Score</td><td>76</td><td>____</td><td>____</td><td>____</td><td>____</td></tr>
-<tr><td>الطاقة (1–10)</td><td>—</td><td>____</td><td>____</td><td>____</td><td>____</td></tr>
-<tr><td>حالة الركبة</td><td>✓</td><td>____</td><td>____</td><td>____</td><td>____</td></tr></table>
-</section>
-<div class="quote">"التطور الحقيقي يأتي من أسابيع جيدة ومتكررة، وليس من البحث المستمر عن خطة جديدة."</div>
-<div class="card good" style="text-align:center"><div class="muted">نقطة البداية الرسمية</div><h2 style="color:var(--green);font-size:30px;margin:4px">111.8 كجم</h2>26 نوفمبر 2026 · علي · 🏐 Pivot</div>
-</main></body></html>
+<script>
+"use strict";
+const days = [
+ {name:"الأحد",title:"Lower Power & Explosive",kcal:"2900–3100 kcal",warm:[["مشي / دراجة","5 دقائق"],["Lateral Band Walks","2×10 لكل جهة — تفعيل الأرداف والركبة"],["Dynamic Stretching","3 دقائق"]],main:[
+ ["Jump on Fit-Box","3×3","راحة 60–90 ثانية","تركيز على الهبوط الناعم"],
+ ["Depth Jump to Hurdle Hop","3×3","راحة 60–90 ثانية",""],
+ ["Full Squat","5×4","راحة 2–3 دقائق","RIR 2–3 دائمًا"],
+ ["Dumbbell Walking Lunges","3×8 لكل رجل","راحة 60–90 ثانية",""],
+ ["Lever Lying Leg Curl","3×12","راحة 60 ثانية",""],
+ ["KAS Glute Bridge","2×10","راحة 60 ثانية","posterior chain"],
+ ["Cable Half Kneeling Pallof Press","3×12","راحة 60 ثانية",""],
+ ["Lever Seated Hip Adduction","3×15","راحة 45 ثانية",""],
+ ["Lever Seated Calf Raise","4×15","راحة 45 ثانية",""],
+ ["Single Leg Balance (عيون مغلقة)","3×20 ثانية لكل رجل","راحة 30 ثانية","20 ثانية لكل رجل — توازن"],
+ ["Power Sled Push","3×20 متر","راحة 90–120 ثانية",""]
+ ],after:[["Zone 2 Cardio (مشي سريع / دراجة)","20–30 دقيقة"],["تمطيط ستاتيكي","10 دقائق"]]},
+ {name:"الاثنين",title:"Agility, Speed & Repeated Effort",kcal:"2900–3100 kcal",warm:[["مشي / دراجة","5 دقائق"],["Monster Walk","2×10 (أمام + خلف)"]],main:[
+ ["Sprint 20m","6×20 متر","راحة 60 ثانية — راحة كاملة بين كل واحدة",""],
+ ["Pro Agility 5-10-5","4 محاولات","راحة 60 ثانية",""],
+ ["Lateral Shuffle Squat Tap","3×10 لكل جهة","راحة 60 ثانية",""],
+ ["ZigZag Hops","3×6","راحة 60 ثانية",""],
+ ["Broad Jump to Vertical","3×4","راحة 60–90 ثانية",""],
+ ["Single Leg Broad Jump","2×4 لكل رجل","راحة 60 ثانية","يبدأ من الأسبوع 3–4"],
+ ["Hollow Rock","3×10–15","راحة 45 ثانية",""]
+ ],after:[["Repeated Effort — Sprint 10m + توقف 5 ث + Sprint 10m","6 مجموعات — راحة 45 ثانية بين كل مجموعة"]]},
+ {name:"الثلاثاء",title:"Active Recovery",kcal:"2600–2800 kcal",warm:[],main:[],after:[
+ ["Zone 2 Cardio (مشي / دراجة هادئة)","20–35 دقيقة"],
+ ["Mobility & Stretching","15–20 دقيقة"],
+ ["Foam Rolling","10 دقائق"]
+ ],note:"ممنوع: أوزان ثقيلة · قفزات · سرعة"},
+ {name:"الأربعاء",title:"Upper Athletic Power",kcal:"2900–3100 kcal",warm:[["مشي / دراجة","5 دقائق"],["Band Pull-Aparts","2×15 — تفعيل الكتف الخلفي"]],main:[
+ ["Medicine Ball Chest Throw","5×4","راحة 60–90 ثانية",""],
+ ["Plyo Push-Up","5×3","راحة 60–90 ثانية",""],
+ ["Dumbbell Incline Bench Press","4×8","راحة 60–90 ثانية",""],
+ ["Lat Pulldown","4×8","راحة 60–90 ثانية",""],
+ ["One Arm Seated Row","4×8","راحة 60–90 ثانية",""],
+ ["Shoulder Press","2×8","راحة 60 ثانية",""],
+ ["Cable Face Pull","4×15","راحة 45–60 ثانية","4 سيت — حماية الكتف"],
+ ["Captains Chair Leg Raise","3×12","راحة 45 ثانية",""],
+ ["Farmer's Carry","3×30 متر","راحة 60 ثانية","قوة القبضة — مهم للاستلام"],
+ ["Dead Hang","3×20–30 ثانية","راحة 60 ثانية","قوة القبضة والكتف"]
+ ],after:[["Zone 2 Cardio","20–30 دقيقة"]]},
+ {name:"الخميس",title:"Legs, Agility & Conditioning",kcal:"2900–3100 kcal",warm:[["مشي / دراجة","5 دقائق"],["Dynamic Stretching","3 دقائق"]],main:[
+ ["Jump Box Over","3×4","راحة 60–90 ثانية",""],
+ ["Lateral Cone Hop","4 مجموعات","راحة 45–60 ثانية",""],
+ ["Skater Hops","3×6 لكل جهة","راحة 60 ثانية",""],
+ ["Full Squat","3×6","راحة 2–3 دقائق","70–75% من وزن Day 1 — أخف"],
+ ["Romanian Deadlift","3×8","راحة 60–90 ثانية",""],
+ ["Walking Lunges","3×8 لكل رجل","راحة 60–90 ثانية",""],
+ ["Leg Curl","3×12","راحة 60 ثانية",""],
+ ["Standing Calf Raise","4×15","راحة 45 ثانية",""],
+ ["Side Plank","3×30–45 ثانية لكل جهة","راحة 45 ثانية",""]
+ ],after:[["Glute Bridge with Band","2×12"],["تمطيط ستاتيكي","10 دقائق"]]},
+ {name:"الجمعة",title:"راحة كاملة",kcal:"2300–2550 kcal",warm:[],main:[],after:[["نوم +8 ساعات","غير قابل للتفاوض"],["مشي خفيف (اختياري)","15–20 دقيقة"]]},
+ {name:"السبت",title:"Pivot Skills + Zone 2",kcal:"2400–2700 kcal",warm:[],main:[],after:[["Zone 2 Cardio خفيف","30–40 دقيقة"],["مهارات Pivot","30 دقيقة — Spin · Seal · Re-seal · Drop Step · Finish"]],note:"ممنوع: أوزان قصوى · تمارين عشوائية · إضافة برنامج جديد"}
+];
+const $ = id => document.getElementById(id);
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{
+ document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));
+ document.querySelectorAll(".panel").forEach(x=>x.classList.toggle("active",x.id===b.dataset.tab));
+ window.scrollTo({top:0,behavior:"smooth"});
+}));
+let currentDay=0;
+function renderDay(){
+ const nav=$("daynav"), box=$("dayContent");
+ nav.innerHTML=days.map((d,i)=>'<button class="daybtn '+(i===currentDay?'active':'')+'" data-day="'+i+'">'+d.name+'</button>').join("");
+ nav.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{currentDay=Number(b.dataset.day);renderDay();}));
+ const d=days[currentDay], key="pivot-check-"+currentDay;
+ let checked={};try{checked=JSON.parse(localStorage.getItem(key)||"{}")}catch(e){}
+ function renderGroup(label,arr,prefix){if(!arr.length)return "";return '<div class="section-title">'+label+'</div>'+arr.map((x,i)=>{
+  const id=prefix+i,done=!!checked[id];
+  const detail=x[2]||"",note=x[3]||"";
+  return '<label class="ex '+(done?'done':'')+'"><input type="checkbox" data-check="'+id+'" '+(done?'checked':'')+'><span class="exbody"><span class="exname">'+x[0]+'</span><span class="exdetail">'+x[1]+(detail?' · <span class="rest">'+detail+'</span>':'')+(note?' · '+note:'')+'</span></span></label>';
+ }).join("")}
+ let html='<div class="card"><div class="day-head"><h2>'+d.name+' — '+d.title+'</h2><span class="kcal">'+d.kcal+'</span></div><div class="progress"><div id="dayProgress"></div></div><div class="progress-label" id="dayLabel"></div>';
+ if(d.warm.length)html+=renderGroup("التسخين",d.warm.map(x=>[x[0],x[1]]),"w");
+ if(d.main.length)html+=renderGroup("التمرين الأساسي",d.main,"m");
+ if(d.after.length)html+=renderGroup(currentDay===0||currentDay===3||currentDay===4?"بعد التمرين":currentDay===5?"الجمعة":"البرنامج",d.after,"a");
+ if(d.note)html+='<div class="daynote">⛔ '+d.note+'</div>';
+ if(currentDay===1)html+='<div class="card warn"><h3>✅ REPEATED EFFORT — تكرار الجهد</h3>Sprint 10m + توقف 5 ث + Sprint 10m · 6 مجموعات · راحة 45 ثانية بين كل مجموعة — يحاكي لعب الدائرة الحقيقي</div>';
+ html+='</div>';
+ box.innerHTML=html;
+ function update(){const checks=[...box.querySelectorAll('input[type=checkbox]')];const done=checks.filter(c=>c.checked).length;const p=checks.length?done/checks.length*100:0;$("dayProgress").style.width=p+"%";$("dayLabel").textContent=checks.length?("أنجزت "+done+" من "+checks.length):"لا توجد تمارين مطلوبة في هذا اليوم";}
+ box.querySelectorAll("input[type=checkbox]").forEach(c=>c.addEventListener("change",()=>{checked[c.dataset.check]=c.checked;localStorage.setItem(key,JSON.stringify(checked));c.closest(".ex").classList.toggle("done",c.checked);update()}));
+ update();
+}
+renderDay();
+
+const metrics=[
+ ["الوزن (كجم)","111.8"],
+ ["محيط الخصر (سم)",""],
+ ["Vertical Jump",""],
+ ["20m Sprint (ثانية)",""],
+ ["InBody Score","76"],
+ ["الطاقة (1–10)",""],
+ ["حالة الركبة","✓"]
+];
+const cols=["الآن","أسبوع 4","أسبوع 8","أسبوع 12","أسبوع 16"];
+function renderTracking(){
+ const body=$("trackingRows");
+ body.innerHTML=metrics.map((m,i)=>'<tr><td>'+m[0]+'</td>'+cols.map((c,j)=>{
+  const v=j===0?m[1]:"";const key="pivot-track-"+i+"-"+j;let saved=localStorage.getItem(key);return '<td><input aria-label="'+m[0]+' '+c+'" data-track="'+key+'" value="'+(saved!==null?saved:v)+'" '+(j===0&&v?'':'placeholder="—"')+'></td>';
+ }).join("")+'</tr>').join("");
+}
+renderTracking();
+$("saveTracking").addEventListener("click",()=>{
+ document.querySelectorAll("[data-track]").forEach(x=>localStorage.setItem(x.dataset.track,x.value));
+ $("trackingStatus").textContent="تم حفظ بيانات المتابعة على هذا الجهاز.";
+});
+</script>
+</body></html>
