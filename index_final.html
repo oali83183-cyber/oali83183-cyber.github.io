@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>علي — التمرين والتغذية 🏐</title>
+<style>
+:root{--bg:#0e0e10;--card:#1c1c20;--card2:#25252c;--line:#2f2f37;--txt:#f5f5f7;--sub:#9aa0a6;--ok:#1fd07c;--accent:#e11d2d;--gold:#ffdf6b;}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:system-ui,Tahoma,sans-serif;font-size:16px;line-height:1.6;}
+.app{max-width:680px;margin:0 auto;padding:10px 10px 90px;}
+.top{position:sticky;top:0;z-index:20;background:rgba(14,14,16,.96);backdrop-filter:blur(8px);padding:8px 0 10px;}
+.top .day{font-size:21px;font-weight:900;}
+.top .date{color:var(--sub);font-size:13px;}
+.tabs{display:flex;gap:7px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;position:sticky;top:66px;z-index:19;background:rgba(14,14,16,.98);padding:7px 0;white-space:nowrap;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{flex:0 0 auto;border:none;border-radius:12px;padding:10px 13px;font-size:12.5px;font-weight:900;cursor:pointer;font-family:inherit;background:var(--card);border:1px solid var(--line);color:var(--sub);white-space:nowrap;}
+.tab.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:10px;}
+.card h2{margin:0 0 6px;font-size:16px;}
+.muted{color:var(--sub);font-size:12px;}
+.ex{display:flex;align-items:center;gap:9px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:11px 10px;margin-bottom:7px;min-height:50px;}
+.ex input{width:21px;height:21px;accent-color:var(--ok);flex-shrink:0;}
+.ex .nm{flex:1;font-weight:700;font-size:14px;}
+.ex .st{color:var(--gold);font-weight:800;white-space:nowrap;font-size:12px;}
+.ex.done{opacity:.5;}.ex.done .nm{text-decoration:line-through;}
+.vidrow{margin:3px 0 9px 22px;}
+.vbtn{border:none;color:#fff;border-radius:8px;padding:6px 11px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit;background:#e11d2d;text-decoration:none;display:inline-block;}
+.pbar{height:8px;background:var(--card2);border-radius:99px;overflow:hidden;margin-top:5px;}
+.pbar div{height:100%;background:var(--ok);border-radius:99px;transition:width .3s;}
+.plabel{font-size:12px;color:var(--sub);text-align:center;margin-top:3px;}
+.note{background:#1e1a0a;border:1px solid #6b5900;color:var(--gold);border-radius:10px;padding:8px 10px;font-size:11.5px;margin-bottom:10px;}
+.soft-note{background:#151923;border:1px solid #263348;color:#cbd5e1;border-radius:11px;padding:9px 10px;font-size:12px;margin-bottom:9px;}
+.section-title{margin:12px 0 6px;font-size:13.5px;font-weight:900;color:var(--gold);}
+.exbox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin-bottom:8px;}
+.exname{background:transparent;border:none;color:var(--txt);text-align:right;cursor:pointer;padding:0;font-family:inherit;font-weight:700;font-size:14px;}
+.exname:after{content:" 💡";opacity:.6;}
+.exinfo{font-size:12.5px;color:var(--sub);background:var(--card2);border:1px dashed var(--line);border-radius:8px;padding:8px 10px;margin:6px 0;line-height:1.7;display:none;}
+.exinfo b{color:var(--gold);}
+.exhelp-btn{display:block;width:100%;margin:6px 0 2px;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:#202a38;color:#dbeafe;font:700 12.5px system-ui,Tahoma,sans-serif;text-align:right;cursor:pointer;}
+.bigbtn{display:block;width:100%;border:none;border-radius:13px;padding:13px;font-size:14.5px;font-weight:900;cursor:pointer;font-family:inherit;background:var(--accent);color:#fff;min-height:48px;}
+.bigbtn.green{background:var(--ok);color:#06210f;}
+.dev-card{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:8px;}
+.dev-card h3{margin:0 0 5px;font-size:14px;}
+.weekly-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:9px;}
+.weekly-grid .tf{background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:7px;}
+.weekly-grid label{display:block;font-size:10px;color:var(--sub);margin-bottom:4px;font-weight:800;}
+.weekly-grid input,.weekly-grid textarea{width:100%;box-sizing:border-box;background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:7px;padding:7px;font-family:inherit;}
+.weekly-grid textarea{min-height:64px;resize:vertical;}
+.weekly-wide{grid-column:1/-1;}
+.weekly-status{font-size:11px;color:var(--ok);margin-top:7px;text-align:center;font-weight:800;}
+.train-day-nav{display:flex;gap:6px;overflow-x:auto;padding:8px 0 5px;scrollbar-width:thin;margin-bottom:6px;}
+.train-day-btn{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--sub);border-radius:10px;padding:9px 12px;font:800 12px system-ui,Tahoma,sans-serif;cursor:pointer;}
+.train-day-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+.matchitem{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:9px;margin:6px 0;font-size:12px;}
+.settingrow{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:8px;}
+.settingrow input[type=checkbox]{width:22px;height:22px;accent-color:var(--ok);}
+.settingrow input[type=date]{background:var(--card);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:7px;}
+.modehint{font-size:11px;color:var(--gold);margin-top:6px;}
+.cue{font-size:17px;font-weight:900;text-align:center;padding:10px;background:var(--card2);border:1px solid var(--line);border-radius:11px;margin:7px 0;color:var(--gold);}
+.plan-intro{border-color:#71313a;background:linear-gradient(145deg,#241416,#1c1c20);}
+/* Food styles */
+.foodcard{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:8px;}
+.foodcard b{font-size:16px;color:var(--ok);}
+.foodcard .sub{font-size:12px;color:var(--sub);margin-top:4px;}
+.meal{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);}
+.meal:last-child{border-bottom:none;}
+.meal time{font-size:11px;color:var(--sub);min-width:70px;flex-shrink:0;padding-top:2px;}
+.meal div{flex:1;}
+.meal b{font-size:13px;}
+.protein{font-size:12px;color:var(--ok);font-weight:800;white-space:nowrap;}
+.meal-box{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:4px 12px;margin-bottom:10px;}
+/* PreCamp styles */
+.pc-phase{background:var(--card2);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden;}
+.pc-phase-head{padding:12px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line);}
+.pc-phase-num{width:30px;height:30px;border-radius:50%;background:var(--ok);color:#06130a;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pc-phase-body{padding:12px 14px;}
+.pc-phase-goal{font-size:12px;color:var(--ok);font-weight:700;margin-bottom:8px;}
+.pc-phase-list{list-style:none;padding:0;margin:0;}
+.pc-phase-list li{font-size:12.5px;color:var(--sub);padding:3px 0;display:flex;gap:8px;}
+.pc-phase-list li::before{content:'→';color:var(--ok);flex-shrink:0;}
+.pc-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
+.pc-stat{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center;}
+.pc-stat b{display:block;font-size:18px;color:var(--ok);}
+.pc-stat span{font-size:10px;color:var(--sub);}
+.pc-stat b.y{color:var(--gold);}
+.shoot-row{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:7px;}
+.shoot-wk{font-size:11px;color:var(--ok);font-weight:700;min-width:90px;flex-shrink:0;}
+.shoot-pct{font-size:12px;color:var(--gold);font-weight:700;white-space:nowrap;}
+.fit-card{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:11px;margin-bottom:8px;}
+.fit-wk{font-size:11px;color:var(--gold);font-weight:700;margin-bottom:4px;}
+.track-tbl{width:100%;border-collapse:collapse;font-size:12px;}
+.track-tbl th{text-align:right;padding:7px 8px;color:var(--sub);font-size:10px;font-weight:700;background:var(--card2);border-bottom:1px solid var(--line);}
+.track-tbl td{padding:7px 8px;border-bottom:1px solid var(--line);color:var(--txt);}
+.track-tbl tr:last-child td{border-bottom:none;}
+.t-now{color:var(--ok);font-weight:700;}
+.t-blank{color:#3d5c42;font-style:italic;}
+.pc-rule{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:11px;margin-bottom:7px;display:flex;gap:10px;}
+.pc-rule-ic{font-size:18px;flex-shrink:0;}
+.pc-rule-title{font-weight:700;font-size:13px;margin-bottom:3px;}
+.pc-rule-desc{font-size:11.5px;color:var(--sub);line-height:1.5;}
+.supp-tbl{width:100%;border-collapse:collapse;font-size:12.5px;}
+.supp-tbl th{text-align:right;padding:8px 10px;color:var(--sub);font-size:10px;font-weight:700;background:var(--card2);border-bottom:1px solid var(--line);}
+.supp-tbl td{padding:8px 10px;border-bottom:1px solid var(--line);color:var(--txt);}
+.supp-tbl tr:last-child td{border-bottom:none;}
+.warn-card{background:#1f1200;border:1px solid #4a3000;border-radius:12px;padding:12px;margin-bottom:10px;}
+.warn-card ul{margin:6px 0 0 0;padding-right:16px;}
+.warn-card li{font-size:12.5px;color:var(--sub);padding:3px 0;line-height:1.6;}
+@media(max-width:520px){
+  .tabs{gap:6px;}.tab{font-size:12px;padding:9px 11px;}
+  .weekly-grid{grid-template-columns:1fr;}.weekly-wide{grid-column:auto;}
+  .pc-stat-row{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="top">
+  <div class="day" id="dayTitle">📅</div>
+  <div class="date" id="dateSub"></div>
+</div>
+<div class="tabs" aria-label="أقسام البرنامج">
+  <button class="tab active" id="tabTrain" onclick="showTab('train')">🏋️ التمارين</button>
+  <button class="tab" id="tabFood" onclick="showTab('food')">🍽️ التغذية</button>
+  <button class="tab" id="tabPrecamp" onclick="showTab('precamp')">🏕️ Pre-Camp</button>
+  <button class="tab" id="tabReport" onclick="showTab('report')">📊 التقرير</button>
+  <button class="tab" id="tabSchedule" onclick="showTab('schedule')">🏐 المباريات</button>
+  <button class="tab" id="tabLibrary" onclick="showTab('library')">📚 التعلم</button>
+</div>
+<div id="trainDayNav" class="train-day-nav"></div>
+<div id="trainBox"></div>
+<div id="foodBox" style="display:none;"></div>
+<div id="precampBox" style="display:none;"></div>
+<div id="reportBox" style="display:none;"></div>
+<div id="scheduleBox" style="display:none;"></div>
+<div id="libraryBox" style="display:none;"></div>
+</div>
+
+<script>
+"use strict";
+var AR_DAYS=["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+var AR_MONTHS=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+function todayKey(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function fmtDate(d){return d.getDate()+" "+AR_MONTHS[d.getMonth()]+" "+d.getFullYear();}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+var KEY="ali_best_v1";
+function loadDB(){var def={am:{},fixed:{},weekly:{},settings:{u18:true,u20:true,startDate:"2026-11-30"},library:{films:[]}};try{var r=localStorage.getItem(KEY);if(!r)return def;var p=JSON.parse(r);if(!p||typeof p!=="object")return def;for(var k in def)if(!p[k])p[k]=def[k];return p;}catch(e){return def;}}
+var DB=loadDB();
+function saveDB(){try{localStorage.setItem(KEY,JSON.stringify(DB));}catch(e){}}
+
+/* ===== SCHED ===== */
+var SCHED=[
+{day:"الأحد",title:"Lower Power & Explosive — قوة الرجلين والانفجار",cal:"اليوم 1 · القوة والانفجار والتصويب",am:[
+  {cat:"🔥 الإحماء والتفعيل",ex:[["Lateral Band Walks","2×10 لكل جهة","30 ث"],["Single Leg Balance (Eyes Closed)","2×20 ثانية لكل رجل","30 ث"],["Dynamic Warm-up","5 دقائق","—"]]},
+  {cat:"⚡ القوة والانفجار",ex:[["Jump on Fit-Box","3×3","90 ث"],["Depth Jump to Hurdle Hop","3×3","90 ث"],["Full Squat","5×4","2–3 د"],["Dumbbell Walking Lunges","3×8 لكل رجل","90 ث"],["Lever Lying Leg Curl","3×12","60 ث"],["Eccentric Calf Raise","3×8 نزول 4 ثوانٍ","60 ث"],["KAS Glute Bridge","2×10","60 ث"],["Cable Pallof Press","3×12","60 ث"],["Lever Seated Hip Adduction","3×15","45 ث"],["Power Sled Push","3×20م","120 ث"]]},
+  {cat:"🎯 التصويب — Back Left",ex:[["Shadow Throw — Without Ball","2×5","—"],["Standing Throw 50–60%","2×5","—"]]},
+  {cat:"♻️ بعد التمرين",ex:[["Zone 2 Cardio","20–25 دقيقة","—"],["Foam Roller Recovery","10 دقائق","—"]]}
+]},
+{day:"الاثنين",title:"Agility · Speed · Reactive · Repeated Effort",cal:"اليوم 2 · السرعة والرشاقة وتكرار الجهد",am:[
+  {cat:"🔥 الإحماء",ex:[["Monster Walk","2×10 أمام + خلف","30 ث"],["A-March + Ankle Rotation","2×10 متر","30 ث"]]},
+  {cat:"⚡ السرعة والرشاقة",ex:[["Sprint 20m","6×20م","60–90 ث"],["Pro Agility 5-10-5","4 محاولات","60 ث"],["Deceleration Stop Drill","4×3","45–60 ث"],["Lateral Shuffle Squat Tap","3×10 لكل جهة","60 ث"],["ZigZag Hops","3×6","60 ث"],["Broad Jump to Vertical","3×4","90 ث"]]},
+  {cat:"👀 Reactive Agility",ex:[["Tennis Ball Wall Reaction","3×20 ثانية","30 ث"],["Visual Cue Lateral Shuffle","3×6 إشارات","30 ث"]]},
+  {cat:"🔁 Repeated Effort",ex:[["Repeated Sprint 10m + Stop + 10m","6 مجموعات","45 ث"],["Hollow Rock","3×12","45 ث"]]}
+]},
+{day:"الثلاثاء",title:"Active Recovery — التعافي النشط",cal:"اليوم 3 · استشفاء وحركة ووقاية",note:"يوم استشفاء وليس لتعويض التمارين الفائتة. أوقف أي حركة تسبب ألمًا.",am:[
+  {cat:"⛔ يوم خفيف فقط",ex:[["Zone 2 Cardio","20–35 دقيقة","—"],["Foam Roller Recovery","15 دقيقة","—"],["Mobility & Stretching","15 دقيقة","—"],["Shadow Throw — Without Ball","2×5 اختياري جداً","—"],["Band External Rotation","2×15 لكل كتف","30 ث"],["Ankle Rocks + 90/90 Hip","2×10 لكل جهة","—"]]}
+]},
+{day:"الأربعاء",title:"Upper Athletic Power — قوة الجزء العلوي",cal:"اليوم 4 · القوة والقدرة والتصويب",am:[
+  {cat:"🔥 الإحماء وتفعيل الكتف",ex:[["Band Pull-Aparts","2×15","30 ث"],["Band Face Pull","2×12 مطاط خفيف","30 ث"]]},
+  {cat:"🏋️ القوة الأساسية",ex:[["Medicine Ball Chest Throw","4×5","90 ث"],["Plyo Push-Up","3×5","90 ث"],["Dumbbell Incline Bench Press","4×8","90 ث"],["Lat Pulldown","4×8","90 ث"],["One Arm Seated Row","4×8 لكل ذراع","90 ث"],["Shoulder Press","2×8","60 ث"],["Cable Face Pull","4×15","45 ث"],["Farmer's Carry","3×30م","60 ث"],["Dead Hang","3×20–30 ثانية","60 ث"],["Captains Chair Leg Raise","3×12","45 ث"]]},
+  {cat:"🎯 التصويب",ex:[["Standing Throw 60–70%","3×6","—"],["Target Throw","3×6","—"],["Step-in Throw 70–75%","3×6","—"],["Pivot Move & Shoot","3×5","—"]]},
+  {cat:"♻️ بعد التمرين",ex:[["Zone 2 Cardio","20–30 دقيقة","—"]]}
+]},
+{day:"الخميس",title:"Legs · Agility · Conditioning",cal:"اليوم 5 · قوة الرجلين والهبوط الآمن",am:[
+  {cat:"🔥 الإحماء",ex:[["Dynamic Warm-up","5 دقائق","—"],["Glute Bridge with Band","2×10","30 ث"]]},
+  {cat:"⚡ القفز والرشاقة",ex:[["Jump Box Over","3×4","90 ث"],["Lateral Cone Hop","4 مجموعات","60 ث"],["Skater Hops","3×6 لكل جهة","60 ث"]]},
+  {cat:"🏋️ القوة والوقاية",ex:[["Full Squat","3×6 @70-75%","2 د"],["Romanian Deadlift","3×8","90 ث"],["Walking Lunges","3×8 لكل رجل","90 ث"],["Nordic Hamstring Curl","3×3–5","90 ث"],["Leg Curl","3×12","60 ث"],["Standing Calf Raise","4×15","45 ث"],["Side Plank","3×35–45 ث لكل جهة","45 ث"]]},
+  {cat:"🧊 التبريد والوقاية",ex:[["Glute Bridge with Band","2×12","—"],["Band Hip Abduction","2×15","—"],["Static Stretching","12 دقيقة","—"]]}
+]},
+{day:"الجمعة",title:"Full Rest — راحة كاملة",cal:"اليوم 6 · راحة وتعافٍ",note:"لا قوة أو سرعة أو قفز. لا تعوّض أي حصة فاتتك.",am:[
+  {cat:"😴 الراحة أساسية",ex:[["Sleep 8–9 Hours","كل ليلة","—"],["Easy Walk (Optional)","15–20 دقيقة","—"],["Foam Roller Recovery","10 دقائق اختياري","—"]]}
+]},
+{day:"السبت",title:"Pivot Skills + Shooting + Zone 2",cal:"اليوم 7 · مهارات الدائرة وBack Left",note:"إذا كان تدريب النادي شديدًا خفف الجلسة واكتفِ بالمهارات الفنية.",am:[
+  {cat:"🏐 مهارات Pivot",ex:[["Solo Pivot Footwork Around Cone","3×15 ثانية","30–40 ث"],["Wall Lateral Step + Catch","3×8 لكل جهة","45 ث"],["Catch → Protect → Pivot Turn","3×6","45–60 ث"],["Reception Under Fatigue","4×6 من الأسبوع 9+","60 ث"]]},
+  {cat:"🎯 التصويب — Back Left",ex:[["Shadow Throw — Without Ball","3×8 الأسابيع 1–4","—"],["Target Throw","4×8 الأسابيع 5–8","—"],["Shoot under Fatigue","5×4 الأسابيع 9–16","—"]]},
+  {cat:"♻️ اللياقة والتبريد",ex:[["Zone 2 Cardio","25–35 دقيقة","—"]]}
+]}
+];
+
+/* VID */
+var VID={};
+var VID_DEFAULTS={"Lateral Band Walks":"lateral band walks exercise","Single Leg Balance (Eyes Closed)":"single leg balance proprioception drill","Dynamic Warm-up":"dynamic warm up athlete","Jump on Fit-Box":"box jump landing technique","Depth Jump to Hurdle Hop":"depth jump hurdle hop plyometric","Full Squat":"barbell back squat form","Dumbbell Walking Lunges":"dumbbell walking lunges form","Lever Lying Leg Curl":"lying leg curl machine","Eccentric Calf Raise":"eccentric calf raise injury prevention","KAS Glute Bridge":"KAS glute bridge","Cable Pallof Press":"pallof press core stability","Lever Seated Hip Adduction":"seated hip adduction machine","Power Sled Push":"sled push workout","Shadow Throw — Without Ball":"handball throwing mechanics shadow drill","Standing Throw 50–60%":"handball standing throw technique","Zone 2 Cardio":"zone 2 cardio stationary bike","Foam Roller Recovery":"foam rolling recovery techniques","Monster Walk":"monster walk resistance band","A-March + Ankle Rotation":"a march running drill ankle rotation","Sprint 20m":"sprint acceleration technique","Pro Agility 5-10-5":"5-10-5 pro agility drill","Deceleration Stop Drill":"deceleration drill change direction","Lateral Shuffle Squat Tap":"lateral shuffle squat tap drill","ZigZag Hops":"zigzag hops plyometric","Broad Jump to Vertical":"broad jump to vertical jump","Tennis Ball Wall Reaction":"tennis ball reaction catch wall","Visual Cue Lateral Shuffle":"visual cue reactive agility drill","Repeated Sprint 10m + Stop + 10m":"handball repeated sprint intervals","Hollow Rock":"hollow rock exercise","Mobility & Stretching":"mobility stretching routine","Band External Rotation":"band external rotation shoulder health","Ankle Rocks + 90/90 Hip":"ankle mobility rocks 90 90 hip","Band Pull-Aparts":"band pull apart shoulder warmup","Band Face Pull":"face pull form rotator cuff","Medicine Ball Chest Throw":"medicine ball chest throw handball","Plyo Push-Up":"plyometric push up explosive","Dumbbell Incline Bench Press":"dumbbell incline bench press form","Lat Pulldown":"lat pulldown proper form","One Arm Seated Row":"one arm seated cable row","Shoulder Press":"dumbbell overhead press form","Cable Face Pull":"cable face pull shoulder health","Farmer's Carry":"farmers carry grip strength","Dead Hang":"dead hang grip shoulder","Captains Chair Leg Raise":"captain chair leg raise","Standing Throw 60–70%":"handball shooting technique back player","Target Throw":"handball target shooting accuracy","Step-in Throw 70–75%":"handball jump shot step approach","Pivot Move & Shoot":"handball pivot receive shoot","Glute Bridge with Band":"glute bridge resistance band","Jump Box Over":"box jump over drill handball","Lateral Cone Hop":"lateral cone hop drill","Skater Hops":"skater hops lateral bounds","Romanian Deadlift":"romanian deadlift hip hinge technique","Walking Lunges":"walking lunges proper form","Nordic Hamstring Curl":"nordic hamstring curl knee injury prevention","Leg Curl":"lying leg curl machine form","Standing Calf Raise":"standing calf raise exercise","Side Plank":"side plank core stability","Band Hip Abduction":"hip abduction band knee stability","Static Stretching":"static stretching cooldown","Sleep 8–9 Hours":"sleep recovery athlete performance","Easy Walk (Optional)":"light walk active recovery","Solo Pivot Footwork Around Cone":"handball pivot footwork solo drill","Wall Lateral Step + Catch":"handball wall lateral step catch","Catch → Protect → Pivot Turn":"handball pivot catch protect turn","Reception Under Fatigue":"handball reception fatigue wall drill","Shoot under Fatigue":"handball shooting under fatigue drill"};
+Object.assign(VID,VID_DEFAULTS);
+
+/* EXPLAIN */
+var EXPLAIN={"Dynamic Warm-up":"ابدأ بمشي أو هرولة سهلة ثم حرّك الذراعين والكتفين والوركين والكاحلين وأضف خطوات جانبية. ارفع سرعة الحركة تدريجيًا ولا تبدأ بسبرنت أو قفز قوي. الهدف رفع حرارة الجسم وتجهيز المفاصل.","Lateral Band Walks":"ضع رباطًا فوق الركبتين واثنِ الوركين قليلًا. خذ خطوات جانبية قصيرة مع بقاء الشد في الرباط والركبتين باتجاه أصابع القدمين.","Single Leg Balance (Eyes Closed)":"قف قرب حائط وارفع قدمًا مع ثني بسيط للركبة. ابدأ والعينان مفتوحتان ولا تغلقهما إلا إذا كنت ثابتًا. لاستشعار موضع الجسم — Proprioception.","Jump on Fit-Box":"استخدم صندوقًا ثابتًا ومنخفضًا. اقفز بكلتا القدمين واهبط بهدوء مع ثني الوركين والركبتين. ثبّت وضعك قبل النزول.","Depth Jump to Hurdle Hop":"تمرين متقدم وتحت إشراف مدرب فقط. انزل من منصة منخفضة وامتص الهبوط بثني الوركين والركبتين ثم اقفز فوق حاجز منخفض.","Full Squat":"قف بعرض الكتفين وانزل مع بقاء الكعبين على الأرض والجذع مستقيم. RIR 2–3 دائمًا — لا تصل للفشل.","Dumbbell Walking Lunges":"خذ خطوة أمامية وانزل مع محاذاة الركبة للقدم ثم ادفع الأرض وانتقل للخطوة التالية. ظهر مستقيم دون ميل.","Lever Lying Leg Curl":"استلقِ على الجهاز وثنِ الركبتين لسحب الوسادة دون رفع الحوض ثم أعدهما ببطء.","Eccentric Calf Raise":"ارفع الكعبين برجلين ثم انزل على رجل واحدة ببطء خلال أربع ثوانٍ. يقوي الكاحل ويحمي من الإصابة.","KAS Glute Bridge":"استلقِ مع ثني الركبتين والقدمين قرب الوركين. ارفع الحوض بشد الأرداف مع ثبات أسفل الظهر.","Cable Pallof Press":"قف جانبيًا للكابل وادفع اليدين للأمام دون أن يدور الجذع. لثبات الجذع وحماية الظهر.","Lever Seated Hip Adduction":"اجلس على الجهاز وقرّب الفخذين باتجاه بعضهما ببطء ثم أعدهما. يحمي الأربطة ويقوي داخل الفخذ.","Power Sled Push":"أمسك مقابض الزلاجة ومل للأمام بظهر محايد. ادفع بخطوات قصيرة وقوية.","Shadow Throw — Without Ball":"قف بوضعية التصويب. ابدأ من الحوض والجذع ثم الكتف والمرفق وأنهِ بحركة الرسغ. الهدف تعلم الميكانيكية وليس السرعة.","Standing Throw 50–60%":"قف باتجاه هدف آمن وصوّب بقوة 50–60%. الهدف الإحساس بالكرة والإيقاع. لا تضغط نحو القوة القصوى.","Zone 2 Cardio":"دراجة أو مشي سريع. تستطيع التحدث بجملة كاملة دون لهاث. نبض تقريبي 125–145.","Foam Roller Recovery":"مرر الرول بضغط مريح على الفخذين والسمانة والألوية وأعلى الظهر. 30–45 ثانية لكل منطقة. لا تتدحرج فوق المفاصل.","Monster Walk":"ضع رباطًا حول الفخذين أو الكاحلين واثنِ الوركين قليلًا. خطوات أمامية وخلفية وجانبية مع استمرار شد الرباط.","Sprint 20m":"ابدأ بميل خفيف للجذع وادفع الأرض للخلف في أولى الخطوات. راحة كاملة بين كل محاولة للحفاظ على الجودة.","Pro Agility 5-10-5":"ثلاثة أقماع. انطلق من الأوسط 5م ثم 10م للجهة الأخرى ثم 5م للوسط. اخفض مركز الجسم قبل تغيير الاتجاه.","Deceleration Stop Drill":"انطلق 5م بسرعة 70–80% ثم خفف الخطوات وتوقف في 2–3 خطوات متوازنة. لا تغرس القدم أو تلتف على ركبة ثابتة.","Lateral Shuffle Squat Tap":"تحرك جانبيًا بخطوات قصيرة. عند العلامة انزل نصف سكوات والمس الأرض ثم ارجع مع ثبات الجذع.","ZigZag Hops":"اقفز بخفة بين علامات متعرجة مع هبوط ناعم ومتزن. ابدأ بمسافات صغيرة.","Broad Jump to Vertical":"اقفز للأمام واهبط بهدوء ثم نفّذ قفزة عمودية منخفضة. اثبت عند الهبوط قبل التكرار.","Tennis Ball Wall Reaction":"ارمِ كرة التنس على الحائط بزاوية غير متوقعة والتقط ارتدادها. غيّر الارتفاع والاتجاه. يطور رد الفعل.","Visual Cue Lateral Shuffle":"قف بوضعية رياضية واستجب لإشارة بصرية بتحرك جانبي فوري. ثم توقف متوازنًا.","Repeated Sprint 10m + Stop + 10m":"انطلق 10م توقف 5 ثوانٍ ثم انطلق 10م. يحاكي شدة لعب الدائرة وBack Left.","Hollow Rock":"استلقِ وشد البطن مع إبقاء أسفل الظهر على الأرض. ارفع الذراعين والساقين ونفّذ تأرجحًا صغيرًا.","Mobility & Stretching":"حركات لطيفة للكاحل والورك والكتف وأعلى الظهر. تحرك ضمن مدى مريح دون ارتداد أو ألم.","Band External Rotation":"ثبّت الرباط عند مستوى المرفق. المرفق 90 درجة بجانب الجسم. لف الساعد للخارج بمدى مريح. يحمي الكتف من الإصابة.","Ankle Rocks + 90/90 Hip":"ادفع الركبة للأمام فوق أصابع القدم مع بقاء الكعب على الأرض. ثم اجلس 90/90 وبدّل اتجاه الوركين ببطء.","Band Pull-Aparts":"أمسك رباطًا أمام الصدر واسحب اليدين للخارج مع ضم لوحي الكتف دون رفعهما. لتفعيل الكتف الخلفي.","Band Face Pull":"ثبّت الرباط عند مستوى الوجه واسحبه باتجاه الوجه مع فتح اليدين والمرفقين للخلف. مقاومة خفيفة جداً.","Medicine Ball Chest Throw":"أمسك كرة طبية خفيفة أمام الصدر وادفعها للأمام بسرعة من الصدر. استخدم جدارًا آمنًا.","Plyo Push-Up":"انزل بتحكم ثم ادفع الأرض بقوة. اهبط بهدوء. ابدأ بضغط عادي إذا لم تستطع الهبوط بثبات.","Dumbbell Incline Bench Press":"زاوية مائلة. ادفع الدمبلين للأعلى دون قفل المرفقين ثم أنزلهما ببطء.","Lat Pulldown":"اجلس وثبّت الفخذين واسحب البار نحو أعلى الصدر مع توجيه المرفقين للأسفل. لا تسحبه خلف الرقبة.","One Arm Seated Row":"اسحب مقبض الكابل بيد واحدة نحو جانب الجذع. أعد الذراع ببطء دون لف الجذع.","Shoulder Press":"ادفع الدمبلين للأعلى ضمن مدى مريح. لا تقوس أسفل الظهر.","Cable Face Pull":"ثبّت الحبل عند مستوى الوجه واسحبه باتجاه الوجه مع فتح اليدين والمرفقين للخلف. لصحة الكتف.","Farmer's Carry":"أمسك وزنًا مناسبًا وامشِ 30م بخطوات ثابتة. ظهر مستقيم ورسغان محايدان. يقوي القبضة والجذع.","Dead Hang":"أمسك عارضة ثابتة ودع الجسم يتدلى. تنفس بانتظام. يقوي القبضة ويفتح الكتف.","Captains Chair Leg Raise":"ارفع الركبتين نحو الصدر مع شد البطن دون تأرجح ثم أنزلهما ببطء.","Standing Throw 60–70%":"ابدأ من الحوض والجذع ثم الكتف والرسغ. صوّب نحو هدف محدد بقوة 60–70%. الدقة قبل القوة.","Target Throw":"حدد هدفًا في المرمى ووجّه التصويب نحوه. سجّل عدد الإصابات. زد القوة تدريجيًا.","Step-in Throw 70–75%":"خطوة اقتراب قصيرة بالقدم المعاكسة ثم دوران الورك والجذع وتسريع الذراع بقوة 70–75%.","Pivot Move & Shoot":"تحرك حول مخروط وافتح زاوية استلام. استلم الكرة وثبّتها ثم نفذ دورانًا وصوّب نحو هدف.","Glute Bridge with Band":"استلقِ مع رباط فوق الركبتين. ارفع الحوض بشد الأرداف وفتح الركبتين قليلًا. لتفعيل الأرداف.","Jump Box Over":"استخدم صندوقًا منخفضًا ثابتًا. اقفز فوقه واهبط بثني الوركين والركبتين في مساحة آمنة.","Lateral Cone Hop":"اقفز جانبيًا فوق مخروط صغير. اهبط بهدوء وثبّت الجسم قبل التكرار.","Skater Hops":"اقفز جانبيًا من رجل إلى أخرى. اهبط مع ثني الورك والركبة. اثبت قبل القفزة التالية.","Romanian Deadlift":"ادفع الوركين للخلف مع ثني بسيط للركبتين وانزل الأوزان قرب الساقين مع ظهر محايد.","Walking Lunges":"خطوة أمامية وانزل مع محاذاة الركبة للقدم ثم انتقل للخطوة التالية.","Nordic Hamstring Curl":"ثبّت الكاحلين تحت دعامة وانحنِ للأمام ببطء بمقاومة خلف الفخذ. ابدأ بثلاث تكرارات فقط. الأهم لحماية الركبة.","Leg Curl":"استلقِ واثنِ الركبتين لسحب الوسادة. أعدها ببطء مع بقاء الحوض ثابتًا.","Standing Calf Raise":"ارفع الكعبين لأعلى مدى مريح واثبت ثم انزل ببطء.","Side Plank":"ضع المرفق تحت الكتف وارفع الحوض حتى يصبح الجسم بخط مستقيم. تنفس بهدوء.","Band Hip Abduction":"ضع رباطًا حول الفخذين وحرّك الرجل للخارج ببطء دون ميل الحوض. لثبات الركبة.","Static Stretching":"اثبت في تمطيط لطيف 20–30 ثانية لكل منطقة. لا ارتداد. للفخذ والورك والسمانة والكتف.","Sleep 8–9 Hours":"التعافي والنمو يحصلان في النوم. 6 ساعات = نصف تمرين. غير قابل للتفاوض.","Easy Walk (Optional)":"مشي مريح 15–20 دقيقة. يوم راحة ولا تضف جريًا.","Solo Pivot Footwork Around Cone":"ضع مخروطًا كمدافع وتحرك حوله بخطوات جانبية قصيرة. افتح زاوية تمرير ثم عد لوضع الاستعداد.","Wall Lateral Step + Catch":"مرر الكرة للحائط بزاوية جانبية. تحرك بخطوة لمقابلة الارتداد واستقبل بكلتا اليدين.","Catch → Protect → Pivot Turn":"استقبل الكرة وثبّتها قرب الجذع. احمها بجسمك دون دفع ثم نفّذ دوران Pivot قصيرًا.","Reception Under Fatigue":"اركض 20م ثم اتجه للحائط واستقبل الكرة فورًا. يحاكي ظروف المباراة الحقيقية.","Shoot under Fatigue":"اركض 15م بسرعة مضبوطة ثم صوّب فورًا بقوة 75–80%. يحاكي إنهاء الهجمة بعد مجهود."};
+
+var selectedTrainingDay=(new Date()).getDay();
+
+function vidRow(name){
+  var q=VID[name]||(name+" exercise tutorial");
+  var wrap=document.createElement("div");wrap.className="vidrow";
+  var a=document.createElement("a");a.className="vbtn";a.href="https://www.youtube.com/results?search_query="+encodeURIComponent(q);a.target="_blank";a.rel="noopener";a.textContent="▶ شاهد على YouTube";
+  wrap.appendChild(a);return wrap;
+}
+
+function showTab(t){
+  ["train","food","precamp","report","schedule","library"].forEach(function(x){
+    var cap=x.charAt(0).toUpperCase()+x.slice(1);
+    var btn=document.getElementById("tab"+cap),box=document.getElementById(x+"Box");
+    if(btn)btn.classList.toggle("active",x===t);
+    if(box)box.style.display=x===t?"block":"none";
+  });
+  var nav=document.getElementById("trainDayNav");
+  if(nav)nav.style.display=t==="train"?"flex":"none";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function renderTrain(){
+  var now=new Date(),di=selectedTrainingDay,s=SCHED[di],box=document.getElementById("trainBox"),nav=document.getElementById("trainDayNav");
+  if(!box||!nav||!s)return;
+  nav.innerHTML="";
+  SCHED.forEach(function(d,i){
+    var b=document.createElement("button");b.type="button";b.className="train-day-btn"+(i===di?" active":"");
+    b.textContent=d.day+(i===now.getDay()?" ·اليوم":"");
+    b.onclick=function(){selectedTrainingDay=i;renderTrain();};
+    nav.appendChild(b);
+  });
+  var dt=new Date(now.getFullYear(),now.getMonth(),now.getDate()-now.getDay()+di);
+  var key=dt.getFullYear()+"-"+String(dt.getMonth()+1).padStart(2,"0")+"-"+String(dt.getDate()).padStart(2,"0");
+  document.getElementById("dayTitle").textContent=s.day+" — "+s.title;
+  document.getElementById("dateSub").textContent=fmtDate(dt)+" · "+s.cal;
+  box.innerHTML="";
+  if(s.note){var nd=document.createElement("div");nd.className="note";nd.textContent=s.note;box.appendChild(nd);}
+  var total=0;(s.am||[]).forEach(function(g){total+=g.ex.length;});
+  var arr=(DB.am[key]||[]).slice(0,total),idx=0;
+  var card=document.createElement("div");card.className="card";
+  card.innerHTML="<h2>🏐 "+esc(s.day)+" — "+esc(s.title)+"</h2><div class='muted'>اضغط على اسم التمرين لقراءة الشرح · زر YouTube للمشاهدة</div>";
+  (s.am||[]).forEach(function(grp){
+    var gh=document.createElement("div");gh.className="section-title";gh.textContent=grp.cat;card.appendChild(gh);
+    grp.ex.forEach(function(item){
+      var n=idx++,nm=item[0],st=[item[1],item[2]].filter(function(v){return v&&v!=="—";}).join(" · ");
+      var wrap=document.createElement("div");wrap.className="exbox";
+      var row=document.createElement("div");row.className="ex";
+      var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!arr[n];
+      cb.onchange=function(){arr[n]=cb.checked;DB.am[key]=arr;saveDB();row.classList.toggle("done",cb.checked);upd();};
+      if(cb.checked)row.classList.add("done");
+      var nameBtn=document.createElement("button");nameBtn.type="button";nameBtn.className="nm exname";nameBtn.textContent=nm;
+      var stEl=document.createElement("span");stEl.className="st";stEl.textContent=st;
+      row.appendChild(cb);row.appendChild(nameBtn);row.appendChild(stEl);wrap.appendChild(row);
+      var info=document.createElement("div");info.className="exinfo";
+      info.innerHTML="<b>📌 طريقة الأداء:</b> "+esc(EXPLAIN[nm]||"نفّذ الحركة بتحكم وتنفس طبيعي. توقف عند الألم.")+"<br><b>⚠️ تنبيه:</b> RIR 2–3 دائمًا — لا تصل للفشل العضلي.";
+      var helpBtn=document.createElement("button");helpBtn.type="button";helpBtn.className="exhelp-btn";helpBtn.textContent="📖 اضغط لقراءة شرح التمرين";
+      function toggle(){var open=info.style.display!=="block";info.style.display=open?"block":"none";helpBtn.textContent=open?"✖ إخفاء الشرح":"📖 اضغط لقراءة شرح التمرين";}
+      helpBtn.onclick=toggle;nameBtn.onclick=toggle;
+      wrap.appendChild(helpBtn);wrap.appendChild(info);wrap.appendChild(vidRow(nm));
+      card.appendChild(wrap);
+    });
+  });
+  var bar=document.createElement("div");bar.className="pbar";var fill=document.createElement("div");bar.appendChild(fill);card.appendChild(bar);
+  var lbl=document.createElement("div");lbl.className="plabel";card.appendChild(lbl);
+  box.appendChild(card);
+  function upd(){var done=arr.filter(Boolean).length;fill.style.width=(total?done/total*100:0)+"%";lbl.textContent="أنجزت "+done+" من "+total+" تمرينًا";}upd();
+}
+
+function renderFood(){
+  var box=document.getElementById("foodBox");if(!box)return;
+  box.innerHTML="<div class='card'><h2>🍽️ خطة التغذية الكاملة</h2><div class='muted'>الأرقام إرشادية. راجع اختصاصي تغذية أو طبيب لأي تعديل — خاصةً وأنت في مرحلة نمو (17 سنة).</div></div>"+
+  "<div class='card'><h2>📊 توزيع السعرات اليومية</h2>"+
+  "<div class='foodcard'><span style='font-size:12px;color:var(--sub)'>أيام التمرين الثقيل (الأحد، الاثنين، الأربعاء، الخميس)</span><br><b>2900–3100 سعرة</b><div class='sub'>190–210 جم بروتين · كارب مرتفع · دهون 75 جم أو أكثر</div></div>"+
+  "<div class='foodcard'><span style='font-size:12px;color:var(--sub)'>الثلاثاء — Recovery</span><br><b>2600–2800 سعرة</b><div class='sub'>180–200 جم بروتين · كارب متوسط · دهون 70 جم+</div></div>"+
+  "<div class='foodcard'><span style='font-size:12px;color:var(--sub)'>الجمعة — راحة كاملة</span><br><b>2300–2550 سعرة</b><div class='sub'>180–200 جم بروتين · كارب منخفض · دهون 70 جم+</div></div>"+
+  "<div class='foodcard'><span style='font-size:12px;color:var(--sub)'>السبت — مهارات + Zone 2</span><br><b>2400–2700 سعرة</b><div class='sub'>180–200 جم بروتين</div></div></div>"+
+  "<div class='card'><h2>🥣 جدول الوجبات اليومية — أيام التمرين</h2><div class='meal-box'>"+
+  "<div class='meal'><time>7:00</time><div><b>4 بيض + 2 توست أسمر + موزة</b><div style='font-size:11.5px;color:var(--sub)'>كارب + بروتين + طاقة للصباح</div></div><span class='protein'>~30 جم</span></div>"+
+  "<div class='meal'><time>10:00</time><div><b>200 جم زبادي يوناني + عسل + مكسرات</b><div style='font-size:11.5px;color:var(--sub)'>وجبة خفيفة عالية البروتين</div></div><span class='protein'>~20 جم</span></div>"+
+  "<div class='meal'><time>13:00</time><div><b>200 جم دجاج + 200 جم رز بني + خضار</b><div style='font-size:11.5px;color:var(--sub)'>الوجبة الرئيسية — كارب أعلى في أيام الأرجل</div></div><span class='protein'>~50 جم</span></div>"+
+  "<div class='meal'><time>16:00</time><div><b>موزة + ملعقة زبدة فول سوداني</b><div style='font-size:11.5px;color:var(--sub)'>قبل التدريب بـ 60–90 دقيقة</div></div><span class='protein'>~5 جم</span></div>"+
+  "<div class='meal'><time>بعد التمرين</time><div><b>Whey Protein + موزة</b><div style='font-size:11.5px;color:var(--sub)'>في أول 30 دقيقة بعد التمرين</div></div><span class='protein'>~25 جم</span></div>"+
+  "<div class='meal'><time>20:30</time><div><b>200 جم لحم أو دجاج + خضار + 2 بيض</b><div style='font-size:11.5px;color:var(--sub)'>وجبة ثانية رئيسية</div></div><span class='protein'>~55 جم</span></div>"+
+  "<div class='meal'><time>22:00</time><div><b>150 جم جبن قريش</b><div style='font-size:11.5px;color:var(--sub)'>بروتين بطيء الامتصاص قبل النوم</div></div><span class='protein'>~18 جم</span></div>"+
+  "<div style='background:rgba(31,208,124,.08);border-radius:8px;padding:10px;text-align:center;margin-top:6px'><b style='color:var(--ok)'>المجموع: ~203 جم بروتين · 7 وجبات يومياً</b></div></div></div>"+
+  "<div class='card'><h2>💧 الماء والتعافي</h2>"+
+  "<div class='dev-card'><b>الماء:</b> 3–4 لترات يومياً. زد في أيام التمرين الثقيل والحرارة.</div>"+
+  "<div class='dev-card'><b>قبل التدريب:</b> وجبة مألوفة قبل 2–3 ساعات أو وجبة خفيفة (موزة + زبدة فول) قبل 60 دقيقة.</div>"+
+  "<div class='dev-card'><b>بعد التدريب:</b> Whey + موزة في أول 30 دقيقة. ثم وجبة كاملة بعد ساعة.</div>"+
+  "<div class='dev-card'><b>النوم:</b> 8–9 ساعات منتظمة. التعافي والنمو الهرموني يحصلان هنا.</div></div>"+
+  "<div class='card'><h2>💊 المكملات</h2><div style='overflow-x:auto'><table class='supp-tbl'><tr><th>المكمل</th><th>الجرعة</th><th>التوقيت</th><th>السبب</th></tr><tr><td><b>Creatine Monohydrate</b></td><td>5 جم</td><td>مع أي وجبة</td><td style='color:var(--sub);font-size:11.5px'>قوة + انفجار + تعافٍ</td></tr><tr><td><b>Whey Protein</b></td><td>25–30 جم</td><td>بعد التمرين فوراً</td><td style='color:var(--sub);font-size:11.5px'>إعادة بناء العضل</td></tr><tr><td><b>Vitamin D3 + K2</b></td><td>2000–4000 IU</td><td>مع وجبة دسمة</td><td style='color:var(--sub);font-size:11.5px'>هرمونات + عظام</td></tr><tr><td><b>Omega-3</b></td><td>2–3 جم EPA+DHA</td><td>مع الغداء</td><td style='color:var(--sub);font-size:11.5px'>تقليل التهاب + تعافٍ</td></tr><tr><td><b>Magnesium</b></td><td>200–300 مج</td><td>قبل النوم</td><td style='color:var(--sub);font-size:11.5px'>نوم أعمق + تعافٍ عضلي</td></tr></table></div></div>"+
+  "<div class='warn-card'><h3 style='color:var(--gold);margin:0 0 6px'>⚠️ ملاحظات مهمة</h3><ul>"+
+  "<li>الدهون لا تقل عن 70–80 جم يومياً — أنت في مرحلة نمو وهرموناتك تحتاجها.</li>"+
+  "<li>الكارب أعلى في يومي الأرجل (الأحد والخميس).</li>"+
+  "<li>لا تحذف وجبات ولا تخفض السعرات بسرعة.</li>"+
+  "<li>لأنك 17 سنة راجع أي مكمل مع ولي أمرك أو طبيب قبل الاستخدام.</li>"+
+  "</ul></div>";
+}
+
+function renderPrecamp(){
+  var box=document.getElementById("precampBox");if(!box)return;
+  box.innerHTML="<div class='card plan-intro'><h2>🏕️ PIVOT PRE-CAMP — الخطة الشاملة</h2><div class='muted'>16 أسبوع · Back Left + Pivot · يد يمنى · 194 سم</div></div>"+
+  "<div class='card'><h2>📊 نقطة البداية — InBody 16/10/2026</h2>";
+  var box2=document.getElementById("precampBox");
+  box2.innerHTML+="<div class='pc-stat-row'><div class='pc-stat'><b>111.8</b><span>الوزن كجم</span></div><div class='pc-stat'><b>46.5</b><span>عضل كجم</span></div><div class='pc-stat'><b class='y'>26.8%</b><span>الدهون</span></div><div class='pc-stat'><b class='y'>129.9</b><span>VFA cm²</span></div><div class='pc-stat'><b>76</b><span>InBody Score</span></div><div class='pc-stat'><b>107–110</b><span>الهدف 8 أسابيع</span></div></div>"+
+  "<div class='dev-card' style='border-color:rgba(31,208,124,.3);background:rgba(31,208,124,.04)'><b style='color:var(--ok)'>✅ ما تملكه</b><p style='font-size:12.5px;color:var(--sub);margin:5px 0 0;line-height:1.7'>194 سم + كتلة عضلية 46.5 كجم في عمر 17 سنة. لاعب Pivot يصوب كـ Back Left = نادر جداً ومطلوب في المنتخبات.</p></div>"+
+  "<div class='dev-card' style='border-color:rgba(255,223,107,.3);background:rgba(255,223,107,.04)'><b style='color:var(--gold)'>⚠️ ما ينقصك حالياً</b><p style='font-size:12.5px;color:var(--sub);margin:5px 0 0;line-height:1.7'>30 كجم دهون — VFA مرتفعة — تصويب Back Left غير مطور — رشاقة تفاعلية تحتاج تدريب.</p></div></div>";
+
+  var phasesHTML="<div class='card'><h2>🗺️ خارطة الطريق — 4 مراحل</h2>";
+  var phases=[
+    {n:1,t:"بناء القاعدة",w:"الأسابيع 1–4",g:"خسارة 2–3 كجم دهون + تثبيت العادات + تأسيس التصويب",items:["البرنامج الأساسي بدون تعديل","Shadow Throw فقط 3× أسبوعياً","Zone 2 Cardio 15–20 دقيقة 3× أسبوعياً","وصول منتظم لـ 190–210 جم بروتين","تسجيل الوزن كل أحد صباحاً"]},
+    {n:2,t:"بناء الانفجار والتصويب",w:"الأسابيع 5–8",g:"قوة +10–15% + Standing Throw 60–70% + خسارة 2–3 كجم إضافية",items:["زيادة أوزان Squat و RDL تدريجياً","Standing Throw + Target Throw على الملعب","إضافة Single Leg Broad Jump","Interval Cardio 4×2 دقيقة","Eccentric Calf + Nordic Curl للحماية"]},
+    {n:3,t:"ربط القوة بالملعب",w:"الأسابيع 9–12",g:"تحويل القوة لأداء Pivot + تصويب تحت ضغط",items:["تقليل حجم الأوزان -20% وزيادة السرعة","Step-in Throw 70–75% + Pivot Move & Shoot","تدريب الاستلام تحت الإرهاق","Repeated Sprint 15 ث × 45 ث","Reactive Agility: Tennis Ball + Visual Cue"]},
+    {n:4,t:"الذروة قبل المعسكر",w:"الأسابيع 13–16",g:"أفضل حالة ممكنة — قوة + تصويب + لياقة + ثقة",items:["تخفيف الحمل -30%","تصويب تحت ضغط وإرهاق","InBody جديد لقياس التقدم","النوم والتغذية الأولوية القصوى","لا تمارين جديدة أبداً"]}
+  ];
+  phases.forEach(function(p){
+    phasesHTML+="<div class='pc-phase'><div class='pc-phase-head'><div class='pc-phase-num'>"+p.n+"</div><div><div style='font-weight:800;font-size:14px'>"+p.t+"</div><div style='font-size:11px;color:var(--sub)'>"+p.w+"</div></div></div><div class='pc-phase-body'><div class='pc-phase-goal'>"+p.g+"</div><ul class='pc-phase-list'>";
+    p.items.forEach(function(i){phasesHTML+="<li>"+i+"</li>";});
+    phasesHTML+="</ul></div></div>";
+  });
+  phasesHTML+="</div>";
+  box2.innerHTML+=phasesHTML;
+
+  var shootHTML="<div class='card'><h2>🎯 برنامج التصويب — Back Left يد يمنى</h2><div class='dev-card' style='border-color:rgba(96,165,250,.3);background:rgba(96,165,250,.04)'><b style='color:#60a5fa'>لماذا هذا المركز مميز</b><p style='font-size:12.5px;color:var(--sub);margin:5px 0 0;line-height:1.7'>Back Left + يد يمنى = أفضل زاوية تصويب نحو المرمى. أضف بنيتك 194 سم = تهديد حقيقي يصعب التصدي له.</p></div>";
+  var shoots=[["الأسابيع 1–2","Shadow Throw فقط — بدون كرة. ميكانيكية الحوض ← الكتف ← الرسغ ببطء.","50%"],["الأسابيع 3–4","Standing Throw نحو الحائط. إحساس بالكرة وإيقاع التصويب.","55–60%"],["الأسابيع 5–6","Target Throw نحو المرمى من 7 أمتار. زاوية يمين + يسار + أسفل.","60–65%"],["الأسابيع 7–8","Step-in Throw — خطوة اقتراب قصيرة ثم تصويب.","65–70%"],["الأسابيع 9–10","Pivot Move & Shoot — تحرك + استلام + تصويب فوري.","70–75%"],["الأسابيع 11–12","Shoot under Pressure — تصويب بعد إرهاق.","75–80%"],["الأسابيع 13–16","تصويب في المباريات والتدريب. دقة + قوة + قرار.","80–90%"]];
+  shoots.forEach(function(s){shootHTML+="<div class='shoot-row'><div class='shoot-wk'>"+s[0]+"</div><div style='flex:1;font-size:12.5px;color:var(--sub)'>"+s[1]+"</div><div class='shoot-pct'>"+s[2]+"</div></div>";});
+  shootHTML+="<div class='note' style='margin-top:10px'>أوقف التصويب فوراً إذا ظهر ألم في الكتف أو الكوع. Band External Rotation + Face Pull يومياً هي وقايتك.</div></div>";
+  box2.innerHTML+=shootHTML;
+
+  var fitHTML="<div class='card'><h2>❤️ اللياقة — مدمجة في البرنامج</h2><div class='soft-note'>اللياقة ليست يوماً منفصلاً. مدمجة في Zone 2 بعد الأحد والأربعاء، تكرار الجهد في الاثنين، وجلسة مستقلة في السبت.</div>";
+  var fits=[["الأسابيع 1–4 — Aerobic Base","Zone 2 15–20 دقيقة · دراجة أو مشي سريع · نبض 125–145 · بعد الأحد والأربعاء + الثلاثاء"],["الأسابيع 5–8 — Interval Endurance","إحماء 5 دق ← 4 جولات × 2 دقيقة RPE 6 ← 2 دق راحة بينها ← تبريد 3 دق"],["الأسابيع 9–11 — Repeated Sprint Ability","مجموعتان × 5 جولات · 15 ثانية سرعة 80–85% ← 45 ثانية مشي · 3 دق بين المجموعتين"],["الأسبوع 12 — Deload","خفض جرعة اللياقة -40–50%. Zone 2 فقط 15 دقيقة. لا Interval."],["الأسابيع 13–16 — Peak","RSA + تصويب بعده فوراً (Shoot under Fatigue). Zone 2 للتعافي فقط."]];
+  fits.forEach(function(f){fitHTML+="<div class='fit-card'><div class='fit-wk'>"+f[0]+"</div><div style='font-size:12.5px;color:var(--sub);line-height:1.6'>"+f[1]+"</div></div>";});
+  fitHTML+="<div class='note'>إذا كان التعب 6/10 أو أكثر أو تدريب الأهلي شديد — ألغِ جرعة اللياقة الإضافية.</div></div>";
+  box2.innerHTML+=fitHTML;
+
+  var trackHTML="<div class='card'><h2>📋 جدول المتابعة — كل أحد صباحاً</h2><div style='overflow-x:auto'><table class='track-tbl'><tr><th>المؤشر</th><th>الآن</th><th>أسبوع 4</th><th>أسبوع 8</th><th>أسبوع 16</th></tr>";
+  [["الوزن (كجم)","111.8"],["محيط الخصر","—"],["Vertical Jump","—"],["20م Sprint (ث)","—"],["InBody Score","76"],["Target Throw /10","—"],["الطاقة 1–10","—"],["حالة الركبة","✓"],["حالة الكتف","✓"]].forEach(function(r){trackHTML+="<tr><td>"+r[0]+"</td><td class='t-now'>"+r[1]+"</td><td class='t-blank'>____</td><td class='t-blank'>____</td><td class='t-blank'>____</td></tr>";});
+  trackHTML+="</table></div></div>";
+  box2.innerHTML+=trackHTML;
+
+  var rulesHTML="<div class='card'><h2>🏆 القواعد الذهبية</h2>";
+  [["🎯","RIR 2–3 دائمًا","لا تصل للفشل العضلي. أوقف 2–3 تكرارات قبل العجز."],["📅","لا تغيير لـ 8 أسابيع","التغييرات الصغيرة بسبب ألم مسموحة. الكبيرة ممنوعة."],["💧","3.5–4 لتر ماء","يومياً بدون استثناء."],["😴","نوم 8 ساعات","التعافي والنمو يحصلان في النوم."],["🦵","راقب الركبة والكتف","ألم حقيقي = خفف الحمل فوراً."],["🎯","التصويب ببطء أولاً","لا تصوّب بقوة كاملة قبل الأسبوع 9."],["📱","سجّل يومياً","Lyfta للتمارين · Cronometer للأكل."]].forEach(function(r){rulesHTML+="<div class='pc-rule'><div class='pc-rule-ic'>"+r[0]+"</div><div><div class='pc-rule-title'>"+r[1]+"</div><div class='pc-rule-desc'>"+r[2]+"</div></div></div>";});
+  rulesHTML+="<div style='margin-top:14px;text-align:center;padding:14px;background:rgba(31,208,124,.06);border-radius:10px;border:1px solid rgba(31,208,124,.15)'><div style='font-size:11px;color:var(--sub);margin-bottom:4px'>نقطة البداية الرسمية</div><div style='font-size:26px;font-weight:900;color:var(--ok)'>111.8 كجم</div><div style='font-size:11px;color:var(--sub);margin-top:3px'>27 نوفمبر 2026 · علي · Back Left + Pivot 🏐</div></div></div>";
+  box2.innerHTML+=rulesHTML;
+}
+
+function renderReport(){
+  var rb=document.getElementById("reportBox");if(!rb)return;rb.innerHTML="";
+  var start=new Date((DB.settings.startDate||"2026-11-30")+"T00:00:00");
+  var wk=Math.min(16,Math.max(1,Math.ceil(((new Date())-start)/(7*24*60*60*1000))+1));
+  var wr=DB.weekly["week"+wk]||{};
+  var card=document.createElement("div");card.className="card";
+  card.innerHTML="<h2>📊 تقرير الأسبوع "+wk+" من 16</h2><div class='soft-note'>سجّل في نهاية كل أسبوع. البيانات الحقيقية هي أساس أي قرار.</div>"+
+  "<div class='weekly-grid'>"+
+  "<div class='tf'><label>الوزن (كجم)</label><input id='rWeight' type='number' step='0.1'></div>"+
+  "<div class='tf'><label>محيط الخصر (سم)</label><input id='rWaist' type='number'></div>"+
+  "<div class='tf'><label>الحصص المكتملة /7</label><input id='rSessions' type='number' min='0' max='7'></div>"+
+  "<div class='tf'><label>متوسط النوم (ساعات)</label><input id='rSleep' type='number' step='0.5' min='0' max='14'></div>"+
+  "<div class='tf'><label>الطاقة 1–10</label><input id='rEnergy' type='number' min='1' max='10'></div>"+
+  "<div class='tf'><label>التعب 1–10</label><input id='rFatigue' type='number' min='1' max='10'></div>"+
+  "<div class='tf'><label>حالة الركبة 0–10</label><input id='rKnee' type='number' min='0' max='10'></div>"+
+  "<div class='tf'><label>حالة الكتف 0–10</label><input id='rShoulder' type='number' min='0' max='10'></div>"+
+  "<div class='tf'><label>الالتزام بالأكل %</label><input id='rFood' type='number' min='0' max='100'></div>"+
+  "<div class='tf'><label>أهداف التصويب /10</label><input id='rShoot' type='number' min='0' max='10'></div>"+
+  "<div class='tf'><label>تقنية التصويب /10</label><input id='rShootTech' type='number' min='0' max='10'></div>"+
+  "<div class='tf'><label>جودة RSA /10</label><input id='rRSA' type='number' min='0' max='10'></div>"+
+  "<div class='tf weekly-wide'><label>ملاحظات الأسبوع</label><textarea id='rNotes'></textarea></div>"+
+  "</div><button class='bigbtn green' id='saveReport'>💾 حفظ تقرير الأسبوع "+wk+"</button><div id='reportStatus' class='weekly-status'></div>"+
+  "<div class='note'>أرسل الأرقام أسبوعياً. البيانات تصنع القرارات الصحيحة.</div>";
+  rb.appendChild(card);
+  var mp={rWeight:"weight",rWaist:"waist",rSessions:"sessions",rSleep:"sleep",rEnergy:"energy",rFatigue:"fatigue",rKnee:"knee",rShoulder:"shoulder",rFood:"food",rShoot:"shoot",rShootTech:"shootTech",rRSA:"rsa",rNotes:"notes"};
+  Object.keys(mp).forEach(function(id){var e=document.getElementById(id);if(e&&wr[mp[id]]!==undefined)e.value=wr[mp[id]];});
+  document.getElementById("saveReport").onclick=function(){
+    Object.keys(mp).forEach(function(id){var e=document.getElementById(id);if(e)wr[mp[id]]=e.value;});
+    wr.savedAt=new Date().toISOString();DB.weekly["week"+wk]=wr;saveDB();
+    document.getElementById("reportStatus").textContent="✅ تم حفظ تقرير الأسبوع "+wk;
+  };
+}
+
+var MATCHES=[{date:"2026-12-05",cat:"U20",opp:"الاتحاد",time:"19:15"},{date:"2026-12-11",cat:"U20",opp:"باربار",time:"19:30"},{date:"2026-12-19",cat:"U20",opp:"توبلي",time:"17:30"},{date:"2026-12-26",cat:"U20",opp:"النجمة",time:"17:30"},{date:"2027-01-02",cat:"U20",opp:"الشباب",time:"19:15"}];
+function parseYMD(s){var p=s.split("-");return new Date(+p[0],+p[1]-1,+p[2],12);}
+function activeMatches(){return MATCHES.filter(function(m){return (m.cat==="U18"&&DB.settings.u18)||(m.cat==="U20"&&DB.settings.u20);});}
+
+function renderSchedule(){
+  var box=document.getElementById("scheduleBox");if(!box)return;box.innerHTML="";
+  var set=document.createElement("div");set.className="card";
+  set.innerHTML="<h2>⚙️ إعداد المباريات</h2><div class='settingrow'><span><b>دوري U18</b></span><input id='setU18' type='checkbox'></div><div class='settingrow'><span><b>دوري U20</b></span><input id='setU20' type='checkbox'></div><div class='settingrow'><span><b>بداية الخطة</b></span><input id='setStart' type='date'></div><div class='modehint'>فعّل الفئات التي تشارك فيها فقط.</div>";
+  box.appendChild(set);
+  document.getElementById("setU18").checked=!!DB.settings.u18;
+  document.getElementById("setU20").checked=!!DB.settings.u20;
+  document.getElementById("setStart").value=DB.settings.startDate||"2026-11-30";
+  ["setU18","setU20","setStart"].forEach(function(id){document.getElementById(id).onchange=function(){DB.settings.u18=document.getElementById("setU18").checked;DB.settings.u20=document.getElementById("setU20").checked;DB.settings.startDate=document.getElementById("setStart").value||"2026-11-30";saveDB();};});
+  var mc=document.createElement("div");mc.className="card";mc.innerHTML="<h2>🏐 مباريات الأهلي القادمة</h2>";
+  activeMatches().filter(function(m){return parseYMD(m.date)>=parseYMD(todayKey());}).forEach(function(m){mc.innerHTML+="<div class='matchitem'><b>"+m.date+" — "+m.cat+"</b><br>الأهلي ضد "+m.opp+" • "+m.time+"</div>";});
+  box.appendChild(mc);
+
+  var fit=document.createElement("div");fit.className="card";
+  fit.innerHTML="<h2>❤️ اللياقة — خطة 16 أسبوع</h2>"+
+  "<div class='dev-card'><h3>الأسابيع 1–4 — Aerobic Base</h3>Zone 2 · 15–20 دقيقة · دراجة أو مشي سريع عند RPE 3–4.</div>"+
+  "<div class='dev-card'><h3>الأسابيع 5–8 — Interval Endurance</h3>إحماء 5 دق + 4 جولات × 2 دقيقة RPE 6 + بينها دقيقتان سهلة + تبريد.</div>"+
+  "<div class='dev-card'><h3>الأسابيع 9–11 — Repeated Sprint</h3>مجموعتان × 5 جولات · 15 ث سريع + 45 ث مشي · 3 دق بين المجموعتين.</div>"+
+  "<div class='dev-card'><h3>الأسبوع 12 — تخفيف</h3>Zone 2 فقط 15 دقيقة. لا Interval أو RSA.</div>"+
+  "<div class='dev-card'><h3>الأسابيع 13–16 — ذروة</h3>RSA + تصويب بعده مباشرة. Zone 2 للتعافي فقط.</div>"+
+  "<div class='note'>إذا احتوى تدريب الأهلي على جري متكرر أو مباريات — احذف الجرعة الإضافية.</div>";
+  box.appendChild(fit);
+
+  var pri=document.createElement("div");pri.className="card";
+  pri.innerHTML="<h2>🏐 أولويات لاعب Pivot + Back Left</h2>"+
+  "<div class='dev-card'><h3>🔥 استلام تحت الضغط (10/10)</h3>تجهيز اليدين · قراءة التمريرة · التحرك لفتح زاوية · تثبيت الكرة واتخاذ القرار.</div>"+
+  "<div class='dev-card'><h3>🎯 التصويب كـ Back Left (10/10)</h3>الميكانيكية أولاً · القوة ثانياً · التصويب تحت الإرهاق ثالثاً.</div>"+
+  "<div class='dev-card'><h3>💪 قوة الاحتكاك (9.5/10)</h3>قوة الرجلين والوركين والجذع. الثبات في وضع قانوني أثناء الحجب وحماية الكرة.</div>"+
+  "<div class='dev-card'><h3>⚡ السرعة القصيرة والانفجار (9/10)</h3>أول خطوتين هما الفرق بين الهدف والمحاولة الفاشلة.</div>"+
+  "<div class='dev-card'><h3>🔁 تكرار الجهد (9/10)</h3>إعادة الانطلاقات القصيرة مرات ومرات طوال المباراة.</div>";
+  box.appendChild(pri);
+}
+
+function renderLibrary(){
+  var box=document.getElementById("libraryBox");if(!box)return;box.innerHTML="";
+  box.innerHTML="<div class='card plan-intro'><h2>📚 مكتبة Pivot</h2><div class='cue'>LEARN → OBSERVE → APPLY</div><div class='muted'>فكرة واحدة أسبوعياً. لاعب واحد تراقبه: Magnus Saugstrup.</div></div>"+
+  "<div class='card'><h2>📖 الكتب الثلاثة</h2>"+
+  "<div class='dev-card'><h3>1. The Inner Game of Tennis — ابدأ به</h3>تقليل التفكير الزائد والثقة بتنفيذ المهارة. 10 صفحات في الجلسة.</div>"+
+  "<div class='dev-card'><h3>2. Mind Gym</h3>الثقة والتركيز والتخيل والاستعداد الذهني.</div>"+
+  "<div class='dev-card'><h3>3. Grit — Angela Duckworth</h3>المثابرة والعمل طويل الأمد. الأهم نفسياً.</div></div>"+
+  "<div class='card'><h2>🏐 مباريات للتحليل</h2>"+
+  "<div class='dev-card'><h3>SC Magdeburg — راقب Saugstrup</h3>التمركز · البلوك · التحرك قبل التمريرة · الإنهاء.<br><a href='https://ehftv.com/' target='_blank' style='color:#60a5fa'>EHFTV ↗</a></div>"+
+  "<div class='dev-card'><h3>Denmark vs France — قارن Saugstrup وFabregas</h3><a href='https://www.youtube.com/results?search_query=Denmark+France+handball+Saugstrup+pivot' target='_blank' style='color:#60a5fa'>ابحث على YouTube ↗</a></div></div>"+
+  "<div class='card'><h2>🔎 طريقة المشاهدة</h2><div class='cue'>أوقف الفيديو قبل التمريرة — توقّع حركة Pivot — شغّل اللقطة — قارن</div>"+
+  "<div class='dev-card'><b>Positioning:</b> أين يقف قبل التمريرة؟</div>"+
+  "<div class='dev-card'><b>Receiving:</b> كيف يجهز يديه وجسمه؟</div>"+
+  "<div class='dev-card'><b>Footwork:</b> كيف يغيّر زاويته قبل وصول الكرة؟</div>"+
+  "<div class='dev-card'><b>Finishing:</b> كيف ينهي من زوايا مختلفة؟</div></div>"+
+  "<div class='card'><h2>📝 سجل تحليل المباراة</h2>"+
+  "<div class='weekly-grid'>"+
+  "<div class='tf'><label>المباراة</label><input id='filmMatch' placeholder='Barça vs Füchse'></div>"+
+  "<div class='tf'><label>اللاعب</label><input id='filmPlayer' placeholder='Saugstrup'></div>"+
+  "<div class='tf'><label>تاريخ المشاهدة</label><input id='filmDate' type='date'></div>"+
+  "<div class='tf'><label>المدة (دقيقة)</label><input id='filmMin' type='number' min='1'></div>"+
+  "<div class='tf weekly-wide'><label>ماذا لاحظت في تحركه؟</label><textarea id='filmMove'></textarea></div>"+
+  "<div class='tf weekly-wide'><label>ماذا ستطبق في تدريبك؟</label><textarea id='filmApply'></textarea></div>"+
+  "</div><button class='bigbtn' id='saveFilm'>💾 حفظ التحليل</button><div id='filmStatus' class='weekly-status'></div><div id='filmHistory'></div></div>";
+
+  if(!DB.library)DB.library={films:[]};
+  var fd=DB.library.draft||{};
+  ["filmMatch","filmPlayer","filmDate","filmMin","filmMove","filmApply"].forEach(function(id){var el=document.getElementById(id);if(el)el.value=fd[id]||(id==="filmDate"?todayKey():"");});
+  document.getElementById("saveFilm").onclick=function(){
+    var item={};["filmMatch","filmPlayer","filmDate","filmMin","filmMove","filmApply"].forEach(function(id){item[id]=(document.getElementById(id)||{}).value||"";});
+    if(!item.filmMatch&&!item.filmMove){document.getElementById("filmStatus").textContent="أضف اسم المباراة أو ملاحظة.";return;}
+    DB.library.films.unshift(item);DB.library.draft={};saveDB();
+    document.getElementById("filmStatus").textContent="✅ تم حفظ التحليل.";
+    var h=document.getElementById("filmHistory");if(!h)return;
+    h.innerHTML="<h3 style='margin:12px 0 6px;font-size:14px'>التحليلات السابقة</h3>";
+    DB.library.films.slice(0,5).forEach(function(f){h.innerHTML+="<div class='dev-card'><b>"+esc(f.filmDate||"")+"</b> — "+esc(f.filmMatch||"")+(f.filmPlayer?" · "+esc(f.filmPlayer):"")+"<br><span style='color:var(--sub);font-size:12px'>"+esc(f.filmMove||"")+"</span><br><b>التطبيق:</b> "+esc(f.filmApply||"")+"</div>";});
+  };
+  var h2=document.getElementById("filmHistory");if(h2&&DB.library.films.length){h2.innerHTML="<h3 style='margin:12px 0 6px;font-size:14px'>التحليلات السابقة</h3>";DB.library.films.slice(0,5).forEach(function(f){h2.innerHTML+="<div class='dev-card'><b>"+esc(f.filmDate||"")+"</b> — "+esc(f.filmMatch||"")+"<br><span style='color:var(--sub);font-size:12px'>"+esc(f.filmMove||"")+"</span></div>";});}
+}
+
+/* Init */
+renderTrain();
+renderFood();
+renderPrecamp();
+renderReport();
+renderSchedule();
+renderLibrary();
+</script>
+
+<footer style="max-width:680px;margin:14px auto 24px;padding:12px 10px 18px;text-align:center;color:#9ca3af;font:12px/1.8 system-ui,sans-serif;border-top:1px solid #303038;">
+  <div style="font-weight:800;color:#facc15">نسخة الموقع: v3.1.0</div>
+  <div>BUILD 2026.11.27 · نسخة شاملة · 6 تبويبات · تمارين + تغذية + Pre-Camp + تقرير + مباريات + مكتبة</div>
+</footer>
+</body>
+</html>
